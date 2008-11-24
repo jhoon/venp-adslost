@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE daoConfig
+    PUBLIC "-//ibatis.apache.org//DTD DAO Configuration 2.0//EN"
+    "http://ibatis.apache.org/dtd/dao-2.dtd">
+
+<daoConfig>
+
+	<context>
+
+		<transactionManager type="SQLMAP">
+			<property name="SqlMapConfigResource" value="venp/ibatis/maps/sql-map-config.xml" />
+		</transactionManager>
+
+		<dao interface="venp.dao.entities.UsuarioDAO" implementation="venp.ibatis.mysql.UsuarioMySqlMapDAO" />
+		<dao interface="venp.dao.entities.LocacionDAO" implementation="venp.ibatis.mysql.LocacionMySqlMapDAO" />
+		<dao interface="venp.dao.entities.ElectorDAO" implementation="venp.ibatis.mysql.ElectorMySqlMapDAO" />
+
+	</context>
+
+</daoConfig>

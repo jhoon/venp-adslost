@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Elector">
+
+	<typeAlias alias="elector" type="venp.beans.ElectorBean" />
+	<typeAlias alias="helpBean" type="venp.beans.MyHelpBean" />
+	<typeAlias alias="electorForm" type="venp.web.forms.ElectorForm" />
+	<typeAlias alias="opcion" type="venp.beans.OpcionBean"/>
+	
+	
+
+	<resultMap class="helpBean" id="paisesMap">
+		<result property="key" column="id"/>
+		<result property="value" column="nombre" />
+	</resultMap>
+	
+	<resultMap class="helpBean" id="consuladosMap" extends="paisesMap">
+		<result property="paisId" column="pais" />
+	</resultMap>
+	
+	<resultMap class="opcion" id="myOpcion">
+    	<result property="id" column="id" />
+    	<result property="nombre" column="nombre" />
+    	<result property="abreviatura" column="abreviatura" />
+    	<result property="logo" column="logo" />
+    	<result property="politico" column="politico"/>
+    	<result property="foto" column="foto"/>
+    </resultMap>
+    
+    <resultMap class="electorForm" id="myElectorVotar">
+    	<result property="fechaSufragio" column="fecha" />
+    	<result property="horaSufragio" column="hora" />
+    	<result property="gmtSufragio" column="gmt" />
+    </resultMap>
+    
+    <resultMap class="electorForm" id="myElectorRes">
+        <result property="id" column="id" />
+        <result property="locationId" column="Locacion_id" />
+		<result property="paisId" column="pais_id" />
+		<result property="nombre" column="nombre" />
+		<result property="paterno" column="paterno" />
+		<result property="materno" column="materno" />
+		<result property="dni" column="dni" />
+		<result property="email" column="email" />
+		<result property="estado" column="estado" />
+    </resultMap>
+    
+    
+    
+	
+	<parameterMap class="java.lang.Object" id="val">
+		<parameter property="id" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="procesoMap">
+		<parameter property="idProceso" mode="IN" javaType="java.lang.Integer"/>
+	</parameterMap>
+
+	<parameterMap class="elector" id="myElector">
+		<parameter property="id" javaType="java.lang.String" />
+		<parameter property="locationId" javaType="java.lang.String" />
+		<parameter property="nombre" javaType="java.lang.String" />
+		<parameter property="paterno" javaType="java.lang.String" />
+		<parameter property="materno" javaType="java.lang.String" />
+		<parameter property="dni" javaType="java.lang.String" />
+		<parameter property="email" javaType="java.lang.String" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="idPinMap">
+		<parameter property="id" mode="IN" javaType="java.lang.String"/>
+		<parameter property="pin" mode="IN" javaType="java.lang.String"/>
+	</parameterMap>
+	
+	<parameterMap class="map" id="rangoMap">
+		<parameter property="idProceso" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="idElector" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="votarMap">
+		<parameter property="voto" mode="IN" javaType="java.lang.String"/>
+		<parameter property="id" mode="IN" javaType="java.lang.String"/>
+		<parameter property="locationId" mode="IN" javaType="java.lang.String"/>
+	</parameterMap>
+
+
+	
+	<procedure id="getEmpadronamientoActivo" resultClass="java.lang.Integer">
+		{call pa_elector_empadronamientoActivo()}
+	</procedure>
+	
+	<procedure id="getConsulados" parameterMap="val" resultMap="consuladosMap">
+		{call pa_elector_consulados(?)}
+	</procedure>
+	
+	<procedure id="validarDNI" parameterMap="val" resultMap="myElectorRes">
+		{call pa_elector_validarDNI(?)}
+	</procedure>
+	
+	<procedure id="registrarElector" parameterMap="myElector">
+		{call pa_elector_registrar(?, ?, ?, ?, ?, ?, ?)}
+	</procedure>
+	
+	<procedure id="getPaises" parameterMap="val" resultMap="paisesMap">
+		{call pa_elector_paises(?)}
+	</procedure>	
+	
+	<procedure id="opcionesCedula" parameterMap="procesoMap" resultMap="myOpcion">
+		{call pa_elector_getCedula(?)}
+	</procedure>
+	
+	<procedure id="procActivo" resultClass="java.lang.Integer">
+		{call pa_elector_getProcesoActivo()}
+	</procedure>
+	
+	<procedure id="validaPIN" parameterMap="idPinMap" resultClass="java.lang.Integer">
+		{call pa_elector_validaPIN(?, ?)}
+	</procedure>
+	
+	<procedure id="votoEnRango" parameterMap="rangoMap" resultClass="java.lang.Integer">
+		{call pa_elector_isVotoEnRango(?, ?)}
+	</procedure>
+	
+	<procedure id="votar" parameterMap="votarMap" resultMap="myElectorVotar">
+		{call pa_elector_votar(?,?,?)}
+	</procedure>
+	
+</sqlMap>

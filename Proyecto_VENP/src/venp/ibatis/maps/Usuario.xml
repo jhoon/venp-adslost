@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Usuario">
+
+	<typeAlias alias="usuario" type="venp.beans.UsuarioBean" />
+	<typeAlias alias="perfil" type="venp.beans.PerfilBean" />
+	
+	<resultMap class="usuario" id="myuser">
+        <result property="codigo" column="usuarioID" />
+        <result property="nombre" column="usuarioNombre" />
+        <result property="apePaterno" column="paterno" />
+        <result property="apeMaterno" column="materno" />
+        <result property="dni" column="dni" />
+        <result property="email" column="email" />
+        <result property="movil" column="movil" />
+        <result property="userName" column="username" />
+        <result property="password" column="passwd" />
+        <result property="estado" column="usuarioEstado" />
+        <result property="perfil.codigo" column="perfilID" />
+		<result property="perfil.nombre" column="perfilNombre" />
+		<result property="perfil.descripcion" column="descripcion" />
+		<result property="perfil.estado" column="perfilEstado" />
+    </resultMap>
+
+
+	<procedure id="findByUsuario" parameterClass="string" resultMap="myuser">
+		{call pa_usuario_findByUser (#codigo#)}
+	</procedure>
+
+</sqlMap>

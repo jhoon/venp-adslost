@@ -1,0 +1,42 @@
+.tabla { background-color: white;
+         border-right: #333 1px solid;
+         border-top: #333 1px solid;
+         border-bottom: #333 1px solid;
+         border-left: #333 1px solid;
+         font: 10pt Verdana, Tahoma, Arial;
+         color: #000000;
+       }
+
+.partido { font-weight: bold;
+           font-size: 20px;
+           color:#000000;
+         }
+
+.candidato { font-weight: bold;
+             font-size: 20px;
+             color:#000000;
+           }
+
+.porcentaje { font-weight: bold;
+              font-size: 30pt;
+              color:#0099CC;
+            }
+            
+.resultado { font-weight: bold;
+           font-size: 30pt;
+           color:#0099CC;
+       }
+       
+ .sendBtn {
+	position: relative;
+	width: 155px;
+	height: 30px;
+	background: url(../../media/btn_gris.jpg) no-repeat 42% 50%;
+	text-align: center;
+	cursor: pointer;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	color: #000000;
+	text-decoration: none;
+	display: block;
+}

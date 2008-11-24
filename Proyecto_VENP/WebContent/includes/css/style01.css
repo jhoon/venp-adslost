@@ -1,0 +1,56 @@
+#letra1 { FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif;
+          FONT-SIZE: 12px; 
+        }
+
+#letra1 A { font-weight: bolder; 
+          }
+
+#letra2 { FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif;
+          FONT-SIZE: 12px; 
+        }
+
+#letra2 A { font-weight: lighter; 
+          }
+
+#menu_ppal1 { PADDING-RIGHT: 0px; 
+              PADDING-LEFT: 0px; 
+              FONT-SIZE: 0.67em; 
+              FLOAT: right; 
+              LIST-STYLE-IMAGE: none; 
+              PADDING-BOTTOM: 0px; 
+              MARGIN: 0.8em 0px 0px; 
+              OVERFLOW: hidden; 
+              WIDTH: 48em; 
+              PADDING-TOP: 0px;
+              FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif;
+            }
+
+#menu_ppal1 UL { FLOAT: right; WIDTH: 38em
+               }
+
+#menu_ppal1 LI { BORDER-RIGHT: #cfc0b2 0px solid; 
+                 PADDING-RIGHT: 0px; 
+                 PADDING-LEFT: 0px; 
+                 FONT-WEIGHT: bold; 
+                 FLOAT: right; 
+                 PADDING-BOTTOM: 0px; 
+                 MARGIN-LEFT: 0em; 
+                 MARGIN-RIGHT: 0px; 
+                 PADDING-TOP: 0px; 
+                 LIST-STYLE-TYPE: none;
+               }
+
+#menu_ppal1 LI A { PADDING-RIGHT: 0.4em; 
+                   DISPLAY: block; 
+                   PADDING-LEFT: 0.4em; 
+                   PADDING-BOTTOM: 0.2em; 
+                   COLOR: #666;
+                   PADDING-TOP: 0.15em
+                 }
+
+#menu_ppal1 LI A:hover { BACKGROUND: #5183a7 repeat-x left bottom; 
+                         COLOR: #fff;
+                       }
+
+#menu_ppal1 .separador { FONT-SIZE: 1em;
+                       }

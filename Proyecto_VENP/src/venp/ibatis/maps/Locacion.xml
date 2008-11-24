@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Locacion">
+
+	<!-- ALIAS -->
+	<typeAlias alias="locacion" type="venp.beans.LocacionBean" />
+	
+	<!-- PARAMETER MAPS -->
+	<parameterMap class="map" id="paramMap1">
+		<parameter property="usuario" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="locacion" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="salida" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap2">
+		<parameter property="usuario" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="locacion" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap3">
+		<parameter property="usuario" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap4">
+		<parameter property="codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="nroElectores" mode="OUT" javaType="java.lang.Integer" />
+		<parameter property="nroVotos" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<!-- RESULT MAPS -->
+	<resultMap class="locacion" id="resMap1">
+		<result property="codigo" column="codigo" />
+		<result property="nombrePais" column="pais" />
+		<result property="nombreCentroVotacion" column="centroVotacion" />
+		<result property="tiempoGMT" column="tiempoGMT" />
+		<result property="horaLocal" column="fechaLocal" />
+		<result property="horaVotacionInicio" column="fechaVotacion" />
+		<result property="diferenciaInicio" column="diferenciaInicio" />
+		<result property="diferenciaInicioFin" column="diferenciaInicioFin" />
+	</resultMap>
+	
+	<resultMap class="locacion" id="resMap2">
+		<result property="codigo" column="codigo" />
+		<result property="nombrePais" column="pais" />
+		<result property="nombreCentroVotacion" column="centroVotacion" />
+		<result property="tiempoGMT" column="tiempoGMT" />
+		<result property="horaLocal" column="fechaLocal" />
+		<result property="horaVotacionInicio" column="fechaVotacion" />
+		<result property="diferenciaFin" column="diferenciaFin" />
+	</resultMap>
+	
+	<resultMap class="locacion" id="resMap3">
+		<result property="codigo" column="codigo" />
+		<result property="nombrePais" column="pais" />
+		<result property="nombreCentroVotacion" column="centroVotacion" />
+		<result property="tiempoGMT" column="tiempoGMT" />
+		<result property="horaLocal" column="fechaLocal" />
+		<result property="horaVotacionInicio" column="inicioVotacion" />
+		<result property="horaVotacionFin" column="finVotacion" />
+		<result property="puestaCero" column="puestaCero" />
+		<result property="cierreVotacion" column="cierre" />
+	</resultMap>
+	
+	<!-- PROCEDURES -->
+	<procedure id="eliminarVotos" parameterMap="paramMap1">
+		{call pa_Locacion_Eliminar_Votos(?, ?, ?)}
+	</procedure>
+	
+	<procedure id="realizarPuestaCero" parameterMap="paramMap1">
+		{call pa_Locacion_PuestaCero(?, ?, ?)}
+	</procedure>
+	
+	<procedure id="locacionPorUsuarioPuestaCero" parameterMap="paramMap2" resultMap="resMap1">
+		{call pa_Locacion_Por_Usuario_PuestaCero(?, ?)}
+	</procedure>
+	
+	<procedure id="locacionesPorUsuarioPuestaCero" parameterMap="paramMap3" resultMap="resMap1">
+		{call pa_Locaciones_Por_Usuario_PuestaCero(?)}
+	</procedure>
+	
+	<procedure id="locacionPorUsuarioCerrarVotacion" parameterMap="paramMap2" resultMap="resMap2">
+		{call pa_Locacion_Por_Usuario_CerrarVotacion(?, ?)}
+	</procedure>
+	
+	<procedure id="locacionesPorUsuarioCerrarVotacion" parameterMap="paramMap3" resultMap="resMap2">
+		{call pa_Locaciones_Por_Usuario_CerrarVotacion(?)}
+	</procedure>
+	
+	<procedure id="locacionesPorUsuarioMonitoreo" parameterMap="paramMap3" resultMap="resMap3">
+		{call pa_Locaciones_Por_Usuario_Monitoreo(?)}
+	</procedure>
+	
+	<procedure id="locacionMonitoreo" parameterMap="paramMap4">
+		{call pa_Locacion_Monitoreo(?, ?, ?)}
+	</procedure>
+	
+	<procedure id="locacionCerrarVotacion" parameterMap="paramMap1">
+		{call pa_Locacion_CerrarVotacion(?, ?, ?)}
+	</procedure>
+
+</sqlMap>

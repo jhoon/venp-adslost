@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+      "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+
+<tiles-definitions>
+
+	<!-- ADMINISTRACION DE LOCACIONES -->
+	
+	<definition name="locacionLayout" path="/adm_locacion/locacion.layout.jsp">
+		<put name="titulo" value=""></put>
+		<put name="header" value="/includes/header.inc.jsp"></put>
+		<put name="footer" value="/includes/footer.jsp"></put>
+		<put name="body" value="/adm_locacion/locacion.jsp"></put>
+	</definition>
+
+	<definition name="puestaCero" extends="locacionLayout">
+		<put name="titulo" value="locacion.puestaCero.titulo"></put>
+		<put name="body" value="/adm_locacion/locacionPuestaCero.jsp"></put>
+	</definition>
+
+	<definition name="cerrarVotacion" extends="locacionLayout">
+		<put name="titulo" value="locacion.cerrarVotacion.titulo"></put>
+		<put name="body" value="/adm_locacion/locacionCerrarVotacion.jsp"></put>
+	</definition>
+
+	<definition name="monitoreoTransac" extends="locacionLayout">
+		<put name="titulo" value="locacion.monitoreo.titulo"></put>
+		<put name="body" value="/adm_locacion/locacionMonitoreo.jsp"></put>
+	</definition>
+	
+	<!-- FIN DE ADMINISTRACION DE LOCACIONES -->
+
+	<!-- ADMINISTRACION CENTRAL -->
+	
+	<definition name="centralLayout" path="/adm_central/central.jsp">
+		<put name="titulo" value=""></put>
+		<put name="header" value="/adm_central/header.jsp"></put>
+		<put name="footer" value="/adm_central/footer.jsp"></put>
+		<put name="menu" value="/adm_central/menu1.jsp"></put>
+		<put name="content" value="/adm_central/content.jsp"></put>
+	</definition>
+
+	<definition name="subMenu" extends="centralLayout">
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+	</definition>
+	
+	<!-- Menu 1 -->
+	<definition name="peLista" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu1.jsp"></put>
+		<put name="content" value="/adm_central/procesoElectoralLista.jsp"></put>
+	</definition>
+
+	<definition name="peDatos" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu1.jsp"></put>
+		<put name="content" value="/adm_central/procesoElectoralDatos.jsp"></put>
+	</definition>
+
+    <!-- Menu 2 -->
+	<definition name="paisLista" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/paisLista.jsp"></put>
+	</definition>
+
+	<definition name="paisDatos" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/paisDatos.jsp"></put>
+	</definition>
+    
+	<definition name="perfilLista" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/perfilLista.jsp"></put>
+	</definition>
+
+	<definition name="perfilDatos" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/perfilDatos.jsp"></put>
+	</definition>
+    
+	<definition name="usuarioLista" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/usuarioLista.jsp"></put>
+	</definition>
+
+	<definition name="usuarioDatos" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/usuarioDatos.jsp"></put>
+	</definition>
+
+	<definition name="usuarioAsignar" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/usuarioAsignar.jsp"></put>
+	</definition>
+    
+	<definition name="centrovotacionLista" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/centrovotacionLista.jsp"></put>
+	</definition>
+
+	<definition name="centrovotacionDatos" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/centrovotacionDatos.jsp"></put>
+	</definition>
+
+	<definition name="centrovotacionAsignar" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/centrovotacionAsignar.jsp"></put>
+	</definition>
+    
+	<definition name="candidatoLista" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/candidatoLista.jsp"></put>
+	</definition>
+
+	<definition name="candidatoDatos" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/candidatoDatos.jsp"></put>
+	</definition>
+    
+	<definition name="ppLista" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/partidoPoliticoLista.jsp"></put>
+	</definition>
+
+	<definition name="ppDatos" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/partidoPoliticoDatos.jsp"></put>
+	</definition>
+
+	<definition name="ppAsignar" extends="centralLayout">
+		<put name="titulo" value=""></put>
+		<put name="menu" value="/adm_central/menu2.jsp"></put>
+		<put name="content" value="/adm_central/partidoPoliticoAsignar.jsp"></put>
+	</definition>
+	
+	<!-- FIN de ADMINISTRACION CENTRAL -->
+	
+	
+	<!-- ESCRUTINIO -->
+	
+	<definition name="principalEscrutinio" path="/escrutinio/escrutinioLayout.jsp">
+		<put name="title" value=""></put>
+		<put name="header" value="/includes/header.inc.jsp"></put>
+		<put name="body" value="/escrutinio/listaEscrutinio.jsp"></put>
+		<put name="footer" value="/includes/footer.inc.jsp"></put>	
+	</definition>		
+	
+	<definition name="listarEscrutinio" extends="principalEscrutinio">
+		<put name="title" value="listaEscrutinio.escrutinio"></put>
+		<put name="body" value="/escrutinio/listaEscrutinio.jsp"></put>
+	</definition>
+	
+	<definition name="listarDetalleLocacion" extends="principalEscrutinio">
+		<put name="title" value="listaEscrutinio.detalle"></put>
+		<put name="body" value="/escrutinio/listaEscrutinio.jsp"></put>
+	</definition>
+	
+	<!-- FIN DE ESCRUTINIO -->
+	
+	<!-- CONSOLIDACION -->
+	
+	<definition name="principalConsolidacion" path="/consolidacion/consolidacionLayout.jsp">
+		<put name="title" value=""></put>
+		<put name="header" value="/includes/header.inc.jsp"></put>
+		<put name="body" value="/consolidacion/listaConsolidacion.jsp"></put>
+		<put name="footer" value="/includes/footer.inc.jsp"></put>	
+	</definition>		
+	
+	<definition name="listarConsolidacion" extends="principalConsolidacion">
+		<put name="title" value="listaConsolidacion.consolidacion"></put>
+		<put name="body" value="/consolidacion/listaConsolidacion.jsp"></put>
+	</definition> 
+	
+	<!-- FIN DE CONSOLIDACION -->
+	
+	<!-- EMPADRONAMIENTO Y CONSULADO -->
+	
+	<definition name="layoutBase" path="/empadronamiento/empadronaLayout.jsp">
+		<put name="titulo" value=""></put>
+		<put name="header" value="/includes/header.inc.jsp"></put>
+		<put name="footer" value="/includes/footer.inc.jsp"></put>
+	</definition>
+		
+	<definition name="empadronamiento.menu" extends="layoutBase">
+		<put name="titulo" value="global.application.title"></put>
+		<put name="body" value="/empadronamiento/emp_menu.jsp"></put>
+	</definition>
+	
+	<definition name="empadronamiento.msg" extends="layoutBase">
+		<put name="titulo" value="global.application.title"></put>
+		<put name="body" value="/empadronamiento/emp_msg.jsp"></put>
+	</definition>
+	
+	<definition name="empadronamiento.form" extends="layoutBase">
+		<put name="titulo" value="global.application.title"></put>
+		<put name="body" value="/empadronamiento/emp_form.jsp"></put>
+	</definition>
+	
+	<definition name="consulado.dni" extends="layoutBase">
+		<put name="titulo" value="global.application.title"></put>
+		<put name="body" value="/empadronamiento/consulado_dni.jsp"></put>
+	</definition>
+	
+	<definition name="consulado.form" extends="layoutBase">
+		<put name="titulo" value="global.application.title"></put>
+		<put name="body" value="/empadronamiento/consulado_form.jsp"></put>
+	</definition>
+	
+	<definition name="consulado.verifica" extends="layoutBase">
+		<put name="titulo" value="global.application.title"></put>
+		<put name="body" value="/empadronamiento/consulado_verifica.jsp"></put>
+	</definition>
+	
+	<!-- FIN EMPADRONAMIENTO Y CONSULADO -->
+
+	
+	<!-- VOTACION -->
+	
+	<definition name="votacionLayout" path="/votacion/votacion.layout.jsp">
+		<put name="titulo" value="global.application.title" />
+		<put name="header" value="/includes/header.inc.jsp" />
+		<put name="footer" value="/includes/footer.inc.jsp" />
+		<put name="body" value="" />
+	</definition>
+    
+    <definition name="voCedula" extends="votacionLayout">
+    	<put name="body" value="/votacion/votacionCedula.jsp"/>
+    </definition>
+    
+    <definition name="voBuscarDni" extends="votacionLayout">
+    	<put name="body" value="/votacion/votacionBuscarDni.jsp"/>
+    </definition>
+    
+    <definition name="voConfirma" extends="votacionLayout">
+    	<put name="body" value="/votacion/votacionConfirm.jsp"/>
+    </definition>
+    
+    <definition name="voValidarPin" extends="votacionLayout">
+    	<put name="body" value="/votacion/votacionValidarPin.jsp"/>
+    </definition>
+	
+	<!-- FIN VOTACION -->
+
+</tiles-definitions>

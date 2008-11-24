@@ -1,0 +1,55 @@
+.sendBtn {
+	position: relative;
+	width: 155px;
+	height: 37px;
+	background: url(../../media/btn_gris.jpg) no-repeat 42% 50%;
+	text-align: center;
+	cursor: pointer;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	color: #000000;
+	text-decoration: none;
+	display: block;
+}
+
+.sendBtn div {
+	position: absolute;
+	left: 10px;
+	width: 140px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.empTitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+}
+
+.empLabel {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: white;
+	text-align: right;
+	margin-right: 5px;
+}
+
+.empField {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.finalMessage {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	color: white;
+	text-align: left;
+	line-height: 20px;
+}

@@ -1,0 +1,61 @@
+body {
+	margin: 0px 0px 0px 0px;
+	background: #195093;
+}
+
+.introbg {
+	background: url(/Proyecto_VENP/media/bg_left.jpg) top left no-repeat;
+}
+
+.footer, .footer a {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #FFFFFF;
+	height: 20px;
+	line-height: 20px; 
+	text-align: center;
+}
+
+.footer a {
+	text-decoration: underline;
+}
+
+.mainMenuBtn {
+	position: relative;
+	width: 185px;
+	height: 102px;
+	background: url(/Proyecto_VENP/media/btnGrisBg.jpg) no-repeat 42% 50%;
+	text-align: center;
+	cursor: pointer;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	color: #000000;
+	text-decoration: none;
+	display: block;
+}
+
+.mainMenuBtn div {
+	position: absolute;
+	left: 7px;
+	width: 165px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height: 18px;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.errorMessage {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #771B0C;
+	font-weight: normal;
+	margin: 10px 0px 10px 0px;
+	padding: 5px 3px 5px 3px;
+	border: 1px solid #771B0C;
+	background: #E7C5BC; 
+	line-height: 18px;
+	width: 420px;
+	text-align: center;
+}

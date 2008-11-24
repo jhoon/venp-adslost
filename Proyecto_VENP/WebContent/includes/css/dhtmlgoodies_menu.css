@@ -1,0 +1,32 @@
+#dhtmlgoodies_menu { /* Menu object */
+  margin: 0px 10px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  width: 150px;	/* Width of menu */
+}
+
+#dhtmlgoodies_menu li {
+  margin-top: 2px;	/* Space between each menu item */
+
+  /* Don't change these four values */
+  list-style-type: none;				
+  clear: both;
+  display: block;
+  overflow: auto;
+}
+
+#dhtmlgoodies_menu li a {	/* Text rules for the menu items */
+  color: #ffffff; /* Black text color */
+  text-decoration: none; /* No underline */
+  font-family: Verdana, Tahoma, Arial, Trebuchet MS, Lucida Sans Unicode, sans-serif;  /* Font to use */
+  /* letter-spacing: 1px; Extra space between each letter of the menu items */
+  font-size: 0.7em;	/* Fixed font size */
+  /* font-weight: bold; Bold font */
+  float: left;
+  background-color: #10345a;
+  padding-left: 3px;
+  line-height: 40px; /* Height of menu links */
+}
+
+#dhtmlgoodies_menu li div {
+  float: left;
+}

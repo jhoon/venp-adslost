@@ -1,0 +1,95 @@
+.thead { background: #4b4b4b;
+         font: bold 11px tahoma, verdana, arial;
+         color: #ffffff;
+       }
+
+.thead2 { 
+         font: bold 14px tahoma, verdana, arial;
+         color: #ffffff;
+       }
+       
+.alt01 { background: #f8f8f8;
+         color: #000000;
+       }
+
+.alt02 { background: #eaf0e8;
+         color: #000000;
+       }
+
+.tborder { border-right: #333 1px solid;
+           border-top: #333 1px solid;
+           border-bottom: #333 1px solid;
+           border-left: #333 1px solid;
+           font: 10pt Tahoma, Verdana, Arial;
+           background: #999999;
+           color: #000000;
+         }
+ 
+.tborder2 { border-right: #333 1px solid;
+           border-top: #333 1px solid;
+           border-bottom: #333 1px solid;
+           border-left: #333 1px solid;
+           font: 14pt Tahoma, Verdana, Arial;
+           color: #000000;
+         }
+ 
+.tborder3 { border-right: #333 1px solid;
+           border-top: #333 1px solid;
+           border-bottom: #333 1px solid;
+           border-left: #333 1px solid;
+           font: 13pt Tahoma, Verdana, Arial;
+           color: #000000;
+         }
+         
+ .btnAny { position: relative;
+           width: 155px;
+           height: 37px;
+           background: url(/Proyecto_VENP/media/btn_gris.jpg) no-repeat 42% 50%;
+           text-align: center;
+           cursor: pointer;
+           margin: 0px 0px 0px 0px;
+           padding: 0px 0px 0px 0px;
+           color: #000000;
+           text-decoration: none;
+           display: block;
+         }
+
+.btnAny div { position: absolute;
+              left: 10px;
+              width: 140px;
+              font-family: Verdana, Arial, Helvetica, sans-serif;
+              font-size: 10px;
+              font-weight: bold;
+              text-align: center;
+            }
+
+.graph { background-color: #C8C8C8;
+         border: solid 1px black;
+       }
+
+.graph td { font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 9pt;
+          }
+
+.bar { background-color: white;
+       text-align: right;
+       border-left: solid 1px black;
+       padding-right: 0.5em;
+       width: 400px;
+     }
+
+.bar div { 
+  border-top: solid 2px #0077DD;
+  background-color: #004080;
+  border-bottom: solid 2px #002266;
+  text-align: right;
+  color: white;
+  float: left;
+  padding-top: 0;
+  height: 1em;
+}
+
+.detalleMonitoreo {
+	display: none;
+}
+            

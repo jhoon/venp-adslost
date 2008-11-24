@@ -1,0 +1,22 @@
+<%@ include file="/includes/taglibs.inc.jsp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title><bean:message key="global.application.title" /></title>
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/votacion/css/votacion.css" />" />
+</head>
+<body>
+<table width="800" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><tiles:insert attribute="header" /></td>
+	</tr>
+	<tr>
+		<td><tiles:insert attribute="body" /></td>
+	</tr>
+	<tr>
+		<td><tiles:insert attribute="footer" /></td>
+	</tr>
+</table>
+</body>
+</html>
