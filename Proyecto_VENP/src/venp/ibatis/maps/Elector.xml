@@ -7,8 +7,6 @@
 	<typeAlias alias="helpBean" type="venp.beans.MyHelpBean" />
 	<typeAlias alias="electorForm" type="venp.web.forms.ElectorForm" />
 	<typeAlias alias="opcion" type="venp.beans.OpcionBean"/>
-	
-	
 
 	<resultMap class="helpBean" id="paisesMap">
 		<result property="key" column="id"/>
