@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/votacion/css/votacion.css" />" />
 <title><bean:message key="global.application.title" /></title>
 </head>
 <body onload="javascript:window.print();">
