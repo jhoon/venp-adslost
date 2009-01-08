@@ -3,10 +3,66 @@
 
 <sqlMap namespace="Usuario">
 
+	<!-- ALIAS -->
 	<typeAlias alias="usuario" type="venp.beans.UsuarioBean" />
 	<typeAlias alias="perfil" type="venp.beans.PerfilBean" />
+    
+	<!-- PARAMETROS -->
+    <parameterMap class="map" id="paramMap0">
+		<parameter property="v_procesoelectoral" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_user" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_centrovotacion" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+    
+    <parameterMap class="map" id="paramMap1">
+		<parameter property="v_codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_perfil" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_paterno" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_materno" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_dni" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_email" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_movil" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_username" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_password" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
 	
-	<resultMap class="usuario" id="myuser">
+	<parameterMap class="map" id="paramMap2">
+		<parameter property="v_DNI" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap3">
+		<parameter property="v_DNI" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap4">
+		<parameter property="v_UserName" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap5">
+		<parameter property="v_UserName" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+    
+    <parameterMap class="map" id="paramMap6">
+		<parameter property="v_perfil" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_paterno" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_materno" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_dni" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_email" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_movil" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_username" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_password" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+	
+	<!-- MAPEOS -->
+	<resultMap class="usuario" id="usuarioMap">
         <result property="codigo" column="usuarioID" />
         <result property="nombre" column="usuarioNombre" />
         <result property="apePaterno" column="paterno" />
@@ -22,10 +78,58 @@
 		<result property="perfil.descripcion" column="descripcion" />
 		<result property="perfil.estado" column="perfilEstado" />
     </resultMap>
+	
+	<!-- PROCEDIMIENTOS -->
+	<procedure id="asignar" parameterMap="paramMap0">
+		{call pa_usuario_asignar (?, ?, ?)}
+	</procedure>
+	
+	<procedure id="borrar" parameterClass="java.lang.Integer">
+        {call pa_usuario_delete (#v_Codigo#)}
+    </procedure>
+	
+	<procedure id="editar" parameterMap="paramMap1">
+		{call pa_usuario_edit (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+	</procedure>
+             
+	<procedure id="findAll" resultMap="usuarioMap">
+        {call pa_usuario_findAll}
+    </procedure>
+             
+	<procedure id="findAll_Locacion" resultMap="usuarioMap">
+        {call pa_usuario_findAll_Locacion}
+    </procedure>
+  
+	<procedure id="findByDNI" parameterMap="paramMap2">
+        {call pa_usuario_findByDNI (?, ?)}
+    </procedure>
+  
+	<procedure id="findByDNI_ID" parameterMap="paramMap3">
+        {call pa_usuario_findByDNI_ID (?, ?, ?)}
+    </procedure>
+    
+    <procedure id="findByPrimaryKey" parameterClass="java.lang.Integer" resultMap="usuarioMap">
+		{call pa_usuario_findByPrimaryKey (#v_codigo#)}
+	</procedure>
+  
+	<procedure id="findByUserName" parameterMap="paramMap4">
+        {call pa_usuario_findByUserName (?, ?)}
+    </procedure>
+  
+	<procedure id="findByUserNameID" parameterMap="paramMap5">
+        {call pa_usuario_findByUserName_ID (?, ?, ?)}
+    </procedure>
 
-
-	<procedure id="findByUsuario" parameterClass="string" resultMap="myuser">
+	<procedure id="findByUsuario" parameterClass="string" resultMap="usuarioMap">
 		{call pa_usuario_findByUser (#codigo#)}
 	</procedure>
-
+	
+	<procedure id="insertar" parameterMap="paramMap6">
+		{call pa_usuario_insert (?, ?, ?, ?, ?, ?, ?, ?, ?)}
+	</procedure>
+	
+	<procedure id="retirar" parameterMap="paramMap0">
+		{call pa_usuario_retirar (?, ?, ?)}
+	</procedure>
+	
 </sqlMap>

@@ -27,9 +27,9 @@ public class PaisDatosAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		String codigo = request.getParameter("codigo");
+		String strCodigo = request.getParameter("codigo");
 
-		PaisBean bean = findByPrimaryKey(codigo);
+		PaisBean bean = findByPrimaryKey(strCodigo);
 
 		PaisDatosForm frm = (PaisDatosForm) form;
 
@@ -84,7 +84,6 @@ public class PaisDatosAction extends DispatchAction {
 				}
 				
 			    insertar(bean);
-					
 			}
 		    else {
 		    	if (findByName(frm.getNombre(), Integer.parseInt(frm.getCodigo()))) {
@@ -104,7 +103,6 @@ public class PaisDatosAction extends DispatchAction {
 				
 				bean.setCodigo(Integer.parseInt(frm.getCodigo()));
 			    editar(bean);
-				
 		    }
 
 			return mapping.findForward("listado");

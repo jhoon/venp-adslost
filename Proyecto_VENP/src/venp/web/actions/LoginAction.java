@@ -1,9 +1,12 @@
 package venp.web.actions;
 
+import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -18,14 +21,14 @@ import venp.services.UsuarioService;
 import venp.web.forms.LoginForm;
 
 public class LoginAction extends DispatchAction {
-	
-	@Override
+
 	protected ActionForward unspecified(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		LoginForm frm = (LoginForm) form;
-		if(frm.getAcceso() == null)
+		if (frm.getAcceso() == null) {
 			frm.setAcceso("admin");
+		}
 		return mapping.findForward("inicio");
 	}
 
@@ -33,7 +36,7 @@ public class LoginAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ActionErrors errors = new ActionErrors();
-		
+
 		LoginForm frm = (LoginForm) form;
 
 		String usuario = frm.getUserName();
@@ -46,84 +49,94 @@ public class LoginAction extends DispatchAction {
 		if (bean == null) {
 			frm.reset(mapping, request);
 			errors.add("error", new ActionMessage("auth.error.baduser"));
-		    saveErrors(request, errors);
-		} 
+			saveErrors(request, errors);
+		}
 		// usuario existente
 		else {
 			// password y estado OK
-			if (password.equals(bean.getPassword()) && bean.getEstado().equals("A")) {
+			if (password.equals(bean.getPassword())
+					&& bean.getEstado().equals("A")) {
 				// se obtiene el tipo de perfil del usuario
 				PerfilBean perfil = bean.getPerfil();
-				System.out.println("Perfil: " + perfil.getCodigo() + " | Acceso: " + frm.getAcceso());
-				// se elimina cualquier session existente
-				if (request.isRequestedSessionIdValid()) {
-					HttpSession tempSession = request.getSession(false);
-					if(tempSession != null) tempSession.invalidate();
+				// se elimina cualquier session existente invalida
+				if (!request.isRequestedSessionIdValid()) {
+					HttpSession tempSession = request.getSession();
+					if (tempSession != null)
+						tempSession.invalidate();
 				}
 				// se hacen los forwards de acuerdo al tipo de usuario
 				// Operador de Locacion (Modulo)
-				if (perfil.getCodigo() == 3 && frm.getAcceso().equals("location")) {
+				if (perfil.getCodigo() == 3
+						&& frm.getAcceso().equals("location")) {
 					LogService serviceLog = new LogService();
 					serviceLog.insertar("1", bean.getCodigo());
-					
-					HttpSession sesion = request.getSession(true);
+
+					HttpSession sesion = request.getSession();
 					sesion.setAttribute("usuarioBean", bean);
-					
+
 					return mapping.findForward("locacion");
 				}
 				// Operador de Central
 				if (perfil.getCodigo() == 1 && frm.getAcceso().equals("admin")) {
 					LogService serviceLog = new LogService();
 					serviceLog.insertar("1", bean.getCodigo());
-					
-					HttpSession sesion = request.getSession(true);
+
+					HttpSession sesion = request.getSession();
 					sesion.setAttribute("usuarioBean", bean);
-					
+
 					return mapping.findForward("central");
 				}
 				// Operador de Consulado
-				if (perfil.getCodigo() == 2 && frm.getAcceso().equals("printer")) {
+				if (perfil.getCodigo() == 2
+						&& frm.getAcceso().equals("printer")) {
 					LogService serviceLog = new LogService();
 					serviceLog.insertar("1", bean.getCodigo());
-					
-					HttpSession sesion = request.getSession(true);
+
+					HttpSession sesion = request.getSession();
 					sesion.setAttribute("usuarioBean", bean);
-					
-					response.sendRedirect("consulado.do");
-					return null;
+
+					return mapping.findForward("consulado");
 				}
 				// Usuario desconocido
 				frm.setPassword("");
 				errors.add("error", new ActionMessage("auth.error.baduser"));
-			    saveErrors(request, errors);
-			} 
+				saveErrors(request, errors);
+			}
 			// ERROR de password o estado
 			else {
 				frm.setPassword("");
 				errors.add("error", new ActionMessage("auth.error.badpass"));
-			    saveErrors(request, errors);
+				saveErrors(request, errors);
 			}
 		}
 		return mapping.findForward("inicio");
 	}
-	
+
 	public ActionForward salir(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		if (request.isRequestedSessionIdValid()) {
-			HttpSession tempSession = request.getSession(false);
-			if(tempSession != null) tempSession.invalidate();
+			HttpSession tempSession = request.getSession();
+			Locale lang = (Locale) tempSession.getAttribute(Globals.LOCALE_KEY);
+			if (tempSession != null) {
+				tempSession.invalidate();
+			}
+			tempSession = request.getSession(true);
+			tempSession.setAttribute(Globals.LOCALE_KEY, lang);
 		}
 		return mapping.findForward("home");
 	}
-	
+
 	public static boolean isValidSession(HttpServletRequest request) {
 		boolean response = false;
 		if (request.isRequestedSessionIdValid()) {
-			HttpSession tempSession = request.getSession(false);
-			if(tempSession != null) {
-				UsuarioBean user = (UsuarioBean)tempSession.getAttribute("usuarioBean");
-				if (user != null) response = true;
+			HttpSession tempSession = request.getSession();
+			if (tempSession != null) {
+				UsuarioBean user = (UsuarioBean) tempSession
+						.getAttribute("usuarioBean");
+				if (user != null) {
+					response = true;
+				}
 			}
 		}
 		return response;

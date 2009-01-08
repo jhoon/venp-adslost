@@ -1,14 +1,11 @@
-<%@ page language="java" 
-         contentType="text/html; charset=ISO-8859-1" 
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="struts-html" prefix="html" %>
-<%@ taglib uri="struts-bean" prefix="bean" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<%@ include file="/includes/taglibs.inc.jsp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><bean:message key="global.application.title" /></title>
-<link rel="stylesheet" type="text/css" href="css/globals.css" />
-<link rel="stylesheet" type="text/css" href="css/contactenos.css" />
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/contactenos.css" />" />
 </head>
 
 <body>
@@ -28,10 +25,12 @@
         <p class="contact"><bean:message key="global.contact.subtitle" /></p>
         
         <ul>
-        <li class="contact">Omar Carpio Carpio (DP, QSW y DAWI) - <a href="mailto:i610584@cibertec.edu.pe">i610584@cibertec.edu.pe</a><br />&nbsp;</li>
-        <li class="contact">Rudy Capatinta Aucca (DP, QSW y DAWI) - <a href="mailto:i611058@cibertec.edu.pe">i611058@cibertec.edu.pe</a><br />&nbsp;</li>
-        <li class="contact">Renzo Portocarrero Heredia (DP, QSW y DAWI) - <a href="mailto:i611065@cibertec.edu.pe">i611065@cibertec.edu.pe</a><br />&nbsp;</li>
+        <li class="contact">Omar Carpio Carpio (DP, QSW, DAWI, LPIV y DAWII) - <a href="mailto:i610584@cibertec.edu.pe">i610584@cibertec.edu.pe</a><br />&nbsp;</li>
+        <li class="contact">Rudy Capatinta Aucca (DP, QSW, DAWI, LPIV y DAWII) - <a href="mailto:i611058@cibertec.edu.pe">i611058@cibertec.edu.pe</a><br />&nbsp;</li>
+        <li class="contact">Marco Cristobal (LPIV y DAWII) - <a href="mailto:ixxxxxx@cibertec.edu.pe">ixxxxxx@cibertec.edu.pe</a><br />&nbsp;</li>
+        <li class="contact">Renzo Portocarrero Heredia (DP, QSW, DAWI, LPIV y DAWII) - <a href="mailto:i611065@cibertec.edu.pe">i611065@cibertec.edu.pe</a><br />&nbsp;</li>
         <li class="contact">Aaron Ramirez Tafur (DP y DAWI) - <a href="mailto:i611186@cibertec.edu.pe">i611186@cibertec.edu.pe</a><br />&nbsp;</li>
+        <li class="contact">Jhoon Saravia Tasayco (LPIV y DAWII) - <a href="mailto:ixxxxxx@cibertec.edu.pe">ixxxxxx@cibertec.edu.pe</a><br />&nbsp;</li>
         </ul>
         
         </td>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="PartidoPolitico">
+
+	<!-- ALIAS -->
+	<typeAlias alias="partidoPolitico" type="venp.beans.PartidoPoliticoBean" />
+	
+	<!-- PARAMETROS -->
+	<parameterMap class="map" id="paramMap0">
+		<parameter property="codigo" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap1">
+		<parameter property="codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_abreviatura" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_logo" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap2">
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_abreviatura" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_logo" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+    
+	<!-- MAPEOS -->
+	<resultMap class="partidoPolitico" id="partidoPoliticoMap">
+        <result property="codigo" column="id" />
+        <result property="nombre" column="nombre" />
+        <result property="abreviatura" column="abreviatura" />
+        <result property="logo" column="logo" />
+        <result property="estado" column="estado" />
+    </resultMap>
+  
+	<!-- PROCEDIMIENTOS -->	
+	<procedure id="borrar" parameterMap="paramMap0">
+        {call pa_partidoPolitico_delete (?)}
+    </procedure>
+	
+	<procedure id="editar" parameterMap="paramMap1" resultClass="string">
+		{call pa_partidoPolitico_edit (?, ?, ?, ?)}
+	</procedure>
+	
+	<procedure id="findAll" resultMap="partidoPoliticoMap">
+        {call pa_partidoPolitico_findAll}
+    </procedure>
+    
+	<procedure id="findByPrimaryKey" resultMap="partidoPoliticoMap" parameterMap="paramMap0">
+        {call pa_partidoPolitico_findByPrimaryKey (?)} 
+    </procedure>
+    
+    <procedure id="insertar" parameterMap="paramMap2" resultClass="string">
+		{call pa_partidoPolitico_insert (?, ?, ?)}
+	</procedure>
+	
+</sqlMap>

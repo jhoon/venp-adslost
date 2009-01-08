@@ -2,46 +2,47 @@ package venp.services;
 
 import java.util.ArrayList;
 
+import com.ibatis.dao.client.DaoManager;
+
 import venp.beans.ProcesoElectoralBean;
-import venp.dao.entities.ProcesoElectoralDAO;
-import venp.dao.factory.DAOFactory;
-import venp.utils.Parametros;
+import venp.dao.entities.ProcesoElectoralDAO; //import venp.dao.factory.DAOFactory;
+import venp.dao.factory.DaoConfig;
 
 public class ProcesoElectoralService {
-	private DAOFactory objDAOFactory = DAOFactory.getFactory(Parametros.ORIGEN);
-	private ProcesoElectoralDAO objProcesoElectoralDAO = objDAOFactory
-			.getProcesoElectoralDAO();
-	private ArrayList lista;
+
+	private DaoManager manager = DaoConfig.getDaoManager();
+	private ProcesoElectoralDAO dao;
+
+	public ProcesoElectoralService() {
+		dao = (ProcesoElectoralDAO) manager.getDao(ProcesoElectoralDAO.class);
+	}
 
 	public ProcesoElectoralBean findByPrimaryKey(int id) throws Exception {
-		ProcesoElectoralBean bean = objProcesoElectoralDAO.findByPrimaryKey(id);
-		return bean;
+		return dao.findByPrimaryKey(id);
 	}
 
 	public ArrayList buscarTodos() throws Exception {
-		lista = objProcesoElectoralDAO.findAll();
-		return lista;
+		return dao.findAll();
 	}
 
 	public void activarProcesoElectoral(int id) throws Exception {
-		objProcesoElectoralDAO.ActivarProcesoElectoral(id);
+		dao.activarProcesoElectoral(id);
 	}
 
 	public void anularProcesoElectoral(int id) throws Exception {
-		objProcesoElectoralDAO.AnularProcesoElectoral(id);
+		dao.anularProcesoElectoral(id);
 	}
 
 	public void insertar(ProcesoElectoralBean bean) throws Exception {
-		objProcesoElectoralDAO.insertar(bean);
+		dao.insertar(bean);
 	}
 
 	public void editar(ProcesoElectoralBean bean) throws Exception {
-		objProcesoElectoralDAO.editar(bean);
+		dao.editar(bean);
 	}
-	
-	public ArrayList findAll_Creado() throws Exception {
-		lista = objProcesoElectoralDAO.findAll_Creado();
-		return lista;
+
+	public ArrayList findAllCreado() throws Exception {
+		return dao.findAllCreado();
 	}
 
 }

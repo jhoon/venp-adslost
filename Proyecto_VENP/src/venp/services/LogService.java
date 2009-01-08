@@ -1,19 +1,17 @@
 package venp.services;
 
-import java.util.ArrayList;
-
-import venp.beans.PerfilBean;
 import venp.dao.entities.LogDAO;
-import venp.dao.entities.PerfilDAO;
-import venp.dao.factory.DAOFactory;
+import venp.dao.factory.DaoConfig;
+
+import com.ibatis.dao.client.DaoManager;
 
 public class LogService {
 
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
+	private DaoManager manager = DaoConfig.getDaoManager();
 	private LogDAO dao;
 
 	public LogService() {
-		dao = factory.getLogDAO();
+		dao = (LogDAO) manager.getDao(LogDAO.class);
 	}
 	
 	public void insertar(String diccionario , String usuario ) throws Exception {

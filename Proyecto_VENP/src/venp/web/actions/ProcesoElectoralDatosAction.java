@@ -9,6 +9,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 
 import venp.beans.ProcesoElectoralBean;
@@ -32,11 +33,8 @@ public class ProcesoElectoralDatosAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		String id = request.getParameter("codigo");
-
-		System.out.println("CODIGO!!!= " + id);
-
-		ProcesoElectoralBean bean = findByPrimaryKey(id);
+		String strId = request.getParameter("codigo");
+		ProcesoElectoralBean bean = findByPrimaryKey(strId);
 
 		if (bean.getEstado().equals("C")) {
 			ProcesoElectoralDatosForm frm = (ProcesoElectoralDatosForm) form;
@@ -44,26 +42,27 @@ public class ProcesoElectoralDatosAction extends DispatchAction {
 			frm.setNuevo(false);
 			frm.setCodigo(bean.getCodigo() + "");
 			frm.setNombre(bean.getDescripcion());
-			frm.setFecha_votacion(bean.getFecha_votacion());
-			if (Integer.parseInt(bean.getHora_inicial()) < 10)
-				frm.setHora_inicial("0" + bean.getHora_inicial());
+			frm.setFechaVotacion(bean.getFechaVotacion());
+			if (Integer.parseInt(bean.getHoraInicial()) < 10) {
+				frm.setHoraInicial("0" + bean.getHoraInicial());
+			}
 			else
-				frm.setHora_inicial(bean.getHora_inicial());
-			frm.setMinuto_inicial(bean.getMinuto_inicial());
-			if (Integer.parseInt(bean.getHora_final()) < 10)
-				frm.setHora_final("0" + bean.getHora_final());
+				frm.setHoraInicial(bean.getHoraInicial());
+			frm.setMinutoInicial(bean.getMinutoInicial());
+			if (Integer.parseInt(bean.getHoraFinal()) < 10)
+				frm.setHoraFinal("0" + bean.getHoraFinal());
 			else
-				frm.setHora_final(bean.getHora_final());
-			frm.setMinuto_final(bean.getMinuto_final());
-			frm.setFecha_emp_inicio(bean.getFecha_padron_inicial());
-			frm.setFecha_emp_final(bean.getFecha_padron_final());
-			frm.setTiempo_sesion("0" + bean.getTiempo_sesion());
+				frm.setHoraFinal(bean.getHoraFinal());
+			frm.setMinutoFinal(bean.getMinutoFinal());
+			frm.setFechaEmpInicio(bean.getFechaPadronInicial());
+			frm.setFechaEmpFinal(bean.getFechaPadronFinal());
+			frm.setTiempoSesion("0" + bean.getTiempoSesion());
 
 			return mapping.findForward("inicio");
 
 		} else {
 
-			ActionErrors errors = new ActionErrors();
+			ActionMessages errors = new ActionMessages();
 			errors.add("error", new ActionMessage(
 					"procesoElectoral.error.procesoNoEditble"));
 			saveErrors(request, errors);
@@ -80,25 +79,25 @@ public class ProcesoElectoralDatosAction extends DispatchAction {
 		ProcesoElectoralDatosForm frm = (ProcesoElectoralDatosForm) form;
 		HttpSession session = request.getSession();
 		UsuarioBean usuario = (UsuarioBean) session.getAttribute("usuarioBean");
-		ActionErrors errors = new ActionErrors();
+		ActionMessages errors = new ActionMessages();
 
 		ProcesoElectoralBean bean = new ProcesoElectoralBean();
 
-		bean.setUsuario_id(usuario.getCodigo());
+		bean.setUsuarioId(usuario.getCodigo());
 		bean.setDescripcion(frm.getNombre());
-		bean.setFecha_votacion(frm.getFecha_votacion());
-		bean.setStart_time(frm.Start_time());
-		bean.setFinal_time(frm.Final_time());
-		bean.setFecha_padron_inicial(frm.getFecha_emp_inicio());
-		bean.setFecha_padron_final(frm.getFecha_emp_final());
-		bean.setTiempo_sesion(Integer.parseInt(frm.getTiempo_sesion()));
+		bean.setFechaVotacion(frm.getFechaVotacion());
+		bean.setStartTime(frm.startTime());
+		bean.setFinalTime(frm.finalTime());
+		bean.setFechaPadronInicial(frm.getFechaEmpInicio());
+		bean.setFechaPadronFinal(frm.getFechaEmpFinal());
+		bean.setTiempoSesion(Integer.parseInt(frm.getTiempoSesion()));
 
 		/* VALIDANDO LA INSERCION DE DATOS DE PROCESO ELECTORAL!!!! */
 
 		if (bean.getDescripcion().equals("")
-				|| bean.getFecha_votacion().equals("")
-				|| bean.getFecha_padron_inicial().equals("")
-				|| bean.getFecha_padron_final().equals("")) {
+				|| bean.getFechaVotacion().equals("")
+				|| bean.getFechaPadronInicial().equals("")
+				|| bean.getFechaPadronFinal().equals("")) {
 
 			errors.add("error", new ActionMessage(
 					"procesoElectoral.error.procesoDataIncomplete"));
@@ -108,11 +107,11 @@ public class ProcesoElectoralDatosAction extends DispatchAction {
 		} else {
 
 			// VALIDANDO FECHAS
-			int show_time = Integer.parseInt(bean.getFecha_votacion()
+			int show_time = Integer.parseInt(bean.getFechaVotacion()
 					.replaceAll("-", ""));
-			int zero_emp = Integer.parseInt(bean.getFecha_padron_inicial()
+			int zero_emp = Integer.parseInt(bean.getFechaPadronInicial()
 					.replaceAll("-", ""));
-			int last_emp = Integer.parseInt(bean.getFecha_padron_final()
+			int last_emp = Integer.parseInt(bean.getFechaPadronFinal()
 					.replaceAll("-", ""));
 
 			if (last_emp - zero_emp >= 1 && show_time - last_emp >= 0
@@ -131,11 +130,11 @@ public class ProcesoElectoralDatosAction extends DispatchAction {
 				return mapping.findForward("inicio");
 			}
 
-			// -----------------------------------------------------
+
 			errors.add("error", new ActionMessage(
 					"procesoElectoral.error.procesoSaved"));
 			saveErrors(request, errors);
-			// -----------------------------------------------------
+
 			frm.reset(mapping, request);
 
 			return mapping.findForward("listado");

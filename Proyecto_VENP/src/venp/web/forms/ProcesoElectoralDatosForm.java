@@ -9,71 +9,64 @@ import org.apache.struts.action.ActionMapping;
 
 import venp.beans.MyHelpBean;
 
-@SuppressWarnings("serial")
 public class ProcesoElectoralDatosForm extends ActionForm {
 
 	private boolean nuevo = true;
 	private String codigo;
 	private String usuario;
 	private String nombre;
-	// --------------------------------
-	private String fecha_votacion;
+	private String fechaVotacion;
+	private String startTime;
+	private String horaInicial;
+	private String minutoInicial;
+	private String finalTime;
+	private String horaFinal;
+	private String minutoFinal;
+	private String fechaEmpInicio;
+	private String fechaEmpFinal;
+	private String tiempoSesion;
 
-	private String start_t;
-	private String hora_inicial;
-	private String minuto_inicial;
-
-	private String final_t;
-	private String hora_final;
-	private String minuto_final;
-	// --------------------------------
-	private String fecha_emp_inicio;
-	private String fecha_emp_final;
-	// --------------------------------
-	private String tiempo_sesion;
-	// --------------------------------
 	private static ArrayList listaHoras;
 	private static ArrayList listaMinutos;
 	private static ArrayList listaTiempo;
 
 	public ProcesoElectoralDatosForm() {
-		// llenar lista de horas
 		if (listaHoras == null) {
 			listaHoras = new ArrayList();
-			for (int i = 0; i < 24; i++) {
+			for (int intContador = 0; intContador < 24; intContador++) {
 				MyHelpBean hora = new MyHelpBean();
-				String h = (i <= 9) ? "0" + i : "" + i;
+				String h = (intContador <= 9) ? "0" + intContador : "" + intContador;
 				hora.setKey(h);
 				hora.setValue(h);
 				listaHoras.add(hora);
 			}
 		}
-		// Llenar lista minutos
+
 		if (listaMinutos == null) {
-			int j = 0;
+			int intNumero = 0;
 			listaMinutos = new ArrayList();
-			while (j < 60) {
+			while (intNumero < 60) {
 				MyHelpBean minuto = new MyHelpBean();
-				String m = (j == 0) ? "0" + j : "" + j;
+				String m = (intNumero == 0) ? "0" + intNumero : "" + intNumero;
 				minuto.setKey(m);
 				minuto.setValue(m);
 				listaMinutos.add(minuto);
-				j = j + 10;
+				intNumero = intNumero + 10;
 			}
 		}
-		// Llenar lista tiempo sesion
+
 		if (listaTiempo == null) {
 			listaTiempo = new ArrayList();
-			for (int i = 1; i < 6; i++) {
+			for (int intContador = 1; intContador < 6; intContador++) {
 				MyHelpBean tiempo = new MyHelpBean();
-				String t = "0" + i;
-				tiempo.setKey(t);
-				tiempo.setValue(t);
+				String strTime = "0" + intContador;
+				tiempo.setKey(strTime);
+				tiempo.setValue(strTime);
 				listaTiempo.add(tiempo);
 			}
 		}
 	}
-
+	
 	public boolean isNuevo() {
 		return nuevo;
 	}
@@ -90,6 +83,14 @@ public class ProcesoElectoralDatosForm extends ActionForm {
 		this.codigo = codigo;
 	}
 
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -98,76 +99,84 @@ public class ProcesoElectoralDatosForm extends ActionForm {
 		this.nombre = nombre;
 	}
 
-	public String getFecha_votacion() {
-		return fecha_votacion;
+	public String getFechaVotacion() {
+		return fechaVotacion;
 	}
 
-	public void setFecha_votacion(String fecha_votacion) {
-		this.fecha_votacion = fecha_votacion;
+	public void setFechaVotacion(String fechaVotacion) {
+		this.fechaVotacion = fechaVotacion;
 	}
 
-	public String getHora_inicial() {
-		return hora_inicial;
+	public String getStartTime() {
+		return startTime;
 	}
 
-	public void setHora_inicial(String hora_inicial) {
-		this.hora_inicial = hora_inicial;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 
-	public String getHora_final() {
-		return hora_final;
+	public String getHoraInicial() {
+		return horaInicial;
 	}
 
-	public void setHora_final(String hora_final) {
-		this.hora_final = hora_final;
+	public void setHoraInicial(String horaInicial) {
+		this.horaInicial = horaInicial;
 	}
 
-	public String getMinuto_inicial() {
-		return minuto_inicial;
+	public String getMinutoInicial() {
+		return minutoInicial;
 	}
 
-	public void setMinuto_inicial(String minuto_inicial) {
-		this.minuto_inicial = minuto_inicial;
+	public void setMinutoInicial(String minutoInicial) {
+		this.minutoInicial = minutoInicial;
 	}
 
-	public String getMinuto_final() {
-		return minuto_final;
+	public String getFinalTime() {
+		return finalTime;
 	}
 
-	public void setMinuto_final(String minuto_final) {
-		this.minuto_final = minuto_final;
+	public void setFinalTime(String finalTime) {
+		this.finalTime = finalTime;
 	}
 
-	public String getFecha_emp_inicio() {
-		return fecha_emp_inicio;
+	public String getHoraFinal() {
+		return horaFinal;
 	}
 
-	public void setFecha_emp_inicio(String fecha_emp_inicio) {
-		this.fecha_emp_inicio = fecha_emp_inicio;
+	public void setHoraFinal(String horaFinal) {
+		this.horaFinal = horaFinal;
 	}
 
-	public String getFecha_emp_final() {
-		return fecha_emp_final;
+	public String getMinutoFinal() {
+		return minutoFinal;
 	}
 
-	public void setFecha_emp_final(String fecha_emp_final) {
-		this.fecha_emp_final = fecha_emp_final;
+	public void setMinutoFinal(String minutoFinal) {
+		this.minutoFinal = minutoFinal;
 	}
 
-	public String getTiempo_sesion() {
-		return tiempo_sesion;
+	public String getFechaEmpInicio() {
+		return fechaEmpInicio;
 	}
 
-	public void setTiempo_sesion(String tiempo_sesion) {
-		this.tiempo_sesion = tiempo_sesion;
+	public void setFechaEmpInicio(String fechaEmpInicio) {
+		this.fechaEmpInicio = fechaEmpInicio;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getFechaEmpFinal() {
+		return fechaEmpFinal;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setFechaEmpFinal(String fechaEmpFinal) {
+		this.fechaEmpFinal = fechaEmpFinal;
+	}
+
+	public String getTiempoSesion() {
+		return tiempoSesion;
+	}
+
+	public void setTiempoSesion(String tiempoSesion) {
+		this.tiempoSesion = tiempoSesion;
 	}
 
 	public ArrayList getListaHoras() {
@@ -181,29 +190,30 @@ public class ProcesoElectoralDatosForm extends ActionForm {
 	public ArrayList getListaTiempo() {
 		return listaTiempo;
 	}
+	
 
-	public String Start_time() {
-		start_t = hora_inicial + ":" + minuto_inicial + ":00";
-		return start_t;
+	public String startTime() {
+		startTime = horaInicial + ":" + minutoInicial + ":00";
+		return startTime;
 	}
 
-	public String Final_time() {
-		final_t = hora_final + ":" + minuto_final + ":00";
-		return final_t;
+	public String finalTime() {
+		finalTime = horaFinal + ":" + minutoFinal + ":00";
+		return finalTime;
 	}
 	
 	public void reset(ActionMapping mapping, HttpServletRequest request) {
 		codigo = "-1";
 		usuario = "-1";
 		nombre = "";
-		fecha_votacion = "";
-		hora_inicial = "";
-		minuto_inicial = "";
-		hora_final = "";
-		minuto_final = "";
-		fecha_emp_inicio = "";
-		fecha_emp_final = "";
-		tiempo_sesion = "";
+		fechaVotacion = "";
+		horaInicial = "";
+		minutoInicial = "";
+		horaFinal = "";
+		minutoFinal = "";
+		fechaEmpInicio = "";
+		fechaEmpFinal = "";
+		tiempoSesion = "";
 	}
 
 }

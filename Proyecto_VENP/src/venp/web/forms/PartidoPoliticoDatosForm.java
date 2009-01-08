@@ -1,11 +1,6 @@
 package venp.web.forms;
 
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 
 public class PartidoPoliticoDatosForm extends ActionForm {
@@ -18,15 +13,7 @@ public class PartidoPoliticoDatosForm extends ActionForm {
 	private String estado;
 
 	private FormFile theFile;
-	
-	/*
-	public void reset(ActionMapping mapping, HttpServletRequest request) {
-		codigo = "";
-		nombre = "";
-		descripcion = "";
-	}
-*/
-	
+
 	public boolean isNuevo() {
 		return nuevo;
 	}
@@ -34,7 +21,7 @@ public class PartidoPoliticoDatosForm extends ActionForm {
 	public void setNuevo(boolean nuevo) {
 		this.nuevo = nuevo;
 	}
-	
+
 	public String getCodigo() {
 		return codigo;
 	}
@@ -82,7 +69,5 @@ public class PartidoPoliticoDatosForm extends ActionForm {
 	public void setTheFile(FormFile theFile) {
 		this.theFile = theFile;
 	}
-
-	
 
 }

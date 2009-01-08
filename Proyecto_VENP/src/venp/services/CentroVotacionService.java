@@ -2,17 +2,20 @@ package venp.services;
 
 import java.util.ArrayList;
 
+import com.ibatis.dao.client.DaoManager;
+
 import venp.beans.CentroVotacionBean;
 import venp.dao.entities.CentroVotacionDAO;
-import venp.dao.factory.DAOFactory;
+//import venp.dao.factory.DAOFactory;
+import venp.dao.factory.DaoConfig;
 
 public class CentroVotacionService {
 
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
+	private DaoManager manager = DaoConfig.getDaoManager();
 	private CentroVotacionDAO dao;
 
 	public CentroVotacionService() {
-		dao = factory.getCentroVotacionDAO();
+		dao = (CentroVotacionDAO) manager.getDao(CentroVotacionDAO.class);
 	}
 	
 	public void borrar(int codigo) throws Exception {
@@ -43,9 +46,9 @@ public class CentroVotacionService {
 		}
 	}
 
-	public ArrayList findAll_conLocacion(int procesoElectoral, int codigoPais) throws Exception {
+	public ArrayList findAllConLocacion(int procesoElectoral, int codigoPais) throws Exception {
 		try {
-			ArrayList lista = dao.findAll_conLocacion(procesoElectoral, codigoPais);
+			ArrayList lista = dao.findAllConLocacion(procesoElectoral, codigoPais);
 
 			return lista;
 		} catch (Exception e) {
@@ -55,9 +58,9 @@ public class CentroVotacionService {
 		}
 	}
 
-	public ArrayList findAll_sinLocacion(int procesoElectoral, int codigoPais) throws Exception {
+	public ArrayList findAllSinLocacion(int procesoElectoral, int codigoPais) throws Exception {
 		try {
-			ArrayList lista = dao.findAll_sinLocacion(procesoElectoral, codigoPais);
+			ArrayList lista = dao.findAllSinLocacion(procesoElectoral, codigoPais);
 
 			return lista;
 		} catch (Exception e) {
@@ -69,7 +72,7 @@ public class CentroVotacionService {
 
 	public ArrayList findAll_conUsuario(int procesoElectoral, int codigoUser, int codigoPais) throws Exception {
 		try {
-			ArrayList lista = dao.findAll_conUsuario(procesoElectoral, codigoUser, codigoPais);
+			ArrayList lista = dao.findAllConUsuario(procesoElectoral, codigoUser, codigoPais);
 
 			return lista;
 		} catch (Exception e) {
@@ -81,7 +84,7 @@ public class CentroVotacionService {
 
 	public ArrayList findAll_sinUsuario(int procesoElectoral, int codigoUser, int codigoPais) throws Exception {
 		try {
-			ArrayList lista = dao.findAll_sinUsuario(procesoElectoral, codigoUser, codigoPais);
+			ArrayList lista = dao.findAllSinUsuario(procesoElectoral, codigoUser, codigoPais);
 
 			return lista;
 		} catch (Exception e) {

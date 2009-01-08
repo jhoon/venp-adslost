@@ -1,13 +1,13 @@
 <%@ include file="/includes/taglibs.inc.jsp" %>
             <ul id="dhtmlgoodies_menu">
               <li>
-                <html:link href="listaProcesoElectoral.do?cmd=listar"><bean:message key="central.procesoElectoral" /></html:link>
+                <html:link href="procesoElectoralLista.do?cmd=listar"><bean:message key="central.procesoElectoral" /></html:link>
               </li>
               <li>
                 <html:link href="centralSubMenu.do"><bean:message key="central.mantenimiento" /></html:link>
               </li>
               <li>
-                <html:link href="#"><bean:message key="central.cedula" /></html:link>
+                <html:link href="cedula.do"><bean:message key="central.cedula" /></html:link>
               </li>
               <li>
                 <html:link href="listaEscrutinio.do?cmd=listarEscrutinio"><bean:message key="central.escrutinio" /></html:link>

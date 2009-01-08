@@ -19,24 +19,15 @@ public class PaisListaAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		String codigo = request.getParameter("codigo");
+		String strCodigo = request.getParameter("codigo");
 
-		if (codigo != null) {
-			borrar(Integer.parseInt(codigo));
+		if (strCodigo != null) {
+			borrar(Integer.parseInt(strCodigo));
 
 			return listar(mapping, form, request, response);
 		} else {
 			return mapping.findForward("inicio");
 		}
-		/*
-                    <td class="thead" width="30">&nbsp;</td>
-
-
-
-				    <td class="alt01" valign="middle" align="center">
-                      <nested:link paramId="codigo" paramProperty="codigo" href="paisLista.do?cmd=borrar"><img src="images/delete.gif" border="0" /></nested:link>
-                    </td>
-		 */
 	}
 
 	public ActionForward listar(ActionMapping mapping, ActionForm form,

@@ -1,6 +1,7 @@
 <%@ include file="/includes/taglibs.inc.jsp" %>
-<html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title><bean:message key="global.application.title" /></title>
     <link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />

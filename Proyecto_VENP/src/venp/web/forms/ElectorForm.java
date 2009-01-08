@@ -8,12 +8,21 @@ import venp.beans.MyHelpBean;
 
 public class ElectorForm extends ActionForm {
 	
-	private String id, locationId, nombre, paterno, 
-				   materno, dni, pin, email, estado, 
-				   fechaSufragio, horaSufragio, gmtSufragio;
+	private String id;
+	private String locationId;
+	private String nombre;
+	private String paterno; 
+	private String materno;
+	private String dni;
+	private String pin;
+	private String email;
+	private String estado;
+	private String fechaSufragio;
+	private String horaSufragio;
+	private String gmtSufragio;
 	private int paisId;
-	
-	private static ArrayList consulados, paises;
+	private static ArrayList consulados;
+	private static ArrayList paises;
 
 	public ElectorForm() {
 		reset();
@@ -105,8 +114,8 @@ public class ElectorForm extends ActionForm {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String mail) {
+		this.email = mail;
 	}
 	
 	public String getEstado() {

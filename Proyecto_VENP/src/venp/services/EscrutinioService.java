@@ -1,69 +1,36 @@
 package venp.services;
 
 import java.util.ArrayList;
-
+import com.ibatis.dao.client.DaoManager; 
 import venp.beans.EscrutinioBean;
-import venp.beans.LocacionBean;
-import venp.beans.PerfilBean;
 import venp.dao.entities.EscrutinioDAO;
-import venp.dao.entities.LocacionDAO;
-import venp.dao.factory.DAOFactory;
+import venp.dao.factory.DaoConfig;
 
 public class EscrutinioService {
-
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
-	private EscrutinioDAO dao;
-
-	public EscrutinioService() {
-		dao = factory.getEscrutinioDAO();
-	}
-
-	public ArrayList listarLocacionesCerradas() throws Exception {
-		try {
-			ArrayList lista = dao.listarLocacionesCerradas();
-
-			return lista;
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return null;
-		}
+	
+	
+	DaoManager manager=DaoConfig.getDaoManager();
+	
+	public ArrayList listarLocacionesCerradas() throws Exception{
+		  EscrutinioDAO escrutinodao =(EscrutinioDAO)manager.getDao(EscrutinioDAO.class);
+		  return escrutinodao.listarLocacionesCerradas();
+	} 
+	
+	public ArrayList listarDetalleEscrutinio(String strId) throws Exception{
+		  EscrutinioDAO escrutiniodao = (EscrutinioDAO)manager.getDao(EscrutinioDAO.class);
+		  return escrutiniodao.listarDetalleEscrutinio(strId);
 	}
 	
-	public ArrayList listarDetalleLocacion(String id) throws Exception {
-		try {
-			ArrayList lista = dao.listarDetalleLocacion(id);
-
-			return lista;
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return null;
-		}
-	}
-
-	public ArrayList listarDetalleEscrutinio(String id) throws Exception {
-		try {
-			ArrayList lista = dao.listarDetalleEscrutinio(id);
-
-			return lista;
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return null;
-		}
+	public ArrayList listarDetalleLocacion(String strId) throws Exception {
+		  EscrutinioDAO escrutiniodao = (EscrutinioDAO)manager.getDao(EscrutinioDAO.class);
+		  return escrutiniodao.listarDetalleLocacion(strId);		
 	}
 	
+	/*devuelve los votos totalizados por locacion*/
 	public EscrutinioBean buscarTotales() throws Exception{
-		try {
-			EscrutinioBean bean = dao.buscarTotales();
-
-			return bean;
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return null;
-		}
-		
-	}
+		  EscrutinioBean resultado = new EscrutinioBean();
+		  EscrutinioDAO escrutinio = (EscrutinioDAO)manager.getDao(EscrutinioDAO.class);
+		  resultado = escrutinio.buscarTotales(); 
+	      return resultado;
+	} 
 }

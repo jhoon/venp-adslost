@@ -10,11 +10,11 @@ public interface ProcesoElectoralDAO {
 
 	public ArrayList findAll() throws Exception;
 	
-	public ArrayList findAll_Creado() throws Exception;
+	public ArrayList findAllCreado() throws Exception;
 
-	public void ActivarProcesoElectoral(int id) throws Exception;
+	public void activarProcesoElectoral(int id) throws Exception;
 	
-	public void AnularProcesoElectoral(int id) throws Exception;
+	public void anularProcesoElectoral(int id) throws Exception;
 	
 	public void insertar(ProcesoElectoralBean bean) throws Exception;
 	

@@ -2,67 +2,55 @@ package venp.services;
 
 import java.util.ArrayList;
 
+import com.ibatis.dao.client.DaoManager;
+
 import venp.beans.CandidatoBean;
-import venp.beans.PartidoPoliticoBean;
-import venp.beans.PerfilBean;
 import venp.dao.entities.CandidatoDAO;
-import venp.dao.entities.PartidoPoliticoDAO;
-import venp.dao.entities.PerfilDAO;
-import venp.dao.factory.DAOFactory;
+//import venp.dao.factory.DAOFactory;
+import venp.dao.factory.DaoConfig;
 
 public class CandidatoService {
 
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
+	private DaoManager manager;
 	private CandidatoDAO dao;
 
 	public CandidatoService() {
-		dao = factory.getCandidatoDAO();
+		manager = DaoConfig.getDaoManager();
+		dao = (CandidatoDAO) manager.getDao(CandidatoDAO.class);
 	}
 	
-	public ArrayList findAll() throws Exception {
+	public ArrayList listarTodos() throws Exception {
 		try {
-			ArrayList lista = dao.findAll();
-
-			return lista;
+			return dao.listarTodos();
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
 	
-	public ArrayList findAll_conPP(int partidoPolitico_ID) throws Exception {
+	public ArrayList listarConPartidoPolitico(int partidoPoliticoId) throws Exception {
 		try {
-			ArrayList lista = dao.findAll_conPP(partidoPolitico_ID);
-
-			return lista;
+			return dao.listarConPartidoPolitico(partidoPoliticoId);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
 	
-	public ArrayList findAll_sinPP(int partidoPolitico_ID) throws Exception {
+	public ArrayList listarSinPartidoPolitico(int partidoPoliticoId) throws Exception {
 		try {
-			ArrayList lista = dao.findAll_sinPP(partidoPolitico_ID);
-
-			return lista;
+			return dao.listarSinPartidoPolitico(partidoPoliticoId);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
 	
 	public CandidatoBean findByPrimaryKey(int codigo) throws Exception {
 		try {
-			CandidatoBean bean = dao.findByPrimaryKey(codigo);
-
-			return bean;
+			return dao.findByPrimaryKey(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
@@ -77,22 +65,19 @@ public class CandidatoService {
 	
 	public String insertar(CandidatoBean bean) throws Exception {
 		try {
-			String resultado = dao.insertar(bean);
-			return resultado;
+			return dao.insertar(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return "";
 		}
-		
 	}
 	
 	public String editar(CandidatoBean bean) throws Exception {
 		try {
-			String resultado = dao.editar(bean);
-			return resultado;
+			return dao.editar(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return "";
 		}
 	}
 	

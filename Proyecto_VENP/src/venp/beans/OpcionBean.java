@@ -2,7 +2,12 @@ package venp.beans;
 
 public class OpcionBean extends Bean {
 	
-	private String id, nombre, abreviatura, logo, politico, foto;
+	private String id;
+	private String nombre;
+	private String abreviatura;
+	private String logo;
+	private String politico;
+	private String foto;
 	
 	public OpcionBean() {
 		super();

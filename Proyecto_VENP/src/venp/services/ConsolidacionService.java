@@ -1,49 +1,22 @@
 package venp.services;
 
 import java.util.ArrayList;
-
-import venp.beans.LocacionBean;
-import venp.beans.PerfilBean;
-import venp.dao.entities.ConsolidacionDAO;
-import venp.dao.entities.EscrutinioDAO;
-import venp.dao.entities.LocacionDAO;
-import venp.dao.factory.DAOFactory;
-
+import com.ibatis.dao.client.DaoManager; 
+import venp.dao.entities.ConsolidacionDAO; 
+import venp.dao.factory.DaoConfig;
 public class ConsolidacionService {
 
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
-	private ConsolidacionDAO dao;
-
-	public ConsolidacionService() {
-		dao = factory.getConsolidacionDAO();
-	}
-
+	DaoManager manager=DaoConfig.getDaoManager();
+	
 	public ArrayList listarResultados() throws Exception {
-		try {
-			ArrayList lista = dao.listarResultados();
-
-			return lista;
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return null;
-		}
+		ConsolidacionDAO consolidaciondao = (ConsolidacionDAO)manager.getDao(ConsolidacionDAO.class);
+		return consolidaciondao.listarResultados();		
 	}
 	
 	public boolean procesoCerrado() throws Exception {
-		try {
-			boolean proceso=false;
-			if(dao.procesoCerrado()){
-				proceso = true;
-			}
+		
+		ConsolidacionDAO consolidaciondao = (ConsolidacionDAO)manager.getDao(ConsolidacionDAO.class);
+		return consolidaciondao.procesoCerrado();
 
-			return proceso;
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return false;
-		}
-	}
-	
-	 
+	}	
 }

@@ -12,13 +12,13 @@ public interface CentroVotacionDAO {
 	
 	public ArrayList findAll() throws Exception;
 	
-	public ArrayList findAll_conLocacion(int procesoElectoral, int codigoPais) throws Exception;
+	public ArrayList findAllConLocacion(int procesoElectoral, int codigoPais) throws Exception;
 	
-	public ArrayList findAll_sinLocacion(int procesoElectoral, int codigoPais) throws Exception;
+	public ArrayList findAllSinLocacion(int procesoElectoral, int codigoPais) throws Exception;
 	
-	public ArrayList findAll_conUsuario(int procesoElectoral, int codigoUser, int codigoPais) throws Exception;
+	public ArrayList findAllConUsuario(int procesoElectoral, int codigoUser, int codigoPais) throws Exception;
 	
-	public ArrayList findAll_sinUsuario(int procesoElectoral, int codigoUser, int codigoPais) throws Exception;
+	public ArrayList findAllSinUsuario(int procesoElectoral, int codigoUser, int codigoPais) throws Exception;
 	
 	public CentroVotacionBean findByPrimaryKey(int codigo) throws Exception;
 	

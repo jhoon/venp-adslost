@@ -11,9 +11,8 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
-import org.apache.struts.validator.DynaValidatorForm;
 
-import venp.services.PerfilService; //import venp.web.forms.ClientePeruDataForm;
+import venp.services.PerfilService;
 import venp.web.forms.PerfilListaForm;
 
 public class PerfilListaAction extends DispatchAction {

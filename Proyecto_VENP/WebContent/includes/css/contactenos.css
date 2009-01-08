@@ -1,0 +1,18 @@
+*.contact {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: white;	
+}
+
+h2.contact {
+	font-size: 16px;
+	margin-bottom: 30px;
+}
+
+p.contact {
+	font-size: 12px;
+}
+
+li.contact a {
+	color: white;	
+}

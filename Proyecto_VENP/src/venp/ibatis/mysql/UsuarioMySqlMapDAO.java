@@ -1,7 +1,9 @@
 package venp.ibatis.mysql;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import venp.beans.PerfilBean;
 import venp.beans.UsuarioBean;
 import venp.dao.entities.UsuarioDAO;
 
@@ -14,72 +16,148 @@ public class UsuarioMySqlMapDAO extends SqlMapDaoTemplate implements UsuarioDAO 
 		super(daoManager);
 	}
 
-	@Override
 	public void asignar(int procesoElectoral, int codigoUsuario,
 			int centroVotacion) throws Exception {
+		HashMap map = new HashMap();
 		
+		map.put("v_procesoelectoral", procesoElectoral);
+		map.put("v_user", codigoUsuario);
+		map.put("v_centrovotacion", centroVotacion);
+		
+		this.update("Usuario.asignar", map);
 	}
 
-	@Override
 	public void borrar(String codigo) throws Exception {
-		
+		this.update("Usuario.borrar", Integer.parseInt(codigo));
 	}
 
-	@Override
 	public void editar(UsuarioBean bean) throws Exception {
+		HashMap map = new HashMap();
+		PerfilBean perfilBean = bean.getPerfil();
 		
+		map.put("v_codigo", Integer.parseInt(bean.getCodigo()));
+		map.put("v_perfil", perfilBean.getCodigo());
+		map.put("v_nombre", bean.getNombre());
+		map.put("v_paterno", bean.getApePaterno());
+		map.put("v_materno", bean.getApeMaterno());
+		map.put("v_dni", bean.getDni());
+		map.put("v_email", bean.getEmail());
+		map.put("v_movil", bean.getMovil());
+		map.put("v_username", bean.getUserName());
+		map.put("v_password", bean.getPassword());
+		
+		this.update("Usuario.editar", map);
 	}
 
-	@Override
 	public ArrayList findAll() throws Exception {
-		return null;
+		return (ArrayList<UsuarioBean>) queryForList("Usuario.findAll", null);
 	}
 
-	@Override
-	public ArrayList findAll_Locacion() throws Exception {
-		return null;
+	public ArrayList findAllByLocacion() throws Exception {
+		return (ArrayList<UsuarioBean>) queryForList("Usuario.findAll_Locacion", null);
 	}
 
-	@Override
 	public boolean findByDNI(String dni) throws Exception {
+		HashMap map = new HashMap();
+		
+		map.put("v_DNI", dni);
+		map.put("v_Total", -1);
+		
+		this.update("Usuario.findByDNI", map);
+		
+		int intNroLocacion = ((Integer)map.get("v_Total")).intValue();
+
+		if (intNroLocacion > 0)
+			return true;
+		
 		return false;
 	}
 
-	@Override
 	public boolean findByDNI(String dni, String codigo) throws Exception {
+		HashMap map = new HashMap();
+		
+		map.put("v_DNI", dni);
+		map.put("v_Codigo", Integer.parseInt(codigo));
+		map.put("v_Total", -1);
+		
+		this.update("Usuario.findByDNI_ID", map);
+		
+		int intNroLocacion = ((Integer)map.get("v_Total")).intValue();
+
+		if (intNroLocacion > 0)
+			return true;
+		
 		return false;
 	}
 
-	@Override
 	public UsuarioBean findByPrimaryKey(String codigo) throws Exception {
-		return null;
+		return (UsuarioBean) this.queryForObject("Usuario.findByPrimaryKey", Integer.parseInt(codigo));
 	}
 
-	@Override
 	public boolean findByUserName(String userName) throws Exception {
+		HashMap map = new HashMap();
+		
+		map.put("v_DNI", userName);
+		map.put("v_Total", -1);
+		
+		this.update("Usuario.findByUserName", map);
+		
+		int intNroLocacion = ((Integer)map.get("v_Total")).intValue();
+
+		if (intNroLocacion > 0)
+			return true;
+		
 		return false;
 	}
 
-	@Override
 	public boolean findByUserName(String userName, String codigo)
 			throws Exception {
+		HashMap map = new HashMap();
+		
+		map.put("v_DNI", userName);
+		map.put("v_Codigo", Integer.parseInt(codigo));
+		map.put("v_Total", -1);
+		
+		this.update("Usuario.findByUserNameID", map);
+		
+		int intNroLocacion = ((Integer)map.get("v_Total")).intValue();
+
+		if (intNroLocacion > 0)
+			return true;
+		
 		return false;
 	}
 
-	@Override
 	public UsuarioBean findByUsuario(String usuario) throws Exception {
-		return (UsuarioBean)this.queryForObject("Usuario.findByUsuario", usuario);
+		return (UsuarioBean) this.queryForObject("Usuario.findByUsuario", usuario);
 	}
 
-	@Override
 	public void insertar(UsuarioBean bean) throws Exception {
+		HashMap map = new HashMap();
+		PerfilBean perfilBean = bean.getPerfil();
 		
+		map.put("v_perfil", perfilBean.getCodigo());
+		map.put("v_nombre", bean.getNombre());
+		map.put("v_paterno", bean.getApePaterno());
+		map.put("v_materno", bean.getApeMaterno());
+		map.put("v_dni", bean.getDni());
+		map.put("v_email", bean.getEmail());
+		map.put("v_movil", bean.getMovil());
+		map.put("v_username", bean.getUserName());
+		map.put("v_password", bean.getPassword());
+		
+		this.update("Usuario.insertar", map);
 	}
 
-	@Override
 	public void retirar(int procesoElectoral, int codigoUsuario,
 			int centroVotacion) throws Exception {
+		HashMap map = new HashMap();
 		
+		map.put("v_procesoelectoral", procesoElectoral);
+		map.put("v_user", codigoUsuario);
+		map.put("v_centrovotacion", centroVotacion);
+		
+		this.update("Usuario.retirar", map);
 	}
 
 }

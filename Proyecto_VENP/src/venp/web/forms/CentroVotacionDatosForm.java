@@ -12,10 +12,10 @@ public class CentroVotacionDatosForm extends ActionForm {
 	private boolean nuevo;
 	private String codigo;
 	private ArrayList pais;
-	private String pais_id;
-	private ArrayList zona_horaria;
-	private String zonahoraria_id;
-	private String codigopostal;
+	private String paisId;
+	private ArrayList zonaHoraria;
+	private String zonaHorariaId;
+	private String codigoPostal;
 	private String nombre;
 	private String region;
 	private String direccion;
@@ -44,36 +44,36 @@ public class CentroVotacionDatosForm extends ActionForm {
 		this.pais = pais;
 	}
 
-	public String getPais_id() {
-		return pais_id;
+	public String getPaisId() {
+		return paisId;
 	}
 
-	public void setPais_id(String pais_id) {
-		this.pais_id = pais_id;
+	public void setPaisId(String paisId) {
+		this.paisId = paisId;
 	}
 
-	public ArrayList getZona_horaria() {
-		return zona_horaria;
+	public ArrayList getZonaHoraria() {
+		return zonaHoraria;
 	}
 
-	public void setZona_horaria(ArrayList zona_horaria) {
-		this.zona_horaria = zona_horaria;
+	public void setZonaHoraria(ArrayList zonaHoraria) {
+		this.zonaHoraria = zonaHoraria;
 	}
 
-	public String getZonahoraria_id() {
-		return zonahoraria_id;
+	public String getZonaHorariaId() {
+		return zonaHorariaId;
 	}
 
-	public void setZonahoraria_id(String zonahoraria_id) {
-		this.zonahoraria_id = zonahoraria_id;
+	public void setZonaHorariaId(String zonaHorariaId) {
+		this.zonaHorariaId = zonaHorariaId;
 	}
 
-	public String getCodigopostal() {
-		return codigopostal;
+	public String getCodigoPostal() {
+		return codigoPostal;
 	}
 
-	public void setCodigopostal(String codigopostal) {
-		this.codigopostal = codigopostal;
+	public void setCodigoPostal(String codigopostal) {
+		this.codigoPostal = codigopostal;
 	}
 
 	public String getNombre() {
@@ -103,10 +103,10 @@ public class CentroVotacionDatosForm extends ActionForm {
 	public void reset(ActionMapping mapping, HttpServletRequest request) {
 		codigo = "";
 		pais = null;
-		pais_id = "";
-		zona_horaria = null;
-		zonahoraria_id = "";
-		codigopostal = "";
+		paisId = "";
+		zonaHoraria = null;
+		zonaHorariaId = "";
+		codigoPostal = "";
 		nombre = "";
 		region = "";
 		direccion = "";

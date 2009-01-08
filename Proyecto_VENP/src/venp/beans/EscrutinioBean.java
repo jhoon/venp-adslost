@@ -15,8 +15,22 @@ public class EscrutinioBean extends Bean {
 	String mensaje;
 	int totalVotos;
 	int totalVotosValidos;
-	int totalVotosBlancos;
+	int totalVotosBlancos;	
+	int locacionesCerradas;
+	int conEscrutinio;
 	
+	public int getConEscrutinio() {
+		return conEscrutinio;
+	}
+	public void setConEscrutinio(int conEscrutinio) {
+		this.conEscrutinio = conEscrutinio;
+	}
+	public int getLocacionesCerradas() {
+		return locacionesCerradas;
+	}
+	public void setLocacionesCerradas(int locacionesCerradas) {
+		this.locacionesCerradas = locacionesCerradas;
+	}
 	public String getPaisId() {
 		return paisId;
 	}
@@ -84,7 +98,4 @@ public class EscrutinioBean extends Bean {
 	public void setTotalVotosBlancos(int totalVotosBlancos) {
 		this.totalVotosBlancos = totalVotosBlancos;
 	}
-	 
-	
-
 }

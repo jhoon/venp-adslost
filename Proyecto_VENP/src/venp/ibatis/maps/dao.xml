@@ -12,10 +12,23 @@
 			<property name="SqlMapConfigResource" value="venp/ibatis/maps/sql-map-config.xml" />
 		</transactionManager>
 
-		<dao interface="venp.dao.entities.UsuarioDAO" implementation="venp.ibatis.mysql.UsuarioMySqlMapDAO" />
 		<dao interface="venp.dao.entities.LocacionDAO" implementation="venp.ibatis.mysql.LocacionMySqlMapDAO" />
 		<dao interface="venp.dao.entities.ElectorDAO" implementation="venp.ibatis.mysql.ElectorMySqlMapDAO" />
+		<dao interface="venp.dao.entities.EscrutinioDAO" implementation="venp.ibatis.mysql.EscrutinioMySqlMapDAO"/>
+		<dao interface="venp.dao.entities.ConsolidacionDAO" implementation="venp.ibatis.mysql.ConsolidacionMySqlMapDAO"/>
 
+		<!-- Mantenimientos -->
+		<dao interface="venp.dao.entities.ProcesoElectoralDAO" implementation="venp.ibatis.mysql.ProcesoElectoralMySqlMapDAO" />
+		<dao interface="venp.dao.entities.PaisDAO" implementation="venp.ibatis.mysql.PaisMySqlMapDAO" />
+		<dao interface="venp.dao.entities.PerfilDAO" implementation="venp.ibatis.mysql.PerfilMySqlMapDAO" />
+		<dao interface="venp.dao.entities.UsuarioDAO" implementation="venp.ibatis.mysql.UsuarioMySqlMapDAO" />
+		<dao interface="venp.dao.entities.CentroVotacionDAO" implementation="venp.ibatis.mysql.CentroVotacionMySqlMapDAO" />
+		<dao interface="venp.dao.entities.ZonaHorariaDAO" implementation="venp.ibatis.mysql.ZonaHorariaMySqlMapDAO" />
+		<dao interface="venp.dao.entities.LogDAO" implementation="venp.ibatis.mysql.LogMySqlMapDAO" />
+		<dao interface="venp.dao.entities.CandidatoDAO" implementation="venp.ibatis.mysql.CandidatoMySqlMapDAO" />
+		<dao interface="venp.dao.entities.PartidoPoliticoDAO" implementation="venp.ibatis.mysql.PartidoPoliticoMySqlMapDAO" />
+		<dao interface="venp.dao.entities.CedulaDAO" implementation="venp.ibatis.mysql.CedulaMySqlMapDAO" />
+		
 	</context>
 
 </daoConfig>

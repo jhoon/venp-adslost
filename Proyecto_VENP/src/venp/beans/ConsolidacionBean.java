@@ -1,20 +1,34 @@
 package venp.beans;
 
-import java.sql.Timestamp;
-import java.util.Date;
 
 public class ConsolidacionBean extends Bean {
 	
 	private String opcion;
 	private String nombreCandidato;
 	private String nombrePartidoPolitico;
-	private String resultado;
+	private String resultadoOpcion;	
 	private String imagenPartidoPolitico;
 	private String imagenCandidato;
 	private String fechaComicios;
-	private String porcentaje;
-	private String fecha;
+	private String porcentajeObtenido;	
+	private String fechaConsolidacion;
+	private String estadoProceso;	
+	private String totalLocacionesAbiertas;
 	
+	
+	public String getTotalLocacionesAbiertas() {
+		return totalLocacionesAbiertas;
+	}
+	public void setTotalLocacionesAbiertas(String totalLocacionesAbiertas) {
+		this.totalLocacionesAbiertas = totalLocacionesAbiertas;
+	}
+	public String getEstadoProceso() {
+		return estadoProceso;
+	}
+	public void setEstadoProceso(String estadoProceso) {
+		this.estadoProceso = estadoProceso;
+	}
+		 
 	public String getNombreCandidato() {
 		return nombreCandidato;
 	}
@@ -27,12 +41,7 @@ public class ConsolidacionBean extends Bean {
 	public void setNombrePartidoPolitico(String nombrePartidoPolitico) {
 		this.nombrePartidoPolitico = nombrePartidoPolitico;
 	}
-	public String getResultado() {
-		return resultado;
-	}
-	public void setResultado(String resultado) {
-		this.resultado = resultado;
-	}
+	
 	public String getImagenPartidoPolitico() {
 		return imagenPartidoPolitico;
 	}
@@ -57,18 +66,25 @@ public class ConsolidacionBean extends Bean {
 	public void setOpcion(String opcion) {
 		this.opcion = opcion;
 	}
-	public String getPorcentaje() {
-		return porcentaje;
+	
+	public String getFechaConsolidacion() {
+		return fechaConsolidacion;
 	}
-	public void setPorcentaje(String porcentaje) {
-		this.porcentaje = porcentaje;
+	public void setFechaConsolidacion(String fechaConsolidacion) {
+		this.fechaConsolidacion = fechaConsolidacion;
 	}
-	public String getFecha() {
-		return fecha;
+ 
+	public String getResultadoOpcion() {
+		return resultadoOpcion;
 	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setResultadoOpcion(String resultadoOpcion) {
+		this.resultadoOpcion = resultadoOpcion;
 	}
-
+	public String getPorcentajeObtenido() {
+		return porcentajeObtenido;
+	}
+	public void setPorcentajeObtenido(String porcentajeObtenido) {
+		this.porcentajeObtenido = porcentajeObtenido;
+	}
 		
 }

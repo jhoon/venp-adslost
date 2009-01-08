@@ -19,10 +19,10 @@ public class UsuarioListaAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		String codigo = request.getParameter("codigo");
+		String strCodigo = request.getParameter("codigo");
 
-		if (codigo != null) {
-			borrar(codigo);
+		if (strCodigo != null) {
+			borrar(strCodigo);
 
 			return listar(mapping, form, request, response);
 		} else {

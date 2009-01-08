@@ -40,7 +40,7 @@
 				      <nested:greaterThan property="diferenciaFin" value="0"><nested:write property="diferenciaFin" /></nested:greaterThan>
 				    </td>
 				    <td class="alt01" valign="middle" class="gridField" align="center">
-				      <nested:link href="locacionCerrarVotacion.do?cmd=cerrarVotacion" paramId="keyValue" paramProperty="codigo"><img src="images/icoCerrarVotacion.gif" width="25" height="25" border="0" /></nested:link>
+				      <nested:link href="locacionCerrarVotacion.do?cmd=cerrarVotacion" paramId="keyValue" paramProperty="codigo"><img src="media/icoCerrarVotacion.gif" width="25" height="25" border="0" /></nested:link>
 				    </td>
 				  </tr>
 				  </nested:iterate>

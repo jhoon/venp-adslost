@@ -7,14 +7,27 @@
 
 	<settings useStatementNamespaces="true" />
 
-	<transactionManager type="JDBC">
+	<transactionManager type="JDBC" commitRequired="true">
 		<dataSource type="JNDI">
 			<property name="DataSource" value="java://comp/env/jdbc/votacionDB" />
 		</dataSource>
 	</transactionManager>
 	
-	<sqlMap resource="venp/ibatis/maps/Usuario.xml" />
 	<sqlMap resource="venp/ibatis/maps/Locacion.xml" />
 	<sqlMap resource="venp/ibatis/maps/Elector.xml" />
+	<sqlMap resource="venp/ibatis/maps/Escrutinio.xml" />
+	<sqlMap resource="venp/ibatis/maps/Consolidacion.xml" />
+	
+	<!-- Mantenimiento -->
+	<sqlMap resource="venp/ibatis/maps/ProcesoElectoral.xml" />
+	<sqlMap resource="venp/ibatis/maps/Pais.xml" />
+	<sqlMap resource="venp/ibatis/maps/Perfil.xml" />
+	<sqlMap resource="venp/ibatis/maps/Usuario.xml" />
+	<sqlMap resource="venp/ibatis/maps/CentroVotacion.xml" />
+	<sqlMap resource="venp/ibatis/maps/ZonaHoraria.xml" />
+	<sqlMap resource="venp/ibatis/maps/Log.xml" />
+	<sqlMap resource="venp/ibatis/maps/Candidato.xml" />
+	<sqlMap resource="venp/ibatis/maps/PartidoPolitico.xml" />
+	<sqlMap resource="venp/ibatis/maps/Cedula.xml" />
 
 </sqlMapConfig>

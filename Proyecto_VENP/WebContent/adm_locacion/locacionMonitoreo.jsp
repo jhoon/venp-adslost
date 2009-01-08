@@ -45,7 +45,7 @@
 				    <td class="alt01" valign="middle" align="left"><nested:write property="horaVotacionInicio" format="dd/MM/yyyy HH:mm" /></td>
 				    <td class="alt01" valign="middle" align="center"><nested:write property="horaVotacionFin" format="dd/MM/yyyy HH:mm" /></td>
 				    <td class="alt01" valign="middle" class="gridField" align="center">
-				      <img src="images/icoMonitoreo.gif" width="25" height="25" border="0" onclick="showMonitoreo('detalle${locacion.codigo}')" />
+				      <img src="media/icoMonitoreo.gif" width="25" height="25" border="0" onclick="showMonitoreo('detalle${locacion.codigo}')" />
 				    </td>
 				  </tr>
 				  <tr>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+ <sqlMap namespace="Consolidacion">
+ 		<typeAlias alias="consolidacionBean" type="venp.beans.ConsolidacionBean"/> 	 
+ 		
+ <!--  -->
+ 
+ 		<resultMap class="consolidacionBean" id="resultadoMap">
+ 			<result property="nombreCandidato" column="nombre" />
+ 			<result property="imagenCandidato" column="foto" />
+ 			<result property="nombrePartidoPolitico" column="partido" />
+ 			<result property="imagenPartidoPolitico" column="logo" />
+ 			<result property="resultadoOpcion" column="resultado" />
+ 			<result property="fechaConsolidacion" column="fecha" /> 			
+ 		</resultMap>	
+ 		 		
+ 		<procedure id="listarResultados" resultMap="resultadoMap">
+ 			{call pa_Consolidacion_Consolida_Voto()}  
+ 		</procedure> 
+ 	
+  <!--  -->
+   
+ 		<resultMap class="consolidacionBean" id="procesoCerradoMap">
+ 			<result property="estadoProceso" column="estado" />
+ 		</resultMap>	
+ 		
+ 		<procedure id="procesoCerrado" resultMap="procesoCerradoMap">
+ 			{call pa_Consolidacion_Proceso_Electoral_Cerrado()}  
+ 		</procedure>
+  <!--  -->
+
+ 		<resultMap class="consolidacionBean" id="locacionesAbiertasMap">
+ 			<result property="totalLocacionesAbiertas" column="total" />
+ 		</resultMap>		
+ 		
+ 		<procedure id="locacionesAbiertas" resultMap="locacionesAbiertasMap">
+ 				{call pa_Consolidacion_Contar_Locaciones_Abiertas()}  
+ 		</procedure>
+ 		
+ <!--  -->
+ 
+ 		<procedure id="cierraProcesoElectoral">
+ 			{call pa_Consolidacion_Cierra_Proceso_Electoral()}  
+ 		</procedure>
+ 		
+ </sqlMap> 

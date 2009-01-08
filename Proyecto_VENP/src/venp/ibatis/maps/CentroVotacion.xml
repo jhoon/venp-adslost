@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="CentroVotacion">
+
+	<!-- ALIAS -->
+	<typeAlias alias="centroVotacion" type="venp.beans.CentroVotacionBean" />
+	<typeAlias alias="pais" type="venp.beans.PaisBean" />
+	<typeAlias alias="zonaHoraria" type="venp.beans.ZonaHorariaBean" />
+    
+	<!-- PARAMETROS -->
+    <parameterMap class="map" id="paramMap0">
+		<parameter property="v_procesoelectoral" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_centrovotacion" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+    
+    <parameterMap class="map" id="paramMap1">
+		<parameter property="v_codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_pais" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_zonahoraria" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_codigopostal" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_region" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_direccion" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+    
+    <parameterMap class="map" id="paramMap2">
+		<parameter property="v_pe" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_pais" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap3">
+		<parameter property="v_pe" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_user" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_pais" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap4">
+		<parameter property="v_Nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Pais" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap5">
+		<parameter property="v_Nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Pais" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_Codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+    
+    <parameterMap class="map" id="paramMap6">
+		<parameter property="v_pais" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_zonahoraria" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_codigopostal" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_region" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_direccion" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+	
+	<!-- MAPEOS -->
+	<resultMap class="centroVotacion" id="centroVotacionMap">
+        <result property="pais.codigo" column="paisID" />
+		<result property="pais.nombre" column="paisNombre" />
+		<result property="pais.abreviatura" column="paisAbreviatura" />
+		<result property="pais.estado" column="paisEstado" />
+        <result property="zonaHoraria.codigo" column="zhID" />
+		<result property="zonaHoraria.tiempo" column="zhTiempo" />
+		<result property="zonaHoraria.nombre" column="zhNombre" />
+		<result property="zonaHoraria.estado" column="zhEstado" />
+        <result property="codigo" column="cvID" />
+        <result property="codigoPostal" column="cvCP" />
+        <result property="nombre" column="cvNombre" />
+        <result property="region" column="cvRegion" />
+        <result property="direccion" column="cvDireccion" />
+        <result property="estado" column="cvEstado" />
+    </resultMap>
+	
+	<!-- PROCEDIMIENTOS -->
+	<procedure id="asignar" parameterMap="paramMap0">
+		{call pa_centrovotacion_asignar (?, ?)}
+	</procedure>
+	
+	<procedure id="borrar" parameterClass="java.lang.Integer">
+        {call pa_centrovotacion_delete (#v_Codigo#)}
+    </procedure>
+	
+	<procedure id="editar" parameterMap="paramMap1">
+		{call pa_centrovotacion_edit (?, ?, ?, ?, ?, ?, ?)}
+	</procedure>
+	
+	<procedure id="findAll" resultMap="centroVotacionMap">
+        {call pa_centrovotacion_findAll}
+    </procedure>
+	
+	<procedure id="findAll_conLocacion" parameterMap="paramMap2" resultMap="centroVotacionMap">
+        {call pa_centrovotacion_conLocacion (?, ?)}
+    </procedure>
+	
+	<procedure id="findAll_conUsuario" parameterMap="paramMap3" resultMap="centroVotacionMap">
+        {call pa_centrovotacion_conUsuario (?, ?, ?)}
+    </procedure>
+	
+	<procedure id="findAll_sinLocacion" parameterMap="paramMap2" resultMap="centroVotacionMap">
+        {call pa_centrovotacion_sinLocacion (?, ?)}
+    </procedure>
+	
+	<procedure id="findAll_sinUsuario" parameterMap="paramMap3" resultMap="centroVotacionMap">
+        {call pa_centrovotacion_sinUsuario (?, ?, ?)}
+    </procedure>
+  
+	<procedure id="findByName" parameterMap="paramMap4">
+        {call pa_centrovotacion_findByName (?, ?, ?)}
+    </procedure>
+  
+	<procedure id="findByNameID" parameterMap="paramMap5">
+        {call pa_centrovotacion_findByName_ID (?, ?, ?, ?)}
+    </procedure>
+	
+	<procedure id="findByPrimaryKey" parameterClass="java.lang.Integer" resultMap="centroVotacionMap">
+        {call pa_centrovotacion_findByPrimaryKey (#v_codigo#)}
+    </procedure>
+	
+	<procedure id="insertar" parameterMap="paramMap6">
+		{call pa_centrovotacion_insert (?, ?, ?, ?, ?, ?)}
+	</procedure>
+    
+	<procedure id="retirar" parameterMap="paramMap0">
+		{call pa_centrovotacion_retirar (?, ?)}
+	</procedure>
+	
+</sqlMap>

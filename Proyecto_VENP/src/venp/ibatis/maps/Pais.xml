@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Pais">
+
+	<!-- ALIAS -->
+	<typeAlias alias="pais" type="venp.beans.PaisBean" />
+    
+	<!-- PARAMETROS -->
+    <parameterMap class="map" id="paramMap0">
+		<parameter property="v_codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_abreviatura" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap1">
+		<parameter property="v_abreviatura" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap2">
+		<parameter property="v_abreviatura" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap3">
+		<parameter property="v_Nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<parameterMap class="map" id="paramMap4">
+		<parameter property="v_Nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_Codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_Total" mode="OUT" javaType="java.lang.Integer" />
+	</parameterMap>
+    
+    <parameterMap class="map" id="paramMap5">
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_abreviatura" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+	
+	<!-- MAPEOS -->
+	<resultMap class="pais" id="paisMap">
+        <result property="codigo" column="id" />
+        <result property="nombre" column="nombre" />
+        <result property="abreviatura" column="abreviatura" />
+        <result property="estado" column="estado" />
+    </resultMap>
+	
+	<!-- PROCEDIMIENTOS -->
+	<procedure id="borrar" parameterClass="java.lang.Integer">
+        {call pa_pais_delete (#v_Codigo#)}
+    </procedure>
+	
+	<procedure id="editar" parameterMap="paramMap0">
+		{call pa_pais_edit (?, ?, ?)}
+	</procedure>
+	
+	<procedure id="findAll" resultMap="paisMap">
+        {call pa_pais_findAll}
+    </procedure>
+  
+	<procedure id="findAll_Locacion" resultMap="paisMap" parameterClass="java.lang.Integer">
+        {call pa_pais_findAll_Locacion (#v_ProcesoElectoral#)}
+    </procedure>
+  
+	<procedure id="findByAbreviatura" parameterMap="paramMap1">
+        {call pa_pais_findByAbreviatura (?, ?)}
+    </procedure>
+  
+	<procedure id="findByAbreviaturaID" parameterMap="paramMap2">
+        {call pa_pais_findByAbreviatura_ID (?, ?, ?)}
+    </procedure>
+  
+	<procedure id="findByName" parameterMap="paramMap3">
+        {call pa_pais_findByName (?, ?)}
+    </procedure>
+  
+	<procedure id="findByNameID" parameterMap="paramMap4">
+        {call pa_pais_findByName_ID (?, ?, ?)}
+    </procedure>
+    
+	<procedure id="findByPrimaryKey" resultMap="paisMap" parameterClass="java.lang.Integer">
+        {call pa_pais_findByPrimaryKey (#v_codigo#)}
+    </procedure>
+    
+	<procedure id="insertar" parameterMap="paramMap5">
+		{call pa_pais_insert (?, ?)}
+	</procedure>
+	
+</sqlMap>

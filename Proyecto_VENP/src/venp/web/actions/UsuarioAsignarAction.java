@@ -24,8 +24,8 @@ public class UsuarioAsignarAction extends DispatchAction {
 		
 		UsuarioAsignarForm frm = (UsuarioAsignarForm) form;
 		
-		frm.setUsuario(findAll_Usuario());
-		frm.setProcesoElectoral(findAll_PE());
+		frm.setUsuario(findAllUsuario());
+		frm.setProcesoElectoral(findAllPE());
 		
 		return mapping.findForward("inicio");
 	}
@@ -36,21 +36,21 @@ public class UsuarioAsignarAction extends DispatchAction {
 		
 		UsuarioAsignarForm frm = (UsuarioAsignarForm) form;
 		
-		int procesoElectoral = Integer.parseInt(frm.getProcesoElectoral_id());
-		int codigoUsuario = Integer.parseInt(frm.getUsuario_id());
+		int intProcesoElectoral = Integer.parseInt(frm.getProcesoElectoralId());
+		int intCodigoUsuario = Integer.parseInt(frm.getUsuarioId());
 
-		frm.setS_pe_id(procesoElectoral + "");
-		frm.setS_user_id(codigoUsuario + "");
+		frm.setSelectedPeId(intProcesoElectoral + "");
+		frm.setSelectedUserId(intCodigoUsuario + "");
 		
-		frm.setUsuario(findAll_Usuario());
-		frm.setProcesoElectoral(findAll_PE());
-		frm.setPais(findAll_Pais(procesoElectoral));
+		frm.setUsuario(findAllUsuario());
+		frm.setProcesoElectoral(findAllPE());
+		frm.setPais(findAllPais(intProcesoElectoral));
 
-		frm.setS_pe_nombre(frm.getProcesoElectoral_Name(procesoElectoral));
-		frm.setS_user_nombre(frm.getUsuario_Name(codigoUsuario));
+		frm.setSelectedPeNombre(frm.getProcesoElectoralName(intProcesoElectoral));
+		frm.setSelectedUserNombre(frm.getUsuarioName(intCodigoUsuario));
 		
-		frm.setCv_cLocacion(null);
-		frm.setCv_sLocacion(null);
+		frm.setCvcLocacion(null);
+		frm.setCvsLocacion(null);
 
 		return mapping.findForward("inicio");
 	}
@@ -61,23 +61,23 @@ public class UsuarioAsignarAction extends DispatchAction {
 		
 		UsuarioAsignarForm frm = (UsuarioAsignarForm) form;
 		
-		int procesoElectoral = Integer.parseInt(frm.getS_pe_id());
-		int codigoUsuario = Integer.parseInt(frm.getS_user_id());
-		int codigoPais = Integer.parseInt(frm.getPais_id());
+		int intProcesoElectoral = Integer.parseInt(frm.getProcesoElectoralId());
+		int intCodigoUsuario = Integer.parseInt(frm.getUsuarioId());
+		int intCodigoPais = Integer.parseInt(frm.getPaisId());
 
-		frm.setS_pe_id(procesoElectoral + "");
-		frm.setS_user_id(codigoUsuario + "");
-		frm.setPais_id("0");
+		frm.setSelectedPeId(intProcesoElectoral + "");
+		frm.setSelectedUserId(intCodigoUsuario + "");
+		frm.setPaisId("0");
 		
-		frm.setUsuario(findAll_Usuario());
-		frm.setProcesoElectoral(findAll_PE());
-		frm.setPais(findAll_Pais(procesoElectoral));
+		frm.setUsuario(findAllUsuario());
+		frm.setProcesoElectoral(findAllPE());
+		frm.setPais(findAllPais(intProcesoElectoral));
 
-		frm.setS_pe_nombre(frm.getProcesoElectoral_Name(procesoElectoral));
-		frm.setS_user_nombre(frm.getUsuario_Name(codigoUsuario));
+		frm.setSelectedPeNombre(frm.getProcesoElectoralName(intProcesoElectoral));
+		frm.setSelectedUserNombre(frm.getUsuarioName(intCodigoUsuario));
 		
-		frm.setCv_cLocacion(findAll_CV_cLocacion(procesoElectoral, codigoUsuario, codigoPais));
-		frm.setCv_sLocacion(findAll_CV_sLocacion(procesoElectoral, codigoUsuario, codigoPais));
+		frm.setCvcLocacion(findAllCVConLocacion(intProcesoElectoral, intCodigoUsuario, intCodigoPais));
+		frm.setCvsLocacion(findAllCVSinLocacion(intProcesoElectoral, intCodigoUsuario, intCodigoPais));
 
 		return mapping.findForward("inicio");
 	}
@@ -87,27 +87,28 @@ public class UsuarioAsignarAction extends DispatchAction {
 			throws Exception {
 		
 		UsuarioAsignarForm frm = (UsuarioAsignarForm) form;
-		
-		int procesoElectoral = Integer.parseInt(frm.getS_pe_id());
-		int codigoUsuario = Integer.parseInt(frm.getS_user_id());
-		int codigoPais = Integer.parseInt(frm.getPais_id());
-		int codigoCV = Integer.parseInt(frm.getCv_origen());
 
-		asignar(procesoElectoral, codigoUsuario, codigoCV);
-		
-		frm.setS_pe_id(procesoElectoral + "");
-		frm.setS_user_id(codigoUsuario + "");
-		frm.setPais_id(codigoPais + "");
-		
-		frm.setUsuario(findAll_Usuario());
-		frm.setProcesoElectoral(findAll_PE());
-		frm.setPais(findAll_Pais(procesoElectoral));
+		int intProcesoElectoral = Integer.parseInt(frm.getProcesoElectoralId());
+		int intCodigoUsuario = Integer.parseInt(frm.getUsuarioId());
+		int intCodigoPais = Integer.parseInt(frm.getPaisId());
+		int intCodigoCV = Integer.parseInt(frm.getCvOrigen());
 
-		frm.setS_pe_nombre(frm.getProcesoElectoral_Name(procesoElectoral));
-		frm.setS_user_nombre(frm.getUsuario_Name(codigoUsuario));
+		asignar(intProcesoElectoral, intCodigoUsuario, intCodigoCV);
 		
-		frm.setCv_cLocacion(findAll_CV_cLocacion(procesoElectoral, codigoUsuario, codigoPais));
-		frm.setCv_sLocacion(findAll_CV_sLocacion(procesoElectoral, codigoUsuario, codigoPais));
+		frm.setSelectedPeId(intProcesoElectoral + "");
+		frm.setSelectedUserId(intCodigoUsuario + "");
+		frm.setPaisId(intCodigoPais + "");
+		
+		frm.setUsuario(findAllUsuario());
+		frm.setProcesoElectoral(findAllPE());
+		frm.setPais(findAllPais(intProcesoElectoral));
+
+		frm.setSelectedPeNombre(frm.getProcesoElectoralName(intProcesoElectoral));
+		frm.setSelectedUserNombre(frm.getUsuarioName(intCodigoUsuario));
+		
+		frm.setCvcLocacion(findAllCVConLocacion(intProcesoElectoral, intCodigoUsuario, intCodigoPais));
+		frm.setCvsLocacion(findAllCVSinLocacion(intProcesoElectoral, intCodigoUsuario, intCodigoPais));
+		
 
 		return mapping.findForward("inicio");
 	}
@@ -118,26 +119,26 @@ public class UsuarioAsignarAction extends DispatchAction {
 		
 		UsuarioAsignarForm frm = (UsuarioAsignarForm) form;
 		
-		int procesoElectoral = Integer.parseInt(frm.getS_pe_id());
-		int codigoUsuario = Integer.parseInt(frm.getS_user_id());
-		int codigoPais = Integer.parseInt(frm.getPais_id());
-		int codigoCV = Integer.parseInt(frm.getCv_destino());
+		int intProcesoElectoral = Integer.parseInt(frm.getProcesoElectoralId());
+		int intCodigoUsuario = Integer.parseInt(frm.getUsuarioId());
+		int intCodigoPais = Integer.parseInt(frm.getPaisId());
+		int intCodigoCV = Integer.parseInt(frm.getCvDestino());
 
-		retirar(procesoElectoral, codigoUsuario, codigoCV);
+		retirar(intProcesoElectoral, intCodigoUsuario, intCodigoCV);
 		
-		frm.setS_pe_id(procesoElectoral + "");
-		frm.setS_user_id(codigoUsuario + "");
-		frm.setPais_id(codigoPais + "");
+		frm.setSelectedPeId(intProcesoElectoral + "");
+		frm.setSelectedUserId(intCodigoUsuario + "");
+		frm.setPaisId(intCodigoPais + "");
 		
-		frm.setUsuario(findAll_Usuario());
-		frm.setProcesoElectoral(findAll_PE());
-		frm.setPais(findAll_Pais(procesoElectoral));
+		frm.setUsuario(findAllUsuario());
+		frm.setProcesoElectoral(findAllPE());
+		frm.setPais(findAllPais(intProcesoElectoral));
 
-		frm.setS_pe_nombre(frm.getProcesoElectoral_Name(procesoElectoral));
-		frm.setS_user_nombre(frm.getUsuario_Name(codigoUsuario));
+		frm.setSelectedPeNombre(frm.getProcesoElectoralName(intProcesoElectoral));
+		frm.setSelectedUserNombre(frm.getUsuarioName(intCodigoUsuario));
 		
-		frm.setCv_cLocacion(findAll_CV_cLocacion(procesoElectoral, codigoUsuario, codigoPais));
-		frm.setCv_sLocacion(findAll_CV_sLocacion(procesoElectoral, codigoUsuario, codigoPais));
+		frm.setCvcLocacion(findAllCVConLocacion(intProcesoElectoral, intCodigoUsuario, intCodigoPais));
+		frm.setCvsLocacion(findAllCVSinLocacion(intProcesoElectoral, intCodigoUsuario, intCodigoPais));
 
 		return mapping.findForward("inicio");
 	}
@@ -149,31 +150,31 @@ public class UsuarioAsignarAction extends DispatchAction {
 		return mapping.findForward("listado");
 	}
 	
-	private ArrayList findAll_PE() throws Exception {
+	private ArrayList findAllPE() throws Exception {
 		ProcesoElectoralService service = new ProcesoElectoralService();
 		
-		return service.findAll_Creado();
+		return service.findAllCreado();
 	}
 
-	private ArrayList findAll_Pais(int procesoElectoral) throws Exception {
+	private ArrayList findAllPais(int procesoElectoral) throws Exception {
 		PaisService service = new PaisService();
 		
-		return service.findAll_Locacion(procesoElectoral);
+		return service.findAllLocacion(procesoElectoral);
 	}
 
-	private ArrayList findAll_Usuario() throws Exception {
+	private ArrayList findAllUsuario() throws Exception {
 		UsuarioService service = new UsuarioService();
 		
-		return service.findAll_Locacion();
+		return service.findAllByLocacion();
 	}
 	
-	private ArrayList findAll_CV_cLocacion(int procesoElectoral, int codigoUser, int codigoPais) throws Exception {
+	private ArrayList findAllCVConLocacion(int procesoElectoral, int codigoUser, int codigoPais) throws Exception {
 		CentroVotacionService service = new CentroVotacionService();
 		
 		return service.findAll_conUsuario(procesoElectoral, codigoUser, codigoPais);
 	}
 
-	private ArrayList findAll_CV_sLocacion(int procesoElectoral, int codigoUser, int codigoPais) throws Exception {
+	private ArrayList findAllCVSinLocacion(int procesoElectoral, int codigoUser, int codigoPais) throws Exception {
 		CentroVotacionService service = new CentroVotacionService();
 		
 		return service.findAll_sinUsuario(procesoElectoral, codigoUser, codigoPais);

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+ <sqlMap namespace="Escrutinio">
+ 		<typeAlias alias="escrutinio" type="venp.beans.EscrutinioBean"/>
+ 		<typeAlias alias="detalleEscrutinio" type="venp.beans.DetalleEscrutinioBean"/>
+ 		
+ <!--  -->
+ 		<resultMap class="escrutinio" id="escrutinioMapp">
+ 			<result property="nombrePais" column="pais" />
+ 			<result property="nombreLocacion" column="nombre" />
+ 			<result property="locacionId" column="locacion_id" /> 		 			
+ 		</resultMap>	
+ 		
+ 		<parameterMap class="map" id="mapId">
+ 					<parameter property="id"  mode="IN" javaType="java.lang.String"/>
+ 		</parameterMap> 
+ 		
+ 		<procedure id="listarDetalleEscrutinio" parameterMap="mapId" resultMap="escrutinioMapp">
+ 			{call pa_Escrutinio_Listar_Voto_Pais(?)}  
+ 		</procedure>
+ 
+ 	
+  <!--  -->
+ 		<resultMap class="escrutinio" id="escrutinioMap">
+ 			<result property="paisId" column="id" />
+ 			<result property="nombrePais" column="nombre" />
+ 			<result property="totalLocaciones" column="locaciones_aperturadas" />
+ 		</resultMap>	
+ 				
+ 		<procedure id="listarLocacionesCerradas" resultMap="escrutinioMap" >
+ 			{call pa_Escrutinio_Listar_Locaciones()}
+ 		</procedure>
+
+<!--  -->
+ 		<resultMap class="escrutinio" id="escrutinio_Map">
+ 				<result property="locacionesCerradas" column="locaciones_cerradas" />
+ 		</resultMap>
+ 		
+ 		<parameterMap class="map" id="paisid">
+ 					<parameter property="paisId"  mode="IN" javaType="java.lang.Integer"/>
+ 		</parameterMap>
+ 					
+ 		<procedure id="comprobarLocacionesCerradas" parameterMap="paisid" resultMap="escrutinio_Map">
+ 	    	 {call pa_Escrutinio_Listar_Locaciones_Cerradas(?)}
+ 		</procedure>
+ 		
+ <!--  -->		
+ 		
+ 		<resultMap class="escrutinio" id="faltaEscrutinioMap">
+ 				<result property="conEscrutinio" column="conEscrutinio" />
+ 		</resultMap>
+ 		
+ 		<parameterMap class="map" id="paisFaltaEscrutinio">
+ 					<parameter property="faltaEscrutinio"  mode="IN" javaType="java.lang.Integer"/>
+ 		</parameterMap>
+ 			 		
+ 		<procedure id="comprobarFaltaEscrutinio" parameterMap="paisFaltaEscrutinio" resultMap="faltaEscrutinioMap">
+ 	    	 {call pa_Escrutinio_Listar_Locaciones_Escrutinio(?)}
+ 		</procedure> 		
+ 		
+ 	<!--  -->
+ 		<resultMap class="detalleEscrutinio" id="paisLocacionMap">
+ 				<result property="nombreLocacion" column="nombre" />
+ 				<result property="locacionId" column="locacion_id" />
+ 				<result property="opcion" column="opcion_id" />
+ 				<result property="votos" column="votos" />
+ 				<result property="idVotoBlanco" column="blanco" />
+ 		</resultMap>
+ 		
+ 		<parameterMap class="mapPais" id="paisLocacion">
+ 					<parameter property="paisId"  mode="IN" javaType="java.lang.Integer"/>
+ 					<parameter property="locacionId"  mode="IN" javaType="java.lang.Integer"/> 				 
+ 		</parameterMap> 			
+ 		
+ 		<procedure id="listarEscrutinioPaisLocacion" parameterMap="paisLocacion" resultMap="paisLocacionMap">
+ 	    	 {call pa_Escrutinio_Listar_Escrutinio_Pais_Locacion(?,?)}
+ 		</procedure> 	
+ 		
+ 		
+ 	<!--  --> 		 
+ 		
+ 		<parameterMap class="mapVotos" id="paisLocacionVoto"> 
+ 					<parameter property="opcion"  mode="IN" javaType="java.lang.Integer"/>
+ 					<parameter property="locacion"  mode="IN" javaType="java.lang.Integer"/>
+ 					<parameter property="votos"  mode="IN" javaType="java.lang.Integer"/> 				 
+ 		</parameterMap>
+ 			 		
+ 		<procedure id="insertaVotos" parameterMap="paisLocacionVoto" >
+ 	    	 {call pa_Escrutinio_Insertar_Voto_Escrutinio(?,?,?)}
+ 		</procedure> 	
+ 		
+ 	<!--  -->
+ 		
+ 		<resultMap class="detalleEscrutinio" id="paisLocacionDetalleMap">
+ 				<result property="nombreLocacion" column="nombre" />
+ 				<result property="locacionId" column="locacion_id" />
+ 				<result property="opcion" column="opcion_id" />
+ 				<result property="votos" column="votos" />
+ 				<result property="idVotoBlanco" column="blanco" />
+ 		</resultMap>
+ 		
+ 		<parameterMap class="mapPais" id="paisLocacionDetalle">
+ 					<parameter property="paisId"  mode="IN" javaType="java.lang.Integer"/>
+ 					<parameter property="locacionId"  mode="IN" javaType="java.lang.Integer"/> 				 
+ 		</parameterMap>  
+ 	
+ 		<procedure id="listarVotoPaisLocacion" parameterMap="paisLocacionDetalle" resultMap="paisLocacionDetalleMap">
+ 	    	 {call pa_Escrutinio_Listar_Voto_Pais_Locacion (?,?)} 	    	 
+ 		</procedure> 
+ 		
+ </sqlMap>

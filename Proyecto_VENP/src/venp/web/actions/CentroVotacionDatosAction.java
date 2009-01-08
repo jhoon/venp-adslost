@@ -38,7 +38,7 @@ public class CentroVotacionDatosAction extends DispatchAction {
 
 		frm.setNuevo(true);
 		frm.setPais(findAll_Pais());
-		frm.setZona_horaria(findAll_ZonaHoraria());
+		frm.setZonaHoraria(findAll_ZonaHoraria());
 
 		return mapping.findForward("inicio");
 	}
@@ -57,12 +57,12 @@ public class CentroVotacionDatosAction extends DispatchAction {
 
 		frm.setNuevo(false);
 		frm.setPais(findAll_Pais());
-		frm.setZona_horaria(findAll_ZonaHoraria());
+		frm.setZonaHoraria(findAll_ZonaHoraria());
 		
 		frm.setCodigo(bean.getCodigo() + "");
-		frm.setPais_id(paisBean.getCodigo() + "");
-		frm.setZonahoraria_id(zhBean.getCodigo() + "");
-		frm.setCodigopostal(bean.getCodigoPostal());
+		frm.setPaisId(paisBean.getCodigo() + "");
+		frm.setZonaHorariaId(zhBean.getCodigo() + "");
+		frm.setCodigoPostal(bean.getCodigoPostal());
 		frm.setNombre(bean.getNombre());
 		frm.setRegion(bean.getRegion());
 		frm.setDireccion(bean.getDireccion());
@@ -80,18 +80,18 @@ public class CentroVotacionDatosAction extends DispatchAction {
 		PaisBean paisBean = new PaisBean();
 		ZonaHorariaBean zhBean = new ZonaHorariaBean(); 
 	    
-		paisBean.setCodigo(Integer.parseInt(frm.getPais_id()));
-		zhBean.setCodigo(Integer.parseInt(frm.getZonahoraria_id()));
+		paisBean.setCodigo(Integer.parseInt(frm.getPaisId()));
+		zhBean.setCodigo(Integer.parseInt(frm.getZonaHorariaId()));
 		
 		bean.setPais(paisBean);
 		bean.setZonaHoraria(zhBean);
-		bean.setCodigoPostal(frm.getCodigopostal());
+		bean.setCodigoPostal(frm.getCodigoPostal());
 	    bean.setNombre(frm.getNombre());
         bean.setRegion(frm.getRegion());
         bean.setDireccion(frm.getDireccion());
         
 		frm.setPais(findAll_Pais());
-		frm.setZona_horaria(findAll_ZonaHoraria());
+		frm.setZonaHoraria(findAll_ZonaHoraria());
 	    
         if (paisBean.getCodigo() == 0) {
 			ActionMessages errors = new ActionMessages();

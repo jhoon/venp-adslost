@@ -12,7 +12,7 @@ public interface PaisDAO {
 	
 	public ArrayList findAll() throws Exception;
 	
-	public ArrayList findAll_Locacion(int procesoElectoral) throws Exception;
+	public ArrayList findAllLocacion(int procesoElectoral) throws Exception;
 	
 	public PaisBean findByPrimaryKey(int codigo) throws Exception;
 	

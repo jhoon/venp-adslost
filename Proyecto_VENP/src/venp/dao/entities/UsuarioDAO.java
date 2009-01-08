@@ -14,7 +14,7 @@ public interface UsuarioDAO {
 	
 	public ArrayList findAll() throws Exception;
 	
-	public ArrayList findAll_Locacion() throws Exception;
+	public ArrayList findAllByLocacion() throws Exception;
 	
 	public UsuarioBean findByPrimaryKey(String codigo) throws Exception;
 	

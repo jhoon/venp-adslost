@@ -2,16 +2,18 @@ package venp.services;
 
 import java.util.ArrayList;
 
+import com.ibatis.dao.client.DaoManager;
+
 import venp.dao.entities.ZonaHorariaDAO;
-import venp.dao.factory.DAOFactory;
+import venp.dao.factory.DaoConfig;
 
 public class ZonaHorariaService {
-	
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
+
+	private DaoManager manager = DaoConfig.getDaoManager();
 	private ZonaHorariaDAO dao;
 	
 	public ZonaHorariaService() {
-		dao = factory.getZonaHorariaDAO();
+		dao = (ZonaHorariaDAO) manager.getDao(ZonaHorariaDAO.class);
 	}
 
 	public ArrayList findAll() throws Exception {

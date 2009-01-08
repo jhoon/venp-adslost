@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ZonaHoraria">
+
+	<!-- ALIAS -->
+	<typeAlias alias="zonaHoraria" type="venp.beans.ZonaHorariaBean" />
+	
+	<!-- MAPEOS -->
+	<resultMap class="zonaHoraria" id="zonaHorariaMap">
+        <result property="codigo" column="id" />
+        <result property="tiempo" column="tiempo" />
+        <result property="nombre" column="nombre" />
+        <result property="estado" column="estado" />
+    </resultMap>
+	
+	<!-- PROCEDIMIENTOS -->	
+	<procedure id="findAll" resultMap="zonaHorariaMap">
+        {call pa_zonahoraria_findAll}
+    </procedure>
+	
+</sqlMap>

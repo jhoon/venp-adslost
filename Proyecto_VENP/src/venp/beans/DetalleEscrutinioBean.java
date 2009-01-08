@@ -2,9 +2,7 @@ package venp.beans;
 
 import java.util.ArrayList;
 
-public class DetalleEscrutinioBean extends Bean {
-	
-	
+public class DetalleEscrutinioBean extends Bean { 
 	
 	String locacionId;
 	String nombreLocacion;
@@ -13,9 +11,7 @@ public class DetalleEscrutinioBean extends Bean {
 	String votosValidos;
 	String votosBlanco;
 	String opcion;
-	String IdVotoBlanco;
-	
-	
+	String IdVotoBlanco; 
 	
 	public String getTotalVotos() {
 		return totalVotos;
@@ -64,9 +60,5 @@ public class DetalleEscrutinioBean extends Bean {
 	}
 	public void setVotos(String votos) {
 		this.votos = votos;
-	}
-	
-	 
-	
-
+	} 
 }

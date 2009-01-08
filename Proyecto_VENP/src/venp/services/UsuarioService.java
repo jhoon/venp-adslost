@@ -4,25 +4,23 @@ import java.util.ArrayList;
 
 import venp.beans.UsuarioBean;
 import venp.dao.entities.UsuarioDAO;
-import venp.dao.factory.DAOFactory;
+//import venp.dao.factory.DAOFactory;
 import venp.dao.factory.DaoConfig;
 
 import com.ibatis.dao.client.DaoManager;
 
 public class UsuarioService {
 	
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
 	private UsuarioDAO dao;
-	
 	private DaoManager manager = DaoConfig.getDaoManager();
 	
 	public UsuarioService() {
-		dao = factory.getUsuarioDAO();
+		dao = (UsuarioDAO) manager.getDao(UsuarioDAO.class);
 	}
 
 	public UsuarioBean findByUsuario(String usuario) throws Exception {
 		try {
-			UsuarioDAO dao = (UsuarioDAO)manager.getDao(UsuarioDAO.class);
+			UsuarioDAO dao = (UsuarioDAO) manager.getDao(UsuarioDAO.class);
 			UsuarioBean bean = dao.findByUsuario(usuario);
 			return bean;
 		} catch (Exception e) {
@@ -59,9 +57,9 @@ public class UsuarioService {
 		}
 	}
 
-	public ArrayList findAll_Locacion() throws Exception {
+	public ArrayList findAllByLocacion() throws Exception {
 		try {
-			ArrayList lista = dao.findAll_Locacion();
+			ArrayList lista = dao.findAllByLocacion();
 
 			return lista;
 		} catch (Exception e) {

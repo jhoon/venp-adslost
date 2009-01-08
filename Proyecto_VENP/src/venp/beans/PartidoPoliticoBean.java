@@ -1,7 +1,5 @@
 package venp.beans;
 
-import java.util.Date;
-
 public class PartidoPoliticoBean extends Bean {
 
 	private int codigo;
@@ -9,24 +7,24 @@ public class PartidoPoliticoBean extends Bean {
 	private String abreviatura;
 	private String logo;
 	private String estado;
-	
-	
+
 	public PartidoPoliticoBean() {
 		codigo = 0;
 		nombre = "";
-		abreviatura ="";
+		abreviatura = "";
 		logo = "";
 		estado = "";
 	}
-	
-	public PartidoPoliticoBean(int codigo, String nombre, String abreviatura,String logo, String estado) {
+
+	public PartidoPoliticoBean(int codigo, String nombre, String abreviatura,
+			String logo, String estado) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.abreviatura = abreviatura;
-		this.logo = logo;		
+		this.logo = logo;
 		this.estado = estado;
 	}
-	
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -42,7 +40,7 @@ public class PartidoPoliticoBean extends Bean {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
- 
+
 	public String getEstado() {
 		return estado;
 	}

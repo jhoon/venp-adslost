@@ -1,15 +1,4 @@
 <%@ include file="/includes/taglibs.inc.jsp" %>
-<%@ page language="java" 
-         contentType="text/html; charset=ISO-8859-1" 
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="struts-html" prefix="html" %>
-<%@ taglib uri="struts-bean" prefix="bean" %>
-<html>
-<head>
-<title><bean:message key="global.application.title" /></title>
-<link rel="stylesheet" type="text/css" href="css/globals.css" />
-<link rel="stylesheet" type="text/css" href="css/votacion.css" />
-</head>
 <script type="text/javascript">
 function doValidaDNI() {
 	var v_dni = /[0-9]{8}/; 
@@ -23,8 +12,6 @@ function doValidaDNI() {
 	}
 }
 </script>
-<body>
-
 <table width="800" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td align="center" valign="top" class="introbg">
@@ -71,6 +58,3 @@ function doValidaDNI() {
     </td>
   </tr>
 </table>
-</body>
-
-</html>

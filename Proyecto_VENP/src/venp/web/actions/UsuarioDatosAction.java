@@ -34,7 +34,7 @@ public class UsuarioDatosAction extends DispatchAction {
 		UsuarioDatosForm frm = (UsuarioDatosForm) form;
 
 		frm.setNuevo(true);
-		frm.setPerfil(findAll_Perfil());
+		frm.setPerfil(findAllPerfil());
 
 		return mapping.findForward("inicio");
 	}
@@ -43,18 +43,19 @@ public class UsuarioDatosAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		String codigo = request.getParameter("codigo");
-
-		UsuarioBean bean = findByPrimaryKey(codigo);
+		String strCodigo = request.getParameter("codigo");
+        
+		UsuarioBean bean = findByPrimaryKey(strCodigo);
+		
 		PerfilBean perfilBean = bean.getPerfil();
 
 		UsuarioDatosForm frm = (UsuarioDatosForm) form;
 
 		frm.setNuevo(false);
-		frm.setPerfil(findAll_Perfil());
+		frm.setPerfil(findAllPerfil());
 		
 		frm.setCodigo(bean.getCodigo() + "");
-		frm.setPerfil_id(perfilBean.getCodigo() + "");
+		frm.setPerfilId(perfilBean.getCodigo() + "");
 		frm.setNombre(bean.getNombre());
 		frm.setPaterno(bean.getApePaterno());
 		frm.setMaterno(bean.getApeMaterno());
@@ -77,7 +78,7 @@ public class UsuarioDatosAction extends DispatchAction {
 		UsuarioBean bean = new UsuarioBean();
 		PerfilBean perfilBean = new PerfilBean();
 		
-	    perfilBean.setCodigo(Integer.parseInt(frm.getPerfil_id()));
+	    perfilBean.setCodigo(Integer.parseInt(frm.getPerfilId()));
 		bean.setPerfil(perfilBean);
 	    bean.setNombre(frm.getNombre());
 	    bean.setApePaterno(frm.getPaterno());
@@ -88,7 +89,7 @@ public class UsuarioDatosAction extends DispatchAction {
 	    bean.setUserName(frm.getUsername());
 	    bean.setPassword(frm.getPassword());
 	    
-	    frm.setPerfil(findAll_Perfil());
+	    frm.setPerfil(findAllPerfil());
 	    
 	    if (perfilBean.getCodigo() == 0) {
 			ActionMessages errors = new ActionMessages();
@@ -189,11 +190,9 @@ public class UsuarioDatosAction extends DispatchAction {
 			
 			bean.setCodigo(frm.getCodigo());
 		    editar(bean);
-			
 	    }
 
 		return mapping.findForward("listado");
-		
 	}
 
 	private void editar(UsuarioBean bean) throws Exception {
@@ -237,7 +236,7 @@ public class UsuarioDatosAction extends DispatchAction {
 		service.insertar(bean);
 	}
 
-	private ArrayList findAll_Perfil() throws Exception {
+	private ArrayList findAllPerfil() throws Exception {
 		PerfilService service = new PerfilService();
 		
 		return service.findAll();

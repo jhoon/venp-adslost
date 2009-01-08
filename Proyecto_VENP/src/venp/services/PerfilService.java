@@ -4,15 +4,17 @@ import java.util.ArrayList;
 
 import venp.beans.PerfilBean;
 import venp.dao.entities.PerfilDAO;
-import venp.dao.factory.DAOFactory;
+import venp.dao.factory.DaoConfig;
+
+import com.ibatis.dao.client.DaoManager;
 
 public class PerfilService {
 
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
+	private DaoManager manager = DaoConfig.getDaoManager();
 	private PerfilDAO dao;
 
 	public PerfilService() {
-		dao = factory.getPerfilDAO();
+		dao = (PerfilDAO) manager.getDao(PerfilDAO.class);
 	}
 	
 	public void borrar(int codigo) throws Exception {

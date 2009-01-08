@@ -1,7 +1,5 @@
 package venp.beans;
 
-import java.util.Date;
-
 public class CandidatoBean extends Bean {
 
 	private int codigo;
@@ -12,21 +10,21 @@ public class CandidatoBean extends Bean {
 	private String dni;
 	private String foto;
 	private String estado;
-	
-	
+
 	public CandidatoBean() {
 		codigo = 0;
 		nombre = "";
-		paterno ="";
+		paterno = "";
 		materno = "";
+		nombreCompleto = "";
 		dni = "";
-		foto ="";
+		foto = "";
 		estado = "";
 	}
-	
-	public CandidatoBean(int codigo, String nombre, String paterno,String materno,
-			             String dni, String foto, String estado) {
-		
+
+	public CandidatoBean(int codigo, String nombre, String paterno,
+			String materno, String dni, String foto, String estado) {
+
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.paterno = paterno;
@@ -50,6 +48,7 @@ public class CandidatoBean extends Bean {
 	}
 
 	public void setNombre(String nombre) {
+		nombreCompleto = nombre + " " + paterno + " " + materno;
 		this.nombre = nombre;
 	}
 
@@ -58,6 +57,7 @@ public class CandidatoBean extends Bean {
 	}
 
 	public void setPaterno(String paterno) {
+		nombreCompleto = nombre + " " + paterno + " " + materno;
 		this.paterno = paterno;
 	}
 
@@ -66,11 +66,12 @@ public class CandidatoBean extends Bean {
 	}
 
 	public void setMaterno(String materno) {
+		nombreCompleto = nombre + " " + paterno + " " + materno;
 		this.materno = materno;
 	}
 
 	public String getNombreCompleto() {
-		return nombre + " " + paterno + " " + materno;
+		return nombreCompleto;
 	}
 
 	public void setNombreCompleto(String nombreCompleto) {
@@ -100,6 +101,5 @@ public class CandidatoBean extends Bean {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
+
 }

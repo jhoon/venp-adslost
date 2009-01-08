@@ -40,7 +40,7 @@
 				      <nested:greaterThan property="diferenciaInicio" value="0"><nested:write property="diferenciaInicio" /></nested:greaterThan>
 				    </td>
 				    <td class="alt01" valign="middle" class="gridField" align="center">
-				      <nested:link href="locacionPuestaCero.do?cmd=puestaCero" paramId="keyValue" paramProperty="codigo"><img src="images/icoPuestaCero.gif" width="25" height="25" border="0" /></nested:link>
+				      <nested:link href="locacionPuestaCero.do?cmd=puestaCero" paramId="keyValue" paramProperty="codigo"><img src="media/icoPuestaCero.gif" width="25" height="25" border="0" /></nested:link>
 				    </td>
 				  </tr>
 				  </nested:iterate>

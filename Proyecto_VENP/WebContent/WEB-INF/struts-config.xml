@@ -1,395 +1,289 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE struts-config PUBLIC
-          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
-          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+	"http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
 <struts-config>
+	<form-beans>
+		<form-bean name="loginForm" type="venp.web.forms.LoginForm" />
 
-  <form-beans>
-    <form-bean name="loginForm"
-               type="venp.web.forms.LoginForm" />
-    
-    <form-bean name="listaProcesoElectoralForm" 
-               type="venp.web.forms.ListaProcesoElectoralForm" />
-               
-	<form-bean name="procesoElectoralDatosForm" 
-               type="venp.web.forms.ProcesoElectoralDatosForm" />
+		<form-bean name="candidatoListaForm" type="venp.web.forms.CandidatoListaForm" />
 
-    <form-bean name="perfilListaForm"
-               type="venp.web.forms.PerfilListaForm" />
-               
-    <form-bean name="perfilDatosForm"
-               type="venp.web.forms.PerfilDatosForm" />
+		<form-bean name="candidatoDatosForm" type="venp.web.forms.CandidatoDatosForm" />
 
-    <form-bean name="paisListaForm"
-               type="venp.web.forms.PaisListaForm" />
-               
-    <form-bean name="paisDatosForm"
-               type="venp.web.forms.PaisDatosForm" />
+		<form-bean name="partidoPoliticoListaForm" type="venp.web.forms.PartidoPoliticoListaForm" />
 
-    <form-bean name="usuarioListaForm"
-               type="venp.web.forms.UsuarioListaForm" />
-               
-    <form-bean name="usuarioDatosForm"
-               type="venp.web.forms.UsuarioDatosForm" />
-               
-    <form-bean name="usuarioAsignarForm"
-               type="venp.web.forms.UsuarioAsignarForm" />
+		<form-bean name="partidoPoliticoDatosForm" type="venp.web.forms.PartidoPoliticoDatosForm" />
 
-    <form-bean name="candidatoListaForm"
-               type="venp.web.forms.CandidatoListaForm" />
-               
-    <form-bean name="candidatoDatosForm"
-               type="venp.web.forms.CandidatoDatosForm" />
+		<form-bean name="partidoPoliticoAsignarForm" type="venp.web.forms.PartidoPoliticoAsignarForm" />
 
-    <form-bean name="partidoPoliticoListaForm"
-               type="venp.web.forms.PartidoPoliticoListaForm" />
-               
-    <form-bean name="partidoPoliticoDatosForm"
-               type="venp.web.forms.PartidoPoliticoDatosForm" />
-               
-    <form-bean name="partidoPoliticoAsignarForm"
-               type="venp.web.forms.PartidoPoliticoAsignarForm" />
+		<form-bean name="electorForm" type="venp.web.forms.ElectorForm" />
 
-    <form-bean name="centrovotacionListaForm"
-               type="venp.web.forms.CentroVotacionListaForm" />
-               
-    <form-bean name="centrovotacionDatosForm"
-               type="venp.web.forms.CentroVotacionDatosForm" />
-               
-    <form-bean name="centrovotacionAsignarForm"
-               type="venp.web.forms.CentroVotacionAsignarForm" />
-               
-    <form-bean name="electorForm"
-               type="venp.web.forms.ElectorForm" />
-               
-    <form-bean name="cedulaForm" type="org.apache.struts.action.DynaActionForm">
-    	<form-property name="opciones" type="java.util.ArrayList"/>
-    	<form-property name="voto" type="java.lang.String"/>
-    </form-bean>
+		<form-bean name="cedulaForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="opciones" type="java.util.ArrayList" />
+			<form-property name="voto" type="java.lang.String" />
+		</form-bean>
 
-    <form-bean name="locacionPuestaCeroForm"
-               type="venp.web.forms.LocacionPuestaCeroForm" />
-                              
-    <form-bean name="locacionCerrarVotacionForm"
-               type="venp.web.forms.LocacionCerrarVotacionForm" />
-                              
-    <form-bean name="locacionMonitoreoForm"
-               type="venp.web.forms.LocacionMonitoreoForm" />
-               
-    <form-bean name="listaEscrutinioForm"
-               type="venp.web.forms.ListaEscrutinioForm" />
-               
-    <form-bean name="listaConsolidacionForm"
-               type="venp.web.forms.ListaConsolidacionForm" />
-                              
-  </form-beans>
-  
-  <!--  
-  <global-exceptions>
-  		<exception key="global.error" type="java.lang.Exception" path="/errores.jsp" />
-  </global-exceptions>
-  -->
-  
-  <global-forwards>
-  		<forward name="errores" path="/errores.jsp" />
-  		<forward name="home" path="/intro.jsp" />
-  		<forward name="locacion-menu" path="/adm_locacion/locacion.jsp" />
-  </global-forwards>
+		<form-bean name="locacionPuestaCeroForm" type="venp.web.forms.LocacionPuestaCeroForm" />
 
-  <action-mappings>
-  
-    <action path="/login" 
-            name="loginForm" 
-            input="/login.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.LoginAction" 
-            scope="session">
-      <forward name="inicio" path="/login.jsp" />
-      <forward name="locacion" path="/adm_locacion/locacion.jsp" />
-      <forward name="central" path="centralLayout" />
-      <forward name="ingreso" path="/index.jsp" />
-    </action>
-    
-    <action path="/centralSubMenu" forward="subMenu" />
-    <action path="/centralMenu" forward="centralLayout" />
-    
-    <!-- Menu 1 -->
-    <action path="/listaProcesoElectoral" 
-            name="listaProcesoElectoralForm" 
-            input="/listaProcesosElectorales.jsp"
-            parameter="cmd" 
-            type="venp.web.actions.ListaProcesoElectoralAction"
-            scope="session">
-      <forward name="inicio" path="peLista" />
-      <forward name="activar" path="/listalistaProcesoElectoral.do" />
-      <forward name="anular" path="/listalistaProcesoElectoral.do" />             
-    </action>
-    
-    <action path="/procesoElectoralDatos" 
-            name="procesoElectoralDatosForm" 
-            input="/ProcesoElectoralDatos.jsp"
-            parameter="cmd" 
-            type="venp.web.actions.ProcesoElectoralDatosAction"
-            scope="session">
-      <forward name="inicio" path="peDatos" />
-      <forward name="guardar" path="/procesoElectoralDatos.do" />
-      <forward name="listado" path="/listaProcesoElectoral.do?cmd=listar" />    
-    </action>
-    
-    <!-- Menu 2 -->
-    <action path="/perfilLista" 
-            name="perfilListaForm" 
-            input="/perfilLista.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.PerfilListaAction" 
-            scope="session">
-      <forward name="inicio" path="perfilLista" />
-    </action>
-    
-    <action path="/perfilDatos" 
-            name="perfilDatosForm" 
-            input="/perfilDatos.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.PerfilDatosAction" 
-            scope="session">
-      <forward name="inicio" path="perfilDatos" />
-      <forward name="listado" path="/perfilLista.do?cmd=listar" />
-    </action>
-    
-    <action path="/paisLista" 
-            name="paisListaForm" 
-            input="/paisLista.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.PaisListaAction" 
-            scope="session">
-      <forward name="inicio" path="paisLista" />
-    </action>
-    
-    <action path="/paisDatos" 
-            name="paisDatosForm" 
-            input="/paisDatos.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.PaisDatosAction" 
-            scope="session">
-      <forward name="inicio" path="paisDatos" />
-      <forward name="listado" path="/paisLista.do?cmd=listar" />
-    </action>
-    
-    <action path="/usuarioLista" 
-            name="usuarioListaForm" 
-            input="/usuarioLista.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.UsuarioListaAction" 
-            scope="session">
-      <forward name="inicio" path="usuarioLista" />
-    </action>
-    
-    <action path="/usuarioDatos" 
-            name="usuarioDatosForm" 
-            input="/usuarioDatos.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.UsuarioDatosAction" 
-            scope="session">
-      <forward name="inicio" path="usuarioDatos" />
-      <forward name="listado" path="/usuarioLista.do?cmd=listar" />
-    </action>
-    
-    <action path="/usuarioAsignar" 
-            name="usuarioAsignarForm" 
-            input="/usuarioAsignar.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.UsuarioAsignarAction" 
-            scope="session">
-      <forward name="inicio" path="usuarioAsignar" />
-      <forward name="listado" path="/usuarioLista.do?cmd=listar" />
-    </action>
-    
-    <action path="/centrovotacionLista" 
-            name="centrovotacionListaForm" 
-            input="/centrovotacionLista.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.CentroVotacionListaAction" 
-            scope="session">
-      <forward name="inicio" path="centrovotacionLista" />
-    </action>
-    
-    <action path="/centrovotacionDatos" 
-            name="centrovotacionDatosForm" 
-            input="/centrovotacionDatos.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.CentroVotacionDatosAction" 
-            scope="session">
-      <forward name="inicio" path="centrovotacionDatos" />
-      <forward name="listado" path="/centrovotacionLista.do?cmd=listar" />
-    </action>
-    
-    <action path="/centrovotacionAsignar" 
-            name="centrovotacionAsignarForm" 
-            input="/centrovotacionAsignar.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.CentroVotacionAsignarAction" 
-            scope="session">
-      <forward name="inicio" path="centrovotacionAsignar" />
-      <forward name="listado" path="/centrovotacionLista.do?cmd=listar" />
-    </action>
-    
-    <action path="/candidatoLista" 
-            name="candidatoListaForm" 
-            input="/candidatoLista.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.CandidatoListaAction" 
-            scope="session">
-      <forward name="inicio" path="candidatoLista" />
-    </action>
-    
-    <action path="/candidatoDatos" 
-            name="candidatoDatosForm" 
-            input="/candidatoDatos.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.CandidatoDatosAction" 
-            scope="session">
-      <forward name="inicio" path="candidatoDatos" />
-      <forward name="listado" path="/candidatoLista.do?cmd=listar" />
-    </action>
-    
-    <action path="/partidoPoliticoLista" 
-            name="partidoPoliticoListaForm" 
-            input="/partidoPoliticoLista.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.PartidoPoliticoListaAction" 
-            scope="session">
-      <forward name="inicio" path="ppLista" />
-    </action>
-    
-    <action path="/partidoPoliticoDatos" 
-            name="partidoPoliticoDatosForm" 
-            input="/partidoPoliticoDatos.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.PartidoPoliticoDatosAction" 
-            scope="session">
-      <forward name="inicio" path="ppDatos" />
-      <forward name="listado" path="/partidoPoliticoLista.do?cmd=listar" />
-      <forward name="asignar" path="/partidoPoliticoAsignar.do" />
-    </action>
-    
-    <action path="/partidoPoliticoAsignar" 
-            name="partidoPoliticoAsignarForm" 
-            input="/partidoPoliticoAsignar.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.PartidoPoliticoAsignarAction" 
-            scope="session">
-      <forward name="inicio" path="ppAsignar" />
-      <forward name="listado" path="/partidoPoliticoLista.do?cmd=listar" />
-    </action>
-    
-    <action path="/listaEscrutinio" 
-            name="listaEscrutinioForm" 
-            input="/listaEscrutinio.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.ListaEscrutinioAction" 
-            scope="session">
-      <forward name="listarLocacion" path="listarEscrutinio" />      
-      <forward name="detalleLocacion" path="listarDetalleLocacion"></forward>
-    </action>
-         
-    <action path="/listaConsolidacion" 
-            name="listaConsolidacionForm" 
-            input="/listaConsolidacion.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.ListaConsolidacionAction" 
-            scope="session">
-      <forward name="inicio" path="listarConsolidacion" />      
-    </action>   
-   
-    <action path="/locacionMonitoreo" 
-            name="locacionMonitoreoForm" 
-            input="monitoreoTransac" 
-            parameter="cmd" 
-            type="venp.web.actions.LocacionMonitoreoAction" 
-            scope="session">
-      <forward name="inicio" path="monitoreoTransac" />
-      <forward name="listado" path="/locacionMonitoreo.do?cmd=listar" />
-    </action>
-    
-    <action path="/locacionCerrarVotacion" 
-            name="locacionCerrarVotacionForm" 
-            input="cerrarVotacion" 
-            parameter="cmd" 
-            type="venp.web.actions.LocacionCerrarVotacionAction" 
-            scope="session">
-      <forward name="inicio" path="cerrarVotacion" />
-      <forward name="listado" path="/locacionCerrarVotacion.do?cmd=listar" />
-    </action>
-    
-    <action path="/locacionPuestaCero" 
-            name="locacionPuestaCeroForm" 
-            input="puestaCero" 
-            parameter="cmd" 
-            type="venp.web.actions.LocacionPuestaCeroAction" 
-            scope="session">
-      <forward name="inicio" path="puestaCero" />
-      <forward name="listado" path="/locacionPuestaCero.do?cmd=listar" />
-    </action>
+		<form-bean name="locacionCerrarVotacionForm" type="venp.web.forms.LocacionCerrarVotacionForm" />
 
-    <action path="/votacion" 
-            name="cedulaForm" 
-            input="/votacion/votacionCedula.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.VotacionAction" 
-            scope="session">
-      <forward name="inicio" path="/elector.do" />
-      <forward name="fin" path="voConfirma" />
-      <forward name="cedula" path="voCedula" />
-    </action>
-    
-    <action path="/elector" 
-            name="electorForm" 
-            input="/votacion/votacionBuscarDni.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.ElectorAction" 
-            scope="session">
-      <forward name="buscar_dni" path="voBuscarDni" />
-      <forward name="validar_pin" path="voValidarPin" />
-      <forward name="votar" path="/votacion.do?cmd=cedula" />
-    </action>
-           
-    <action path="/empadronamiento" 
-            name="electorForm" 
-            input="/emp_form.jsp" 
-            parameter="cmd" 
-            type="venp.web.actions.EmpadronamientoAction" 
-            scope="session">
-      <forward name="inicio" path="empadronamiento.form" />
-      <forward name="fin" path="empadronamiento.msg" />
-      <forward name="menu" path="empadronamiento.menu" />
-    </action>
-    
-    <action path="/consulado" 
-            name="electorForm" 
-            input="" 
-            parameter="cmd" 
-            type="venp.web.actions.ConsuladoAction" 
-            scope="session">
-      <forward name="login" path="/login.do?acceso=printer" />
-      <forward name="busqueda" path="consulado.dni" />
-      <forward name="verificacion" path="consulado.verifica" />
-      <forward name="formulario" path="consulado.form" />
-    </action>
-         
-  </action-mappings>
+		<form-bean name="locacionMonitoreoForm" type="venp.web.forms.LocacionMonitoreoForm" />
 
-  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+		<form-bean name="listaEscrutinioForm" type="venp.web.forms.EscrutinioForm" />
 
-  <message-resources parameter="venp.langs.ApplicationResources" />
-  
-  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
-    <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
-    <set-property property="moduleAware" value="true" />
-  </plug-in>
+		<form-bean name="listaConsolidacionForm" type="venp.web.forms.ConsolidacionForm" />
 
-  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml" />
-  </plug-in>
-  
+		<form-bean name="centrovotacionListaForm" type="venp.web.forms.CentroVotacionListaForm" />
+
+		<form-bean name="centrovotacionDatosForm" type="venp.web.forms.CentroVotacionDatosForm" />
+
+		<form-bean name="centrovotacionAsignarForm" type="venp.web.forms.CentroVotacionAsignarForm" />
+
+		<form-bean name="usuarioListaForm" type="venp.web.forms.UsuarioListaForm" />
+
+		<form-bean name="usuarioDatosForm" type="venp.web.forms.UsuarioDatosForm" />
+
+		<form-bean name="usuarioAsignarForm" type="venp.web.forms.UsuarioAsignarForm" />
+
+		<form-bean name="perfilListaForm" type="venp.web.forms.PerfilListaForm" />
+
+		<form-bean name="perfilDatosForm" type="venp.web.forms.PerfilDatosForm" />
+
+		<form-bean name="paisListaForm" type="venp.web.forms.PaisListaForm" />
+
+		<form-bean name="paisDatosForm" type="venp.web.forms.PaisDatosForm" />
+
+		<form-bean name="procesoElectoralListaForm" type="venp.web.forms.ProcesoElectoralListaForm" />
+
+		<form-bean name="procesoElectoralDatosForm" type="venp.web.forms.ProcesoElectoralDatosForm" />
+	</form-beans>
+
+	<!--
+		<global-exceptions> <exception key="global.error"
+		type="java.lang.Exception" path="/errores.jsp" /> </global-exceptions>
+	-->
+	
+	<global-forwards>
+		<forward name="errores" path="/errores.jsp" redirect="true" />
+		<forward name="home" path="/intro.jsp" redirect="true" />
+		<forward name="locacion-menu" path="/adm_locacion/locacion.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="/language" type="venp.web.actions.LanguageAction" />
+
+		<action path="/login" name="loginForm" input="/login.jsp"
+			parameter="cmd" type="venp.web.actions.LoginAction" scope="session">
+			<forward name="inicio" path="/login.jsp" redirect="true" />
+			<forward name="locacion" path="/adm_locacion/locacion.jsp" redirect="true" />
+			<forward name="central" path="/centralMenu.do" redirect="true" />
+			<forward name="consulado" path="/consulado.do" redirect="true" />
+		</action>
+
+		<action path="/centralSubMenu" forward="subMenu" />
+		
+		<action path="/centralMenu" forward="centralLayout" />
+
+		<!-- Menu 1 -->
+
+		<!-- Menu 2 -->
+		
+		<action path="/cedula" name="" input="/cedulaDatos.jsp"
+			parameter="cmd" type="venp.web.actions.CedulaAction" scope="request">
+			<forward name="lista" path="cedulaLista" redirect="true" />
+			<forward name="datos" path="cedulaDatos" redirect="true" />
+			<forward name="preview" path="cedulaPreview" redirect="true" />
+		</action>
+
+		<action path="/candidatoLista" name="candidatoListaForm" input="/candidatoLista.jsp"
+			parameter="cmd" type="venp.web.actions.CandidatoListaAction" scope="session">
+			<forward name="inicio" path="candidatoLista" />
+		</action>
+
+		<action path="/candidatoDatos" name="candidatoDatosForm" input="/candidatoDatos.jsp"
+			parameter="cmd" type="venp.web.actions.CandidatoDatosAction" scope="session">
+			<forward name="inicio" path="candidatoDatos" />
+			<forward name="listado" path="/candidatoLista.do?cmd=listar" />
+		</action>
+
+		<action path="/partidoPoliticoLista" name="partidoPoliticoListaForm"
+			input="/partidoPoliticoLista.jsp" parameter="cmd"
+			type="venp.web.actions.PartidoPoliticoListaAction" scope="session">
+			<forward name="inicio" path="ppLista" />
+		</action>
+
+		<action path="/partidoPoliticoDatos" name="partidoPoliticoDatosForm"
+			input="/partidoPoliticoDatos.jsp" parameter="cmd"
+			type="venp.web.actions.PartidoPoliticoDatosAction" scope="session">
+			<forward name="inicio" path="ppDatos" />
+			<forward name="listado" path="/partidoPoliticoLista.do?cmd=listar" />
+			<forward name="asignar" path="/partidoPoliticoAsignar.do" />
+		</action>
+
+		<action path="/partidoPoliticoAsignar" name="partidoPoliticoAsignarForm"
+			input="/partidoPoliticoAsignar.jsp" parameter="cmd"
+			type="venp.web.actions.PartidoPoliticoAsignarAction" scope="session">
+			<forward name="inicio" path="ppAsignar" />
+			<forward name="listado" path="/partidoPoliticoLista.do?cmd=listar" />
+		</action>
+
+		<action path="/listaEscrutinio" name="listaEscrutinioForm"
+			input="/listaEscrutinio.jsp" parameter="cmd"
+			type="venp.web.actions.EscrutinioAction" scope="session">
+			<forward name="listarLocacion" path="listarEscrutinio" />
+			<forward name="detalleLocacion" path="/listaEscrutinio.do?cmd=listarEscrutinio"></forward>
+		</action>
+
+		<action path="/listaConsolidacion" name="listaConsolidacionForm"
+			input="/listaConsolidacion.jsp" parameter="cmd"
+			type="venp.web.actions.ConsolidacionAction" scope="session">
+			<forward name="inicio" path="listarConsolidacion" />
+		</action>
+
+		<action path="/locacionMonitoreo" name="locacionMonitoreoForm"
+			input="monitoreoTransac" parameter="cmd"
+			type="venp.web.actions.LocacionMonitoreoAction" scope="session">
+			<forward name="inicio" path="monitoreoTransac" />
+			<forward name="listado" path="/locacionMonitoreo.do?cmd=listar" />
+		</action>
+
+		<action path="/locacionCerrarVotacion" name="locacionCerrarVotacionForm"
+			input="cerrarVotacion" parameter="cmd"
+			type="venp.web.actions.LocacionCerrarVotacionAction" scope="session">
+			<forward name="inicio" path="cerrarVotacion" />
+			<forward name="listado" path="/locacionCerrarVotacion.do?cmd=listar" />
+		</action>
+
+		<action path="/locacionPuestaCero" name="locacionPuestaCeroForm"
+			input="puestaCero" parameter="cmd"
+			type="venp.web.actions.LocacionPuestaCeroAction" scope="session">
+			<forward name="inicio" path="puestaCero" />
+			<forward name="listado" path="/locacionPuestaCero.do?cmd=listar" />
+		</action>
+
+		<action path="/votacion" name="cedulaForm" input="/votacion/votacionCedula.jsp"
+			parameter="cmd" type="venp.web.actions.VotacionAction" scope="session">
+			<forward name="inicio" path="/elector.do" />
+			<forward name="fin" path="voConfirma" />
+			<forward name="cedula" path="voCedula" />
+			<forward name="confirm" path="voPrinterFriendly" ></forward>
+		</action>
+
+		<action path="/elector" name="electorForm" input="/votacion/votacionBuscarDni.jsp"
+			parameter="cmd" type="venp.web.actions.ElectorAction" scope="session">
+			<forward name="buscar_dni" path="voBuscarDni" />
+			<forward name="validar_pin" path="voValidarPin" />
+			<forward name="votar" path="/votacion.do?cmd=cedula" />
+		</action>
+
+		<action path="/empadronamiento" name="electorForm" input="/emp_form.jsp"
+			parameter="cmd" type="venp.web.actions.EmpadronamientoAction" scope="session">
+			<forward name="inicio" path="empadronamiento.form" />
+			<forward name="fin" path="empadronamiento.msg" />
+			<forward name="menu" path="empadronamiento.menu" />
+		</action>
+
+		<action path="/consulado" name="electorForm" input=""
+			parameter="cmd" type="venp.web.actions.ConsuladoAction" scope="session">
+			<forward name="login" path="/login.do?acceso=printer" />
+			<forward name="busqueda" path="consulado.dni" />
+			<forward name="verificacion" path="consulado.verifica" />
+			<forward name="formulario" path="consulado.form" />
+		</action>
+
+		<action path="/centrovotacionLista" name="centrovotacionListaForm"
+			input="/adm_central/centroVotacionLista.jsp" parameter="cmd"
+			type="venp.web.actions.CentroVotacionListaAction" scope="session">
+			<forward name="inicio" path="centrovotacionLista" />
+		</action>
+
+		<action path="/centrovotacionDatos" name="centrovotacionDatosForm"
+			input="/adm_central/centroVotacionDatos.jsp" parameter="cmd"
+			type="venp.web.actions.CentroVotacionDatosAction" scope="session">
+			<forward name="inicio" path="centrovotacionDatos" />
+			<forward name="listado" path="/centrovotacionLista.do?cmd=listar" />
+		</action>
+
+		<action path="/centrovotacionAsignar" name="centrovotacionAsignarForm"
+			input="/adm_central/centroVotacionAsignar.jsp" parameter="cmd"
+			type="venp.web.actions.CentroVotacionAsignarAction" scope="session">
+			<forward name="inicio" path="centrovotacionAsignar" />
+			<forward name="listado" path="/centrovotacionLista.do?cmd=listar" />
+		</action>
+
+		<action path="/usuarioLista" name="usuarioListaForm"
+			input="/adm_central/usuarioLista.jsp" parameter="cmd"
+			type="venp.web.actions.UsuarioListaAction" scope="session">
+			<forward name="inicio" path="usuarioLista" />
+		</action>
+
+		<action path="/usuarioDatos" name="usuarioDatosForm"
+			input="/adm_central/usuarioDatos.jsp" parameter="cmd"
+			type="venp.web.actions.UsuarioDatosAction" scope="session">
+			<forward name="inicio" path="usuarioDatos" />
+			<forward name="listado" path="/usuarioLista.do?cmd=listar" />
+		</action>
+
+		<action path="/usuarioAsignar" name="usuarioAsignarForm"
+			input="/adm_central/usuarioAsignar.jsp" parameter="cmd"
+			type="venp.web.actions.UsuarioAsignarAction" scope="session">
+			<forward name="inicio" path="usuarioAsignar" />
+			<forward name="listado" path="/usuarioLista.do?cmd=listar" />
+		</action>
+
+		<action path="/perfilLista" name="perfilListaForm" input="/adm_central/perfilLista.jsp"
+			parameter="cmd" type="venp.web.actions.PerfilListaAction" scope="session">
+			<forward name="inicio" path="perfilLista" />
+		</action>
+
+		<action path="/perfilDatos" name="perfilDatosForm" input="/adm_central/perfilDatos.jsp"
+			parameter="cmd" type="venp.web.actions.PerfilDatosAction" scope="session">
+			<forward name="inicio" path="perfilDatos" />
+			<forward name="listado" path="/perfilLista.do?cmd=listar" />
+		</action>
+
+		<action path="/paisLista" name="paisListaForm" input="/adm_central/paisLista.jsp"
+			parameter="cmd" type="venp.web.actions.PaisListaAction" scope="session">
+			<forward name="inicio" path="paisLista" />
+		</action>
+
+		<action path="/paisDatos" name="paisDatosForm" input="/adm_central/paisDatos.jsp"
+			parameter="cmd" type="venp.web.actions.PaisDatosAction" scope="session">
+			<forward name="inicio" path="paisDatos" />
+			<forward name="listado" path="/paisLista.do?cmd=listar" />
+		</action>
+
+		<action path="/procesoElectoralLista" name="procesoElectoralListaForm"
+			input="/adm_central/procesosElectoralLista.jsp" parameter="cmd"
+			type="venp.web.actions.ProcesoElectoralListaAction" scope="session">
+			<forward name="inicio" path="peLista" />
+			<forward name="activar" path="/procesoElectoralLista.do" />
+			<forward name="anular" path="/procesoElectoralLista.do" />
+		</action>
+
+		<action path="/procesoElectoralDatos" name="procesoElectoralDatosForm"
+			input="/adm_central/procesoElectoralDatos.jsp" parameter="cmd"
+			type="venp.web.actions.ProcesoElectoralDatosAction" scope="session">
+			<forward name="inicio" path="peDatos" />
+			<forward name="guardar" path="/procesoElectoralDatos.do" />
+			<forward name="listado" path="/procesoElectoralLista.do?cmd=listar" />
+		</action>
+	</action-mappings>
+
+	<controller processorClass="org.apache.struts.tiles.TilesRequestProcessor" />
+
+	<message-resources parameter="venp.langs.ApplicationResources" />
+
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="moduleAware" value="true" />
+	</plug-in>
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml" />
+	</plug-in>
+
 </struts-config>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Candidato">
+
+	<!-- ALIAS -->
+	<typeAlias alias="candidato" type="venp.beans.CandidatoBean" />
+    
+	<!-- PARAMETROS -->
+    <parameterMap class="map" id="paramMap0">
+		<parameter property="v_partidopolitico" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_candidato" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+    
+    <parameterMap class="map" id="paramMap1">
+		<parameter property="codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_paterno" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_materno" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_dni" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_foto" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+    
+    <parameterMap class="map" id="paramMap2">
+		<parameter property="v_nombre" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_paterno" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_materno" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_dni" mode="IN" javaType="java.lang.String" />
+		<parameter property="v_foto" mode="IN" javaType="java.lang.String" />
+	</parameterMap>
+	
+	<!-- MAPEOS -->
+	<resultMap class="candidato" id="candidatoMap">
+		<result property="codigo" column="id" />
+        <result property="nombre" column="nombre" />
+        <result property="paterno" column="paterno" />
+        <result property="materno" column="materno" />
+        <result property="dni" column="dni" />
+        <result property="foto" column="foto" />
+        <result property="estado" column="estado" />
+    </resultMap>
+	
+	<!-- PROCEDIMIENTOS -->
+	<procedure id="asignar" parameterMap="paramMap0">
+		{call pa_candidato_asignar (?, ?)}
+	</procedure>
+	
+	<procedure id="borrar" parameterClass="java.lang.Integer">
+        {call pa_candidato_delete (#codigo#)}
+    </procedure>
+	
+	<procedure id="editar" parameterMap="paramMap1" resultClass="string">
+		{call pa_candidato_edit (?, ?, ?, ?, ?, ?)}
+	</procedure>
+	
+	<procedure id="findAll" resultMap="candidatoMap">
+        {call pa_candidato_findAll}
+    </procedure>
+    
+	<procedure id="findAll_conPP" parameterClass="java.lang.Integer" resultMap="candidatoMap">
+        {call pa_partidoPolitico_conCandidato (#v_codigo#)}
+    </procedure>
+    
+	<procedure id="findAll_sinPP" parameterClass="java.lang.Integer" resultMap="candidatoMap">
+        {call pa_partidoPolitico_sinCandidato (#v_codigo#)}
+    </procedure>
+	
+	<procedure id="findByPrimaryKey" parameterClass="java.lang.Integer" resultMap="candidatoMap">
+        {call pa_candidato_findByPrimaryKey (#codigo#)}
+    </procedure>
+	
+	<procedure id="insertar" parameterMap="paramMap2" resultClass="string">
+		{call pa_candidato_insert (?, ?, ?, ?, ?)}
+	</procedure>
+    
+	<procedure id="retirar" parameterMap="paramMap0">
+		{call pa_candidato_retirar (?, ?)}
+	</procedure>
+	
+</sqlMap>

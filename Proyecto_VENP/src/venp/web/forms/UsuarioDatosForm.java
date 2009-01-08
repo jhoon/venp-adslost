@@ -12,7 +12,7 @@ public class UsuarioDatosForm extends ActionForm {
 	private boolean nuevo;
 	private String codigo;
 	private ArrayList perfil;
-	private String perfil_id;
+	private String perfilId;
 	private String nombre;
 	private String paterno;
 	private String materno;
@@ -26,7 +26,7 @@ public class UsuarioDatosForm extends ActionForm {
 	public void reset(ActionMapping mapping, HttpServletRequest request) {
 		codigo = "";
 		perfil = null;
-		perfil_id = "";
+		perfilId = "";
 		nombre = "";
 		paterno = "";
 		materno = "";
@@ -62,12 +62,12 @@ public class UsuarioDatosForm extends ActionForm {
 		this.perfil = perfil;
 	}
 
-	public String getPerfil_id() {
-		return perfil_id;
+	public String getPerfilId() {
+		return perfilId;
 	}
 
-	public void setPerfil_id(String perfil_id) {
-		this.perfil_id = perfil_id;
+	public void setPerfilId(String perfilId) {
+		this.perfilId = perfilId;
 	}
 
 	public String getNombre() {

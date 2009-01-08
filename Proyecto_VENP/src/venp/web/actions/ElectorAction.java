@@ -11,22 +11,33 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.actions.DispatchAction;
 
+import venp.beans.ProcesoElectoralBean;
 import venp.services.ElectorService;
+import venp.services.ProcesoElectoralService;
 import venp.web.forms.ElectorForm;
 
 public class ElectorAction extends DispatchAction {
 
-	@Override
+	/**
+	 * corresponde a votacionBuscarDni.jsp. Sirve para validar si 
+	 * existe algún proceso electoral activo, de existir, carga el 
+	 * Id del proceso en la sesión. De lo contrario, se mostrará 
+	 * un mensaje de error en el jsp.
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return redirecciona hacia votacionBuscarDni.jsp(buscar_dni), para validarlo.
+	 * @throws Exception
+	 */
 	protected ActionForward unspecified(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ElectorForm frm = (ElectorForm)form;
 		frm.reset();
-		// service
 		ElectorService service = new ElectorService();
-		// valida si hay proceso electoral activo
-		int idProceso = service.getProcesoActivo();
-		if(idProceso == 0) {
+		int intIdProceso = service.getProcesoActivo();
+		if(intIdProceso == 0) {
 			ActionErrors errors = new ActionErrors();
 			errors.add("error", new ActionMessage("elector.error.noproceso"));
 		    saveErrors(request, errors);
@@ -34,21 +45,30 @@ public class ElectorAction extends DispatchAction {
 		    return mapping.findForward("errores");
 		}
 		else {
-			// session
-			HttpSession s = request.getSession();
-			s.setAttribute("idProceso", idProceso);
+			HttpSession session = request.getSession();
+			session.setAttribute("intIdProceso", intIdProceso);
 		}
 		return mapping.findForward("buscar_dni");
 	}
 	
+	/**
+	 * corresponde a la validación del DNI ingresado en votacionBuscarDni.jsp,
+	 * valida si puede votar. De poder, guardará sus datos en la sesión y lo 
+	 * enviará a la siguiente pantalla (votacionValidarPin.jsp).
+	 * Las razones por las cuales no podrá votar pueden tener relación al horario
+	 * o a la previa realización del voto.
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return envía al usuario a la página para el ingreso del PIN
+	 * @throws Exception
+	 */
 	public ActionForward buscar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// form
 		ElectorForm frm = (ElectorForm)form;
-		// service
 		ElectorService service = new ElectorService();
-		// validacion de dni
 		ElectorForm bean = service.validarDNI(frm.getDni());
 		if(bean == null) {
 			ActionErrors errors = new ActionErrors();
@@ -58,15 +78,11 @@ public class ElectorAction extends DispatchAction {
 		    return mapping.findForward("buscar_dni");
 		}
 		else {
-			// puede votar aun
 			if(bean.getEstado().equals("A") || bean.getEstado().equals("L")) {
-				HttpSession s = request.getSession();
-				int idProceso = ((Integer)s.getAttribute("idProceso")).intValue();
-				// valida que este en el rango de horas adecuado
-				if(service.isVotoEnRango(idProceso, Integer.parseInt(bean.getId()))) {
-					// guarda los datos del elector
-					s.setAttribute("Elector", bean);
-					// action forward
+				HttpSession session = request.getSession();
+				int intIdProceso = ((Integer)session.getAttribute("intIdProceso")).intValue();
+				if(service.isVotoEnRango(intIdProceso, Integer.parseInt(bean.getId()))) {
+					session.setAttribute("Elector", bean);
 					return mapping.findForward("validar_pin");
 				}
 				else {
@@ -76,7 +92,6 @@ public class ElectorAction extends DispatchAction {
 				    return mapping.findForward("errores");
 				}
 			}
-			// ya ha votado
 			else {
 				ActionErrors errors = new ActionErrors();
 				errors.add("dni", new ActionMessage("elector.validaestado.error"));
@@ -87,6 +102,15 @@ public class ElectorAction extends DispatchAction {
 		}
 	}
 
+	/**
+	 * corresponde a la validación del Pin (votacionValidarPin.jsp)
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	public ActionForward validar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -95,9 +119,13 @@ public class ElectorAction extends DispatchAction {
 		// service
 		ElectorService service = new ElectorService();
 		// session
-		HttpSession s = request.getSession();
-		ElectorForm bean = (ElectorForm)s.getAttribute("Elector");
+		HttpSession session = request.getSession();
+		ElectorForm bean = (ElectorForm)session.getAttribute("Elector");
 		if(service.isValidPIN(bean.getId(), frm.getPin().trim())) {
+			int intIdProceso = ((Integer)session.getAttribute("intIdProceso")).intValue();
+			ProcesoElectoralService service2 = new ProcesoElectoralService();
+			int intTiempoSession = service2.findByPrimaryKey(intIdProceso).getTiempoSesion();
+			session.setMaxInactiveInterval(intTiempoSession * 60);
 			//return mapping.findForward("votar");
 			response.sendRedirect("votacion.do?cmd=cedula");
 			return null;
@@ -110,5 +138,4 @@ public class ElectorAction extends DispatchAction {
 			return mapping.findForward("validar_pin");
 		}
 	}
-	
 }

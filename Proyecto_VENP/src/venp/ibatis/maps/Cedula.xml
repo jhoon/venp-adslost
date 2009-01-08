@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Cedula">
+	
+	<!-- ALIAS -->
+	<typeAlias alias="cedula" type="venp.beans.CedulaBean" />
+	<typeAlias alias="opcion" type="venp.beans.OpcionBean" />
+	
+	<!-- PARAMETROS -->
+    <parameterMap class="map" id="idPinMap">
+		<parameter property="id" mode="IN" javaType="java.lang.String"/>
+		<parameter property="pin" mode="IN" javaType="java.lang.String"/>
+	</parameterMap>
+	
+	<!-- MAPEOS -->
+	<resultMap class="cedula" id="cedulaMap1">
+		<result property="codigo" column="id" />
+		<result property="procesoNombre" column="descripcion" />
+		<result property="tipo" column="tipo" />
+		<result property="estado" column="estado" />
+	</resultMap>
+	
+	<!-- PROCEDIMIENTOS -->	
+	<procedure id="listarCedulas" resultMap="cedulaMap1">
+        {call pa_cedula_listar()}
+    </procedure>
+	
+</sqlMap>

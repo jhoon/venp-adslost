@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ProcesoElectoral">
+
+	<!-- ALIAS -->
+	<typeAlias alias="procesoElectoral" type="venp.beans.ProcesoElectoralBean" />
+    
+	<!-- PARAMETROS -->
+    <parameterMap class="map" id="paramMap0">
+		<parameter property="codigo" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="vusuario_id" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="vdescripcion" mode="IN" javaType="java.lang.String" />
+		<parameter property="vfecha_votacion" mode="IN" javaType="java.lang.String" />
+		<parameter property="vhora_inicial" mode="IN" javaType="java.lang.String" />
+		<parameter property="vhora_final" mode="IN" javaType="java.lang.String" />
+		<parameter property="vfecha_padron_inicial" mode="IN" javaType="java.lang.String" />
+		<parameter property="vfecha_padron_final" mode="IN" javaType="java.lang.String" />
+		<parameter property="vtiempo_sesion" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+
+    <parameterMap class="map" id="paramMap1">
+		<parameter property="usuario" mode="IN" javaType="java.lang.Integer" />
+		<parameter property="descripcion" mode="IN" javaType="java.lang.String" />
+		<parameter property="fecha_votacion" mode="IN" javaType="java.lang.String" />
+		<parameter property="hora_inicial" mode="IN" javaType="java.lang.String" />
+		<parameter property="hora_final" mode="IN" javaType="java.lang.String" />
+		<parameter property="fecha_padron_inicial" mode="IN" javaType="java.lang.String" />
+		<parameter property="fecha_padron_final" mode="IN" javaType="java.lang.String" />
+		<parameter property="tiempo_sesion" mode="IN" javaType="java.lang.Integer" />
+	</parameterMap>
+	
+	<!-- MAPEOS -->
+	<resultMap class="procesoElectoral" id="procesoElectoralMap">
+        <result property="codigo" column="id" />
+        <result property="descripcion" column="descripcion" />
+        <result property="estado" column="estado" />
+        <result property="fechaPadronInicial" column="fecha_padron_inicial" />
+        <result property="fechaPadronFinal" column="fecha_padron_final" />
+        <result property="fechaVotacion" column="fecha_votacion" />
+        <result property="finalTime" column="hora_final" />
+		<result property="horaFinal" column="h_f" />
+        <result property="horaInicial" column="h_i" />
+		<result property="minutoFinal" column="m_f" />
+		<result property="minutoInicial" column="m_i" />
+        <result property="startTime" column="hora_inicial" />
+        <result property="tiempoSesion" column="tiempo_sesion" />
+        <result property="usuarioId" column="usuario_id" />
+    </resultMap>
+	
+	<!-- PROCEDIMIENTOS -->
+    <procedure id="ActivarProcesoElectoral" parameterClass="java.lang.Integer">
+        {call pa_proceso_electoral_activar (#CODIGO#)}
+    </procedure>
+    
+    <procedure id="AnularProcesoElectoral" parameterClass="java.lang.Integer">
+        {call pa_proceso_electoral_anular (#CODIGO#)}
+    </procedure>
+	
+	<procedure id="editar" parameterMap="paramMap0">
+		{call pa_proceso_electoral_editar (?, ?, ?, ?, ?, ?, ?, ?, ?)}
+	</procedure>
+  
+	<procedure id="findAll" resultMap="procesoElectoralMap">
+        {call pa_proceso_electoral_select} 
+    </procedure>
+    
+    <procedure id="findAll_Creado" resultMap="procesoElectoralMap">
+        {call pa_proceso_electoral_findAll_Creado} 
+    </procedure>
+  
+	<procedure id="findByKey" resultMap="procesoElectoralMap" parameterClass="java.lang.Integer">
+        {call pa_proceso_electoral_findByKey (#CODIGO#)}
+    </procedure>
+    
+	<procedure id="insertar" parameterMap="paramMap1">
+		{call pa_proceso_electoral_insertar (?, ?, ?, ?, ?, ?, ?, ?)}
+	</procedure>
+
+</sqlMap>

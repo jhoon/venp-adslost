@@ -2,17 +2,20 @@ package venp.services;
 
 import java.util.ArrayList;
 
+import com.ibatis.dao.client.DaoManager;
+
 import venp.beans.PaisBean;
 import venp.dao.entities.PaisDAO;
-import venp.dao.factory.DAOFactory;
+//import venp.dao.factory.DAOFactory;
+import venp.dao.factory.DaoConfig;
 
 public class PaisService {
 
-	private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
+	private DaoManager manager = DaoConfig.getDaoManager();
 	private PaisDAO dao;
 
 	public PaisService() {
-		dao = factory.getPaisDAO();
+		dao = (PaisDAO) manager.getDao(PaisDAO.class);
 	}
 	
 	public void borrar(int codigo) throws Exception {
@@ -43,9 +46,9 @@ public class PaisService {
 		}
 	}
 
-	public ArrayList findAll_Locacion(int procesoElectoral) throws Exception {
+	public ArrayList findAllLocacion(int procesoElectoral) throws Exception {
 		try {
-			ArrayList lista = dao.findAll_Locacion(procesoElectoral);
+			ArrayList lista = dao.findAllLocacion(procesoElectoral);
 
 			return lista;
 		} catch (Exception e) {

@@ -1,15 +1,15 @@
-<%@ page language="java" 
-         contentType="text/html; charset=ISO-8859-1" 
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="struts-html" prefix="html" %>
-<%@ taglib uri="struts-bean" prefix="bean" %>
-<html>
+<%@ include file="/includes/taglibs.inc.jsp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><bean:message key="global.application.title" /></title>
-<link rel="stylesheet" type="text/css" href="includes/css/globals.css" />
-<link rel="stylesheet" type="text/css" href="includes/css/auth.css" />
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/auth.css" />" />
+<script type="text/javascript" src="<html:rewrite page="/includes/js/auth.js" />"></script>
 </head>
-<script type="text/javascript">
+<body>
+<script>
 function doLogin() {
 	with(document.loginForm) {
 		if(userName.value == "") {
@@ -25,12 +25,11 @@ function doLogin() {
 		submit();
 	}
 }
+
 function setFirstTimeFocus() {
 	document.loginForm.userName.focus();
 }
 </script>
-<body>
-
 <table width="800" border="0" cellspacing="0" cellpadding="0">
   <jsp:include page="/includes/header.inc.jsp"></jsp:include>
   <tr>

@@ -1,15 +1,4 @@
-<%@ page language="java" 
-         contentType="text/html; charset=ISO-8859-1" 
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="struts-html" prefix="html" %>
-<%@ taglib uri="struts-bean" prefix="bean" %>
-<%@ taglib uri="struts-nested" prefix="nested" %>
-<html>
-<head>
-<title><bean:message key="global.application.title" /></title>
-<link rel="stylesheet" type="text/css" href="css/globals.css" />
-<link rel="stylesheet" type="text/css" href="css/votacion.css" />
-</head>
+<%@ include file="/includes/taglibs.inc.jsp" %>
 <script type="text/javascript">
 var myOption = null;
 function doVote() {
@@ -18,8 +7,13 @@ function doVote() {
 			submit();
 			return;
 		}
+		var answer = confirm("<bean:message key='elector.valida.votoblanco' />")
+		if (answer){
+			voto.value = '<bean:message key="elector.valida.idblanco" />';
+			submit();
+			return;
+		}
 	}
-	alert("<bean:message key="elector.valida.marcovoto" />");
 }
 function setOpcion(obj, idx) {
 	with(document.cedulaForm) {
@@ -78,8 +72,6 @@ function correctPNG() // correctly handle PNG transparency in Win IE 5.5 & 6.
 window.attachEvent("onload", correctPNG);
 </script>
 
-<body>
-
 <table width="800" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td align="center" valign="top">
@@ -103,7 +95,12 @@ window.attachEvent("onload", correctPNG);
             <td align="center">
             
             <nested:iterate property="opciones" id="opcion">
-            <div class="bgOpcion" onmouseover="fOver(this)" onmouseout="fOut(this)" onclick="setOpcion(this, '${opcion.id}')">
+            	<nested:equal property="nombre" value="VACIO">
+					<div class="bgOpcion" style="display:none;">
+				</nested:equal>
+				<nested:notEqual property="nombre" value="VACIO">
+					<div class="bgOpcion" onmouseover="fOver(this)" onmouseout="fOut(this)" onclick="setOpcion(this, '${opcion.id}')">
+				</nested:notEqual>
 			<table width="100%" border="0" cellspacing="0" cellpadding="3">
 			<tr>
 			<td align="center">
@@ -154,6 +151,3 @@ window.attachEvent("onload", correctPNG);
     </td>
   </tr>
 </table>
-</body>
-
-</html>

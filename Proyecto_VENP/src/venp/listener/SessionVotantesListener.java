@@ -118,12 +118,17 @@ public class SessionVotantesListener implements HttpSessionListener,
 		}
 	}
 
-	public static void removerElector(int idLocacion) {
+	/**
+	 * quita al elector de la sesión
+	 * @param intIdLocacion <code>id</code> de la locación donde se encuentra
+	 * el elector
+	 */
+	public static void removerElector(int intIdLocacion) {
 		ArrayList<VotantesXLocacionBean> lista = (ArrayList<VotantesXLocacionBean>) votantesActivos;
 
 		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getIdLocacion() == idLocacion) {
-				System.out.println("VOTANTE RETIRADO a la LOCACION: " + idLocacion);
+			if (lista.get(i).getIdLocacion() == intIdLocacion) {
+				System.out.println("VOTANTE RETIRADO a la LOCACION: " + intIdLocacion);
 				if (lista.get(i).getNroVotantes() > 0)
 					lista.get(i).setNroVotantes(lista.get(i).getNroVotantes() - 1);
 				else

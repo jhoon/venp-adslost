@@ -13,16 +13,16 @@ public class PartidoPoliticoAsignarForm extends ActionForm {
 	private String nombre;
 	private ArrayList conCandidato;
 	private ArrayList sinCandidato;
-	private String cv_origen;
-	private String cv_destino;
-	
+	private String cvOrigen;
+	private String cvDestino;
+
 	public void reset(ActionMapping mapping, HttpServletRequest request) {
 		codigo = "";
 		nombre = "";
 		conCandidato = null;
 		sinCandidato = null;
-		cv_origen = "";
-		cv_destino = "";
+		cvOrigen = "";
+		cvDestino = "";
 	}
 
 	public String getCodigo() {
@@ -57,20 +57,20 @@ public class PartidoPoliticoAsignarForm extends ActionForm {
 		this.sinCandidato = sinCandidato;
 	}
 
-	public String getCv_origen() {
-		return cv_origen;
+	public String getCvOrigen() {
+		return cvOrigen;
 	}
 
-	public void setCv_origen(String cv_origen) {
-		this.cv_origen = cv_origen;
+	public void setCvOrigen(String cvOrigen) {
+		this.cvOrigen = cvOrigen;
 	}
 
-	public String getCv_destino() {
-		return cv_destino;
+	public String getCvDestino() {
+		return cvDestino;
 	}
 
-	public void setCv_destino(String cv_destino) {
-		this.cv_destino = cv_destino;
+	public void setCvDestino(String cvDestino) {
+		this.cvDestino = cvDestino;
 	}
-	
+
 }
