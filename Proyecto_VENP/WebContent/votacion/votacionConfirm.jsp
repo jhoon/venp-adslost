@@ -1,6 +1,5 @@
 <%@ include file="/includes/taglibs.inc.jsp" %>
-<%@ page import="venp.web.forms.*" %>
-<% ElectorForm elector =(ElectorForm)request.getAttribute("Elector"); %>
+<jsp:useBean id="Elector" type="venp.web.forms.ElectorForm" scope="request" />
 <script type="text/javascript">
 function doConfirm(typeConfirm) {
 	with(document.cedulaForm) {
@@ -21,10 +20,10 @@ function doConfirm(typeConfirm) {
       <html:form action="votacion.do">
       <input type="hidden" name="cmd" value="confirm" />
       <input type="hidden" name="mode" value="confirm" />
-      <input type="hidden" name="elector" value="<%=elector.getDni()%>" />
-      <input type="hidden" name="fecha" value="<%=elector.getFechaSufragio()%>" />
-      <input type="hidden" name="hora" value="<%=elector.getHoraSufragio()%>" />
-      <input type="hidden" name="gmt" value="<%=elector.getGmtSufragio()%>" />
+      <input type="hidden" name="elector" value="<jsp:getProperty name="Elector" property="dni" />" />
+      <input type="hidden" name="fecha" value="<jsp:getProperty name="Elector" property="fechaSufragio" />" />
+      <input type="hidden" name="hora" value="<jsp:getProperty name="Elector" property="horaSufragio" />" />
+      <input type="hidden" name="gmt" value="<jsp:getProperty name="Elector" property="gmtSufragio" />" />
       <tr>
         <td colspan="2" height="10"></td>
       </tr>
@@ -45,42 +44,42 @@ function doConfirm(typeConfirm) {
         	<table cellpadding="0" cellspacing="0">
         	<tr>
         	  <td align="right"><div class="confirmLabel"><bean:message key="emp.form.nombre" />:</div></td>
-        	  <td align="left" class="confirmText"><%=elector.getNombre()%></td>
+        	  <td align="left" class="confirmText"><jsp:getProperty name="Elector" property="nombre" /></td>
         	</tr>
         	<tr><td colspan="2" height="10"></td></tr>
         	<tr>
         	  <td align="right"><div class="confirmLabel"><bean:message key="emp.form.paterno" />:</div></td>
-        	  <td align="left" class="confirmText"><%=elector.getPaterno()%></td>
+        	  <td align="left" class="confirmText"><jsp:getProperty name="Elector" property="paterno" /></td>
         	</tr>
         	<tr><td colspan="2" height="10"></td></tr>
         	<tr>
         	  <td align="right"><div class="confirmLabel"><bean:message key="emp.form.materno" />:</div></td>
-        	  <td align="left" class="confirmText"><%=elector.getMaterno()%></td>
+        	  <td align="left" class="confirmText"><jsp:getProperty name="Elector" property="materno" /></td>
         	</tr>
         	<tr><td colspan="2" height="10"></td></tr>
         	<tr>
         	  <td align="right"><div class="confirmLabel"><bean:message key="emp.form.dni" />:</div></td>
-        	  <td align="left" class="confirmText"><%=elector.getDni()%></td>
+        	  <td align="left" class="confirmText"><jsp:getProperty name="Elector" property="dni" /></td>
         	</tr>
         	<tr><td colspan="2" height="10"></td></tr>
         	<tr>
         	  <td align="right"><div class="confirmLabel"><bean:message key="emp.form.email" />:</div></td>
-        	  <td align="left" class="confirmText"><%=elector.getEmail()%></td>
+        	  <td align="left" class="confirmText"><jsp:getProperty name="Elector" property="email" /></td>
         	</tr>
         	<tr><td colspan="2" height="10"></td></tr>
         	<tr>
         	  <td align="right"><div class="confirmLabel"><bean:message key="elector.confirm.fecha" />:</div></td>
-        	  <td align="left" class="confirmText"><%=elector.getFechaSufragio()%></td>
+        	  <td align="left" class="confirmText"><jsp:getProperty name="Elector" property="fechaSufragio" /></td>
         	</tr>
         	<tr><td colspan="2" height="10"></td></tr>
         	<tr>
         	  <td align="right"><div class="confirmLabel"><bean:message key="elector.confirm.hora" />:</div></td>
-        	  <td align="left" class="confirmText"><%=elector.getHoraSufragio()%></td>
+        	  <td align="left" class="confirmText"><jsp:getProperty name="Elector" property="horaSufragio" /></td>
         	</tr>
         	<tr><td colspan="2" height="10"></td></tr>
         	<tr>
         	  <td align="right"><div class="confirmLabel"><bean:message key="elector.confirm.gmt" />:</div></td>
-        	  <td align="left" class="confirmText"><%=elector.getGmtSufragio()%></td>
+        	  <td align="left" class="confirmText"><jsp:getProperty name="Elector" property="gmtSufragio" /></td>
         	</tr>
         	<tr><td colspan="2" height="10"></td></tr>
         	</table>
