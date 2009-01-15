@@ -12,7 +12,7 @@
                 <td align="left">
                   <table class="tableHead" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                      <td class="tableHeader" colspan="10"><bean:message key="cedula.lista.titulo" /></td>
+                      <td class="tableHeader" colspan="5"><bean:message key="cedula.lista.titulo" /></td>
                     </tr>
                     <tr>
                       <td class="tableColumn" width="50"><bean:message key="cedula.lista.codigo" /></td>
@@ -25,7 +25,7 @@
                 </td>
               </tr>
               <tr>
-                <td>
+                <td align="left">
                   <logic:empty name="listaCedulas">
                   <table class="tableEmpty" border="0" cellspacing="0" cellpadding="0">
                     <tr><td><bean:message key="cedula.lista.nohay" /></td></tr>
@@ -37,7 +37,7 @@
                     <table border="0" cellspacing="0" cellpadding="0">
                       <logic:iterate id="cedula" name="listaCedulas">
                       <tr>
-                        <td class="dataRow dataCenter" width="51">
+                        <td class="dataRow dataCenter" width="50">
                           <bean:write name="cedula" property="codigo" />
                         </td>
                         <td class="dataRow dataLeft" width="317">&nbsp;<bean:write name="cedula" property="procesoNombre" /></td>

@@ -2,6 +2,13 @@ package venp.beans;
 
 import java.sql.Timestamp;
 
+/**
+ * Clase Locacion para manejar cada uno de los 
+ * centros de votacion y su respectivo tiempos GMT
+ * @author MCristobal
+ *
+ */
+@SuppressWarnings("serial")
 public class LocacionBean extends Bean {
 	
 	private int codigo;
@@ -23,7 +30,7 @@ public class LocacionBean extends Bean {
 	private int nroVotosPorcentaje;
 	private int nroVotosRestantesPorcentaje;
 	private int nroElectorSesionPorcentaje;
-
+/*
 	public LocacionBean () {
 		codigo = 0;
 		nombrePais = "";
@@ -44,7 +51,7 @@ public class LocacionBean extends Bean {
 		nroVotosPorcentaje = 0;
 		nroVotosRestantesPorcentaje = 0;
 		nroElectorSesionPorcentaje = 0;
-	}
+	}*/
 	
 	public int getNroElectores() {
 		return nroElectores;

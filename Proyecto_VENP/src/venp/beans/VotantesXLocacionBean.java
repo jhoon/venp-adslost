@@ -1,7 +1,7 @@
 package venp.beans;
 
 public class VotantesXLocacionBean extends Bean {
-	
+
 	private int idLocacion;
 	private int nroVotantes;
 

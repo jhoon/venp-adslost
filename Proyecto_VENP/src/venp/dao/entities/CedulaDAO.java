@@ -8,6 +8,8 @@ public interface CedulaDAO {
 	
 	public ArrayList listarCedulas() throws Exception;
 	
+	public ArrayList cargarProcesosElectorales() throws Exception;
+	
 	public CedulaBean cargarCedula(String codigo) throws Exception; 
 	
 	public int guardarCedula(CedulaBean cedula) throws Exception; 

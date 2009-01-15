@@ -1,4 +1,4 @@
-﻿-- MySQL Administrator dump 1.4
+-- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
 -- Server version	5.0.45-community-nt
@@ -1357,10 +1357,13 @@ DROP PROCEDURE IF EXISTS `pa_ADMIN_crearProcesoDemo`;
 
 DELIMITER $$
 
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_crearProcesoDemo`()
 BEGIN
 	declare v_usuario int(10);
 	declare v_proceso int(10);
+	/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+	/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 	-- eliminacion de tablas
 	truncate proceso_electoral;
 	truncate locacion;
@@ -1373,8 +1376,8 @@ BEGIN
 	truncate elector;
 	-- creacion de proceso
 	select id into v_usuario from usuario where perfil_id = 1 and estado = 'A' limit 0, 1;
-	call pa_proceso_electoral_insertar(v_usuario, 'Elecciones Presidenciales DEMO',
-		CURRENT_DATE, CURRENT_TIME, addtime(CURRENT_TIME, '00:50:00'),
+	call pa_proceso_electoral_insertar(v_usuario, 'Elecciones Presidenciales DEMO', 
+		CURRENT_DATE, CURRENT_TIME, addtime(CURRENT_TIME, '00:50:00'), 
 		adddate(CURRENT_DATE, -60), adddate(CURRENT_DATE, -10), 3);
 	select id into v_proceso from proceso_electoral where descripcion = 'Elecciones Presidenciales DEMO';
 	-- datos pre-electorales
@@ -1404,19 +1407,19 @@ BEGIN
 	insert into operador values (4, 11, 'A');
 	insert into operador values (4, 12, 'A');
 	insert into operador values (3, 13, 'A');
-	insert into candidato (id, nombre, paterno, materno, dni, foto, estado)
-	values (0, '', '', '', '', 'nothing.gif', 'A'),
+	insert into candidato (id, nombre, paterno, materno, dni, foto, estado) 
+	values (0, '', '', '', '', 'nothing.gif', 'A'), 
 	       (1, 'Juan', 'Perez', 'Pinto', '41723412', 'candidato1.jpg', 'A'),
 	       (2, 'Laura', 'Loca', 'Paliza', '34679213', 'candidato2.jpg', 'A');
-	insert into partido_politico (id, nombre, abreviatura, logo, estado)
-	values (0, 'VACIO', '', 'nothing.gif', 'A'),
+	insert into partido_politico (id, nombre, abreviatura, logo, estado) 
+	values (0, 'VACIO', '', 'nothing.gif', 'A'), 
 	       (1, 'Partido La Herradura', 'PLH', 'simbolo1.jpg', 'A'),
 	       (2, 'Partido La Estrella', 'PLE', 'simbolo2.jpg', 'A');
-	insert  into candidato_partido_politico (id, Partido_Politico_id, Candidato_id, fecha_creacion, fecha_modificacion, estado)
+	insert  into candidato_partido_politico (id, Partido_Politico_id, Candidato_id, fecha_creacion, fecha_modificacion, estado) 
 	values (0, 0, 0, now(), now(), 'A'),
 	       (1, 1, 1, now(), now(), 'A'),
 	       (2, 2, 2, now(), now(), 'A');
-	insert  into cedula (id, Proceso_Electoral_id, tipo, estado, fecha_creacion, fecha_modificacion)
+	insert  into cedula (id, Proceso_Electoral_id, tipo, estado, fecha_creacion, fecha_modificacion) 
 	values (1, v_proceso, 'P', 'A', now(), now());
 	insert into opcion (id, Candidato_Partido_Politico_id, Cedula_id, orden, fecha_creacion)
 	values (1, 0, 1, 3, now()), (2, 1, 1, 1, now()), (3, 2, 1, 2, now());
@@ -1424,7 +1427,10 @@ BEGIN
 	call pa_proceso_electoral_activar(v_proceso);
 	-- creamos un usuario empadronado
 	call pa_elector_registrar(0, 5, 'Renzo', 'Portocarrero', 'Heredia', '41726972', 'i611065@cibertec.edu.pe');
+	/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+	/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
     END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
 DELIMITER ;
 
@@ -1436,8 +1442,11 @@ DROP PROCEDURE IF EXISTS `pa_ADMIN_setDefaultData`;
 
 DELIMITER $$
 
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_setDefaultData`()
 BEGIN
+	/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+	/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 	-- data inicial para la tabla pais
 	truncate pais;
 	insert into pais values (1, 'Argentina', 'AR', 'A');
@@ -1497,7 +1506,7 @@ BEGIN
 	insert into centro_votacion values (13, 12, 5, '', 'Consulado de Los Angeles', '', '', 'A');
 	-- data inicial para la tabla perfil
 	truncate perfil;
-	insert into perfil (id, nombre, descripcion, estado) values
+	insert into perfil (id, nombre, descripcion, estado) values 
 	(1, 'OPERADOR CENTRAL', 'OPERADOR CENTRAL', 'A'),
 	(2, 'OPERADOR DE CONSULADO', 'OPERADOR DE CONSULADO', 'A'),
 	(3, 'OPERADOR DE MODULO', 'OPERADOR DE MODULO', 'A');
@@ -1524,7 +1533,10 @@ BEGIN
 	-- data inicial para la tabla candidato_partido_politico
 	truncate candidato_partido_politico;
 	insert into candidato_partido_politico values (0, 0, 0, now(), now(), 'A');
+	/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+	/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
     END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
 DELIMITER ;
 

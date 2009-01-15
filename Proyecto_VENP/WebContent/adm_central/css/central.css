@@ -233,10 +233,7 @@ body {
 
 .tableHead {
 	background: #B9C9FE none repeat scroll 0 0;
-	border-collapse: collapse;
-	border-color: #FFF;
-	border-width: 1px;
-	border-style: solid;
+	border: 1px solid #FFF;
 	color: #003399;
 	font-family: Verdana, Tahoma, Arial, Helvetica, Sans-Serif;
 	font-weight: normal;
@@ -244,15 +241,16 @@ body {
 }
 
 .tableHeader {
+	border: none;
 	font-size: 16px;
 	height: 40px;
 }
 
 .tableColumn {
+	font-family: Verdana, Tahoma, Arial, Helvetica, Sans-Serif;
 	font-size: 8px;
-	border-color: #FFF;
-	border-width: 1px;
-	border-style: solid;
+	border-top: 1px solid #FFF;
+	border-right: 1px solid #FFF;
 	height: 30px;
 }
 
@@ -271,17 +269,19 @@ body {
 }
 
 .blockData {
-	background: #D0DAFD none repeat scroll 0 0;
+	background: #D0DAFD;
 	display: block;
 	overflow: auto;
 	height: 350px;
 	width: 637px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
 .dataRow {
 	background: #E8EDFF none repeat scroll 0 0;
-	border-right: solid 1px #FFF;
-	border-bottom: solid 1px #FFF;
+	border-bottom: 1px solid #FFF;
+	border-right: 1px solid #FFF;
 	font-family: Verdana, Tahoma, Arial, Helvetica, Sans-Serif;
 	font-weight: normal;
 	font-size: 0.54em;
@@ -393,38 +393,4 @@ input,select {
 	font-weight: bold;
 	text-align: center;
 	color: #A5A5A5;
-}
-
-.cedulaAction {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
-	font-weight: normal;
-	width: 50px;
-	height: 25px;
-	line-height: 25px;
-	text-align: center;
-	cursor: pointer;
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	color: blue;
-	text-decoration: underline;
-	display: block;
-	float: left;
-}
-
-.cedulaActionDisabled {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
-	font-weight: normal;
-	width: 50px;
-	height: 25px;
-	line-height: 25px;
-	text-align: center;
-	cursor: default;
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	color: gray;
-	text-decoration: none;
-	display: block;
-	float: left;
 }

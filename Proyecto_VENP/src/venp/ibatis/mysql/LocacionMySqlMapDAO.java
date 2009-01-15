@@ -18,26 +18,28 @@ public class LocacionMySqlMapDAO extends SqlMapDaoTemplate implements LocacionDA
 	}
 
 	@Override
-	public boolean puesta_Cero(int usuario, int locacion) throws Exception {
+	public boolean puestaCero(int intUsuario, int intLocacion) throws Exception {
 		System.out.println("\n==================\n SqlMap: puesta_Cero \n==================\n");		
-		if (eliminar_Votos(usuario, locacion) == 0)
-			if (realizar_Puesta_Cero(usuario, locacion) == 0) {
+		if (eliminarVotos(intUsuario, intLocacion) == 0){
+			/*if (realizar_Puesta_Cero(iUsuario, iLocacion) == 0) {
 				return true;
 			}
 			else  {
 				return true;
-			}
-		else {
+			}*/
+			realizarPuestaCero(intUsuario, intLocacion);
+			return true;
+		}else {
 			return false;
 		}
 	}
 
 	@Override
-	public LocacionBean locacion_Activa_Por_Usuario_PuestaCero(int usuario, int locacion) throws Exception {
+	public LocacionBean locacionActivaPorUsuarioPuestaCero(int intUsuario, int intLocacion) throws Exception {
 		// Map
 		HashMap map = new HashMap();
-		map.put("usuario", new Integer(usuario));
-		map.put("locacion", new Integer(locacion));
+		map.put("usuario", new Integer(intUsuario));
+		map.put("locacion", new Integer(intLocacion));
 		// Query
 		LocacionBean bean = (LocacionBean)this.queryForObject("Locacion.locacionPorUsuarioPuestaCero", map);
 		
@@ -47,11 +49,11 @@ public class LocacionMySqlMapDAO extends SqlMapDaoTemplate implements LocacionDA
 	}
 
 	@Override
-	public LocacionBean locacion_Por_Usuario_CerrarVotacion(int usuario, int locacion) throws Exception {
+	public LocacionBean locacionPorUsuarioCerrarVotacion(int intUsuario, int intLocacion) throws Exception {
 		// Map
 		HashMap map = new HashMap();
-		map.put("usuario", new Integer(usuario));
-		map.put("locacion", new Integer(locacion));
+		map.put("usuario", new Integer(intUsuario));
+		map.put("locacion", new Integer(intLocacion));
 		// Query
 		LocacionBean bean = (LocacionBean)this.queryForObject("Locacion.locacionPorUsuarioCerrarVotacion", map);
 		
@@ -61,10 +63,10 @@ public class LocacionMySqlMapDAO extends SqlMapDaoTemplate implements LocacionDA
 	}
 
 	@Override
-	public ArrayList locaciones_Activas_Por_Usuario_PuestaCero(int usuario) throws Exception {
+	public ArrayList locacionesActivasPorUsuarioPuestaCero(int intUsuario) throws Exception {
 		// Map
 		HashMap map = new HashMap();
-		map.put("usuario", new Integer(usuario));
+		map.put("usuario", new Integer(intUsuario));
 		// Query
 		ArrayList lista = (ArrayList)this.queryForList("Locacion.locacionesPorUsuarioPuestaCero", map);
 		
@@ -74,14 +76,14 @@ public class LocacionMySqlMapDAO extends SqlMapDaoTemplate implements LocacionDA
 	}
 
 	@Override
-	public ArrayList locaciones_Por_Usuario_CerrarVotacion(int usuario) throws Exception {
+	public ArrayList locacionesPorUsuarioCerrarVotacion(int intUsuario) throws Exception {
 		// Map
 		HashMap map = new HashMap();
-		map.put("usuario", new Integer(usuario));
+		map.put("usuario", new Integer(intUsuario));
 		// Query
 		ArrayList lista = (ArrayList)this.queryForList("Locacion.locacionesPorUsuarioCerrarVotacion", map);
 		
-		System.out.println(usuario);
+		System.out.println(intUsuario);
 		
 		System.out.println("\n==================\n SqlMap: locaciones_Por_Usuario_CerrarVotacion \n==================\n");
 		
@@ -89,17 +91,17 @@ public class LocacionMySqlMapDAO extends SqlMapDaoTemplate implements LocacionDA
 	}
 
 	@Override
-	public ArrayList locaciones_Por_Usuario_Monitoreo(int usuario) throws Exception {
+	public ArrayList locacionesPorUsuarioMonitoreo(int intUsuario) throws Exception {
 		// Map
 		HashMap map = new HashMap();
-		map.put("usuario", new Integer(usuario));
+		map.put("usuario", new Integer(intUsuario));
 		// Query
 		ArrayList lista = (ArrayList)this.queryForList("Locacion.locacionesPorUsuarioMonitoreo", map);
 		// Procesamiento
 		Iterator it = lista.iterator();
 		while(it.hasNext()) {
 			LocacionBean bean = (LocacionBean)it.next();
-			bean = locacion_nroVotos(bean);
+			bean = locacionNroVotos(bean);
 		}
 		
 		System.out.println("\n==================\n SqlMap: locaciones_Por_Usuario_Monitoreo \n==================\n");
@@ -108,19 +110,19 @@ public class LocacionMySqlMapDAO extends SqlMapDaoTemplate implements LocacionDA
 	}
 
 	@Override
-	public boolean cerrar_Votacion(int usuario, int locacion) throws Exception {
+	public boolean cerrarVotacion(int intUsuario, int intLocacion) throws Exception {
 		// Map
 		HashMap map = new HashMap();
-		map.put("usuario", new Integer(usuario));
-		map.put("locacion", new Integer(locacion));
+		map.put("usuario", new Integer(intUsuario));
+		map.put("locacion", new Integer(intLocacion));
 		map.put("salida", new Integer(-1));
 		// Query
 		this.update("Locacion.locacionCerrarVotacion", map);
-		int locacionOK = ((Integer)map.get("salida")).intValue();
+		int iLocacionOK = ((Integer)map.get("salida")).intValue();
 		
 		System.out.println("\n==================\n SqlMap: cerrar_Votacion \n==================\n");
 		
-		if (locacionOK == 1)
+		if (iLocacionOK == 1)
 			return true;
 		else
 			return false;
@@ -130,7 +132,7 @@ public class LocacionMySqlMapDAO extends SqlMapDaoTemplate implements LocacionDA
 	 * PRIVATE FUNCTIONS
 	 */
 	
-	private LocacionBean locacion_nroVotos(LocacionBean bean) throws Exception {
+	private LocacionBean locacionNroVotos(LocacionBean bean) throws Exception {
 		// Map
 		HashMap map = new HashMap();
 		map.put("codigo", new Integer(bean.getCodigo()));
@@ -147,34 +149,34 @@ public class LocacionMySqlMapDAO extends SqlMapDaoTemplate implements LocacionDA
 		return bean;
 	}
 	
-	private int eliminar_Votos(int usuario, int locacion) throws Exception {
+	private int eliminarVotos(int intUsuario, int intLocacion) throws Exception {
 		// Map
 		HashMap map = new HashMap();
-		map.put("usuario", new Integer(usuario));
-		map.put("locacion", new Integer(locacion));
+		map.put("usuario", new Integer(intUsuario));
+		map.put("locacion", new Integer(intLocacion));
 		map.put("salida", new Integer(-1));
 		// Query
 		this.update("Locacion.eliminarVotos", map);
-		int nroVotos = ((Integer)map.get("salida")).intValue();
+		int iNroVotos = ((Integer)map.get("salida")).intValue();
 		
 		System.out.println("\n==================\n SqlMap: eliminar_Votos \n==================\n");
 
-		return nroVotos;
+		return iNroVotos;
 	}
 	
-	private int realizar_Puesta_Cero(int usuario, int locacion) throws Exception {
+	private int realizarPuestaCero(int intUsuario, int intLocacion) throws Exception {
 		// Map
 		HashMap map = new HashMap();
-		map.put("usuario", new Integer(usuario));
-		map.put("locacion", new Integer(locacion));
+		map.put("usuario", new Integer(intUsuario));
+		map.put("locacion", new Integer(intLocacion));
 		map.put("salida", new Integer(-1));
 		// Query
 		this.update("Locacion.realizarPuestaCero", map);
-		int nroLocacion = ((Integer)map.get("salida")).intValue();
+		int iNroLocacion = ((Integer)map.get("salida")).intValue();
 		
 		System.out.println("\n==================\n SqlMap: realizar_Puesta_Cero \n==================\n");
 
-		return nroLocacion;
+		return iNroLocacion;
 	}
 
 }

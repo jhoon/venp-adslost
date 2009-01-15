@@ -18,8 +18,22 @@ import venp.beans.UsuarioBean;
 import venp.services.LocacionService;
 import venp.web.forms.LocacionPuestaCeroForm;
 
+
+/**
+ * Action de Puesta cero. Se utiliza para establecer o setear parametros de puesta a cero en cada locacion
+ * @author MCristobal
+ *
+ */
 public class LocacionPuestaCeroAction extends DispatchAction {
 
+	/**
+	 * Action de listado de locaciones activas en el proceso electoral
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	public ActionForward listar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -29,22 +43,30 @@ public class LocacionPuestaCeroAction extends DispatchAction {
 		LocacionPuestaCeroForm frm = (LocacionPuestaCeroForm) form;
 		
 		frm.setOk("");
-		ArrayList lista = locaciones_Activas_Por_Usuario_PuestaCero(Integer.parseInt(bean.getCodigo()));
+		ArrayList lista = locacionesActivasPorUsuarioPuestaCero(Integer.parseInt(bean.getCodigo()));
 		frm.setListaLocaciones(lista);
 		
-		frm.setUsuario(bean.getNombre() + " " + bean.getApePaterno() + " " + bean.getApeMaterno());
+		frm.setUsuario(bean.getNombreCompleto());
 
 		return mapping.findForward("inicio");
 	}
 	
+	/**
+	 * Action de Puesta a cero de una determinada locación 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	public ActionForward puestaCero(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
 		HttpSession session = request.getSession();
 		UsuarioBean usuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
-		String codigoLocacion = request.getParameter("keyValue");
-		LocacionBean locacionBean = locacion_Activa_Por_Usuario_PuestaCero(Integer.parseInt(usuarioBean.getCodigo()), Integer.parseInt(codigoLocacion));
+		String strCodigoLocacion = request.getParameter("keyValue");
+		LocacionBean locacionBean = locacionActivaPorUsuarioPuestaCero(Integer.parseInt(usuarioBean.getCodigo()), Integer.parseInt(strCodigoLocacion));
 		LocacionPuestaCeroForm frm = (LocacionPuestaCeroForm) form;
 		
 		frm.setOk("");
@@ -67,7 +89,7 @@ public class LocacionPuestaCeroAction extends DispatchAction {
 			saveErrors(request, errors);
 		}
 		else {
-			if (puesta_Cero(Integer.parseInt(usuarioBean.getCodigo()), Integer.parseInt(codigoLocacion))) {
+			if (puestaCero(Integer.parseInt(usuarioBean.getCodigo()), Integer.parseInt(strCodigoLocacion))) {
 				ActionMessages errors = new ActionMessages();
 				errors.add("mensaje", new ActionMessage("locacion.puestaCero.okPuestaCero"));
 				
@@ -75,7 +97,7 @@ public class LocacionPuestaCeroAction extends DispatchAction {
 				
 				frm.setOk("ok");
 				frm.setNombreLocacion(locacionBean.getNombreCentroVotacion());
-				System.out.println("JAJAJAJJAJA");
+				System.out.println("locacionBean.getNombreCentroVotacion()");
 			}
 			else {
 				ActionMessages errors = new ActionMessages();
@@ -85,32 +107,45 @@ public class LocacionPuestaCeroAction extends DispatchAction {
 			}
 		}
 
-		frm.setListaLocaciones(locaciones_Activas_Por_Usuario_PuestaCero(Integer.parseInt(usuarioBean.getCodigo())));
+		frm.setListaLocaciones(locacionesActivasPorUsuarioPuestaCero(Integer.parseInt(usuarioBean.getCodigo())));
 		
 		return mapping.findForward("inicio");
 	}
 	
-	private ArrayList locaciones_Activas_Por_Usuario_PuestaCero(int usuario) throws Exception {
+	/**
+	 * Metodo para ver las locaciones activas
+	 * @param intUsuario
+	 * @return Las locaciones activas por usuario
+	 * @throws Exception
+	 */
+	private ArrayList locacionesActivasPorUsuarioPuestaCero(int intUsuario) throws Exception {
 		LocacionService service = new LocacionService();
 		ArrayList lista = null;
 
-		lista = service.locaciones_Activas_Por_Usuario_PuestaCero(usuario);
+		lista = service.locacionesActivasPorUsuarioPuestaCero(intUsuario);
 
 		return lista;
 	}
 	
-	private LocacionBean locacion_Activa_Por_Usuario_PuestaCero(int usuario, int locacion) throws Exception {
+	private LocacionBean locacionActivaPorUsuarioPuestaCero(int intUsuario, int intLocacion) throws Exception {
 		LocacionService service = new LocacionService();
 
-		LocacionBean bean = service.locacion_Activa_Por_Usuario_PuestaCero(usuario, locacion);
+		LocacionBean bean = service.locacionActivaPorUsuarioPuestaCero(intUsuario, intLocacion);
 
 		return bean;
 	}
 	
-	private boolean puesta_Cero(int usuario, int locacion) throws Exception {
+	/**
+	 * 
+	 * @param intUsuario
+	 * @param intLocacion
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean puestaCero(int intUsuario, int intLocacion) throws Exception {
 		LocacionService service = new LocacionService();
 		
-		return service.puesta_Cero(usuario, locacion);
+		return service.puestaCero(intUsuario, intLocacion);
 	}
 
 }

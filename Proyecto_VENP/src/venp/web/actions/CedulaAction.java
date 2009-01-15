@@ -1,6 +1,8 @@
 package venp.web.actions;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.actions.DispatchAction;
 
 import venp.services.CedulaService;
@@ -32,6 +35,15 @@ public class CedulaAction extends DispatchAction {
 	public ActionForward editar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		CedulaService service = new CedulaService();
+		ArrayList procesos = service.cargarProcesosElectorales();
+		request.setAttribute("listaProcesosElectorales", procesos);
+		
+		String strCodigo = request.getParameter("id");
+		
+		DynaActionForm frm = (DynaActionForm)form;
+		frm.set("codigo", strCodigo);
+		
 		return mapping.findForward("datos");
 	}
 	
@@ -50,6 +62,13 @@ public class CedulaAction extends DispatchAction {
 	public ActionForward crear(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		CedulaService service = new CedulaService();
+		ArrayList procesos = service.cargarProcesosElectorales();
+		request.setAttribute("listaProcesosElectorales", procesos);
+		
+		DynaActionForm frm = (DynaActionForm)form;
+		frm.set("codigo", "0");
+		
 		return mapping.findForward("datos");
 	}
 	
@@ -57,6 +76,19 @@ public class CedulaAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		return listar(mapping, form, request, response);
+	}
+	
+	public ActionForward ajax(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String params[] = request.getParameterValues("list[]");
+		PrintWriter pw = response.getWriter();
+		String strRes = params[0] + "";
+		for(int i=1;i<params.length;i++) {
+			strRes += ", " + params[i];
+		}
+		pw.print("Hola renzo, este es el nuevo orden: " + strRes);
+		return null;
 	}
 
 }

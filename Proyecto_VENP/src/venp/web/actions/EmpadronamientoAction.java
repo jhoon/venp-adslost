@@ -16,7 +16,6 @@ import venp.web.forms.ElectorForm;
 
 public class EmpadronamientoAction extends DispatchAction {
 
-	@Override
 	protected ActionForward unspecified(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -27,24 +26,24 @@ public class EmpadronamientoAction extends DispatchAction {
 		// validacion de proceso electoral activo
 		int idProceso = service.getEmpadronamientoActivo();
 		// Si esta en el rango, puede empadronarse
-		if(idProceso != 0) {
+		if (idProceso != 0) {
 			// session
 			HttpSession s = request.getSession();
 			s.setAttribute("idProceso", idProceso);
 			// datos para la vista
-			if(frm.getConsuladoList() == null)
+			if (frm.getConsuladoList() == null)
 				frm.setConsulados(service.getConsulados(idProceso));
-			if(frm.getPaises() == null)
+			if (frm.getPaises() == null)
 				frm.setPaises(service.getPaises(idProceso));
 			// action
 			return mapping.findForward("inicio");
 		}
 		ActionErrors errors = new ActionErrors();
 		errors.add("error", new ActionMessage("emp.error.noexiste"));
-	    saveErrors(request, errors);
+		saveErrors(request, errors);
 		return mapping.findForward("menu");
 	}
-	
+
 	public ActionForward menu(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -59,7 +58,7 @@ public class EmpadronamientoAction extends DispatchAction {
 		ElectorService service = new ElectorService();
 		// se validan los datos del empadronado (no duplucidad del DNI)
 		ElectorForm bean = service.validarDNI(frm.getDni());
-		if(bean == null) {
+		if (bean == null) {
 			// se graban los datos del empadronado.
 			service.registrar(frm);
 			frm.reset();
@@ -68,11 +67,11 @@ public class EmpadronamientoAction extends DispatchAction {
 		// error, el dni ya estaba registrado
 		ActionErrors errors = new ActionErrors();
 		errors.add("error", new ActionMessage("emp.error.dniregistrado"));
-	    saveErrors(request, errors);
+		saveErrors(request, errors);
 		// redireccion.
 		return mapping.findForward("inicio");
 	}
-	
+
 	public ActionForward pais(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

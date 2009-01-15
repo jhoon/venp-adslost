@@ -3,23 +3,44 @@ package venp.dao.entities;
 import java.util.ArrayList;
 
 import venp.beans.LocacionBean;
-
+/**
+ * Patron DAO para Puesta a cero y cierre de votación de locación
+ * @author MCristobal
+ *
+ */
 public interface LocacionDAO {
 	
 	// Metodos para PUESTA a CERO
-	public ArrayList locaciones_Activas_Por_Usuario_PuestaCero(int usuario) throws Exception;
-	
-	public LocacionBean locacion_Activa_Por_Usuario_PuestaCero(int usuario, int locacion) throws Exception;
-	
-	public boolean puesta_Cero(int usuario, int locacion) throws Exception;
+	/**
+	 * Metodo para puesta a cero
+	 */
+	public ArrayList locacionesActivasPorUsuarioPuestaCero(int usuario) throws Exception;
+	/**
+	 * Metodo para puesta a cero
+	 */	
+	public LocacionBean locacionActivaPorUsuarioPuestaCero(int usuario, int locacion) throws Exception;
+	/**
+	 * Metodo para puesta a cero
+	 */
+	public boolean puestaCero(int usuario, int locacion) throws Exception;
 
 	// Metodos para CERRAR VOTACION
-	public ArrayList locaciones_Por_Usuario_CerrarVotacion(int usuario) throws Exception;
 	
-	public LocacionBean locacion_Por_Usuario_CerrarVotacion(int usuario, int locacion) throws Exception;
-	
-	public boolean cerrar_Votacion(int usuario, int locacion) throws Exception;
-	
-	public ArrayList locaciones_Por_Usuario_Monitoreo(int usuario) throws Exception;
+	/**
+	 * Metodo para el cierre de votacion
+	 */
+	public ArrayList locacionesPorUsuarioCerrarVotacion(int usuario) throws Exception;
+	/**
+	 * Metodo para el cierre de votacion
+	 */
+	public LocacionBean locacionPorUsuarioCerrarVotacion(int usuario, int locacion) throws Exception;
+	/**
+	 * Metodo para el cierre de votacion
+	 */
+	public boolean cerrarVotacion(int usuario, int locacion) throws Exception;
+	/**
+	 * Metodo para el monitoreo
+	 */
+	public ArrayList locacionesPorUsuarioMonitoreo(int usuario) throws Exception;
 
 }

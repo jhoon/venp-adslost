@@ -6,6 +6,7 @@
 	<!-- ALIAS -->
 	<typeAlias alias="cedula" type="venp.beans.CedulaBean" />
 	<typeAlias alias="opcion" type="venp.beans.OpcionBean" />
+	<typeAlias alias="help" type="venp.beans.MyHelpBean" />
 	
 	<!-- PARAMETROS -->
     <parameterMap class="map" id="idPinMap">
@@ -14,6 +15,11 @@
 	</parameterMap>
 	
 	<!-- MAPEOS -->
+	<resultMap class="help" id="comboMap">
+		<result property="key" column="id" />
+		<result property="value" column="nombre" />
+	</resultMap>
+	
 	<resultMap class="cedula" id="cedulaMap1">
 		<result property="codigo" column="id" />
 		<result property="procesoNombre" column="descripcion" />
@@ -24,6 +30,10 @@
 	<!-- PROCEDIMIENTOS -->	
 	<procedure id="listarCedulas" resultMap="cedulaMap1">
         {call pa_cedula_listar()}
+    </procedure>
+    
+    <procedure id="cargarProcesosElectorales" resultMap="comboMap">
+        {call pa_cedula_cargarProcesosElectorales()}
     </procedure>
 	
 </sqlMap>

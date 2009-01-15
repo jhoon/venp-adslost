@@ -28,8 +28,9 @@
 		username="root" 
 		password="" 
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://192.168.51.56:3306/votacion" 
+		url="jdbc:mysql://localhost:3306/votacion" 
 		maxActive="8" 
 		maxIdle="4" 
 	/>
+
 </Context>

@@ -15,8 +15,14 @@ import venp.beans.UsuarioBean;
 import venp.services.LocacionService;
 import venp.web.forms.LocacionMonitoreoForm;
 
+/**
+ * Action de Monitorio de cada una de las locaciones
+ * @author MCristobal
+ *
+ */
 public class LocacionMonitoreoAction extends DispatchAction {
 
+	
 	public ActionForward listar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -25,19 +31,25 @@ public class LocacionMonitoreoAction extends DispatchAction {
 		UsuarioBean bean = (UsuarioBean) session.getAttribute("usuarioBean");
 		LocacionMonitoreoForm frm = (LocacionMonitoreoForm) form;
 
-		ArrayList lista = locaciones_Por_Usuario_Monitoreo(Integer.parseInt(bean.getCodigo()));
+		ArrayList lista = locacionesPorUsuarioMonitoreo(Integer.parseInt(bean.getCodigo()));
 		frm.setLista(lista);
 		
-		frm.setUsuario(bean.getNombre() + " " + bean.getApePaterno() + " " + bean.getApeMaterno());
+		frm.setUsuario(bean.getNombreCompleto());
 
 		return mapping.findForward("inicio");
 	}
 	
-	private ArrayList locaciones_Por_Usuario_Monitoreo(int usuario) throws Exception {
+	/**
+	 * Monitoreo de transacciones
+	 * @param usuario
+	 * @return
+	 * @throws Exception
+	 */
+	private ArrayList locacionesPorUsuarioMonitoreo(int usuario) throws Exception {
 		LocacionService service = new LocacionService();
 		ArrayList lista = null;
 		
-		lista = service.locaciones_Por_Usuario_Monitoreo(usuario);
+		lista = service.locacionesPorUsuarioMonitoreo(usuario);
 
 		return lista;
 	}

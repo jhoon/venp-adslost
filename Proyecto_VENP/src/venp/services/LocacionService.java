@@ -13,25 +13,39 @@ public class LocacionService {
 	//private DAOFactory factory = DAOFactory.getFactory(DAOFactory.DB_MY_SQL);
 	private DaoManager manager = DaoConfig.getDaoManager();
 	private LocacionDAO dao;
-
+	/**
+	 * Constructor de la clase
+	 */
 	public LocacionService() {
 		//dao = factory.getLocacionDAO();
 		dao = (LocacionDAO)manager.getDao(LocacionDAO.class);
 	}
 
-	public ArrayList locaciones_Activas_Por_Usuario_PuestaCero(int usuario) throws Exception {
+	/**
+	 * Metodo para la puesta a cero
+	 * @param intUsuario
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList locacionesActivasPorUsuarioPuestaCero(int intUsuario) throws Exception {
 		try {
-			ArrayList lista = dao.locaciones_Activas_Por_Usuario_PuestaCero(usuario);
+			ArrayList lista = dao.locacionesActivasPorUsuarioPuestaCero(intUsuario);
 			return lista;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	public LocacionBean locacion_Activa_Por_Usuario_PuestaCero(int usuario, int locacion) throws Exception {
+	/**
+	 * Metodo para puesta a cero
+	 * @param intUsuario
+	 * @param intLocacion
+	 * @return
+	 * @throws Exception
+	 */
+	public LocacionBean locacionActivaPorUsuarioPuestaCero(int intUsuario, int intLocacion) throws Exception {
 		try {
-			LocacionBean bean = dao.locacion_Activa_Por_Usuario_PuestaCero(usuario, locacion);
+			LocacionBean bean = dao.locacionActivaPorUsuarioPuestaCero(intUsuario, intLocacion);
 			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,29 +53,47 @@ public class LocacionService {
 		}
 	}
 	
-	public boolean puesta_Cero(int usuario, int locacion) throws Exception {
+	/**
+	 * Metodo para la puesta a cero
+	 * @param intUsuario
+	 * @param intLocacion
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean puestaCero(int intUsuario, int intLocacion) throws Exception {
 		try {
-			return dao.puesta_Cero(usuario, locacion);
+			return dao.puestaCero(intUsuario, intLocacion);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-
-	public ArrayList locaciones_Por_Usuario_CerrarVotacion(int usuario) throws Exception {
+	/**
+	 * Metodo para el cierre de votación
+	 * @param intUsuario
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList locacionesPorUsuarioCerrarVotacion(int intUsuario) throws Exception {
 		try {
-			ArrayList lista = dao.locaciones_Por_Usuario_CerrarVotacion(usuario);
+			ArrayList lista = dao.locacionesPorUsuarioCerrarVotacion(intUsuario);
 			return lista;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	} 
-	
-	public LocacionBean locacion_Por_Usuario_CerrarVotacion(int usuario, int locacion) throws Exception {
+	/**
+	 * Metodo para el cierre de votacion
+	 * @param intUsuario
+	 * @param intLocacion
+	 * @return
+	 * @throws Exception
+	 */
+	public LocacionBean locacionPorUsuarioCerrarVotacion(int intUsuario, int intLocacion) throws Exception {
 		try {
-			LocacionBean bean = dao.locacion_Por_Usuario_CerrarVotacion(usuario, locacion);
+			LocacionBean bean = dao.locacionPorUsuarioCerrarVotacion(intUsuario, intLocacion);
 			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,9 +101,16 @@ public class LocacionService {
 		}
 	}
 	
-	public boolean cerrar_Votacion(int usuario, int locacion) throws Exception {
+	/**
+	 * Metodo para cierre de votación
+	 * @param intUsuario
+	 * @param intLocacion
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean cerrarVotacion(int intUsuario, int intLocacion) throws Exception {
 		try {
-			return dao.cerrar_Votacion(usuario, locacion);
+			return dao.cerrarVotacion(intUsuario, intLocacion);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -79,9 +118,15 @@ public class LocacionService {
 		}
 	}
 	
-	public ArrayList locaciones_Por_Usuario_Monitoreo (int usuario) throws Exception {
+	/**
+	 * Metodo de monitoreo de transacciones
+	 * @param intUsuario
+	 * @return lista de locaciones a monitorear
+	 * @throws Exception
+	 */
+	public ArrayList locacionesPorUsuarioMonitoreo (int intUsuario) throws Exception {
 		try {
-			ArrayList lista = dao.locaciones_Por_Usuario_Monitoreo(usuario);
+			ArrayList lista = dao.locacionesPorUsuarioMonitoreo(intUsuario);
 			return lista;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -16,39 +16,39 @@ import venp.web.forms.ElectorForm;
 
 public class ConsuladoAction extends DispatchAction {
 
-	@Override
 	protected ActionForward unspecified(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		if(!LoginAction.isValidSession(request))
+		if (!LoginAction.isValidSession(request))
 			return mapping.findForward("login");
-		ElectorForm frm = (ElectorForm)form;
+		ElectorForm frm = (ElectorForm) form;
 		frm.reset();
 		return mapping.findForward("busqueda");
 	}
-	
+
 	public ActionForward buscar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		if(!LoginAction.isValidSession(request))
+		if (!LoginAction.isValidSession(request))
 			return mapping.findForward("login");
 		// busca por el dni enviado
-		ElectorForm frm = (ElectorForm)form;
+		ElectorForm frm = (ElectorForm) form;
 		ElectorService service = new ElectorService();
 		ElectorForm elector = service.validarDNI(frm.getDni());
-		if(elector != null) {
+		if (elector != null) {
 			// validacion de proceso electoral activo
 			int idProceso = service.getEmpadronamientoActivo();
 			// Si esta en el rango, puede empadronarse
-			if(idProceso != 0) {
-				if(elector.getEstado().equals("A") || elector.getEstado().equals("E")) { // L
+			if (idProceso != 0) {
+				if (elector.getEstado().equals("A")
+						|| elector.getEstado().equals("E")) { // L
 					// session
 					HttpSession s = request.getSession();
 					s.setAttribute("idProceso", idProceso);
 					// datos para la vista
-					if(frm.getConsuladoList() == null)
+					if (frm.getConsuladoList() == null)
 						frm.setConsulados(service.getConsulados(idProceso));
-					if(frm.getPaises() == null)
+					if (frm.getPaises() == null)
 						frm.setPaises(service.getPaises(idProceso));
 					// action
 					frm.setId(elector.getId());
@@ -60,13 +60,13 @@ public class ConsuladoAction extends DispatchAction {
 					frm.setDni(elector.getDni());
 					frm.setEmail(elector.getEmail());
 					return mapping.findForward("verificacion");
-				}
-				else {
+				} else {
 					ActionErrors errors = new ActionErrors();
-					errors.add("error", new ActionMessage("elector.validaestado.error"));
-				    saveErrors(request, errors);
-				    frm.reset();
-				    return mapping.findForward("busqueda");
+					errors.add("error", new ActionMessage(
+							"elector.validaestado.error"));
+					saveErrors(request, errors);
+					frm.reset();
+					return mapping.findForward("busqueda");
 				}
 			}
 			ActionErrors errors = new ActionErrors();
@@ -76,24 +76,24 @@ public class ConsuladoAction extends DispatchAction {
 		}
 		return empadronar(mapping, form, request, response);
 	}
-	
+
 	public ActionForward empadronar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
-		throws Exception {
-		ElectorForm frm = (ElectorForm)form;
+			throws Exception {
+		ElectorForm frm = (ElectorForm) form;
 		// Instancia del servicio
 		ElectorService service = new ElectorService();
 		// validacion de proceso electoral activo
 		int idProceso = service.getEmpadronamientoActivo();
 		// Si esta en el rango, puede empadronarse
-		if(idProceso != 0) {
+		if (idProceso != 0) {
 			// session
 			HttpSession s = request.getSession();
 			s.setAttribute("idProceso", idProceso);
 			// datos para la vista
-			if(frm.getConsuladoList() == null)
+			if (frm.getConsuladoList() == null)
 				frm.setConsulados(service.getConsulados(idProceso));
-			if(frm.getPaises() == null)
+			if (frm.getPaises() == null)
 				frm.setPaises(service.getPaises(idProceso));
 			// action
 			return mapping.findForward("formulario");
@@ -103,31 +103,33 @@ public class ConsuladoAction extends DispatchAction {
 		saveErrors(request, errors);
 		return mapping.findForward("busqueda");
 	}
-	
+
 	public ActionForward registrar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		ElectorForm frm = (ElectorForm)form;
+		ElectorForm frm = (ElectorForm) form;
 		// Intancia del servicio
 		ElectorService service = new ElectorService();
 		// se validan los datos del empadronado (no duplucidad del DNI)
 		ElectorForm bean;
-		if(frm.getId().equals("0")) bean = service.validarDNI(frm.getDni());
-		else bean = null;
-		if(bean == null) {
+		if (frm.getId().equals("0"))
+			bean = service.validarDNI(frm.getDni());
+		else
+			bean = null;
+		if (bean == null) {
 			// se graban los datos del empadronado.
 			service.registrar(frm);
-			//frm.reset();
+			// frm.reset();
 			return mapping.findForward("verificacion");
 		}
 		// error, el dni ya estaba registrado
 		ActionErrors errors = new ActionErrors();
 		errors.add("error", new ActionMessage("emp.error.dniregistrado"));
-	    saveErrors(request, errors);
+		saveErrors(request, errors);
 		// redireccion.
 		return mapping.findForward("formulario");
 	}
-	
+
 	public ActionForward pais(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

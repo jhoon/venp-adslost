@@ -21,6 +21,9 @@
 		<form-bean name="electorForm" type="venp.web.forms.ElectorForm" />
 
 		<form-bean name="cedulaForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="codigo" type="java.lang.String" />
+			<form-property name="procesoId" type="java.lang.String" />
+			<form-property name="tipo" type="java.lang.String" />
 			<form-property name="opciones" type="java.util.ArrayList" />
 			<form-property name="voto" type="java.lang.String" />
 		</form-bean>
@@ -90,8 +93,8 @@
 
 		<!-- Menu 2 -->
 		
-		<action path="/cedula" name="" input="/cedulaDatos.jsp"
-			parameter="cmd" type="venp.web.actions.CedulaAction" scope="request">
+		<action path="/cedula" name="cedulaForm" input="/cedulaDatos.jsp"
+			parameter="cmd" type="venp.web.actions.CedulaAction" scope="session">
 			<forward name="lista" path="cedulaLista" redirect="true" />
 			<forward name="datos" path="cedulaDatos" redirect="true" />
 			<forward name="preview" path="cedulaPreview" redirect="true" />
@@ -168,7 +171,7 @@
 			<forward name="inicio" path="/elector.do" />
 			<forward name="fin" path="voConfirma" />
 			<forward name="cedula" path="voCedula" />
-			<forward name="confirm" path="voPrinterFriendly" ></forward>
+			<forward name="confirm" path="voPrinterFriendly" />
 		</action>
 
 		<action path="/elector" name="electorForm" input="/votacion/votacionBuscarDni.jsp"

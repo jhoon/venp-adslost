@@ -33,6 +33,10 @@ public class CedulaService {
 	public ArrayList listarCedulas() throws Exception {
 		return dao.listarCedulas();
 	}
+	
+	public ArrayList cargarProcesosElectorales() throws Exception {
+		return dao.cargarProcesosElectorales();
+	}
 
 	public int publicarCedula(String codigo) throws Exception {
 		return 0;
