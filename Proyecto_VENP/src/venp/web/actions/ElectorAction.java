@@ -11,7 +11,6 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.actions.DispatchAction;
 
-import venp.beans.ProcesoElectoralBean;
 import venp.services.ElectorService;
 import venp.services.ProcesoElectoralService;
 import venp.web.forms.ElectorForm;

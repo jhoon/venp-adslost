@@ -99,13 +99,27 @@ select.cedulaForm {
 	margin-top: 10px;
 	padding: 0;
 	list-style-type: none;
-	width: 450px;
+	width: 500px;
 }
 
 #list li {
 	margin: 0;
 	margin-bottom: 4px;
+	height: 80px;
 	padding: 5px;
 	border: 1px solid #888;
 	cursor: move;
+	background: url(../../media/cedulabg.jpg);
+}
+
+.nombrePartido {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
+	color: #000000;
+}
+
+.fotoCedula {
+	border: 1px solid #000000;
 }

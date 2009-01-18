@@ -5,10 +5,10 @@
 <head>
 <title><bean:message key="global.application.title" /></title>
 <link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />
-<link rel="stylesheet" type="text/css" href="<html:rewrite page="/votacion/css/votacion.css" />" />
 </head>
 
 <body>
+
 <table width="800" border="0" cellspacing="0" cellpadding="0">
   <jsp:include page="/includes/header.inc.jsp"></jsp:include>
   <tr>
@@ -23,14 +23,10 @@
         <td colspan="2" height="80"></td>
       </tr>
       <tr>
-        <td colspan="2" align="center"><html:errors property="error"/></td>
+        <td colspan="2" align="center"><html:errors /></td>
       </tr>
       <tr>
-        <td colspan="2" height="80" align="center">
-        <html:link href="javascript:back();" styleClass="grisBtn">
-   	      <div style="top: 11px;"><bean:message key="general.opcion.regresar" /></div>
-   	      </html:link>
-        </td>
+        <td colspan="2" height="80"></td>
       </tr>
       <jsp:include page="/includes/footer.inc.jsp"></jsp:include>
     </table>

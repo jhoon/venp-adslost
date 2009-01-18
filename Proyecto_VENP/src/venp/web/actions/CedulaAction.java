@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.actions.DispatchAction;
 
+import venp.beans.OpcionBean;
 import venp.services.CedulaService;
 
 public class CedulaAction extends DispatchAction {
@@ -68,6 +69,12 @@ public class CedulaAction extends DispatchAction {
 		
 		DynaActionForm frm = (DynaActionForm)form;
 		frm.set("codigo", "0");
+		
+		ArrayList opciones = new ArrayList();
+		opciones.add("1");
+		opciones.add("2");
+		opciones.add("3");
+		frm.set("opciones", opciones);
 		
 		return mapping.findForward("datos");
 	}

@@ -69,7 +69,7 @@
 	-->
 	
 	<global-forwards>
-		<forward name="errores" path="/errores.jsp" redirect="false"/>
+		<forward name="errores" path="/errores.jsp" />
 		<forward name="home" path="/intro.jsp" redirect="true" />
 		<forward name="locacion-menu" path="/adm_locacion/locacion.jsp" />
 	</global-forwards>

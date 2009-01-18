@@ -24,17 +24,17 @@ public class EmpadronamientoAction extends DispatchAction {
 		// Instancia del servicio
 		ElectorService service = new ElectorService();
 		// validacion de proceso electoral activo
-		int idProceso = service.getEmpadronamientoActivo();
+		int intProcesoId = service.getEmpadronamientoActivo();
 		// Si esta en el rango, puede empadronarse
-		if (idProceso != 0) {
+		if (intProcesoId != 0) {
 			// session
 			HttpSession s = request.getSession();
-			s.setAttribute("idProceso", idProceso);
+			s.setAttribute("idProceso", intProcesoId);
 			// datos para la vista
 			if (frm.getConsuladoList() == null)
-				frm.setConsulados(service.getConsulados(idProceso));
+				frm.setConsulados(service.getConsulados(intProcesoId));
 			if (frm.getPaises() == null)
-				frm.setPaises(service.getPaises(idProceso));
+				frm.setPaises(service.getPaises(intProcesoId));
 			// action
 			return mapping.findForward("inicio");
 		}

@@ -42,12 +42,6 @@ CREATE TABLE `candidato` (
 --
 
 /*!40000 ALTER TABLE `candidato` DISABLE KEYS */;
-INSERT INTO `candidato` (`id`,`nombre`,`paterno`,`materno`,`dni`,`foto`,`estado`) VALUES 
-  (0,'','','','','nothing.gif','A');
-INSERT INTO `candidato` (`id`,`nombre`,`paterno`,`materno`,`dni`,`foto`,`estado`) VALUES 
-  (1,'Juan','Perez','Pinto','41723412','candidato1.jpg','A');
-INSERT INTO `candidato` (`id`,`nombre`,`paterno`,`materno`,`dni`,`foto`,`estado`) VALUES 
-  (2,'Laura','Loca','Paliza','34679213','candidato2.jpg','A');
 /*!40000 ALTER TABLE `candidato` ENABLE KEYS */;
 
 
@@ -75,12 +69,6 @@ CREATE TABLE `candidato_partido_politico` (
 --
 
 /*!40000 ALTER TABLE `candidato_partido_politico` DISABLE KEYS */;
-INSERT INTO `candidato_partido_politico` (`id`,`Partido_Politico_id`,`Candidato_id`,`fecha_creacion`,`fecha_modificacion`,`estado`) VALUES 
-  (0,0,0,'2009-01-07 00:01:33','2009-01-07 00:01:33','A');
-INSERT INTO `candidato_partido_politico` (`id`,`Partido_Politico_id`,`Candidato_id`,`fecha_creacion`,`fecha_modificacion`,`estado`) VALUES 
-  (1,1,1,'2009-01-07 00:01:33','2009-01-07 00:01:33','A');
-INSERT INTO `candidato_partido_politico` (`id`,`Partido_Politico_id`,`Candidato_id`,`fecha_creacion`,`fecha_modificacion`,`estado`) VALUES 
-  (2,2,2,'2009-01-07 00:01:33','2009-01-07 00:01:33','A');
 /*!40000 ALTER TABLE `candidato_partido_politico` ENABLE KEYS */;
 
 
@@ -106,8 +94,6 @@ CREATE TABLE `cedula` (
 --
 
 /*!40000 ALTER TABLE `cedula` DISABLE KEYS */;
-INSERT INTO `cedula` (`id`,`Proceso_Electoral_id`,`tipo`,`estado`,`fecha_creacion`,`fecha_modificacion`) VALUES 
-  (1,1,'P','A','2009-01-07 00:01:33','2009-01-07 00:01:33');
 /*!40000 ALTER TABLE `cedula` ENABLE KEYS */;
 
 
@@ -137,32 +123,6 @@ CREATE TABLE `centro_votacion` (
 --
 
 /*!40000 ALTER TABLE `centro_votacion` DISABLE KEYS */;
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (1,1,13,'12314','Consulado de Argentina','abcd','asdfr','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (2,2,13,'','Consulado de Bolivia','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (3,3,13,'','Consulado de Brasil','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (4,4,13,'','Consulado de Chile','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (5,5,13,'','Consulado de Colombia','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (6,6,13,'','Consulado de Ecuador','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (7,7,13,'','Consulado de México','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (8,8,13,'','Consulado de Paraguay','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (9,13,13,'','Consulado de Japón','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (10,10,13,'','Consulado de Uruguay','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (11,11,13,'','Consulado de Venezuela','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (12,12,13,'','Consulado de New York','','','A');
-INSERT INTO `centro_votacion` (`id`,`Pais_id`,`Zona_Horaria_id`,`codigo_postal`,`nombre`,`region`,`direccion`,`estado`) VALUES 
-  (13,12,7,'qw','Consulado de Los Angeles','eqwe','qweqw','A');
 /*!40000 ALTER TABLE `centro_votacion` ENABLE KEYS */;
 
 
@@ -182,16 +142,6 @@ CREATE TABLE `diccionario_log` (
 --
 
 /*!40000 ALTER TABLE `diccionario_log` DISABLE KEYS */;
-INSERT INTO `diccionario_log` (`id`,`descripcion`) VALUES 
-  (1,'LOG');
-INSERT INTO `diccionario_log` (`id`,`descripcion`) VALUES 
-  (2,'LOG');
-INSERT INTO `diccionario_log` (`id`,`descripcion`) VALUES 
-  (3,'LOG');
-INSERT INTO `diccionario_log` (`id`,`descripcion`) VALUES 
-  (4,'LOG');
-INSERT INTO `diccionario_log` (`id`,`descripcion`) VALUES 
-  (5,'LOG');
 /*!40000 ALTER TABLE `diccionario_log` ENABLE KEYS */;
 
 
@@ -219,8 +169,6 @@ CREATE TABLE `elector` (
 --
 
 /*!40000 ALTER TABLE `elector` DISABLE KEYS */;
-INSERT INTO `elector` (`id`,`Locacion_id`,`nombre`,`paterno`,`materno`,`dni`,`email`,`estado`) VALUES 
-  (1,5,'Renzo','Portocarrero','Heredia','41726972','i611065@cibertec.edu.pe','V');
 /*!40000 ALTER TABLE `elector` ENABLE KEYS */;
 
 
@@ -239,55 +187,13 @@ CREATE TABLE `escrutinio` (
   KEY `Escrutinio_FKIndex2` (`Locacion_id`),
   CONSTRAINT `escrutinio_ibfk_1` FOREIGN KEY (`Opcion_id`) REFERENCES `opcion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `escrutinio_ibfk_2` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=43;
+) TYPE=InnoDB AUTO_INCREMENT=70;
 
 --
 -- Dumping data for table `escrutinio`
 --
 
 /*!40000 ALTER TABLE `escrutinio` DISABLE KEYS */;
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (22,7,1,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (23,7,2,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (24,7,3,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (25,8,1,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (26,8,2,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (27,8,3,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (28,10,1,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (29,10,2,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (30,10,3,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (31,11,1,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (32,11,2,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (33,11,3,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (34,12,1,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (35,12,2,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (36,12,3,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (37,13,1,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (38,13,2,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (39,13,3,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (40,9,1,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (41,9,2,0);
-INSERT INTO `escrutinio` (`id`,`Locacion_id`,`Opcion_id`,`numero`) VALUES 
-  (42,9,3,0);
 /*!40000 ALTER TABLE `escrutinio` ENABLE KEYS */;
 
 
@@ -317,32 +223,6 @@ CREATE TABLE `locacion` (
 --
 
 /*!40000 ALTER TABLE `locacion` DISABLE KEYS */;
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (1,1,1,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (2,1,2,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (3,1,3,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (4,1,4,'S','A','2009-01-07 00:02:03',NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (5,1,5,'S','A','2009-01-07 00:02:00',NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (6,1,6,'S','A','2009-01-07 00:02:05',NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (7,1,7,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (8,1,8,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (9,1,9,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (10,1,10,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (11,1,11,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (12,1,12,'N','A',NULL,NULL);
-INSERT INTO `locacion` (`id`,`Proceso_Electoral_id`,`Centro_Votacion_id`,`puesta_cero`,`estado`,`fecha_puesta_cero`,`fecha_cierre`) VALUES 
-  (13,1,13,'N','A',NULL,NULL);
 /*!40000 ALTER TABLE `locacion` ENABLE KEYS */;
 
 
@@ -386,517 +266,13 @@ CREATE TABLE `log_usuario` (
   KEY `fk_Diccionario_Log` (`Diccionario_Log_id`),
   CONSTRAINT `log_usuario_ibfk_1` FOREIGN KEY (`Usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `log_usuario_ibfk_2` FOREIGN KEY (`Diccionario_Log_id`) REFERENCES `diccionario_log` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=253;
+) TYPE=InnoDB AUTO_INCREMENT=306;
 
 --
 -- Dumping data for table `log_usuario`
 --
 
 /*!40000 ALTER TABLE `log_usuario` DISABLE KEYS */;
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (1,1,5,'2008-11-01 11:58:56');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (2,1,1,'2008-11-04 14:12:10');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (3,1,1,'2008-11-04 14:14:36');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (4,1,1,'2008-11-04 14:20:52');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (5,1,2,'2008-11-04 14:21:28');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (6,1,2,'2008-11-04 14:23:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (7,1,2,'2008-11-04 14:23:20');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (8,1,2,'2008-11-04 14:26:12');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (9,1,2,'2008-11-04 14:26:15');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (10,1,2,'2008-11-04 14:27:15');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (11,1,2,'2008-11-04 14:27:23');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (12,1,2,'2008-11-04 14:28:27');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (13,1,2,'2008-11-04 14:28:31');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (14,1,2,'2008-11-04 14:28:36');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (15,1,2,'2008-11-04 14:30:34');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (16,1,2,'2008-11-04 14:30:38');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (17,1,1,'2008-11-05 00:15:11');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (18,1,1,'2008-11-05 00:15:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (19,1,1,'2008-11-05 00:15:22');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (20,1,1,'2008-11-05 00:15:24');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (21,1,1,'2008-11-05 00:20:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (22,1,1,'2008-11-05 00:25:12');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (23,1,1,'2008-11-05 00:26:36');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (24,1,1,'2008-11-05 00:32:18');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (25,1,1,'2008-11-05 00:33:05');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (26,1,1,'2008-11-05 00:35:28');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (27,1,1,'2008-11-05 00:36:01');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (28,1,1,'2008-11-05 00:36:36');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (29,1,1,'2008-11-05 00:37:42');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (30,1,1,'2008-11-05 00:40:56');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (31,1,1,'2008-11-05 00:49:34');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (32,1,1,'2008-11-05 00:55:56');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (33,1,1,'2008-11-05 01:15:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (34,1,1,'2008-11-05 01:16:32');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (35,1,1,'2008-11-05 01:21:15');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (36,1,1,'2008-11-05 10:10:56');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (37,1,1,'2008-11-05 10:17:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (38,1,1,'2008-11-05 10:32:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (39,1,1,'2008-11-16 11:28:11');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (40,1,5,'2008-11-16 11:28:42');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (41,1,5,'2008-11-16 11:42:39');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (42,1,1,'2008-11-16 12:03:12');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (43,1,5,'2008-11-16 12:10:43');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (44,1,5,'2008-11-16 12:12:10');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (45,1,5,'2008-11-16 12:13:26');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (46,1,5,'2008-11-16 12:27:05');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (47,1,5,'2008-11-16 12:33:04');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (48,1,5,'2008-11-16 12:36:33');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (49,1,5,'2008-11-16 12:38:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (50,1,5,'2008-11-16 12:50:30');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (51,1,5,'2008-11-16 12:55:34');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (52,1,5,'2008-11-16 13:01:42');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (53,1,1,'2008-11-16 13:09:29');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (54,1,1,'2008-11-16 14:10:51');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (55,1,2,'2008-11-16 13:11:52');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (56,1,2,'2008-11-16 13:11:58');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (57,1,2,'2008-11-16 13:11:58');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (58,1,1,'2008-11-16 14:12:54');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (59,1,2,'2008-11-16 14:13:09');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (60,1,2,'2008-11-16 14:13:13');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (61,1,5,'2008-11-16 14:13:30');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (62,1,5,'2008-11-16 14:15:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (63,1,5,'2008-11-16 16:05:49');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (64,1,5,'2008-11-16 16:22:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (65,1,5,'2008-11-18 00:21:31');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (66,1,5,'2008-11-18 02:25:51');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (67,1,5,'2008-11-18 02:26:41');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (68,1,5,'2008-11-18 02:28:12');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (69,1,5,'2008-11-18 02:29:24');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (70,1,5,'2008-11-18 02:39:29');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (71,1,1,'2008-11-23 15:14:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (72,1,1,'2008-11-23 15:14:26');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (73,1,1,'2008-11-23 15:16:02');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (74,1,1,'2008-11-23 15:23:23');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (75,1,1,'2008-11-23 15:25:09');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (76,1,2,'2008-11-23 15:28:48');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (77,1,2,'2008-11-23 15:29:12');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (78,1,2,'2008-11-24 15:40:37');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (79,1,2,'2008-11-23 17:45:40');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (80,1,2,'2008-11-23 17:49:05');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (81,1,2,'2008-11-23 15:53:08');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (82,1,2,'2008-11-23 15:53:14');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (83,1,2,'2008-11-23 15:58:14');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (84,1,2,'2008-11-23 15:58:25');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (85,1,2,'2008-11-23 16:16:40');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (86,1,2,'2008-11-23 16:16:43');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (87,1,2,'2008-11-23 16:16:43');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (88,1,2,'2008-11-23 18:17:13');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (89,1,2,'2008-11-23 18:21:53');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (90,1,5,'2008-11-23 18:11:54');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (91,1,6,'2008-11-23 18:58:53');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (92,1,6,'2008-11-23 19:06:20');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (93,1,6,'2008-11-23 19:14:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (94,1,6,'2008-11-23 19:20:11');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (95,1,6,'2008-11-23 19:22:51');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (96,1,2,'2008-11-23 19:28:34');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (97,1,2,'2008-11-23 19:28:39');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (98,1,2,'2008-11-23 19:28:39');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (99,1,2,'2008-11-23 19:32:57');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (100,1,6,'2008-11-23 19:44:33');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (101,1,6,'2008-11-23 20:40:02');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (102,1,2,'2008-11-23 20:40:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (103,1,2,'2008-11-23 20:40:43');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (104,1,2,'2008-11-23 20:40:43');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (105,1,2,'2008-11-23 20:41:55');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (106,1,6,'2008-11-23 20:42:15');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (107,1,5,'2008-11-29 17:58:05');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (108,1,1,'2008-12-06 15:23:07');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (109,1,2,'2008-12-06 15:42:08');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (110,1,2,'2008-12-06 15:42:11');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (111,1,2,'2008-12-06 15:42:11');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (112,1,5,'2008-12-06 15:47:46');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (113,1,1,'2008-12-11 01:47:02');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (114,1,1,'2008-12-11 01:53:25');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (115,1,1,'2008-12-11 01:53:25');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (116,1,1,'2008-12-11 01:53:27');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (117,1,1,'2008-12-11 01:53:27');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (118,1,1,'2008-12-11 02:04:21');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (119,1,1,'2008-12-11 02:04:21');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (120,1,2,'2008-12-11 02:04:34');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (121,1,2,'2008-12-11 02:04:37');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (122,1,2,'2008-12-11 02:04:37');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (123,1,2,'2008-12-11 02:04:38');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (124,1,2,'2008-12-11 02:04:38');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (125,1,2,'2008-12-11 02:04:40');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (126,1,2,'2008-12-11 02:04:40');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (127,1,2,'2008-12-11 02:54:39');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (128,1,2,'2008-12-11 08:08:15');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (129,1,2,'2008-12-11 08:09:12');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (130,1,2,'2008-12-11 08:09:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (131,1,2,'2008-12-11 08:09:18');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (132,1,1,'2008-12-11 08:09:31');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (133,1,1,'2008-12-11 08:09:34');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (134,1,1,'2008-12-11 08:09:36');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (135,1,1,'2008-12-11 08:09:37');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (136,1,3,'2008-12-11 08:09:52');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (137,1,5,'2008-12-11 08:10:09');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (138,1,2,'2008-12-26 12:27:57');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (139,1,2,'2008-12-26 12:28:08');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (140,1,2,'2008-12-26 12:28:08');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (141,1,2,'2008-12-26 12:28:12');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (142,1,2,'2008-12-26 12:28:12');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (143,1,2,'2008-12-26 12:28:13');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (144,1,2,'2008-12-26 12:28:13');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (145,1,2,'2008-12-27 11:12:36');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (146,1,2,'2008-12-27 11:12:42');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (147,1,2,'2008-12-27 11:12:42');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (148,1,2,'2008-12-27 11:13:14');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (149,1,2,'2008-12-27 11:13:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (150,1,2,'2008-12-27 11:13:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (151,1,2,'2008-12-27 11:13:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (152,1,2,'2008-12-27 11:13:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (153,1,2,'2008-12-27 12:58:53');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (154,1,2,'2008-12-27 12:59:20');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (155,1,2,'2008-12-27 12:59:20');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (156,1,2,'2008-12-27 12:59:21');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (157,1,2,'2008-12-27 12:59:21');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (158,1,2,'2008-12-27 12:59:22');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (159,1,2,'2008-12-27 12:59:22');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (160,1,2,'2008-12-27 18:01:42');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (161,1,2,'2008-12-27 18:01:48');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (162,1,2,'2008-12-27 18:01:48');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (163,1,2,'2008-12-27 18:01:49');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (164,1,2,'2008-12-27 18:01:49');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (165,1,2,'2008-12-27 18:01:50');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (166,1,2,'2008-12-27 18:01:50');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (167,1,5,'2008-12-27 18:25:39');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (168,1,5,'2008-12-27 18:27:58');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (169,1,5,'2008-12-30 15:37:54');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (170,1,5,'2008-12-30 15:39:13');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (171,1,5,'2008-12-30 15:44:20');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (172,1,5,'2008-12-30 15:55:10');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (173,1,5,'2008-12-30 16:21:54');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (174,1,5,'2009-01-02 23:59:56');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (175,1,5,'2009-01-03 00:11:40');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (176,1,5,'2009-01-03 11:53:33');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (177,1,5,'2009-01-03 12:46:32');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (178,1,5,'2009-01-03 14:35:25');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (179,1,5,'2009-01-03 19:45:41');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (180,1,5,'2009-01-03 23:23:07');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (181,1,5,'2009-01-03 23:35:11');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (182,1,5,'2009-01-03 23:54:04');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (183,1,5,'2009-01-04 12:59:23');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (184,1,5,'2009-01-04 14:07:58');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (185,1,5,'2009-01-04 15:22:39');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (186,1,5,'2009-01-04 17:52:30');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (187,1,5,'2009-01-04 17:56:25');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (188,1,5,'2009-01-04 18:14:22');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (189,1,5,'2009-01-04 18:19:10');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (190,1,5,'2009-01-04 20:48:42');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (191,1,5,'2009-01-04 22:08:40');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (192,1,5,'2009-01-04 22:32:22');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (193,1,5,'2009-01-05 00:41:07');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (194,1,1,'2009-01-05 00:42:02');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (195,1,2,'2009-01-05 01:02:43');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (196,1,2,'2009-01-05 01:02:48');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (197,1,2,'2009-01-05 01:02:48');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (198,1,2,'2009-01-05 01:02:56');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (199,1,2,'2009-01-05 01:02:56');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (200,1,2,'2009-01-05 01:02:59');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (201,1,2,'2009-01-05 01:02:59');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (202,1,2,'2009-01-05 01:42:59');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (203,1,2,'2009-01-05 01:52:27');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (204,1,2,'2009-01-05 01:52:29');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (205,1,2,'2009-01-05 01:52:30');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (206,1,5,'2009-01-05 01:53:59');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (207,1,5,'2009-01-05 02:04:21');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (208,1,1,'2009-01-05 02:04:47');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (209,1,1,'2009-01-05 02:05:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (210,1,1,'2009-01-05 02:05:17');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (211,1,1,'2009-01-05 02:05:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (212,1,1,'2009-01-05 02:05:19');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (213,1,1,'2009-01-05 02:05:20');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (214,1,1,'2009-01-05 02:05:20');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (215,1,5,'2009-01-05 02:42:02');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (216,1,5,'2009-01-05 02:45:15');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (217,1,5,'2009-01-05 02:59:21');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (218,1,5,'2009-01-05 03:05:10');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (219,1,5,'2009-01-05 03:05:33');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (220,1,5,'2009-01-05 03:12:13');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (221,1,5,'2009-01-05 03:12:45');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (222,1,5,'2009-01-05 03:19:32');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (223,1,5,'2009-01-05 03:21:38');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (224,1,5,'2009-01-05 12:28:22');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (225,1,5,'2009-01-05 14:36:43');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (226,1,5,'2009-01-05 14:39:54');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (227,1,5,'2009-01-05 14:41:30');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (228,1,5,'2009-01-05 14:41:39');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (229,1,5,'2009-01-05 14:50:21');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (230,1,5,'2009-01-05 14:59:27');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (231,1,5,'2009-01-05 15:00:33');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (232,1,5,'2009-01-05 15:01:58');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (233,1,5,'2009-01-05 15:03:11');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (234,1,5,'2009-01-05 15:05:45');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (235,1,5,'2009-01-05 23:55:50');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (236,1,5,'2009-01-06 00:11:26');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (237,1,5,'2009-01-06 00:15:34');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (238,1,5,'2009-01-06 00:36:26');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (239,1,5,'2009-01-06 01:25:36');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (240,1,5,'2009-01-06 01:50:32');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (241,1,5,'2009-01-06 02:11:24');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (242,1,5,'2009-01-06 02:12:58');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (243,1,2,'2009-01-06 23:58:50');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (244,1,2,'2009-01-07 00:02:00');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (245,1,2,'2009-01-07 00:02:00');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (246,1,2,'2009-01-07 00:02:03');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (247,1,2,'2009-01-07 00:02:03');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (248,1,2,'2009-01-07 00:02:05');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (249,1,2,'2009-01-07 00:02:05');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (250,1,5,'2009-01-07 00:13:09');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (251,1,5,'2009-01-07 00:35:48');
-INSERT INTO `log_usuario` (`id`,`Diccionario_Log_id`,`Usuario_id`,`fecha`) VALUES 
-  (252,1,5,'2009-01-07 00:36:07');
 /*!40000 ALTER TABLE `log_usuario` ENABLE KEYS */;
 
 
@@ -923,12 +299,6 @@ CREATE TABLE `opcion` (
 --
 
 /*!40000 ALTER TABLE `opcion` DISABLE KEYS */;
-INSERT INTO `opcion` (`id`,`Candidato_Partido_Politico_id`,`Cedula_id`,`orden`,`fecha_creacion`) VALUES 
-  (1,0,1,3,'2009-01-07 00:01:33');
-INSERT INTO `opcion` (`id`,`Candidato_Partido_Politico_id`,`Cedula_id`,`orden`,`fecha_creacion`) VALUES 
-  (2,1,1,1,'2009-01-07 00:01:33');
-INSERT INTO `opcion` (`id`,`Candidato_Partido_Politico_id`,`Cedula_id`,`orden`,`fecha_creacion`) VALUES 
-  (3,2,1,2,'2009-01-07 00:01:33');
 /*!40000 ALTER TABLE `opcion` ENABLE KEYS */;
 
 
@@ -953,32 +323,6 @@ CREATE TABLE `operador` (
 --
 
 /*!40000 ALTER TABLE `operador` DISABLE KEYS */;
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (1,1,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (1,2,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (1,3,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (2,4,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (2,5,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (2,6,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (3,7,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (3,8,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (3,9,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (3,13,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (4,10,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (4,11,'A');
-INSERT INTO `operador` (`Usuario_id`,`Locacion_id`,`estado`) VALUES 
-  (4,12,'A');
 /*!40000 ALTER TABLE `operador` ENABLE KEYS */;
 
 
@@ -1000,32 +344,6 @@ CREATE TABLE `pais` (
 --
 
 /*!40000 ALTER TABLE `pais` DISABLE KEYS */;
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (1,'Argentina','AR','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (2,'Bolivia','BO','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (3,'Brasil','BR','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (4,'Chile','CL','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (5,'Colombia','CO','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (6,'Ecuador','EC','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (7,'México','MX','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (8,'Paraguay','PY','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (9,'Perú','PE','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (10,'Uruguay','UY','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (11,'Venezuela','VE','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (12,'Estados Unidos de América','EU','A');
-INSERT INTO `pais` (`id`,`nombre`,`abreviatura`,`estado`) VALUES 
-  (13,'Japón','JP','A');
 /*!40000 ALTER TABLE `pais` ENABLE KEYS */;
 
 
@@ -1048,12 +366,6 @@ CREATE TABLE `partido_politico` (
 --
 
 /*!40000 ALTER TABLE `partido_politico` DISABLE KEYS */;
-INSERT INTO `partido_politico` (`id`,`nombre`,`abreviatura`,`logo`,`estado`) VALUES 
-  (0,'VACIO','','nothing.gif','A');
-INSERT INTO `partido_politico` (`id`,`nombre`,`abreviatura`,`logo`,`estado`) VALUES 
-  (1,'Partido La Herradura','PLH','simbolo1.jpg','A');
-INSERT INTO `partido_politico` (`id`,`nombre`,`abreviatura`,`logo`,`estado`) VALUES 
-  (2,'Partido La Estrella','PLE','simbolo2.jpg','A');
 /*!40000 ALTER TABLE `partido_politico` ENABLE KEYS */;
 
 
@@ -1075,12 +387,6 @@ CREATE TABLE `perfil` (
 --
 
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
-INSERT INTO `perfil` (`id`,`nombre`,`descripcion`,`estado`) VALUES 
-  (1,'OPERADOR CENTRAL','OPERADOR CENTRAL','A');
-INSERT INTO `perfil` (`id`,`nombre`,`descripcion`,`estado`) VALUES 
-  (2,'OPERADOR DE CONSULADO','OPERADOR DE CONSULADO','A');
-INSERT INTO `perfil` (`id`,`nombre`,`descripcion`,`estado`) VALUES 
-  (3,'OPERADOR DE MODULO','OPERADOR DE MODULO','A');
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 
 
@@ -1098,43 +404,13 @@ CREATE TABLE `pin` (
   PRIMARY KEY  (`id`),
   KEY `fk_Elector` (`Elector_id`),
   CONSTRAINT `pin_ibfk_1` FOREIGN KEY (`Elector_id`) REFERENCES `elector` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=16;
+) TYPE=InnoDB AUTO_INCREMENT=20;
 
 --
 -- Dumping data for table `pin`
 --
 
 /*!40000 ALTER TABLE `pin` DISABLE KEYS */;
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (1,1,'7a07b875012845e93fb574a1b2688a50','2008-11-23','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (2,1,'35705a2db353d7b601a0aee5b8a8cf23','2008-11-23','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (3,1,'2452a1944641edb28621ef89962441c0','2008-11-23','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (4,1,'ed7a2a046c961e9904082680864e16d0','2008-12-06','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (5,1,'376b1d307ce339514461b666b8924e14','2008-12-11','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (6,1,'daba3c3d9942a32cfac02341e0ea3831','2008-12-26','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (7,1,'017c7bf8a9b7c0d7946f58d1259a59b2','2008-12-27','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (8,1,'eeb89a4cca71d181edb7af8f0bc7da98','2008-12-27','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (9,1,'d49cef543fb7d8a739df7d8b72c3b5da','2008-12-27','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (10,1,'86be56fc99c7cdd478665f21f7fcc86b','2008-12-27','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (11,1,'a8be8b1d24a67fb97c02f330e6edbca2','2009-01-05','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (12,1,'9405198d61f603dc01d658b27d9e45c1','2009-01-06','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (13,1,'f7ec56be2989fc0939cc92e431837a99','2009-01-07','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (14,1,'e574e8aa60cbf1b0a3698c4f0a8867f1','2009-01-07','I');
-INSERT INTO `pin` (`id`,`Elector_id`,`numero`,`creacion`,`estado`) VALUES 
-  (15,1,'1f66515294d94baa73ef22a44496760b','2009-01-07','A');
 /*!40000 ALTER TABLE `pin` ENABLE KEYS */;
 
 
@@ -1164,8 +440,6 @@ CREATE TABLE `proceso_electoral` (
 --
 
 /*!40000 ALTER TABLE `proceso_electoral` DISABLE KEYS */;
-INSERT INTO `proceso_electoral` (`id`,`Usuario_id`,`descripcion`,`fecha_votacion`,`hora_inicial`,`hora_final`,`fecha_padron_inicial`,`fecha_padron_final`,`tiempo_sesion`,`estado`) VALUES 
-  (1,5,'Elecciones Presidenciales DEMO','2009-01-07','00:01:31','00:51:31','2008-11-08','2008-12-28',3,'A');
 /*!40000 ALTER TABLE `proceso_electoral` ENABLE KEYS */;
 
 
@@ -1196,18 +470,6 @@ CREATE TABLE `usuario` (
 --
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` (`id`,`Perfil_id`,`nombre`,`paterno`,`materno`,`dni`,`email`,`movil`,`username`,`passwd`,`estado`) VALUES 
-  (1,3,'Operador','de Modulo','1','','','','modulo1','123','A');
-INSERT INTO `usuario` (`id`,`Perfil_id`,`nombre`,`paterno`,`materno`,`dni`,`email`,`movil`,`username`,`passwd`,`estado`) VALUES 
-  (2,3,'Operador','de Modulo','2','','','','modulo2','123','A');
-INSERT INTO `usuario` (`id`,`Perfil_id`,`nombre`,`paterno`,`materno`,`dni`,`email`,`movil`,`username`,`passwd`,`estado`) VALUES 
-  (3,3,'Operador','de Modulo','3','','','','modulo3','123','A');
-INSERT INTO `usuario` (`id`,`Perfil_id`,`nombre`,`paterno`,`materno`,`dni`,`email`,`movil`,`username`,`passwd`,`estado`) VALUES 
-  (4,3,'Operador','de Modulo','4','','','','modulo4','123','A');
-INSERT INTO `usuario` (`id`,`Perfil_id`,`nombre`,`paterno`,`materno`,`dni`,`email`,`movil`,`username`,`passwd`,`estado`) VALUES 
-  (5,1,'Renzo','Portocarrero','Heredia','41726972','renzo@mayopi.com','1993478235','central1','123','A');
-INSERT INTO `usuario` (`id`,`Perfil_id`,`nombre`,`paterno`,`materno`,`dni`,`email`,`movil`,`username`,`passwd`,`estado`) VALUES 
-  (6,2,'Operador','Consulado','1','','','','consul1','123','A');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
@@ -1223,19 +485,13 @@ CREATE TABLE `voto` (
   PRIMARY KEY  (`id`),
   KEY `Voto_FKIndex1` (`Locacion_id`),
   CONSTRAINT `voto_ibfk_1` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=4;
+) TYPE=InnoDB AUTO_INCREMENT=7;
 
 --
 -- Dumping data for table `voto`
 --
 
 /*!40000 ALTER TABLE `voto` DISABLE KEYS */;
-INSERT INTO `voto` (`id`,`Locacion_id`,`Opcion_id`) VALUES 
-  (1,5,0x825880BE31996EB6CA06CCEB43B1781B);
-INSERT INTO `voto` (`id`,`Locacion_id`,`Opcion_id`) VALUES 
-  (2,5,0x637D3CE4DBF64D065405784FE2163A3E);
-INSERT INTO `voto` (`id`,`Locacion_id`,`Opcion_id`) VALUES 
-  (3,5,0x825880BE31996EB6CA06CCEB43B1781B);
 /*!40000 ALTER TABLE `voto` ENABLE KEYS */;
 
 
@@ -1257,56 +513,6 @@ CREATE TABLE `zona_horaria` (
 --
 
 /*!40000 ALTER TABLE `zona_horaria` DISABLE KEYS */;
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (1,-12,'GMT -12:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (2,-11,'GMT -11:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (3,-10,'GMT -10:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (4,-9,'GMT -09:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (5,-8,'GMT -08:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (6,-7,'GMT -07:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (7,-6,'GMT -06:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (8,-5,'GMT -05:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (9,-4,'GMT -04:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (10,-3,'GMT -03:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (11,-2,'GMT -02:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (12,-1,'GMT -01:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (13,0,'GMT +00:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (14,1,'GMT +01:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (15,2,'GMT +02:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (16,3,'GMT +03:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (17,4,'GMT +04:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (18,5,'GMT +05:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (19,6,'GMT +06:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (20,7,'GMT +07:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (21,8,'GMT +08:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (22,9,'GMT +09:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (23,10,'GMT +10:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (24,11,'GMT +11:00','A');
-INSERT INTO `zona_horaria` (`id`,`tiempo`,`nombre`,`estado`) VALUES 
-  (25,12,'GMT +12:00','A');
 /*!40000 ALTER TABLE `zona_horaria` ENABLE KEYS */;
 
 
@@ -1342,8 +548,6 @@ BEGIN
         set puesta_cero='S',
             fecha_puesta_cero=CURRENT_TIMESTAMP
             where id=codigo;
-             
-        
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
@@ -1357,30 +561,28 @@ DROP PROCEDURE IF EXISTS `pa_ADMIN_crearProcesoDemo`;
 
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_crearProcesoDemo`()
 BEGIN
 	declare v_usuario int(10);
 	declare v_proceso int(10);
-	/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-	/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-	-- eliminacion de tablas
-	truncate proceso_electoral;
-	truncate locacion;
+	truncate pin;
+	truncate elector;
+	truncate voto;
+	truncate escrutinio;
 	truncate operador;
+	truncate locacion;
+	truncate opcion;
+	truncate candidato_partido_politico;
 	truncate candidato;
 	truncate partido_politico;
-	truncate candidato_partido_politico;
 	truncate cedula;
-	truncate opcion;
-	truncate elector;
-	-- creacion de proceso
+	truncate proceso_electoral;
 	select id into v_usuario from usuario where perfil_id = 1 and estado = 'A' limit 0, 1;
 	call pa_proceso_electoral_insertar(v_usuario, 'Elecciones Presidenciales DEMO', 
-		CURRENT_DATE, CURRENT_TIME, addtime(CURRENT_TIME, '00:50:00'), 
+		CURRENT_DATE, CURRENT_TIME, addtime(CURRENT_TIME, '00:20:00'), 
 		adddate(CURRENT_DATE, -60), adddate(CURRENT_DATE, -10), 3);
 	select id into v_proceso from proceso_electoral where descripcion = 'Elecciones Presidenciales DEMO';
-	-- datos pre-electorales
 	insert into locacion values (1, v_proceso, 1, 'N', 'A', null, null);
 	insert into locacion values (2, v_proceso, 2, 'N', 'A', null, null);
 	insert into locacion values (3, v_proceso, 3, 'N', 'A', null, null);
@@ -1409,26 +611,27 @@ BEGIN
 	insert into operador values (3, 13, 'A');
 	insert into candidato (id, nombre, paterno, materno, dni, foto, estado) 
 	values (0, '', '', '', '', 'nothing.gif', 'A'), 
-	       (1, 'Juan', 'Perez', 'Pinto', '41723412', 'candidato1.jpg', 'A'),
-	       (2, 'Laura', 'Loca', 'Paliza', '34679213', 'candidato2.jpg', 'A');
+	       (1, 'Juan Pablo', 'Perez', 'Pinto', '41723412', 'candidato1.jpg', 'A'),
+	       (2, 'Luis Eduardo', 'Loca', 'Paliza', '34679213', 'candidato2.jpg', 'A');
 	insert into partido_politico (id, nombre, abreviatura, logo, estado) 
 	values (0, 'VACIO', '', 'nothing.gif', 'A'), 
 	       (1, 'Partido La Herradura', 'PLH', 'simbolo1.jpg', 'A'),
-	       (2, 'Partido La Estrella', 'PLE', 'simbolo2.jpg', 'A');
+	       (2, 'Partido La Estafa', 'PLE', 'simbolo2.jpg', 'A');
 	insert  into candidato_partido_politico (id, Partido_Politico_id, Candidato_id, fecha_creacion, fecha_modificacion, estado) 
 	values (0, 0, 0, now(), now(), 'A'),
 	       (1, 1, 1, now(), now(), 'A'),
 	       (2, 2, 2, now(), now(), 'A');
 	insert  into cedula (id, Proceso_Electoral_id, tipo, estado, fecha_creacion, fecha_modificacion) 
-	values (1, v_proceso, 'P', 'A', now(), now());
+	values (1, v_proceso, 'P', 'P', now(), now());
 	insert into opcion (id, Candidato_Partido_Politico_id, Cedula_id, orden, fecha_creacion)
 	values (1, 0, 1, 3, now()), (2, 1, 1, 1, now()), (3, 2, 1, 2, now());
-	-- activamos el proceso electoral
 	call pa_proceso_electoral_activar(v_proceso);
-	-- creamos un usuario empadronado
-	call pa_elector_registrar(0, 5, 'Renzo', 'Portocarrero', 'Heredia', '41726972', 'i611065@cibertec.edu.pe');
-	/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-	/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+	call pa_elector_registrar(0, 5, 'Renzo', 'Portocarrero', 'Heredia', '11111111', 'renzo@cibertec.edu.pe');
+	call pa_elector_registrar(0, 5, 'Rudy', 'Capatinta', 'Aucca', '22222222', 'rudy@cibertec.edu.pe');
+	call pa_elector_registrar(0, 5, 'Omar', 'Carpio', 'Carpio', '33333333', 'omar@cibertec.edu.pe');
+	call pa_elector_registrar(0, 5, 'Jhoon', 'Saravia', 'Tasayco', '44444444', 'jhoon@cibertec.edu.pe');
+	call pa_elector_registrar(0, 5, 'Marco', 'Cristobal', 'Salazar', '55555555', 'marco@cibertec.edu.pe');
+	call pa_elector_registrar(0, 5, 'Aaron', 'Ramirez', 'Tafur', '66666666', 'aaron@cibertec.edu.pe');
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
@@ -1442,13 +645,28 @@ DROP PROCEDURE IF EXISTS `pa_ADMIN_setDefaultData`;
 
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_setDefaultData`()
 BEGIN
-	/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-	/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-	-- data inicial para la tabla pais
+	truncate pin;
+	truncate elector;
+	truncate voto;
+	truncate escrutinio;
+	truncate operador;
+	truncate locacion;
+	truncate centro_votacion;
+	truncate opcion;
+	truncate candidato_partido_politico;
+	truncate candidato;
+	truncate partido_politico;
+	truncate cedula;
+	truncate proceso_electoral;
+	truncate zona_horaria;
 	truncate pais;
+	truncate perfil;
+	truncate usuario;
+	truncate diccionario_log;
+
 	insert into pais values (1, 'Argentina', 'AR', 'A');
 	insert into pais values (2, 'Bolivia', 'BO', 'A');
 	insert into pais values (3, 'Brasil', 'BR', 'A');
@@ -1462,8 +680,6 @@ BEGIN
 	insert into pais values (11, 'Venezuela', 'VE', 'A');
 	insert into pais values (12, 'Estados Unidos de América', 'EU', 'A');
 	insert into pais values (13, 'Japón', 'JP', 'A');
-	-- data inicial para la tabla zona_horaria
-	truncate zona_horaria;
 	insert into zona_horaria values (1, -12, 'GMT -12:00', 'A');
 	insert into zona_horaria values (2, -11, 'GMT -11:00', 'A');
 	insert into zona_horaria values (3, -10, 'GMT -10:00', 'A');
@@ -1489,8 +705,6 @@ BEGIN
 	insert into zona_horaria values (23, 10, 'GMT +10:00', 'A');
 	insert into zona_horaria values (24, 11, 'GMT +11:00', 'A');
 	insert into zona_horaria values (25, 12, 'GMT +12:00', 'A');
-	-- data inicial para la tabla centro_votacion
-	truncate centro_votacion;
 	insert into centro_votacion values (1, 1, 10, '', 'Consulado de Argentina', '', '', 'A');
 	insert into centro_votacion values (2, 2, 9, '', 'Consulado de Bolivia', '', '', 'A');
 	insert into centro_votacion values (3, 3, 10, '', 'Consulado de Brasil', '', '', 'A');
@@ -1504,37 +718,23 @@ BEGIN
 	insert into centro_votacion values (11, 11, 9, '', 'Consulado de Venezuela', '', '', 'A');
 	insert into centro_votacion values (12, 12, 9, '', 'Consulado de New York', '', '', 'A');
 	insert into centro_votacion values (13, 12, 5, '', 'Consulado de Los Angeles', '', '', 'A');
-	-- data inicial para la tabla perfil
-	truncate perfil;
 	insert into perfil (id, nombre, descripcion, estado) values 
-	(1, 'OPERADOR CENTRAL', 'OPERADOR CENTRAL', 'A'),
-	(2, 'OPERADOR DE CONSULADO', 'OPERADOR DE CONSULADO', 'A'),
-	(3, 'OPERADOR DE MODULO', 'OPERADOR DE MODULO', 'A');
-	-- data inicial para la tabla usuario
-	truncate usuario;
-	insert into usuario values (1, 3, 'Operador', 'de Modulo', '1', '', '', '', 'modulo1', '123', 'A');
-	insert into usuario values (2, 3, 'Operador', 'de Modulo', '2', '', '', '', 'modulo2', '123', 'A');
-	insert into usuario values (3, 3, 'Operador', 'de Modulo', '3', '', '', '', 'modulo3', '123', 'A');
-	insert into usuario values (4, 3, 'Operador', 'de Modulo', '4', '', '', '', 'modulo4', '123', 'A');
-	insert into usuario values (5, 1, 'Operador', 'Central', '1', '', '', '', 'central1', '123', 'A');
-	-- data inicial para la tabla diccionario_log
-	truncate diccionario_log;
+	(1, 'OPERADOR CENTRAL', 'Operador Central', 'A'),
+	(2, 'OPERADOR DE CONSULADO', 'Operador de Consulado para Impresion de Credenciales', 'A'),
+	(3, 'OPERADOR DE MODULO', 'Operador de Centro de Votacion', 'A');
+	insert into usuario values (1, 3, 'Luis', 'Aldana', '1', '', '', '', 'modulo1', '123', 'A');
+	insert into usuario values (2, 3, 'Alfredo', 'Benavides', '2', '', '', '', 'modulo2', '123', 'A');
+	insert into usuario values (3, 3, 'Albelardo', 'Quiñones', '3', '', '', '', 'modulo3', '123', 'A');
+	insert into usuario values (4, 3, 'Francisco', 'Bolognesi', '4', '', '', '', 'modulo4', '123', 'A');
+	insert into usuario values (5, 1, 'Nolberto', 'Solano', '1', '', '', '', 'central1', '123', 'A');
 	insert into diccionario_log values (1, 'LOG');
 	insert into diccionario_log values (2, 'LOG');
 	insert into diccionario_log values (3, 'LOG');
 	insert into diccionario_log values (4, 'LOG');
 	insert into diccionario_log values (5, 'LOG');
-	-- data inicial para la tabla partido_politico
-	truncate partido_politico;
 	insert into partido_politico values (0, 'VACIO', '', 'nothing.gif', 'A');
-	-- data inicial para la tabla candidato
-	truncate candidato;
 	insert into candidato values (0, '', '', '', '', 'nothing.gif', 'A');
-	-- data inicial para la tabla candidato_partido_politico
-	truncate candidato_partido_politico;
 	insert into candidato_partido_politico values (0, 0, 0, now(), now(), 'A');
-	/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-	/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
@@ -1738,6 +938,23 @@ BEGIN
 DELIMITER ;
 
 --
+-- Definition of procedure `pa_cedula_cargarProcesosElectorales`
+--
+
+DROP PROCEDURE IF EXISTS `pa_cedula_cargarProcesosElectorales`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_cedula_cargarProcesosElectorales`()
+BEGIN
+	select id, descripcion as nombre from proceso_electoral where estado = 'C';
+    END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
 -- Definition of procedure `pa_cedula_listar`
 --
 
@@ -1751,7 +968,7 @@ BEGIN
 	SELECT 
 		c.id, p.descripcion, c.tipo, c.estado 
 	from 
-		proceso_electoral p left join cedula c 
+		proceso_electoral p inner join cedula c 
 	on c.Proceso_Electoral_id = p.id 
 	order by p.id desc;
     END $$

@@ -67,12 +67,28 @@
 					<td colspan="2" align="center">
 					
 					<ul id="list">
-						<li id="item_1">Primer Nombre: <input type="text" /></li>
-						<li id="item_2">Apellido Paterno: <input type="text" /></li>
-						<li id="item_3">Apellido Materno: <input type="text" /></li>
-						<li id="item_4">Edad: <input type="text" /></li>
-						<li id="item_5">Hobby: <input type="text" /></li>
-						<li id="item_6">Segundo Nombre: <input type="text" /></li>
+						<nested:iterate property="opciones" id="opcion">
+						<li id="item_<bean:write name="opcion" />">
+							<table width="100%" border="0" cellspacing="0" cellpadding="3">
+							<tr>
+							<td align="center">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+				                <td width="10">&nbsp;</td>
+								<td class="nombrePartido">
+								Partido Politico
+								</td>
+				                <td width="10">&nbsp;</td>
+				                <td width="74"><img src="files/simbolo1.jpg" width="74" height="74" border="0" class="fotoCedula" /></td>
+				                <td width="10">&nbsp;</td>
+				                <td width="74"><img src="files/candidato1.jpg" width="74" height="74" border="0" class="fotoCedula" /></td>
+								</tr>
+								</table>
+							</td>
+							</tr>
+							</table>
+						</li>
+						</nested:iterate>
 					</ul>
 
 					<p id="list-info"></p>
