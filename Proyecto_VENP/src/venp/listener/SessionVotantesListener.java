@@ -14,7 +14,8 @@ import venp.web.forms.ElectorForm;
 public class SessionVotantesListener implements HttpSessionListener,
 		HttpSessionAttributeListener {
 
-	public static ArrayList votantesActivos;
+	public static ArrayList 
+	votantesActivos;
 
 	public SessionVotantesListener() {
 		votantesActivos = new ArrayList();
