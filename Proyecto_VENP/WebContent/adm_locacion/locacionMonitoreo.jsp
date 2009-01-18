@@ -44,15 +44,15 @@
 				    <td class="alt01" valign="middle" align="left"><nested:write property="horaLocal" format="dd/MM/yyyy HH:mm" /></td>
 				    <td class="alt01" valign="middle" align="left"><nested:write property="horaVotacionInicio" format="dd/MM/yyyy HH:mm" /></td>
 				    <td class="alt01" valign="middle" align="center"><nested:write property="horaVotacionFin" format="dd/MM/yyyy HH:mm" /></td>
-				    <td class="alt01" valign="middle" class="gridField" align="center">
-				      <img src="media/icoMonitoreo.gif" width="25" height="25" border="0" onclick="showMonitoreo('detalle${locacion.codigo}')" />
+				    <td class="alt01" valign="middle" class="gridField" align="center" style="cursor: pointer;">
+				      <img src="media/icoMonitoreo.gif" width="25" height="25" border="0" onclick="showMonitoreo('detalle${locacion.codigo}')" title="<bean:message key="locacion.monitoreo.resumen" />" />
 				    </td>
 				  </tr>
 				  <tr>
 				    <td>&nbsp;</td>
 				    <td colspan="8" class="alt02" align="left">
 				      <div id="detalle${locacion.codigo}" class="detalleMonitoreo">
-				      <bean:message key="locacion.monitoreo.resumen" />
+				      <bean:message key="locacion.monitoreo.resumen" />:
 				      <center>
   				      <table width="700" class="graph" cellspacing="6" cellpadding="0">
 				        <tr>
