@@ -25,7 +25,7 @@ function doConfirm(typeConfirm) {
       <input type="hidden" name="hora" value="<jsp:getProperty name="Elector" property="horaSufragio" />" />
       <input type="hidden" name="gmt" value="<jsp:getProperty name="Elector" property="gmtSufragio" />" />
       <tr>
-        <td colspan="2" height="10"></td>
+        <td colspan="2" height="10" align="center"><html:errors/></td>
       </tr>
       <tr>
         <td colspan="2" class="confirmTitle"><bean:message key="elector.confirm.title" /></td>
@@ -104,7 +104,7 @@ function doConfirm(typeConfirm) {
 	        </td>
 	        <td align="center">
 	        <html:link href="javascript:doConfirm('mail');" styleClass="grisBtn">
-	   	    <div style="top: 11px;"><bean:message key="elector.confirm.mail"/></div>
+	   	    <div style="top: 11px;"><bean:message key="elector.confirm.sendmail"/></div>
 	   	    </html:link>
 	        </td>
           

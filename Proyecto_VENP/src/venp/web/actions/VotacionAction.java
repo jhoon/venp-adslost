@@ -1,14 +1,20 @@
 package venp.web.actions;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts.Globals;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.actions.DispatchAction;
+import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.MessageResourcesFactory;
 
 import venp.listener.SessionVotantesListener;
 import venp.services.ElectorService;
@@ -107,15 +113,13 @@ public class VotacionAction extends DispatchAction {
 		bean.setHoraSufragio((String)request.getParameter("hora"));
 		bean.setGmtSufragio((String)request.getParameter("gmt"));
 		if(strMode.equals("mail")){			
-			// obtener el texto a enviar
-			String strHtml = "";
-			
-			strHtml = "asdasd";
-			
-			VenpMail mailClient = new VenpMail(bean.getEmail(),strHtml);
-			mailClient.sendMail();
-			response.sendRedirect("votacion.do");
-			return null;
+			VenpMail mailClient = new VenpMail(bean,request);
+			(new Thread(mailClient)).start();
+			request.setAttribute("Elector", bean);
+			ActionErrors errors = new ActionErrors();
+			errors.add("sent", new ActionMessage("elector.confirm.mail",bean.getEmail()));
+		    saveErrors(request, errors);
+			return mapping.findForward("fin");
 		}
 		request.setAttribute("Elector", bean);
 		return mapping.findForward("confirm");
