@@ -1966,13 +1966,14 @@ DELIMITER $$
 /*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_Escrutinio_Listar_Locaciones_Cerradas`(IN pais INTEGER)
 BEGIN
-	select  count(distinct(l.id)) as locaciones_cerradas from pais p 
+	select  count(distinct(l.id)) as locaciones_cerradas from pais p
 	inner join centro_votacion cv
 	on p.id=cv.pais_id
 	inner join locacion l
-	on cv.id=l.centro_votacion_id		
+	on cv.id=l.centro_votacion_id
 	where pais_id=pais
-	and l.estado='C';
+	and l.estado='C'
+	and l.puesta_cero='S';
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 

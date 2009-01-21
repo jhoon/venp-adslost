@@ -9,17 +9,12 @@
 		<logic:empty name="listaEscrutinioForm" property="listaEscrutinio">
 			<tr>
 				<td class="errorMessage"><bean:message
-					key="listaConsolidacion.nohaydatos" /></td>
+					key="listaEscrutinio.nohaydatos" /></td>
 			</tr>
 		</logic:empty>
 
 		<logic:notEmpty name="listaEscrutinioForm" property="listaEscrutinio">
-			<tr>
-				<td class="alt03">
-				<div class="div1"><b><bean:message
-					key="listaEscrutinio.listadoPaises" /></b></div>
-				</td>
-			</tr>
+			
 
 			<nested:iterate id="locaciones" property="listaEscrutinio">
 				<tr>

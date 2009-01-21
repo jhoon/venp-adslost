@@ -75,7 +75,7 @@ public class ConsolidacionAction extends DispatchAction {
 				}else{
 						ArrayList lista = new ArrayList(); 
 						frm.setListaConsolidacion(lista);
-						errors.add("errors", new ActionMessage("listaConsolidacion.error.procesoNoCerrado"));
+						errors.add("errors", new ActionMessage("listaConsolidacion.error.locacionesAbiertas"));
 						saveErrors(request, errors);
 			    
 				}	
