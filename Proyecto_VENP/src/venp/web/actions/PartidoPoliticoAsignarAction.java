@@ -10,6 +10,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
+import venp.beans.CandidatoBean;
 import venp.beans.PartidoPoliticoBean;
 import venp.services.CandidatoService;
 import venp.services.PartidoPoliticoService;
@@ -26,12 +27,18 @@ public class PartidoPoliticoAsignarAction extends DispatchAction {
 	public ActionForward nuevo(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		PartidoPoliticoAsignarForm frm = (PartidoPoliticoAsignarForm) form;
-		
+		PartidoPoliticoAsignarForm frm = (PartidoPoliticoAsignarForm) form;		
 		PartidoPoliticoBean bean = findByPrimaryKey(frm.getCodigo());
+		int intCandidatoID = nroCandidatosAsignados(Integer.parseInt(frm.getCodigo())); 
 		
 		frm.setCodigo(bean.getCodigo() + "");
 		frm.setNombre(bean.getNombre());
+		frm.setAsignado(false);
+		if (intCandidatoID > 0) {
+			frm.setAsignado(true);
+			frm.setCandidato(findByCandidatoID(intCandidatoID));
+		}
+		frm.setLogo(bean.getLogo());
 		frm.setConCandidato(findAll_conPP(bean.getCodigo()));
 		frm.setSinCandidato(findAll_sinPP(bean.getCodigo()));
 		
@@ -49,9 +56,16 @@ public class PartidoPoliticoAsignarAction extends DispatchAction {
 		asignar(intPartidoPolitico, intCandidato);
 		
 		PartidoPoliticoBean bean = findByPrimaryKey(intPartidoPolitico + "");
+		int intCandidatoID = nroCandidatosAsignados(Integer.parseInt(frm.getCodigo()));
 		
 		frm.setCodigo(bean.getCodigo() + "");
 		frm.setNombre(bean.getNombre());
+		frm.setAsignado(false);
+		if (intCandidatoID > 0) {
+			frm.setAsignado(true);
+			frm.setCandidato(findByCandidatoID(intCandidatoID));
+		}
+		frm.setLogo(bean.getLogo());
 		frm.setConCandidato(findAll_conPP(intPartidoPolitico));
 		frm.setSinCandidato(findAll_sinPP(intPartidoPolitico));
 		
@@ -64,14 +78,22 @@ public class PartidoPoliticoAsignarAction extends DispatchAction {
 		PartidoPoliticoAsignarForm frm = (PartidoPoliticoAsignarForm) form;
 		
 		int intPartidoPolitico = Integer.parseInt(frm.getCodigo());
-		int intCandidato = Integer.parseInt(frm.getCvDestino());
+		//int intCandidato = Integer.parseInt(frm.getCvDestino());
+		int intCandidato = nroCandidatosAsignados(Integer.parseInt(frm.getCodigo()));
 		
 		retirar(intPartidoPolitico, intCandidato);
 		
 		PartidoPoliticoBean bean = findByPrimaryKey(intPartidoPolitico + "");
+		int intCandidatoID = nroCandidatosAsignados(Integer.parseInt(frm.getCodigo()));
 		
 		frm.setCodigo(bean.getCodigo() + "");
 		frm.setNombre(bean.getNombre());
+		frm.setAsignado(false);
+		if (intCandidatoID > 0) {
+			frm.setAsignado(true);
+			frm.setCandidato(findByCandidatoID(intCandidatoID));
+		}
+		frm.setLogo(bean.getLogo());
 		frm.setConCandidato(findAll_conPP(intPartidoPolitico));
 		frm.setSinCandidato(findAll_sinPP(intPartidoPolitico));
 		
@@ -107,6 +129,16 @@ public class PartidoPoliticoAsignarAction extends DispatchAction {
 	private void retirar(int partidoPolitico, int candidato) throws Exception {
 		CandidatoService service = new CandidatoService();
 		service.retirar(partidoPolitico, candidato);
+	}
+	
+	private int nroCandidatosAsignados(int partidoPoliticoID) throws Exception {
+		PartidoPoliticoService service = new PartidoPoliticoService();		
+		return service.totalCandidatosAsignados(partidoPoliticoID);
+	}
+	
+	private CandidatoBean findByCandidatoID(int candidatoID) throws Exception {
+		CandidatoService service = new CandidatoService();
+		return service.findByPrimaryKey(candidatoID);
 	}
 
 }

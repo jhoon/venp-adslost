@@ -7,12 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 
+import venp.beans.CandidatoBean;
+
 public class PartidoPoliticoAsignarForm extends ActionForm {
 
 	private String codigo;
 	private String nombre;
+	private String logo;
+	private boolean asignado;
 	private ArrayList conCandidato;
 	private ArrayList sinCandidato;
+	private CandidatoBean candidato;
 	private String cvOrigen;
 	private String cvDestino;
 
@@ -41,6 +46,22 @@ public class PartidoPoliticoAsignarForm extends ActionForm {
 		this.nombre = nombre;
 	}
 
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public boolean isAsignado() {
+		return asignado;
+	}
+
+	public void setAsignado(boolean asignado) {
+		this.asignado = asignado;
+	}
+
 	public ArrayList getConCandidato() {
 		return conCandidato;
 	}
@@ -55,6 +76,14 @@ public class PartidoPoliticoAsignarForm extends ActionForm {
 
 	public void setSinCandidato(ArrayList sinCandidato) {
 		this.sinCandidato = sinCandidato;
+	}
+
+	public CandidatoBean getCandidato() {
+		return candidato;
+	}
+
+	public void setCandidato(CandidatoBean candidato) {
+		this.candidato = candidato;
 	}
 
 	public String getCvOrigen() {
@@ -74,3 +103,13 @@ public class PartidoPoliticoAsignarForm extends ActionForm {
 	}
 
 }
+
+/*
+
+<html:select size="10" property="cvDestino" styleClass="empField" style="width: 250px; height: 200px;">
+  <logic:notEmpty name="partidoPoliticoAsignarForm" property="conCandidato">
+    <html:optionsCollection property="conCandidato" value="codigo" label="nombreCompleto" />
+  </logic:notEmpty>
+</html:select>
+
+*/

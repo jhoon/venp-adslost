@@ -63,4 +63,13 @@ public class PartidoPoliticoService {
 		}
 	}
 	
+	public int totalCandidatosAsignados(int partidoPoliticoID) throws Exception {
+		try {
+			return dao.totalCandidatosAsignados(partidoPoliticoID);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 }

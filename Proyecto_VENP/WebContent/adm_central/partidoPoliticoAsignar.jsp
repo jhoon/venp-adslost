@@ -21,10 +21,10 @@
     
     function retirar() {
       with(document.partidoPoliticoAsignarForm) {
-        if(cvDestino.value == "") {
-          alert("<bean:message key="partidoPolitico.destino.empty" />");
-          return;
-        }
+        //if(cvDestino.value == "") {
+        //  alert("<bean:message key="partidoPolitico.destino.empty" />");
+        //  return;
+        //}
 		
         cmd.value = "retirar";
         submit();
@@ -46,7 +46,8 @@
                 </tr>
                 <tr>
                   <td colspan="3" align="center" style="height: 30px;">
-                    <span class="asignHeader"><bean:write name="partidoPoliticoAsignarForm" property="nombre" /></span>
+                    <span class="asignHeader" style="font-size: 20px; height: 30px;"><bean:write name="partidoPoliticoAsignarForm" property="nombre" /></span><br />
+                    <img src='files/<bean:write name="partidoPoliticoAsignarForm" property="logo" />' width="74" height="74" border="0" />
                   </td>
                 </tr>   
                 <tr>
@@ -69,17 +70,20 @@
                           </html:select>
                         </td>
                         <td width="150" align="center">
-                          <input type="button" onclick="asignar()" value="<bean:message key="general.opcion.asignar" /> >>>" />
-        	              <br>
-        	              <br>
-        	              <input type="button" onclick="retirar()" value="<<< <bean:message key="general.opcion.retirar" />" />
+                          <logic:equal name="partidoPoliticoAsignarForm" property="asignado" value="true">
+                          <input type="button" onclick="retirar()" value="< <bean:message key="general.opcion.retirar" />" />
+                          </logic:equal>
+                          <logic:notEqual name="partidoPoliticoAsignarForm" property="asignado" value="true">
+                          <input type="button" onclick="asignar()" value="<bean:message key="general.opcion.asignar" /> >" />
+                          </logic:notEqual>
                         </td>
-                        <td align="left">
-                          <html:select size="10" property="cvDestino" styleClass="empField" style="width: 250px; height: 200px;">
-                            <logic:notEmpty name="partidoPoliticoAsignarForm" property="conCandidato">
-                              <html:optionsCollection property="conCandidato" value="codigo" label="nombreCompleto" />
-                            </logic:notEmpty>
-                          </html:select>
+                        <td align="center" valign="middle">
+                          <logic:equal name="partidoPoliticoAsignarForm" property="asignado" value="true">
+                          <br />
+                          <img src='files/<nested:write property="candidato.foto" />' width="74" height="74" border="0" />
+                          <br /><br />
+                          <nested:write property="candidato.nombreCompleto" />
+                          </logic:equal>
                         </td>                      
                       </tr>
                     </table>

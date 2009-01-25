@@ -15,4 +15,7 @@ public interface PartidoPoliticoDAO {
 	public String insertar(PartidoPoliticoBean bean) throws Exception;
 
 	public String editar(PartidoPoliticoBean bean) throws Exception;
+	
+	public int totalCandidatosAsignados(int partidoPoliticoID) throws Exception;
+	
 }

@@ -53,5 +53,9 @@
     <procedure id="insertar" parameterMap="paramMap2" resultClass="string">
 		{call pa_partidoPolitico_insert (?, ?, ?)}
 	</procedure>
+  
+	<procedure id="candidatosAsignados" parameterClass="java.lang.Integer" resultClass="java.lang.Integer">
+        {call pa_partidoPolitico_CandidatosAsignados (#v_PartidoPoliticoID#)}
+    </procedure>
 	
 </sqlMap>

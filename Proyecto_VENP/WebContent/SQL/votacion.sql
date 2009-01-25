@@ -3714,7 +3714,26 @@ BEGIN
 
 DELIMITER ;
 
+--
+-- Definition of procedure `pa_partidoPolitico_CandidatosAsignados`
+--
 
+DROP PROCEDURE IF EXISTS `votacion`.`pa_partidoPolitico_CandidatosAsignados`;
+
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `votacion`.`pa_partidoPolitico_CandidatosAsignados`(IN v_PartidoPoliticoID INTEGER)
+    BEGIN
+	select ifnull(Candidato_id, 0) as Candidato
+        from candidato_partido_politico 
+        where Partido_Politico_id = v_PartidoPoliticoID and
+              estado = 'A';
+    END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
