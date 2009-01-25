@@ -6,7 +6,9 @@ function doConfirm(typeConfirm) {
 		mode.value=typeConfirm;
 		if(mode.value == "print")
 			document.cedulaForm.target = "_blank";
-		else
+		else if (mode.value == "print"){
+			document.cedulaForm.target = "_blank";
+		}else
 			document.cedulaForm.target = "_self";
 		submit();
 		return;
@@ -98,7 +100,7 @@ function doConfirm(typeConfirm) {
 	   	    </html:link>
 	        </td>
 	        <td align="center">
-	        <html:link href="#" styleClass="grisBtn">
+	        <html:link href="javascript:doConfirm('pdf');" styleClass="grisBtn">
 	   	    <div style="top: 11px;"><bean:message key="elector.confirm.aspdf"/></div>
 	   	    </html:link>
 	        </td>

@@ -1,11 +1,9 @@
 package venp.web.actions;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -13,11 +11,10 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.actions.DispatchAction;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.MessageResourcesFactory;
 
 import venp.listener.SessionVotantesListener;
 import venp.services.ElectorService;
+import venp.utils.CreaPDF;
 import venp.utils.VenpMail;
 import venp.web.forms.ElectorForm;
 
@@ -120,6 +117,13 @@ public class VotacionAction extends DispatchAction {
 			errors.add("sent", new ActionMessage("elector.confirm.mail",bean.getEmail()));
 		    saveErrors(request, errors);
 			return mapping.findForward("fin");
+		}else if(strMode.equals("pdf")){
+			CreaPDF pdf = new CreaPDF(bean, request, response);
+			response.setContentType("application/pdf");
+			//response.setContentType("Content-Type: application/force-download");
+			//response.setContentType("application/force-download");
+			pdf.generatePDF();
+			return mapping.findForward("confirm");
 		}
 		request.setAttribute("Elector", bean);
 		return mapping.findForward("confirm");
