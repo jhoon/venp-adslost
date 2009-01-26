@@ -1,7 +1,6 @@
 <%@ include file="/includes/taglibs.inc.jsp" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:useBean id="Elector" type="venp.web.forms.ElectorForm" scope="request" />
 <html>
@@ -11,13 +10,13 @@
 <link rel="stylesheet" type="text/css" href="<html:rewrite page="/votacion/css/votacion.css" />" />
 <title><bean:message key="global.application.title" /></title>
 </head>
-<body class="bodyPF">
-	<table width="800" border="0" cellspacing="0" cellpadding="0">
+<body class="bodyPF" onload="print();">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td align="center" valign="top" >
     <table border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td colspan="2" height="10"></td>
+        <td colspan="2" style="height:50px;"></td>
       </tr>
       <tr>
         <td colspan="2" class="confirmTitlePF"><bean:message key="elector.confirm.title" /></td>

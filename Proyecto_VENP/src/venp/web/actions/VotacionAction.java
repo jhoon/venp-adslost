@@ -119,11 +119,8 @@ public class VotacionAction extends DispatchAction {
 			return mapping.findForward("fin");
 		}else if(strMode.equals("pdf")){
 			CreaPDF pdf = new CreaPDF(bean, request, response);
-			response.setContentType("application/pdf");
-			//response.setContentType("Content-Type: application/force-download");
-			//response.setContentType("application/force-download");
 			pdf.generatePDF();
-			return mapping.findForward("confirm");
+			return null;
 		}
 		request.setAttribute("Elector", bean);
 		return mapping.findForward("confirm");

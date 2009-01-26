@@ -3,21 +3,30 @@
 <script type="text/javascript">
 function doConfirm(typeConfirm) {
 	with(document.cedulaForm) {
-		mode.value=typeConfirm;
-		if(mode.value == "print")
+		mode.value = typeConfirm;
+		if(mode.value == "print") {
+			var queryString = "";
+			for(var i=0; i<elements.length; i++) {
+				if(queryString != "") {
+					queryString += "&";
+				}
+				queryString += elements[i].name + "=" + elements[i].value;
+			}
+			Popup.open({url:"votacion.do?" + queryString});
+			//alert(queryString);
+			return;
+		} else if (mode.value == "pdf"){
 			document.cedulaForm.target = "_blank";
-		else if (mode.value == "print"){
-			document.cedulaForm.target = "_blank";
-		}else
+		}else {
 			document.cedulaForm.target = "_self";
+		}
 		submit();
-		return;
 	}
 }
 </script>
 <table width="800" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td align="center" valign="top" >
+    <td align="center" valign="top">
     <table border="0" cellspacing="0" cellpadding="0">
       <html:form action="votacion.do">
       <input type="hidden" name="cmd" value="confirm" />
@@ -109,7 +118,6 @@ function doConfirm(typeConfirm) {
 	   	    <div style="top: 11px;"><bean:message key="elector.confirm.sendmail"/></div>
 	   	    </html:link>
 	        </td>
-          
         </tr>
         </table>
         </td>
