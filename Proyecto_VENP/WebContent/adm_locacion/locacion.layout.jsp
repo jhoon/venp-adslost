@@ -6,6 +6,9 @@
     <title><bean:message key="global.application.title" /></title>
     <link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />
     <link rel="stylesheet" type="text/css" href="<html:rewrite page="/adm_locacion/css/locacion.css" />" />
+    <script type="text/javascript" src="<html:rewrite page="/includes/js/prototype.js" />"></script>
+    <script type="text/javascript" src="<html:rewrite page="/includes/js/scriptaculous.js" />"></script>
+    <script type="text/javascript" src="<html:rewrite page="/adm_locacion/js/monitoreo.js" />"></script>
   </head>
 
   <body>

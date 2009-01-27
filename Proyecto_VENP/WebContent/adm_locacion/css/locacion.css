@@ -1,15 +1,20 @@
 .thead { background: #4b4b4b;
-         font: bold 11px tahoma, verdana, arial;
+         font-family: Verdana;
+         font-size: 10px;
+         font-weight: bold;
          color: #ffffff;
        }
 
 .thead2 { 
-         font: bold 14px tahoma, verdana, arial;
+         font-family: Verdana;
+         font-size: 14px;
+         font-weight: bold;
          color: #ffffff;
        }
        
 .alt01 { background: #f8f8f8;
          color: #000000;
+         font-size: 10px;
        }
 
 .alt02 { background: #eaf0e8;
@@ -20,7 +25,9 @@
            border-top: #333 1px solid;
            border-bottom: #333 1px solid;
            border-left: #333 1px solid;
-           font: 10pt Tahoma, Verdana, Arial;
+           font-family: Verdana;
+           font-size: 10px;
+           font-weight: normal;
            background: #999999;
            color: #000000;
          }
@@ -68,14 +75,14 @@
        }
 
 .graph td { font-family: Verdana, Arial, Helvetica, sans-serif;
-            font-size: 9pt;
+            font-size: 9px;
           }
 
 .bar { background-color: white;
        text-align: right;
        border-left: solid 1px black;
-       padding-right: 0.5em;
-       width: 400px;
+       padding-right: 5px;
+       width: 500px;
      }
 
 .bar div { 
@@ -89,7 +96,6 @@
   height: 1em;
 }
 
-.detalleMonitoreo {
-	display: none;
+div.detalleMonitoreo {
 }
             

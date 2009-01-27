@@ -150,6 +150,7 @@
 			type="venp.web.actions.LocacionMonitoreoAction" scope="session">
 			<forward name="inicio" path="monitoreoTransac" />
 			<forward name="listado" path="/locacionMonitoreo.do?cmd=listar" />
+			<forward name="ajax" path="/adm_locacion/ajax.jsp" />
 		</action>
 
 		<action path="/locacionCerrarVotacion" name="locacionCerrarVotacionForm"
