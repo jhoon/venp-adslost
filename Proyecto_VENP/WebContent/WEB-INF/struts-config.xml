@@ -79,7 +79,7 @@
 
 		<action path="/login" name="loginForm" input="/login.jsp"
 			parameter="cmd" type="venp.web.actions.LoginAction" scope="session">
-			<forward name="inicio" path="/login.jsp" redirect="true" />
+			<forward name="inicio" path="/login.jsp" />
 			<forward name="locacion" path="/adm_locacion/locacion.jsp" redirect="true" />
 			<forward name="central" path="/centralMenu.do" redirect="true" />
 			<forward name="consulado" path="/consulado.do" redirect="true" />
