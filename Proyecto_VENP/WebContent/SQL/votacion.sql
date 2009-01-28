@@ -477,11 +477,13 @@ CREATE TABLE `usuario` (
 -- Definition of table `voto`
 --
 
+
 DROP TABLE IF EXISTS `voto`;
 CREATE TABLE `voto` (
   `id` bigint(20) NOT NULL auto_increment,
   `Locacion_id` int(10) unsigned NOT NULL,
   `Opcion_id` blob NOT NULL,
+  `fecha_creacion` DATETIME NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `Voto_FKIndex1` (`Locacion_id`),
   CONSTRAINT `voto_ibfk_1` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -727,11 +729,19 @@ BEGIN
 	insert into usuario values (3, 3, 'Albelardo', 'Quiñones', '3', '', '', '', 'modulo3', '123', 'A');
 	insert into usuario values (4, 3, 'Francisco', 'Bolognesi', '4', '', '', '', 'modulo4', '123', 'A');
 	insert into usuario values (5, 1, 'Nolberto', 'Solano', '1', '', '', '', 'central1', '123', 'A');
-	insert into diccionario_log values (1, 'LOG');
-	insert into diccionario_log values (2, 'LOG');
-	insert into diccionario_log values (3, 'LOG');
-	insert into diccionario_log values (4, 'LOG');
-	insert into diccionario_log values (5, 'LOG');
+	insert into diccionario_log values (1, 'LOCACION CERRADA');
+	insert into diccionario_log values (2, 'ELIMINACION de VOTOS');
+	insert into diccionario_log values (3, 'PUESTA a CERO');
+	insert into diccionario_log values (4, 'DNI VALIDO');
+	insert into diccionario_log values (5, 'DNI NO VALIDO');
+	insert into diccionario_log values (6, 'REINTENTO de VOTO');
+	insert into diccionario_log values (7, 'PIN NO VALIDO');
+	insert into diccionario_log values (8, 'PIN VALIDO');
+	insert into diccionario_log values (9, 'PIN NO VALIDO');
+	insert into diccionario_log values (10, 'VOTO COMPLETADO');
+	insert into diccionario_log values (11, 'ENVIO de CONSTANCIA');
+	insert into diccionario_log values (12, 'IMPRESION de CONSTANCIA');
+	insert into diccionario_log values (13, 'DESCARGA de CONSTANCIA');
 	insert into partido_politico values (0, 'VACIO', '', 'nothing.gif', 'A');
 	insert into candidato values (0, '', '', '', '', 'nothing.gif', 'A');
 	insert into candidato_partido_politico values (0, 0, 0, now(), now(), 'A');
@@ -1826,8 +1836,8 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_elector_votar`(IN v_voto int(10), IN v_id bigint(20), IN v_lid int(10))
 BEGIN
 	-- se inserta el voto de forma encriptada
-	INSERT into voto (id, Locacion_id, Opcion_id) 
-	values (NULL, v_lid, AES_ENCRYPT(v_voto, fa_voto_getAESKey()));
+	INSERT into voto (id, Locacion_id, Opcion_id, fecha_creacion) 
+	values (NULL, v_lid, AES_ENCRYPT(v_voto, fa_voto_getAESKey()), now());
 	-- se actualiza el estado del elector
 	update elector set estado = 'V' where id = v_id;
 	-- se leen los datos a mostrar en pantalla
@@ -2489,7 +2499,7 @@ BEGIN
     delete 
     from escrutinio
     where locacion_id = v_Locacion;
-    call pa_log_insert(1, v_Usuario);
+    call pa_log_insert(2, v_Usuario);
     commit;
     select count(*) into nro_Votos from voto where locacion_id = v_Locacion;
     SET v_Votos = nro_Votos;
@@ -2617,7 +2627,7 @@ BEGIN
         fecha_puesta_cero = CURRENT_TIMESTAMP
     where id = v_Locacion and
           estado = 'A';
-    call pa_log_insert(1, v_Usuario);
+    call pa_log_insert(3, v_Usuario);
     commit;
     select count(*) into v_LocacionOK 
     from locacion 
