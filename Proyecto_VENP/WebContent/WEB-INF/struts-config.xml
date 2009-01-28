@@ -63,11 +63,11 @@
 		<form-bean name="procesoElectoralDatosForm" type="venp.web.forms.ProcesoElectoralDatosForm" />
 	</form-beans>
 
-	<!--
-		<global-exceptions> <exception key="global.error"
-		type="java.lang.Exception" path="/errores.jsp" /> </global-exceptions>
-	-->
-	
+	<global-exceptions>
+		<exception key="global.error" type="java.lang.Exception"
+			path="/errores.jsp" />
+	</global-exceptions>
+
 	<global-forwards>
 		<forward name="errores" path="/errores.jsp" />
 		<forward name="home" path="/intro.jsp" redirect="true" />
@@ -77,22 +77,23 @@
 	<action-mappings>
 		<action path="/language" type="venp.web.actions.LanguageAction" />
 
-		<action path="/login" name="loginForm" input="/login.jsp"
+		<action path="/login" name="loginForm" input="/seguridad/login.jsp"
 			parameter="cmd" type="venp.web.actions.LoginAction" scope="session">
-			<forward name="inicio" path="/login.jsp" />
-			<forward name="locacion" path="/adm_locacion/locacion.jsp" redirect="true" />
+			<forward name="inicio" path="/seguridad/login.jsp" />
+			<forward name="locacion" path="/adm_locacion/locacion.jsp"
+				redirect="true" />
 			<forward name="central" path="/centralMenu.do" redirect="true" />
 			<forward name="consulado" path="/consulado.do" redirect="true" />
 		</action>
 
 		<action path="/centralSubMenu" forward="subMenu" />
-		
+
 		<action path="/centralMenu" forward="centralLayout" />
 
 		<!-- Menu 1 -->
 
 		<!-- Menu 2 -->
-		
+
 		<action path="/cedula" name="cedulaForm" input="/cedulaDatos.jsp"
 			parameter="cmd" type="venp.web.actions.CedulaAction" scope="session">
 			<forward name="lista" path="cedulaLista" redirect="true" />

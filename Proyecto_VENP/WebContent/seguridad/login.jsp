@@ -5,31 +5,15 @@
 <head>
 <title><bean:message key="global.application.title" /></title>
 <link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />
-<link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/auth.css" />" />
-<script type="text/javascript" src="<html:rewrite page="/includes/js/auth.js" />"></script>
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/seguridad/css/login.css" />" />
+<script type="text/javascript" src="<html:rewrite page="/includes/js/prototype.js" />"></script>
+<script type="text/javascript" src="<html:rewrite page="/seguridad/js/login.js" />"></script>
+<script type="text/javascript">
+Messages[0] = '<bean:message key="auth.login.usererror" />';
+Messages[1] = '<bean:message key="auth.login.passerror" />';
+</script>
 </head>
 <body>
-<script>
-function doLogin() {
-	with(document.loginForm) {
-		if(userName.value == "") {
-			alert('<bean:message key="auth.login.usererror" />');
-			userName.focus();
-			return;
-		}
-		if(password.value == "") {
-			alert('<bean:message key="auth.login.passerror" />');
-			password.focus();
-			return;
-		}
-		submit();
-	}
-}
-
-function setFirstTimeFocus() {
-	document.loginForm.userName.focus();
-}
-</script>
 <table width="800" border="0" cellspacing="0" cellpadding="0">
   <jsp:include page="/includes/header.inc.jsp"></jsp:include>
   <tr>
@@ -43,7 +27,7 @@ function setFirstTimeFocus() {
       <tr>
         <td colspan="2" height="30"><html:errors property="error" /></td>
       </tr>
-      <html:form action="login.do">
+      <html:form action="login.do" focus="userName">
       <input type="hidden" name="cmd" value="logueo" />
       <html:hidden property="acceso" />
       <tr>
@@ -57,14 +41,14 @@ function setFirstTimeFocus() {
         	  </tr>
         	  <tr>
         	    <td><div class="authLabel"><bean:message key="auth.login.user" />:</div></td>
-        	    <td><html:text property="userName" styleClass="authInput" /></td>
+        	    <td><html:text property="userName" styleClass="authInput" maxlength="10" /></td>
         	  </tr>
         	  <tr>
         	    <td colspan="2" height="10"></td>
         	  </tr>
         	  <tr>
         	    <td><div class="authLabel"><bean:message key="auth.login.pass" />:</div></td>
-        	    <td><html:password property="password" styleClass="authInput" /></td>
+        	    <td><html:password property="password" styleClass="authInput" maxlength="10" /></td>
         	  </tr>
         	  <tr>
         	    <td colspan="2" height="40"></td>

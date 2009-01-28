@@ -87,7 +87,7 @@ CREATE TABLE `cedula` (
   PRIMARY KEY  (`id`),
   KEY `fk_Proceso_Electoral` (`Proceso_Electoral_id`),
   CONSTRAINT `cedula_ibfk_1` FOREIGN KEY (`Proceso_Electoral_id`) REFERENCES `proceso_electoral` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=2;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `cedula`
@@ -116,7 +116,7 @@ CREATE TABLE `centro_votacion` (
   KEY `Centro_Votacion_FKIndex2` (`Pais_id`),
   CONSTRAINT `centro_votacion_ibfk_1` FOREIGN KEY (`Zona_Horaria_id`) REFERENCES `zona_horaria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `centro_votacion_ibfk_2` FOREIGN KEY (`Pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=14;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `centro_votacion`
@@ -135,7 +135,7 @@ CREATE TABLE `diccionario_log` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `descripcion` varchar(100) NOT NULL,
   PRIMARY KEY  (`id`)
-) TYPE=InnoDB AUTO_INCREMENT=6;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `diccionario_log`
@@ -162,7 +162,7 @@ CREATE TABLE `elector` (
   PRIMARY KEY  (`id`),
   KEY `fk_Locacion` (`Locacion_id`),
   CONSTRAINT `elector_ibfk_1` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=2;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `elector`
@@ -187,7 +187,7 @@ CREATE TABLE `escrutinio` (
   KEY `Escrutinio_FKIndex2` (`Locacion_id`),
   CONSTRAINT `escrutinio_ibfk_1` FOREIGN KEY (`Opcion_id`) REFERENCES `opcion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `escrutinio_ibfk_2` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=70;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `escrutinio`
@@ -216,7 +216,7 @@ CREATE TABLE `locacion` (
   KEY `fk_Proceso_Electoral` (`Proceso_Electoral_id`),
   CONSTRAINT `locacion_ibfk_1` FOREIGN KEY (`Centro_Votacion_id`) REFERENCES `centro_votacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `locacion_ibfk_2` FOREIGN KEY (`Proceso_Electoral_id`) REFERENCES `proceso_electoral` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=14;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `locacion`
@@ -266,7 +266,7 @@ CREATE TABLE `log_usuario` (
   KEY `fk_Diccionario_Log` (`Diccionario_Log_id`),
   CONSTRAINT `log_usuario_ibfk_1` FOREIGN KEY (`Usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `log_usuario_ibfk_2` FOREIGN KEY (`Diccionario_Log_id`) REFERENCES `diccionario_log` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=306;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `log_usuario`
@@ -292,7 +292,7 @@ CREATE TABLE `opcion` (
   KEY `fk_Candidato_Partido_Politico` (`Candidato_Partido_Politico_id`),
   CONSTRAINT `opcion_ibfk_1` FOREIGN KEY (`Cedula_id`) REFERENCES `cedula` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `opcion_ibfk_2` FOREIGN KEY (`Candidato_Partido_Politico_id`) REFERENCES `candidato_partido_politico` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=4;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `opcion`
@@ -337,7 +337,7 @@ CREATE TABLE `pais` (
   `abreviatura` char(2) NOT NULL,
   `estado` char(1) NOT NULL default 'A',
   PRIMARY KEY  (`id`)
-) TYPE=InnoDB AUTO_INCREMENT=14;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `pais`
@@ -380,7 +380,7 @@ CREATE TABLE `perfil` (
   `descripcion` varchar(100) NOT NULL,
   `estado` char(1) NOT NULL default 'A',
   PRIMARY KEY  (`id`)
-) TYPE=InnoDB AUTO_INCREMENT=4;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `perfil`
@@ -404,7 +404,7 @@ CREATE TABLE `pin` (
   PRIMARY KEY  (`id`),
   KEY `fk_Elector` (`Elector_id`),
   CONSTRAINT `pin_ibfk_1` FOREIGN KEY (`Elector_id`) REFERENCES `elector` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=20;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `pin`
@@ -463,7 +463,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY  (`id`),
   KEY `fk_Perfil` (`Perfil_id`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`Perfil_id`) REFERENCES `perfil` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=7;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `usuario`
@@ -477,17 +477,16 @@ CREATE TABLE `usuario` (
 -- Definition of table `voto`
 --
 
-
 DROP TABLE IF EXISTS `voto`;
 CREATE TABLE `voto` (
   `id` bigint(20) NOT NULL auto_increment,
   `Locacion_id` int(10) unsigned NOT NULL,
   `Opcion_id` blob NOT NULL,
-  `fecha_creacion` DATETIME NOT NULL,
+  `fecha_creacion` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `Voto_FKIndex1` (`Locacion_id`),
   CONSTRAINT `voto_ibfk_1` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) TYPE=InnoDB AUTO_INCREMENT=7;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `voto`
@@ -508,7 +507,7 @@ CREATE TABLE `zona_horaria` (
   `nombre` varchar(50) NOT NULL,
   `estado` char(1) NOT NULL,
   PRIMARY KEY  (`id`)
-) TYPE=InnoDB AUTO_INCREMENT=26;
+) TYPE=InnoDB;
 
 --
 -- Dumping data for table `zona_horaria`
@@ -556,15 +555,15 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_ADMIN_crearProcesoDemo`
+-- Definition of procedure `pa_ADMIN_abrirProcesoDemo`
 --
 
-DROP PROCEDURE IF EXISTS `pa_ADMIN_crearProcesoDemo`;
+DROP PROCEDURE IF EXISTS `pa_ADMIN_abrirProcesoDemo`;
 
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_crearProcesoDemo`()
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_abrirProcesoDemo`()
 BEGIN
 	declare v_usuario int(10);
 	declare v_proceso int(10);
@@ -590,27 +589,27 @@ BEGIN
 	insert into locacion values (3, v_proceso, 3, 'N', 'A', null, null);
 	insert into locacion values (4, v_proceso, 4, 'N', 'A', null, null);
 	insert into locacion values (5, v_proceso, 5, 'N', 'A', null, null);
-	insert into locacion values (6, v_proceso, 6, 'N', 'A', null, null);
+	/*insert into locacion values (6, v_proceso, 6, 'N', 'A', null, null);
 	insert into locacion values (7, v_proceso, 7, 'N', 'A', null, null);
 	insert into locacion values (8, v_proceso, 8, 'N', 'A', null, null);
 	insert into locacion values (9, v_proceso, 9, 'N', 'A', null, null);
 	insert into locacion values (10, v_proceso, 10, 'N', 'A', null, null);
 	insert into locacion values (11, v_proceso, 11, 'N', 'A', null, null);
 	insert into locacion values (12, v_proceso, 12, 'N', 'A', null, null);
-	insert into locacion values (13, v_proceso, 13, 'N', 'A', null, null);
+	insert into locacion values (13, v_proceso, 13, 'N', 'A', null, null);*/
 	insert into operador values (1, 1, 'A');
 	insert into operador values (1, 2, 'A');
-	insert into operador values (1, 3, 'A');
-	insert into operador values (2, 4, 'A');
+	insert into operador values (3, 3, 'A');
+	insert into operador values (4, 4, 'A');
 	insert into operador values (2, 5, 'A');
-	insert into operador values (2, 6, 'A');
+	/*insert into operador values (3, 6, 'A');
 	insert into operador values (3, 7, 'A');
 	insert into operador values (3, 8, 'A');
 	insert into operador values (3, 9, 'A');
 	insert into operador values (4, 10, 'A');
 	insert into operador values (4, 11, 'A');
 	insert into operador values (4, 12, 'A');
-	insert into operador values (3, 13, 'A');
+	insert into operador values (3, 13, 'A');*/
 	insert into candidato (id, nombre, paterno, materno, dni, foto, estado) 
 	values (0, '', '', '', '', 'nothing.gif', 'A'), 
 	       (1, 'Juan Pablo', 'Perez', 'Pinto', '41723412', 'candidato1.jpg', 'A'),
@@ -628,12 +627,48 @@ BEGIN
 	insert into opcion (id, Candidato_Partido_Politico_id, Cedula_id, orden, fecha_creacion)
 	values (1, 0, 1, 3, now()), (2, 1, 1, 1, now()), (3, 2, 1, 2, now());
 	call pa_proceso_electoral_activar(v_proceso);
-	call pa_elector_registrar(0, 5, 'Renzo', 'Portocarrero', 'Heredia', '11111111', 'renzo@cibertec.edu.pe');
-	call pa_elector_registrar(0, 5, 'Rudy', 'Capatinta', 'Aucca', '22222222', 'rudy@cibertec.edu.pe');
-	call pa_elector_registrar(0, 5, 'Omar', 'Carpio', 'Carpio', '33333333', 'omar@cibertec.edu.pe');
-	call pa_elector_registrar(0, 5, 'Jhoon', 'Saravia', 'Tasayco', '44444444', 'jhoon@cibertec.edu.pe');
-	call pa_elector_registrar(0, 5, 'Marco', 'Cristobal', 'Salazar', '55555555', 'marco@cibertec.edu.pe');
-	call pa_elector_registrar(0, 5, 'Aaron', 'Ramirez', 'Tafur', '66666666', 'aaron@cibertec.edu.pe');
+	call pa_elector_registrar(0, 5, 'Renzo', 'Portocarrero', 'Heredia', '11111111', 'hacklucas@gmail.com');
+	call pa_elector_registrar(0, 5, 'Rudy', 'Capatinta', 'Aucca', '22222222', 'hacklucas@gmail.com');
+	call pa_elector_registrar(0, 5, 'Omar', 'Carpio', 'Carpio', '33333333', 'hacklucas@gmail.com');
+	call pa_elector_registrar(0, 5, 'Jhoon', 'Saravia', 'Tasayco', '44444444', 'hacklucas@gmail.com');
+	call pa_elector_registrar(0, 5, 'Marco', 'Cristobal', 'Salazar', '55555555', 'hacklucas@gmail.com');
+	call pa_elector_registrar(0, 5, 'Aaron', 'Ramirez', 'Tafur', '66666666', 'hacklucas@gmail.com');
+	call pa_elector_generaPIN(1);
+	call pa_elector_generaPIN(2);
+	call pa_elector_generaPIN(3);
+	call pa_elector_generaPIN(4);
+	call pa_elector_generaPIN(5);
+	call pa_elector_generaPIN(6);
+	update pin set numero = md5('123');
+    END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
+-- Definition of procedure `pa_ADMIN_cerrarProcesoDemo`
+--
+
+DROP PROCEDURE IF EXISTS `pa_ADMIN_cerrarProcesoDemo`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_cerrarProcesoDemo`()
+BEGIN
+	-- cambia la hora de inicio y fin del Proceso Activo
+	update  proceso_electoral set
+		hora_inicial = addtime(CURRENT_TIME, '-00:20:00'),
+		hora_final = CURRENT_TIME
+	where estado = 'A';
+	-- se fuerza la puesta a cero y el cierre de todas 
+	-- las locaciones del Proceso Activo
+	update locacion set 
+		puesta_cero = 'S', 
+		fecha_puesta_cero = now(),
+		estado = 'C',
+		fecha_cierre = now()
+	where puesta_cero = 'N';	
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
@@ -647,7 +682,7 @@ DROP PROCEDURE IF EXISTS `pa_ADMIN_setDefaultData`;
 
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_setDefaultData`()
 BEGIN
 	truncate pin;
@@ -665,10 +700,10 @@ BEGIN
 	truncate proceso_electoral;
 	truncate zona_horaria;
 	truncate pais;
-	truncate perfil;
+	truncate log_usuario;
 	truncate usuario;
+	truncate perfil;
 	truncate diccionario_log;
-
 	insert into pais values (1, 'Argentina', 'AR', 'A');
 	insert into pais values (2, 'Bolivia', 'BO', 'A');
 	insert into pais values (3, 'Brasil', 'BR', 'A');
@@ -724,11 +759,12 @@ BEGIN
 	(1, 'OPERADOR CENTRAL', 'Operador Central', 'A'),
 	(2, 'OPERADOR DE CONSULADO', 'Operador de Consulado para Impresion de Credenciales', 'A'),
 	(3, 'OPERADOR DE MODULO', 'Operador de Centro de Votacion', 'A');
-	insert into usuario values (1, 3, 'Luis', 'Aldana', '1', '', '', '', 'modulo1', '123', 'A');
-	insert into usuario values (2, 3, 'Alfredo', 'Benavides', '2', '', '', '', 'modulo2', '123', 'A');
-	insert into usuario values (3, 3, 'Albelardo', 'Quiñones', '3', '', '', '', 'modulo3', '123', 'A');
-	insert into usuario values (4, 3, 'Francisco', 'Bolognesi', '4', '', '', '', 'modulo4', '123', 'A');
-	insert into usuario values (5, 1, 'Nolberto', 'Solano', '1', '', '', '', 'central1', '123', 'A');
+	insert into usuario values (1, 3, 'Luis', 'Aldana', 'Perez', '', '', '', 'modulo1', '123', 'A');
+	insert into usuario values (2, 3, 'Alfredo', 'Benavides', 'Orantia', '', '', '', 'modulo2', '123', 'A');
+	insert into usuario values (3, 3, 'Albelardo', 'Quiñones', 'Salazar', '', '', '', 'modulo3', '123', 'A');
+	insert into usuario values (4, 3, 'Francisco', 'Bolognesi', 'Alcantara', '', '', '', 'modulo4', '123', 'A');
+	insert into usuario values (5, 1, 'Roberto', 'Solano', 'Paz', '', '', '', 'central1', '123', 'A');
+	insert into usuario values (6, 2, 'Alejandro', 'Espinoza', 'Guillen', '', '', '', 'consul1', '123', 'A');
 	insert into diccionario_log values (1, 'LOCACION CERRADA');
 	insert into diccionario_log values (2, 'ELIMINACION de VOTOS');
 	insert into diccionario_log values (3, 'PUESTA a CERO');
@@ -742,6 +778,9 @@ BEGIN
 	insert into diccionario_log values (11, 'ENVIO de CONSTANCIA');
 	insert into diccionario_log values (12, 'IMPRESION de CONSTANCIA');
 	insert into diccionario_log values (13, 'DESCARGA de CONSTANCIA');
+	insert into diccionario_log values (14, 'INGRESO VALIDO A CENTRAL');
+	insert into diccionario_log values (15, 'INGRESO VALIDO A LOCACION');
+	insert into diccionario_log values (16, 'INGRESO VALIDO A CENTRO DE EMPADRONAMIENTO');
 	insert into partido_politico values (0, 'VACIO', '', 'nothing.gif', 'A');
 	insert into candidato values (0, '', '', '', '', 'nothing.gif', 'A');
 	insert into candidato_partido_politico values (0, 0, 0, now(), now(), 'A');
@@ -773,6 +812,25 @@ BEGIN
 	  where id = v_id;
 	  SELECT 'Proceso Activo Modificado' as mensaje;
 	end if;
+    END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
+-- Definition of procedure `pa_ADMIN_verUsuarioLog`
+--
+
+DROP PROCEDURE IF EXISTS `pa_ADMIN_verUsuarioLog`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_verUsuarioLog`()
+BEGIN
+	select u.username, d.descripcion as evento, l.fecha 
+	from usuario u inner join log_usuario l on l.usuario_id = u.id 
+	inner join diccionario_log d on l.diccionario_log_id = d.id;
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
@@ -2920,6 +2978,26 @@ BEGIN
 DELIMITER ;
 
 --
+-- Definition of procedure `pa_partidoPolitico_CandidatosAsignados`
+--
+
+DROP PROCEDURE IF EXISTS `pa_partidoPolitico_CandidatosAsignados`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_partidoPolitico_CandidatosAsignados`(IN v_PartidoPoliticoID INTEGER)
+BEGIN
+	select ifnull(Candidato_id, 0) as Candidato
+        from candidato_partido_politico 
+        where Partido_Politico_id = v_PartidoPoliticoID and
+              estado = 'A';
+    END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
 -- Definition of procedure `pa_partidoPolitico_conCandidato`
 --
 
@@ -3724,26 +3802,7 @@ BEGIN
 
 DELIMITER ;
 
---
--- Definition of procedure `pa_partidoPolitico_CandidatosAsignados`
---
 
-DROP PROCEDURE IF EXISTS `votacion`.`pa_partidoPolitico_CandidatosAsignados`;
-
-
-DELIMITER $$
-
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `votacion`.`pa_partidoPolitico_CandidatosAsignados`(IN v_PartidoPoliticoID INTEGER)
-    BEGIN
-	select ifnull(Candidato_id, 0) as Candidato
-        from candidato_partido_politico 
-        where Partido_Politico_id = v_PartidoPoliticoID and
-              estado = 'A';
-    END $$
-/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
-
-DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

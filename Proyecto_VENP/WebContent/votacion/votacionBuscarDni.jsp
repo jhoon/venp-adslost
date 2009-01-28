@@ -27,7 +27,7 @@ function doValidaDNI() {
       <tr>
         <td colspan="2">
         <table>
-        <html:form action="elector.do">
+        <html:form action="elector.do" focus="dni">
         <input type="hidden" name="cmd" value="buscar" />
         <tr>
           <td><div class="txtWelcome"><b><bean:message key="elector.validadni.welcome" /></b></div></td>

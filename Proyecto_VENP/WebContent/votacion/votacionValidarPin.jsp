@@ -26,7 +26,7 @@ function doValidaPIN() {
       <tr>
         <td colspan="2">
         <table>
-        <html:form action="elector.do">
+        <html:form action="elector.do" focus="pin">
         <input type="hidden" name="cmd" value="validar" />
         <tr>
           <td><div class="txtWelcome"><bean:message key="elector.validapin.indicacion" /></div></td>

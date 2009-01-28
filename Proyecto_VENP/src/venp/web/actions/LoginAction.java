@@ -64,37 +64,27 @@ public class LoginAction extends DispatchAction {
 					if (tempSession != null)
 						tempSession.invalidate();
 				}
-				// se hacen los forwards de acuerdo al tipo de usuario
+				// se hacen las validaciones de acuerdo al tipo de usuario
+				LogService serviceLog = new LogService();
+				HttpSession sesion = request.getSession();
 				// Operador de Locacion (Modulo)
 				if (perfil.getCodigo() == 3
 						&& frm.getAcceso().equals("location")) {
-					LogService serviceLog = new LogService();
-					serviceLog.insertar("1", bean.getCodigo());
-
-					HttpSession sesion = request.getSession();
+					serviceLog.insertar("15", bean.getCodigo());
 					sesion.setAttribute("usuarioBean", bean);
-
 					return mapping.findForward("locacion");
 				}
 				// Operador de Central
 				if (perfil.getCodigo() == 1 && frm.getAcceso().equals("admin")) {
-					LogService serviceLog = new LogService();
-					serviceLog.insertar("1", bean.getCodigo());
-
-					HttpSession sesion = request.getSession();
+					serviceLog.insertar("14", bean.getCodigo());
 					sesion.setAttribute("usuarioBean", bean);
-
 					return mapping.findForward("central");
 				}
 				// Operador de Consulado
 				if (perfil.getCodigo() == 2
 						&& frm.getAcceso().equals("printer")) {
-					LogService serviceLog = new LogService();
-					serviceLog.insertar("1", bean.getCodigo());
-
-					HttpSession sesion = request.getSession();
+					serviceLog.insertar("16", bean.getCodigo());
 					sesion.setAttribute("usuarioBean", bean);
-
 					return mapping.findForward("consulado");
 				}
 				// Usuario desconocido

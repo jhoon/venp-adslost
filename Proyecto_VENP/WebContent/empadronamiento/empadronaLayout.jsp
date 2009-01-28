@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><bean:message key="global.application.title" /></title>
-<link rel="stylesheet" type="text/css" href="includes/css/globals.css" />
-<link rel="stylesheet" type="text/css" href="empadronamiento/css/empadronamiento.css" />
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/includes/css/globals.css" />" />
+<link rel="stylesheet" type="text/css" href="<html:rewrite page="/empadronamiento/css/empadronamiento.css" />" />
 </head>
 <body>
 <table width="800" border="0" cellspacing="0" cellpadding="0">
