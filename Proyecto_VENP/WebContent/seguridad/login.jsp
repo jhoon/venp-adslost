@@ -41,14 +41,14 @@ Messages[1] = '<bean:message key="auth.login.passerror" />';
         	  </tr>
         	  <tr>
         	    <td><div class="authLabel"><bean:message key="auth.login.user" />:</div></td>
-        	    <td><html:text property="userName" styleClass="authInput" maxlength="10" /></td>
+        	    <td><html:text property="userName" styleClass="authInput" maxlength="10" onkeypress="return isValidUser(event)" /></td>
         	  </tr>
         	  <tr>
         	    <td colspan="2" height="10"></td>
         	  </tr>
         	  <tr>
         	    <td><div class="authLabel"><bean:message key="auth.login.pass" />:</div></td>
-        	    <td><html:password property="password" styleClass="authInput" maxlength="10" /></td>
+        	    <td><html:password property="password" styleClass="authInput" maxlength="10" onkeypress="return isValidPass(event)" /></td>
         	  </tr>
         	  <tr>
         	    <td colspan="2" height="40"></td>
