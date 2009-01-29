@@ -1,6 +1,7 @@
 package venp.listener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
@@ -14,127 +15,110 @@ import venp.web.forms.ElectorForm;
 public class SessionVotantesListener implements HttpSessionListener,
 		HttpSessionAttributeListener {
 
-	public static ArrayList 
-	votantesActivos;
+	public static ArrayList<VotantesXLocacionBean> votantesActivos;
 
 	public SessionVotantesListener() {
-		votantesActivos = new ArrayList();
+		votantesActivos = new ArrayList<VotantesXLocacionBean>();
 	}
-	
-	public static boolean hayVotantesActivos (int idLocacion) {
-		ArrayList<VotantesXLocacionBean> lista = (ArrayList<VotantesXLocacionBean>) votantesActivos;
 
-		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getIdLocacion() == idLocacion) {
-				if (lista.get(i).getNroVotantes() > 0)
-					return false;
-				else
-					return true;
+	public static boolean hayVotantesActivos(int idLocacion) {
+		if (votantesActivos != null) {
+			Iterator<VotantesXLocacionBean> it = votantesActivos.iterator();
+			VotantesXLocacionBean bean;
+			while (it.hasNext()) {
+				bean = it.next();
+				if (bean.getIdLocacion() == idLocacion) {
+					return (bean.getNroVotantes() > 0 ? false : true);
+				}
 			}
 		}
-		
 		return true;
 	}
-	
-	public static int totalVotantesActivos (int idLocacion) {
-		ArrayList<VotantesXLocacionBean> lista = (ArrayList<VotantesXLocacionBean>) votantesActivos;
 
-		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getIdLocacion() == idLocacion) {
-				return lista.get(i).getNroVotantes();
+	public static int totalVotantesActivos(int idLocacion) {
+		if (votantesActivos != null) {
+			Iterator<VotantesXLocacionBean> it = votantesActivos.iterator();
+			VotantesXLocacionBean bean;
+			while (it.hasNext()) {
+				bean = it.next();
+				if (bean.getIdLocacion() == idLocacion) {
+					return bean.getNroVotantes();
+				}
 			}
 		}
-		
 		return 0;
 	}
 
 	public void attributeAdded(HttpSessionBindingEvent se) {
-		HttpSession session = se.getSession();
-
-		ElectorForm bean = (ElectorForm) session.getAttribute("Elector");
-		if (bean == null) {
-			System.out.println("NO ES ELECTOR");
-		} else {
-			añadirElector(Integer.parseInt(bean.getLocationId()));
-			System.out.println("AÑADIR ATRIBUTO: " + bean.getLocationId());
+		try {
+			HttpSession session = se.getSession();
+			ElectorForm bean = (ElectorForm) session.getAttribute("Elector");
+			if (bean != null) {
+				añadirElector(bean);
+			}
+		} catch (Exception e) {
 		}
 	}
 
 	public void attributeRemoved(HttpSessionBindingEvent se) {
 		try {
 			HttpSession session = se.getSession();
-
 			ElectorForm bean = (ElectorForm) session.getAttribute("Elector");
-			if (bean == null) {
-				System.out.println("NO ES DE UN TIPO USUARIO");
-			} else {
-				removerElector(Integer.parseInt(bean.getLocationId()));
-				System.out.println("REMOVER ATRIBUTO");
+			if (bean != null) {
+				removerElector(bean);
 			}
 		} catch (Exception e) {
+		}
+	}
 
+	public void sessionDestroyed(HttpSessionEvent se) {
+		try {
+			HttpSession session = se.getSession();
+			ElectorForm bean = (ElectorForm) session.getAttribute("Elector");
+			if (bean != null) {
+				removerElector(bean);
+			}
+		} catch (Exception e) {
 		}
 	}
 
 	public void attributeReplaced(HttpSessionBindingEvent se) {
-
 	}
 
 	public void sessionCreated(HttpSessionEvent se) {
-
 	}
 
-	public void sessionDestroyed(HttpSessionEvent se) {
-		HttpSession session = se.getSession();
+	private void añadirElector(ElectorForm elector) {
+		boolean bolFounded = false;
+		int intIdLocacion = Integer.parseInt(elector.getLocationId());
+		Iterator<VotantesXLocacionBean> it = votantesActivos.iterator();
+		VotantesXLocacionBean locacion;
 
-		ElectorForm bean = (ElectorForm) session.getAttribute("Elector");
-		if (bean == null) {
-			System.out.println("NO ES DE UN TIPO USUARIO");
-		} else {
-			removerElector(Integer.parseInt(bean.getLocationId()));
-			System.out.println("SESION REMOVIDA");
-		}
-	}
-
-	private void añadirElector(int idLocacion) {
-		ArrayList<VotantesXLocacionBean> lista = (ArrayList<VotantesXLocacionBean>) votantesActivos;
-		boolean localizado = false;
-
-		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getIdLocacion() == idLocacion) {
-				System.out.println("VOTANTE ACUMULADO a la LOCACION: " + idLocacion);
-				lista.get(i).setNroVotantes(lista.get(i).getNroVotantes() + 1);
-				localizado = true;
+		while (it.hasNext()) {
+			locacion = it.next();
+			if (locacion.getIdLocacion() == intIdLocacion) {
+				locacion.addVotante(elector.getDni());
+				bolFounded = true;
 				break;
 			}
 		}
-		if (localizado == false) {
-			VotantesXLocacionBean bean = new VotantesXLocacionBean();
-			
-			bean.setIdLocacion(idLocacion);
-			bean.setNroVotantes(1);
-			
-			System.out.println("NUEVO VOTANTE a la LOCACION: " + idLocacion);
-			votantesActivos.add(bean);
+
+		if (bolFounded == false) {
+			locacion = new VotantesXLocacionBean();
+			locacion.setIdLocacion(intIdLocacion);
+			locacion.addVotante(elector.getDni());
+			votantesActivos.add(locacion);
 		}
 	}
 
-	/**
-	 * quita al elector de la sesión
-	 * @param intIdLocacion <code>id</code> de la locación donde se encuentra
-	 * el elector
-	 */
-	public static void removerElector(int intIdLocacion) {
-		ArrayList<VotantesXLocacionBean> lista = (ArrayList<VotantesXLocacionBean>) votantesActivos;
-
-		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getIdLocacion() == intIdLocacion) {
-				System.out.println("VOTANTE RETIRADO a la LOCACION: " + intIdLocacion);
-				if (lista.get(i).getNroVotantes() > 0)
-					lista.get(i).setNroVotantes(lista.get(i).getNroVotantes() - 1);
-				else
-					lista.get(i).setNroVotantes(0);
-				
+	public static void removerElector(ElectorForm elector) {
+		Iterator<VotantesXLocacionBean> it = votantesActivos.iterator();
+		VotantesXLocacionBean locacion;
+		int intIdLocacion = Integer.parseInt(elector.getLocationId());
+		while (it.hasNext()) {
+			locacion = it.next();
+			if (locacion.getIdLocacion() == intIdLocacion) {
+				locacion.removeVotante(elector.getDni());
 				break;
 			}
 		}

@@ -79,7 +79,7 @@ public class VotacionAction extends DispatchAction {
 			ElectorService service = new ElectorService();
 			bean = service.votar((String)frm.get("voto"), bean);
 			session.removeAttribute("Elector");
-			SessionVotantesListener.removerElector(Integer.parseInt(bean.getLocationId()));
+			SessionVotantesListener.removerElector(bean);
 			request.setAttribute("Elector", bean);
 			return mapping.findForward("fin");
 		}

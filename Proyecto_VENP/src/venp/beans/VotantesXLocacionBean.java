@@ -1,13 +1,15 @@
 package venp.beans;
 
+import java.util.HashSet;
+
 public class VotantesXLocacionBean extends Bean {
 
 	private int idLocacion;
-	private int nroVotantes;
+	private HashSet<String> votantes;
 
 	public VotantesXLocacionBean() {
 		idLocacion = 0;
-		nroVotantes = 0;
+		votantes = new HashSet<String>();
 	}
 
 	public int getIdLocacion() {
@@ -19,10 +21,14 @@ public class VotantesXLocacionBean extends Bean {
 	}
 
 	public int getNroVotantes() {
-		return nroVotantes;
+		return votantes.size();
 	}
 
-	public void setNroVotantes(int nroVotantes) {
-		this.nroVotantes = nroVotantes;
+	public void addVotante(String strDni) {
+		votantes.add(strDni);
+	}
+
+	public void removeVotante(String strDni) {
+		votantes.remove(strDni);
 	}
 }
