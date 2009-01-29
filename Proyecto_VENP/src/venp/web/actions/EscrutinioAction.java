@@ -38,13 +38,13 @@ public class EscrutinioAction extends DispatchAction {
 				if (bean.getMensaje() != null) {
 					if (bean.getMensaje().equals("escrutinio")
 							&& bean.getLocacionCerrada() == false) {
-						EscrutinioService services = new EscrutinioService();
+
 						ArrayList listaDetalle = new ArrayList();
 	
-						listaDetalle = services.listarDetalleEscrutinio(bean.getPaisId()); 
+						listaDetalle = service.listarDetalleEscrutinio(bean.getPaisId()); 
 						
 						bean.setListaEscrutinioDetalle(listaDetalle); 
-						EscrutinioBean total = services.buscarTotales();   //devuelve los votos totalizados por locacion
+						EscrutinioBean total = service.buscarTotales();   //devuelve los votos totalizados por locacion
 						bean.setTotalVotos(total.getTotalVotos());
 						bean.setTotalVotosBlancos(total.getTotalVotosBlancos());
 						bean.setTotalVotosValidos(total.getTotalVotosValidos());
