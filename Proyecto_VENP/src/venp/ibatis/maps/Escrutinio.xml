@@ -5,7 +5,7 @@
  		<typeAlias alias="escrutinio" type="venp.beans.EscrutinioBean"/>
  		<typeAlias alias="detalleEscrutinio" type="venp.beans.DetalleEscrutinioBean"/>
  		
- <!--  -->
+ <!-- -->
  		<resultMap class="escrutinio" id="escrutinioMapp">
  			<result property="nombrePais" column="pais" />
  			<result property="nombreLocacion" column="nombre" />
@@ -19,45 +19,8 @@
  		<procedure id="listarDetalleEscrutinio" parameterMap="mapId" resultMap="escrutinioMapp">
  			{call pa_Escrutinio_Listar_Voto_Pais(?)}  
  		</procedure>
- 
- 	
-  <!--  -->
- 		<resultMap class="escrutinio" id="escrutinioMap">
- 			<result property="paisId" column="id" />
- 			<result property="nombrePais" column="nombre" />
- 			<result property="totalLocaciones" column="locaciones_aperturadas" />
- 		</resultMap>	
- 				
- 		<procedure id="listarLocacionesCerradas" resultMap="escrutinioMap" >
- 			{call pa_Escrutinio_Listar_Locaciones()}
- 		</procedure>
-
-<!--  -->
- 		<resultMap class="escrutinio" id="escrutinio_Map">
- 				<result property="locacionesCerradas" column="locaciones_cerradas" />
- 		</resultMap>
- 		
- 		<parameterMap class="map" id="paisid">
- 					<parameter property="paisId"  mode="IN" javaType="java.lang.Integer"/>
- 		</parameterMap>
- 					
- 		<procedure id="comprobarLocacionesCerradas" parameterMap="paisid" resultMap="escrutinio_Map">
- 	    	 {call pa_Escrutinio_Listar_Locaciones_Cerradas(?)}
- 		</procedure>
- 		
- <!--  -->		
- 		
- 		<resultMap class="escrutinio" id="faltaEscrutinioMap">
- 				<result property="conEscrutinio" column="conEscrutinio" />
- 		</resultMap>
- 		
- 		<parameterMap class="map" id="paisFaltaEscrutinio">
- 					<parameter property="faltaEscrutinio"  mode="IN" javaType="java.lang.Integer"/>
- 		</parameterMap>
- 			 		
- 		<procedure id="comprobarFaltaEscrutinio" parameterMap="paisFaltaEscrutinio" resultMap="faltaEscrutinioMap">
- 	    	 {call pa_Escrutinio_Listar_Locaciones_Escrutinio(?)}
- 		</procedure> 		
+  
+  
  		
  	<!--  -->
  		<resultMap class="detalleEscrutinio" id="paisLocacionMap">
@@ -90,7 +53,7 @@
  	    	 {call pa_Escrutinio_Insertar_Voto_Escrutinio(?,?,?)}
  		</procedure> 	
  		
- 	<!--  -->
+ 	<!-- -->
  		
  		<resultMap class="detalleEscrutinio" id="paisLocacionDetalleMap">
  				<result property="nombreLocacion" column="nombre" />

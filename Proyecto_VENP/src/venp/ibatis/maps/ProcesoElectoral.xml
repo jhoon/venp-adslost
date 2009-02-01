@@ -47,6 +47,10 @@
         <result property="tiempoSesion" column="tiempo_sesion" />
         <result property="usuarioId" column="usuario_id" />
     </resultMap>
+    
+   	<resultMap class="procesoElectoral" id="procesoCerradoMap">
+		<result property="estado" column="estado" />
+	</resultMap>
 	
 	<!-- PROCEDIMIENTOS -->
     <procedure id="ActivarProcesoElectoral" parameterClass="java.lang.Integer">
@@ -75,6 +79,14 @@
     
 	<procedure id="insertar" parameterMap="paramMap1">
 		{call pa_proceso_electoral_insertar (?, ?, ?, ?, ?, ?, ?, ?)}
+	</procedure>		
+        
+	<procedure id="procesoCerrado" resultMap="procesoCerradoMap">
+		{call pa_Consolidacion_Proceso_Electoral_Cerrado()}  
 	</procedure>
-
+	
+	<procedure id="cierraProcesoElectoral">
+		{call pa_Consolidacion_Cierra_Proceso_Electoral()}  
+	</procedure>
+	
 </sqlMap>

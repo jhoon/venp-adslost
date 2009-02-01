@@ -19,11 +19,11 @@ public class UsuarioMySqlMapDAO extends SqlMapDaoTemplate implements UsuarioDAO 
 	public void asignar(int procesoElectoral, int codigoUsuario,
 			int centroVotacion) throws Exception {
 		HashMap map = new HashMap();
-		
+
 		map.put("v_procesoelectoral", procesoElectoral);
 		map.put("v_user", codigoUsuario);
 		map.put("v_centrovotacion", centroVotacion);
-		
+
 		this.update("Usuario.asignar", map);
 	}
 
@@ -34,7 +34,7 @@ public class UsuarioMySqlMapDAO extends SqlMapDaoTemplate implements UsuarioDAO 
 	public void editar(UsuarioBean bean) throws Exception {
 		HashMap map = new HashMap();
 		PerfilBean perfilBean = bean.getPerfil();
-		
+
 		map.put("v_codigo", Integer.parseInt(bean.getCodigo()));
 		map.put("v_perfil", perfilBean.getCodigo());
 		map.put("v_nombre", bean.getNombre());
@@ -45,7 +45,7 @@ public class UsuarioMySqlMapDAO extends SqlMapDaoTemplate implements UsuarioDAO 
 		map.put("v_movil", bean.getMovil());
 		map.put("v_username", bean.getUserName());
 		map.put("v_password", bean.getPassword());
-		
+
 		this.update("Usuario.editar", map);
 	}
 
@@ -54,88 +54,91 @@ public class UsuarioMySqlMapDAO extends SqlMapDaoTemplate implements UsuarioDAO 
 	}
 
 	public ArrayList findAllByLocacion() throws Exception {
-		return (ArrayList<UsuarioBean>) queryForList("Usuario.findAll_Locacion", null);
+		return (ArrayList<UsuarioBean>) queryForList(
+				"Usuario.findAll_Locacion", null);
 	}
 
 	public boolean findByDNI(String dni) throws Exception {
 		HashMap map = new HashMap();
-		
+
 		map.put("v_DNI", dni);
 		map.put("v_Total", -1);
-		
+
 		this.update("Usuario.findByDNI", map);
-		
-		int intNroLocacion = ((Integer)map.get("v_Total")).intValue();
+
+		int intNroLocacion = ((Integer) map.get("v_Total")).intValue();
 
 		if (intNroLocacion > 0)
 			return true;
-		
+
 		return false;
 	}
 
 	public boolean findByDNI(String dni, String codigo) throws Exception {
 		HashMap map = new HashMap();
-		
+
 		map.put("v_DNI", dni);
 		map.put("v_Codigo", Integer.parseInt(codigo));
 		map.put("v_Total", -1);
-		
+
 		this.update("Usuario.findByDNI_ID", map);
-		
-		int intNroLocacion = ((Integer)map.get("v_Total")).intValue();
+
+		int intNroLocacion = ((Integer) map.get("v_Total")).intValue();
 
 		if (intNroLocacion > 0)
 			return true;
-		
+
 		return false;
 	}
 
 	public UsuarioBean findByPrimaryKey(String codigo) throws Exception {
-		return (UsuarioBean) this.queryForObject("Usuario.findByPrimaryKey", Integer.parseInt(codigo));
+		return (UsuarioBean) this.queryForObject("Usuario.findByPrimaryKey",
+				Integer.parseInt(codigo));
 	}
 
 	public boolean findByUserName(String userName) throws Exception {
 		HashMap map = new HashMap();
-		
+
 		map.put("v_DNI", userName);
 		map.put("v_Total", -1);
-		
+
 		this.update("Usuario.findByUserName", map);
-		
-		int intNroLocacion = ((Integer)map.get("v_Total")).intValue();
+
+		int intNroLocacion = ((Integer) map.get("v_Total")).intValue();
 
 		if (intNroLocacion > 0)
 			return true;
-		
+
 		return false;
 	}
 
 	public boolean findByUserName(String userName, String codigo)
 			throws Exception {
 		HashMap map = new HashMap();
-		
+
 		map.put("v_DNI", userName);
 		map.put("v_Codigo", Integer.parseInt(codigo));
 		map.put("v_Total", -1);
-		
+
 		this.update("Usuario.findByUserNameID", map);
-		
-		int intNroLocacion = ((Integer)map.get("v_Total")).intValue();
+
+		int intNroLocacion = ((Integer) map.get("v_Total")).intValue();
 
 		if (intNroLocacion > 0)
 			return true;
-		
+
 		return false;
 	}
 
 	public UsuarioBean findByUsuario(String usuario) throws Exception {
-		return (UsuarioBean) this.queryForObject("Usuario.findByUsuario", usuario);
+		return (UsuarioBean) this.queryForObject("Usuario.findByUsuario",
+				usuario);
 	}
 
 	public void insertar(UsuarioBean bean) throws Exception {
 		HashMap map = new HashMap();
 		PerfilBean perfilBean = bean.getPerfil();
-		
+
 		map.put("v_perfil", perfilBean.getCodigo());
 		map.put("v_nombre", bean.getNombre());
 		map.put("v_paterno", bean.getApePaterno());
@@ -145,18 +148,18 @@ public class UsuarioMySqlMapDAO extends SqlMapDaoTemplate implements UsuarioDAO 
 		map.put("v_movil", bean.getMovil());
 		map.put("v_username", bean.getUserName());
 		map.put("v_password", bean.getPassword());
-		
+
 		this.update("Usuario.insertar", map);
 	}
 
 	public void retirar(int procesoElectoral, int codigoUsuario,
 			int centroVotacion) throws Exception {
 		HashMap map = new HashMap();
-		
+
 		map.put("v_procesoelectoral", procesoElectoral);
 		map.put("v_user", codigoUsuario);
 		map.put("v_centrovotacion", centroVotacion);
-		
+
 		this.update("Usuario.retirar", map);
 	}
 

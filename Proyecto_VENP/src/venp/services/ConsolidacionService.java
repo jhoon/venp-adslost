@@ -13,10 +13,9 @@ public class ConsolidacionService {
 		return consolidaciondao.listarResultados();		
 	}
 	
-	public boolean procesoCerrado() throws Exception {
-		
+	public ArrayList listarResultadosFinales() throws Exception {
 		ConsolidacionDAO consolidaciondao = (ConsolidacionDAO)manager.getDao(ConsolidacionDAO.class);
-		return consolidaciondao.procesoCerrado();
-
-	}	
+		return consolidaciondao.listarResultadosFinales();		
+	} 
+	 
 }

@@ -1,16 +1,17 @@
 package venp.beans;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
- * Clase Locacion para manejar cada uno de los 
- * centros de votacion y su respectivo tiempos GMT
- * @author MCristobal
- *
+ * Clase Locacion para manejar cada uno de los centros de votacion y su
+ * respectivo tiempos GMT
+ * 
+ * @author MCristobal, Portoren
+ * 
  */
-@SuppressWarnings("serial")
 public class LocacionBean extends Bean {
-	
+
 	private int codigo;
 	private String nombrePais;
 	private String nombreCentroVotacion;
@@ -30,29 +31,14 @@ public class LocacionBean extends Bean {
 	private int nroVotosPorcentaje;
 	private int nroVotosRestantesPorcentaje;
 	private int nroElectorSesionPorcentaje;
-/*
-	public LocacionBean () {
-		codigo = 0;
-		nombrePais = "";
-		nombreCentroVotacion = "";
-		tiempoGMT = 0;
-		horaLocal = null;
-		horaVotacionInicio = null;
-		horaVotacionFin = null;
-		diferenciaInicio = 0;
-		diferenciaInicioFin = 0;
-		diferenciaFin = 0;
-		puestaCero = null;
-		cierreVotacion = null;
-		nroElectores = 0;
-		nroVotos = 0;
-		nroVotosRestantes = 0;
-		nroElectorSesion = 0;
-		nroVotosPorcentaje = 0;
-		nroVotosRestantesPorcentaje = 0;
-		nroElectorSesionPorcentaje = 0;
-	}*/
-	
+	private String totalLocaciones;
+	private int locacionesCerradas;
+	private boolean locacionCerrada;
+	private String mensaje;
+	private int conEscrutinio;
+	private ArrayList listaEscrutinioDetalle;
+	private int locacionesAbiertas;
+
 	public int getNroElectores() {
 		return nroElectores;
 	}
@@ -184,8 +170,7 @@ public class LocacionBean extends Bean {
 	public int getNroVotosPorcentaje() {
 		try {
 			return (100 * nroVotos) / nroElectores;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return 0;
 		}
 	}
@@ -197,8 +182,7 @@ public class LocacionBean extends Bean {
 	public int getNroVotosRestantesPorcentaje() {
 		try {
 			return (100 * getNroVotosRestantes()) / nroElectores;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return 0;
 		}
 	}
@@ -210,8 +194,7 @@ public class LocacionBean extends Bean {
 	public int getNroElectorSesionPorcentaje() {
 		try {
 			return (100 * nroElectorSesion) / nroElectores;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return 0;
 		}
 	}
@@ -219,5 +202,61 @@ public class LocacionBean extends Bean {
 	public void setNroElectorSesionPorcentaje(int nroElectorSesionPorcentaje) {
 		this.nroElectorSesionPorcentaje = nroElectorSesionPorcentaje;
 	}
-	
+
+	public String getTotalLocaciones() {
+		return totalLocaciones;
+	}
+
+	public void setTotalLocaciones(String totalLocaciones) {
+		this.totalLocaciones = totalLocaciones;
+	}
+
+	public int getLocacionesCerradas() {
+		return locacionesCerradas;
+	}
+
+	public void setLocacionesCerradas(int locacionesCerradas) {
+		this.locacionesCerradas = locacionesCerradas;
+	}
+
+	public boolean isLocacionCerrada() {
+		return locacionCerrada;
+	}
+
+	public void setLocacionCerrada(boolean locacionCerrada) {
+		this.locacionCerrada = locacionCerrada;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	public int getConEscrutinio() {
+		return conEscrutinio;
+	}
+
+	public void setConEscrutinio(int conEscrutinio) {
+		this.conEscrutinio = conEscrutinio;
+	}
+
+	public ArrayList getListaEscrutinioDetalle() {
+		return listaEscrutinioDetalle;
+	}
+
+	public void setListaEscrutinioDetalle(ArrayList listaEscrutinioDetalle) {
+		this.listaEscrutinioDetalle = listaEscrutinioDetalle;
+	}
+
+	public int getLocacionesAbiertas() {
+		return locacionesAbiertas;
+	}
+
+	public void setLocacionesAbiertas(int locacionesAbiertas) {
+		this.locacionesAbiertas = locacionesAbiertas;
+	}
+
 }

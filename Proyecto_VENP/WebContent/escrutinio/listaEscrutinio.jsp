@@ -35,12 +35,14 @@
 									property="nombrePais" /></b></td>
 								<td class="alt10"><nested:equal property="locacionCerrada"
 									value="true">
+									  
 									<nested:link styleClass="sendBtn"
 										href="listaEscrutinio.do?cmd=listarDetalleLocacion"
-										paramId="keyValue" paramProperty="paisId">
+										paramId="keyValue" paramProperty="codigo">
 										<div class="div12"><bean:message
 											key="listaEscrutinio.boton.generarEscrutinio" /></div>
 									</nested:link>
+									 
 								</nested:equal></td>
 							</tr>
 

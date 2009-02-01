@@ -9,7 +9,7 @@ public class EscrutinioForm extends ActionForm{
 	ArrayList listaEscrutinio;
 	ArrayList listaEscrutinioDetalle;
 
-	String paisId;
+	int  codigo;  
 	String nombrePais;
 	String totalLocaciones;
 	boolean locacionCerrada;
@@ -23,11 +23,11 @@ public class EscrutinioForm extends ActionForm{
 	String IdVotoBlanco; 
 	
 	
-	public String getPaisId() {
-		return paisId;
+	public int getCodigo() {
+		return codigo;
 	}
-	public void setPaisId(String paisId) {
-		this.paisId = paisId;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	public String getNombrePais() {
 		return nombrePais;

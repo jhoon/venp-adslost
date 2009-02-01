@@ -2,11 +2,11 @@ package venp.services;
 
 import java.util.ArrayList;
 
-import com.ibatis.dao.client.DaoManager;
-
 import venp.beans.ProcesoElectoralBean;
-import venp.dao.entities.ProcesoElectoralDAO; //import venp.dao.factory.DAOFactory;
+import venp.dao.entities.ProcesoElectoralDAO;
 import venp.dao.factory.DaoConfig;
+
+import com.ibatis.dao.client.DaoManager;
 
 public class ProcesoElectoralService {
 
@@ -43,6 +43,17 @@ public class ProcesoElectoralService {
 
 	public ArrayList findAllCreado() throws Exception {
 		return dao.findAllCreado();
+	}
+
+	/**
+	 * Para conocer el estado del procesoElectoral
+	 */
+	public boolean estadoProceso() throws Exception {
+		return dao.estadoProceso();
+	}
+
+	public boolean cierraProcesoElectoral() throws Exception {
+		return dao.cierraProcesoElectoral();
 	}
 
 }

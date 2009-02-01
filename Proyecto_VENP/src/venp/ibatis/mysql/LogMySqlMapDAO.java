@@ -7,7 +7,7 @@ import venp.dao.entities.LogDAO;
 import com.ibatis.dao.client.DaoManager;
 import com.ibatis.dao.client.template.SqlMapDaoTemplate;
 
-public class LogMySqlMapDAO extends SqlMapDaoTemplate implements LogDAO{
+public class LogMySqlMapDAO extends SqlMapDaoTemplate implements LogDAO {
 
 	public LogMySqlMapDAO(DaoManager daoManager) {
 		super(daoManager);

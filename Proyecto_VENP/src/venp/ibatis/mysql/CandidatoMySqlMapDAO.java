@@ -9,7 +9,8 @@ import venp.dao.entities.CandidatoDAO;
 import com.ibatis.dao.client.DaoManager;
 import com.ibatis.dao.client.template.SqlMapDaoTemplate;
 
-public class CandidatoMySqlMapDAO extends SqlMapDaoTemplate implements CandidatoDAO {
+public class CandidatoMySqlMapDAO extends SqlMapDaoTemplate implements
+		CandidatoDAO {
 
 	public CandidatoMySqlMapDAO(DaoManager daoManager) {
 		super(daoManager);
@@ -30,16 +31,21 @@ public class CandidatoMySqlMapDAO extends SqlMapDaoTemplate implements Candidato
 		return (ArrayList) queryForList("Candidato.findAll", null);
 	}
 
-	public ArrayList listarConPartidoPolitico(int partidoPoliticoId) throws Exception {
-		return (ArrayList<CandidatoBean>) queryForList("Candidato.findAll_conPP", partidoPoliticoId);
+	public ArrayList listarConPartidoPolitico(int partidoPoliticoId)
+			throws Exception {
+		return (ArrayList<CandidatoBean>) queryForList(
+				"Candidato.findAll_conPP", partidoPoliticoId);
 	}
 
-	public ArrayList listarSinPartidoPolitico(int partidoPoliticoId) throws Exception {
-		return (ArrayList<CandidatoBean>) queryForList("Candidato.findAll_sinPP", partidoPoliticoId);
+	public ArrayList listarSinPartidoPolitico(int partidoPoliticoId)
+			throws Exception {
+		return (ArrayList<CandidatoBean>) queryForList(
+				"Candidato.findAll_sinPP", partidoPoliticoId);
 	}
 
 	public CandidatoBean findByPrimaryKey(int codigo) throws Exception {
-		return (CandidatoBean) this.queryForObject("Candidato.findByPrimaryKey", codigo);
+		return (CandidatoBean) this.queryForObject(
+				"Candidato.findByPrimaryKey", codigo);
 	}
 
 	public String insertar(CandidatoBean bean) throws Exception {
@@ -49,12 +55,13 @@ public class CandidatoMySqlMapDAO extends SqlMapDaoTemplate implements Candidato
 		map.put("v_materno", bean.getMaterno());
 		map.put("v_dni", bean.getDni());
 		map.put("v_foto", bean.getFoto());
-		
-		String strResult =  (String)this.queryForObject("Candidato.insertar", map);
-		
+
+		String strResult = (String) this.queryForObject("Candidato.insertar",
+				map);
+
 		return strResult;
 	}
-	
+
 	public String editar(CandidatoBean bean) throws Exception {
 		HashMap map = new HashMap();
 		map.put("codigo", bean.getCodigo());
@@ -63,9 +70,10 @@ public class CandidatoMySqlMapDAO extends SqlMapDaoTemplate implements Candidato
 		map.put("v_materno", bean.getMaterno());
 		map.put("v_dni", bean.getDni());
 		map.put("v_foto", bean.getFoto());
-		
-		String strResult =  (String)this.queryForObject("Candidato.editar", map);
-		
+
+		String strResult = (String) this
+				.queryForObject("Candidato.editar", map);
+
 		return strResult;
 	}
 
@@ -73,7 +81,7 @@ public class CandidatoMySqlMapDAO extends SqlMapDaoTemplate implements Candidato
 		HashMap map = new HashMap();
 		map.put("v_partidopolitico", partidoPolitico);
 		map.put("v_candidato", candidato);
-		
+
 		this.update("Candidato.retirar", map);
 	}
 

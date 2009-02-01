@@ -27,11 +27,12 @@ public class CedulaMySqlMapDAO extends SqlMapDaoTemplate implements CedulaDAO {
 	}
 
 	public ArrayList listarCedulas() throws Exception {
-		return (ArrayList)this.queryForList("Cedula.listarCedulas", null);
+		return (ArrayList) this.queryForList("Cedula.listarCedulas", null);
 	}
-	
+
 	public ArrayList cargarProcesosElectorales() throws Exception {
-		return (ArrayList)this.queryForList("Cedula.cargarProcesosElectorales", null);
+		return (ArrayList) this.queryForList(
+				"Cedula.cargarProcesosElectorales", null);
 	}
 
 	public int publicarCedula(String codigo) throws Exception {

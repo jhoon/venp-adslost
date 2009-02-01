@@ -4,43 +4,31 @@ import java.util.ArrayList;
 
 import venp.beans.LocacionBean;
 /**
- * Patron DAO para Puesta a cero y cierre de votación de locación
- * @author MCristobal
+ * Patron DAO para Locación
+ * @author MCristobal, Portoren
  *
  */
 public interface LocacionDAO {
 	
 	// Metodos para PUESTA a CERO
-	/**
-	 * Metodo para puesta a cero
-	 */
 	public ArrayList locacionesActivasPorUsuarioPuestaCero(int usuario) throws Exception;
-	/**
-	 * Metodo para puesta a cero
-	 */	
+
 	public LocacionBean locacionActivaPorUsuarioPuestaCero(int usuario, int locacion) throws Exception;
-	/**
-	 * Metodo para puesta a cero
-	 */
+
 	public boolean puestaCero(int usuario, int locacion) throws Exception;
 
 	// Metodos para CERRAR VOTACION
-	
-	/**
-	 * Metodo para el cierre de votacion
-	 */
 	public ArrayList locacionesPorUsuarioCerrarVotacion(int usuario) throws Exception;
-	/**
-	 * Metodo para el cierre de votacion
-	 */
+
 	public LocacionBean locacionPorUsuarioCerrarVotacion(int usuario, int locacion) throws Exception;
-	/**
-	 * Metodo para el cierre de votacion
-	 */
+
 	public boolean cerrarVotacion(int usuario, int locacion) throws Exception;
-	/**
-	 * Metodo para el monitoreo
-	 */
+
+	// Metodos para MONITOREO DE TRANSACCIONES
 	public ArrayList locacionesPorUsuarioMonitoreo(int usuario) throws Exception;
 
+	// Metodos para ESCRUTION y CONSOLIDACION
+	public ArrayList listarLocacionesCerradas() throws Exception;
+	
+	public boolean locacionesAbiertas() throws Exception;
 }

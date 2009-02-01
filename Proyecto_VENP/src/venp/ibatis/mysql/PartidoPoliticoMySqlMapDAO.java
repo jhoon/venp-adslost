@@ -53,14 +53,14 @@ public class PartidoPoliticoMySqlMapDAO extends SqlMapDaoTemplate implements
 
 		return (String) this.queryForObject("PartidoPolitico.insertar", map);
 	}
-	
+
 	public int totalCandidatosAsignados(int partidoPoliticoID) throws Exception {
 		int intResultado;
-		
+
 		try {
-			intResultado = (Integer) this.queryForObject("PartidoPolitico.candidatosAsignados", partidoPoliticoID);	
-		}
-		catch (Exception e) {
+			intResultado = (Integer) this.queryForObject(
+					"PartidoPolitico.candidatosAsignados", partidoPoliticoID);
+		} catch (Exception e) {
 			intResultado = 0;
 		}
 
