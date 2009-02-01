@@ -170,6 +170,7 @@
 
 		<action path="/votacion" name="cedulaForm" input="/votacion/votacionCedula.jsp"
 			parameter="cmd" type="venp.web.actions.VotacionAction" scope="session">
+			<exception key="elector.error.otro" path="/errores.jsp" type="java.lang.Exception" ></exception>
 			<forward name="inicio" path="/elector.do" />
 			<forward name="fin" path="voConfirma" />
 			<forward name="cedula" path="voCedula" />

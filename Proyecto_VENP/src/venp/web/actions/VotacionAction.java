@@ -77,11 +77,19 @@ public class VotacionAction extends DispatchAction {
 		ElectorForm bean = (ElectorForm)session.getAttribute("Elector");
 		if(bean != null) {
 			ElectorService service = new ElectorService();
-			bean = service.votar((String)frm.get("voto"), bean);
-			session.removeAttribute("Elector");
-			SessionVotantesListener.removerElector(bean);
-			request.setAttribute("Elector", bean);
-			return mapping.findForward("fin");
+			try {
+				bean = service.votar((String)frm.get("voto"), bean);
+				session.removeAttribute("Elector");
+				SessionVotantesListener.removerElector(bean);
+				request.setAttribute("Elector", bean);
+				return mapping.findForward("fin");
+			} catch (Exception e) {
+				ActionErrors errors = new ActionErrors();
+				errors.add("error", new ActionMessage("elector.error.otro",bean.getEmail()));
+			    saveErrors(request, errors);
+			    frm.set("voto", null);
+			    return mapping.findForward("errores");
+			}
 		}
 		else {
 			frm.set("voto", null);

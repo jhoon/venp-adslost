@@ -69,7 +69,8 @@ public class ElectorService {
 		try {
 			return dao.votar(strVoto, elector);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
+			//e.printStackTrace();
 			return null;
 		}
 	}
