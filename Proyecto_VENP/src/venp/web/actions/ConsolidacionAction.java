@@ -41,7 +41,6 @@ public class ConsolidacionAction extends DispatchAction {
 			errors.add("errors", new ActionMessage(
 					"listaConsolidacion.error.locacionesAbiertas"));
 			saveErrors(request, errors);
-
 		} else {
 			ProcesoElectoralService servProc = new ProcesoElectoralService();
 			/*
@@ -75,8 +74,6 @@ public class ConsolidacionAction extends DispatchAction {
 					 * metodo que ejecutara el cierre del proceso electoral
 					 */
 					bolProcCerrado = servProc.cierraProcesoElectoral();
-					System.out.println("que tiene bpñnProcesoCErrado "
-							+ bolProcCerrado);
 					if (!bolProcCerrado) {
 						ArrayList list = new ArrayList();
 						frm.setListaConsolidacion(list);

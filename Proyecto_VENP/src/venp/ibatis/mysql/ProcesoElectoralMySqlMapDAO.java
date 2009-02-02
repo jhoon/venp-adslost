@@ -79,7 +79,6 @@ public class ProcesoElectoralMySqlMapDAO extends SqlMapDaoTemplate implements
 		ProcesoElectoralBean procElec = (ProcesoElectoralBean) queryForObject(
 				"ProcesoElectoral.procesoCerrado", null);
 		try {
-
 			if (procElec.getEstado().equals("F")) {
 				bolResultado = true;
 			} else {
@@ -89,7 +88,6 @@ public class ProcesoElectoralMySqlMapDAO extends SqlMapDaoTemplate implements
 			ex.getMessage();
 			bolResultado = false;
 		}
-		System.out.println("estado proceso" + bolResultado);
 		return bolResultado;
 	}
 
@@ -104,7 +102,6 @@ public class ProcesoElectoralMySqlMapDAO extends SqlMapDaoTemplate implements
 			bolResultado = true;
 		}
 		return bolResultado;
-
 	}
 
 }
