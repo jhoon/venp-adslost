@@ -11,7 +11,7 @@
 
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO,MYSQL323' */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ANSI_QUOTES,MYSQL323' */;
 
 
 --
@@ -22,503 +22,503 @@ CREATE DATABASE IF NOT EXISTS votacion;
 USE votacion;
 
 --
--- Definition of table `candidato`
+-- Definition of table "candidato"
 --
 
-DROP TABLE IF EXISTS `candidato`;
-CREATE TABLE `candidato` (
-  `id` int(10) unsigned NOT NULL,
-  `nombre` varchar(30) NOT NULL,
-  `paterno` varchar(30) NOT NULL,
-  `materno` varchar(30) NOT NULL,
-  `dni` char(8) NOT NULL,
-  `foto` varchar(36) NOT NULL,
-  `estado` char(1) NOT NULL,
-  PRIMARY KEY  (`id`)
+DROP TABLE IF EXISTS "candidato";
+CREATE TABLE "candidato" (
+  "id" int(10) unsigned NOT NULL,
+  "nombre" varchar(30) NOT NULL,
+  "paterno" varchar(30) NOT NULL,
+  "materno" varchar(30) NOT NULL,
+  "dni" char(8) NOT NULL,
+  "foto" varchar(36) NOT NULL,
+  "estado" char(1) NOT NULL,
+  PRIMARY KEY  ("id")
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `candidato`
+-- Dumping data for table "candidato"
 --
 
-/*!40000 ALTER TABLE `candidato` DISABLE KEYS */;
-/*!40000 ALTER TABLE `candidato` ENABLE KEYS */;
+/*!40000 ALTER TABLE "candidato" DISABLE KEYS */;
+/*!40000 ALTER TABLE "candidato" ENABLE KEYS */;
 
 
 --
--- Definition of table `candidato_partido_politico`
+-- Definition of table "candidato_partido_politico"
 --
 
-DROP TABLE IF EXISTS `candidato_partido_politico`;
-CREATE TABLE `candidato_partido_politico` (
-  `id` int(10) unsigned NOT NULL,
-  `Partido_Politico_id` int(10) unsigned NOT NULL,
-  `Candidato_id` int(10) unsigned NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  `fecha_modificacion` datetime NOT NULL,
-  `estado` char(1) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_Candidato` (`Candidato_id`),
-  KEY `fk_Partido_Politico` (`Partido_Politico_id`),
-  CONSTRAINT `candidato_partido_politico_ibfk_1` FOREIGN KEY (`Candidato_id`) REFERENCES `candidato` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `candidato_partido_politico_ibfk_2` FOREIGN KEY (`Partido_Politico_id`) REFERENCES `partido_politico` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "candidato_partido_politico";
+CREATE TABLE "candidato_partido_politico" (
+  "id" int(10) unsigned NOT NULL,
+  "Partido_Politico_id" int(10) unsigned NOT NULL,
+  "Candidato_id" int(10) unsigned NOT NULL,
+  "fecha_creacion" datetime NOT NULL,
+  "fecha_modificacion" datetime NOT NULL,
+  "estado" char(1) NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "fk_Candidato" ("Candidato_id"),
+  KEY "fk_Partido_Politico" ("Partido_Politico_id"),
+  CONSTRAINT "candidato_partido_politico_ibfk_1" FOREIGN KEY ("Candidato_id") REFERENCES "candidato" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT "candidato_partido_politico_ibfk_2" FOREIGN KEY ("Partido_Politico_id") REFERENCES "partido_politico" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `candidato_partido_politico`
+-- Dumping data for table "candidato_partido_politico"
 --
 
-/*!40000 ALTER TABLE `candidato_partido_politico` DISABLE KEYS */;
-/*!40000 ALTER TABLE `candidato_partido_politico` ENABLE KEYS */;
+/*!40000 ALTER TABLE "candidato_partido_politico" DISABLE KEYS */;
+/*!40000 ALTER TABLE "candidato_partido_politico" ENABLE KEYS */;
 
 
 --
--- Definition of table `cedula`
+-- Definition of table "cedula"
 --
 
-DROP TABLE IF EXISTS `cedula`;
-CREATE TABLE `cedula` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `Proceso_Electoral_id` int(10) unsigned NOT NULL,
-  `tipo` varchar(50) NOT NULL,
-  `estado` char(1) NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  `fecha_modificacion` datetime NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_Proceso_Electoral` (`Proceso_Electoral_id`),
-  CONSTRAINT `cedula_ibfk_1` FOREIGN KEY (`Proceso_Electoral_id`) REFERENCES `proceso_electoral` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "cedula";
+CREATE TABLE "cedula" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "Proceso_Electoral_id" int(10) unsigned NOT NULL,
+  "tipo" varchar(50) NOT NULL,
+  "estado" char(1) NOT NULL,
+  "fecha_creacion" datetime NOT NULL,
+  "fecha_modificacion" datetime NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "fk_Proceso_Electoral" ("Proceso_Electoral_id"),
+  CONSTRAINT "cedula_ibfk_1" FOREIGN KEY ("Proceso_Electoral_id") REFERENCES "proceso_electoral" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `cedula`
+-- Dumping data for table "cedula"
 --
 
-/*!40000 ALTER TABLE `cedula` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cedula` ENABLE KEYS */;
+/*!40000 ALTER TABLE "cedula" DISABLE KEYS */;
+/*!40000 ALTER TABLE "cedula" ENABLE KEYS */;
 
 
 --
--- Definition of table `centro_votacion`
+-- Definition of table "centro_votacion"
 --
 
-DROP TABLE IF EXISTS `centro_votacion`;
-CREATE TABLE `centro_votacion` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `Pais_id` int(10) unsigned NOT NULL,
-  `Zona_Horaria_id` int(10) unsigned NOT NULL,
-  `codigo_postal` varchar(10) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `region` varchar(50) NOT NULL,
-  `direccion` varchar(100) NOT NULL,
-  `estado` char(1) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_Centro_Votacion` (`Zona_Horaria_id`),
-  KEY `Centro_Votacion_FKIndex2` (`Pais_id`),
-  CONSTRAINT `centro_votacion_ibfk_1` FOREIGN KEY (`Zona_Horaria_id`) REFERENCES `zona_horaria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `centro_votacion_ibfk_2` FOREIGN KEY (`Pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "centro_votacion";
+CREATE TABLE "centro_votacion" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "Pais_id" int(10) unsigned NOT NULL,
+  "Zona_Horaria_id" int(10) unsigned NOT NULL,
+  "codigo_postal" varchar(10) NOT NULL,
+  "nombre" varchar(50) NOT NULL,
+  "region" varchar(50) NOT NULL,
+  "direccion" varchar(100) NOT NULL,
+  "estado" char(1) NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "fk_Centro_Votacion" ("Zona_Horaria_id"),
+  KEY "Centro_Votacion_FKIndex2" ("Pais_id"),
+  CONSTRAINT "centro_votacion_ibfk_1" FOREIGN KEY ("Zona_Horaria_id") REFERENCES "zona_horaria" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT "centro_votacion_ibfk_2" FOREIGN KEY ("Pais_id") REFERENCES "pais" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `centro_votacion`
+-- Dumping data for table "centro_votacion"
 --
 
-/*!40000 ALTER TABLE `centro_votacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `centro_votacion` ENABLE KEYS */;
+/*!40000 ALTER TABLE "centro_votacion" DISABLE KEYS */;
+/*!40000 ALTER TABLE "centro_votacion" ENABLE KEYS */;
 
 
 --
--- Definition of table `diccionario_log`
+-- Definition of table "diccionario_log"
 --
 
-DROP TABLE IF EXISTS `diccionario_log`;
-CREATE TABLE `diccionario_log` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `descripcion` varchar(100) NOT NULL,
-  PRIMARY KEY  (`id`)
+DROP TABLE IF EXISTS "diccionario_log";
+CREATE TABLE "diccionario_log" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "descripcion" varchar(100) NOT NULL,
+  PRIMARY KEY  ("id")
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `diccionario_log`
+-- Dumping data for table "diccionario_log"
 --
 
-/*!40000 ALTER TABLE `diccionario_log` DISABLE KEYS */;
-/*!40000 ALTER TABLE `diccionario_log` ENABLE KEYS */;
+/*!40000 ALTER TABLE "diccionario_log" DISABLE KEYS */;
+/*!40000 ALTER TABLE "diccionario_log" ENABLE KEYS */;
 
 
 --
--- Definition of table `elector`
+-- Definition of table "elector"
 --
 
-DROP TABLE IF EXISTS `elector`;
-CREATE TABLE `elector` (
-  `id` bigint(20) NOT NULL auto_increment,
-  `Locacion_id` int(10) unsigned NOT NULL,
-  `nombre` varchar(20) NOT NULL,
-  `paterno` varchar(20) NOT NULL,
-  `materno` varchar(20) NOT NULL,
-  `dni` char(8) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `estado` char(1) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_Locacion` (`Locacion_id`),
-  CONSTRAINT `elector_ibfk_1` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "elector";
+CREATE TABLE "elector" (
+  "id" bigint(20) NOT NULL auto_increment,
+  "Locacion_id" int(10) unsigned NOT NULL,
+  "nombre" varchar(20) NOT NULL,
+  "paterno" varchar(20) NOT NULL,
+  "materno" varchar(20) NOT NULL,
+  "dni" char(8) NOT NULL,
+  "email" varchar(50) NOT NULL,
+  "estado" char(1) NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "fk_Locacion" ("Locacion_id"),
+  CONSTRAINT "elector_ibfk_1" FOREIGN KEY ("Locacion_id") REFERENCES "locacion" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `elector`
+-- Dumping data for table "elector"
 --
 
-/*!40000 ALTER TABLE `elector` DISABLE KEYS */;
-/*!40000 ALTER TABLE `elector` ENABLE KEYS */;
+/*!40000 ALTER TABLE "elector" DISABLE KEYS */;
+/*!40000 ALTER TABLE "elector" ENABLE KEYS */;
 
 
 --
--- Definition of table `escrutinio`
+-- Definition of table "escrutinio"
 --
 
-DROP TABLE IF EXISTS `escrutinio`;
-CREATE TABLE `escrutinio` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `Locacion_id` int(10) unsigned NOT NULL,
-  `Opcion_id` int(10) unsigned NOT NULL,
-  `numero` int(10) unsigned NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `Escrutinio_FKIndex1` (`Opcion_id`),
-  KEY `Escrutinio_FKIndex2` (`Locacion_id`),
-  CONSTRAINT `escrutinio_ibfk_1` FOREIGN KEY (`Opcion_id`) REFERENCES `opcion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `escrutinio_ibfk_2` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "escrutinio";
+CREATE TABLE "escrutinio" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "Locacion_id" int(10) unsigned NOT NULL,
+  "Opcion_id" int(10) unsigned NOT NULL,
+  "numero" int(10) unsigned NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "Escrutinio_FKIndex1" ("Opcion_id"),
+  KEY "Escrutinio_FKIndex2" ("Locacion_id"),
+  CONSTRAINT "escrutinio_ibfk_1" FOREIGN KEY ("Opcion_id") REFERENCES "opcion" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT "escrutinio_ibfk_2" FOREIGN KEY ("Locacion_id") REFERENCES "locacion" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `escrutinio`
+-- Dumping data for table "escrutinio"
 --
 
-/*!40000 ALTER TABLE `escrutinio` DISABLE KEYS */;
-/*!40000 ALTER TABLE `escrutinio` ENABLE KEYS */;
+/*!40000 ALTER TABLE "escrutinio" DISABLE KEYS */;
+/*!40000 ALTER TABLE "escrutinio" ENABLE KEYS */;
 
 
 --
--- Definition of table `locacion`
+-- Definition of table "locacion"
 --
 
-DROP TABLE IF EXISTS `locacion`;
-CREATE TABLE `locacion` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `Proceso_Electoral_id` int(10) unsigned NOT NULL,
-  `Centro_Votacion_id` int(10) unsigned NOT NULL,
-  `puesta_cero` char(1) NOT NULL default 'N',
-  `estado` char(1) NOT NULL default 'N',
-  `fecha_puesta_cero` datetime default NULL,
-  `fecha_cierre` datetime default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `idx_locacion` (`Proceso_Electoral_id`,`Centro_Votacion_id`),
-  KEY `fk_Centro_Votacion` (`Centro_Votacion_id`),
-  KEY `fk_Proceso_Electoral` (`Proceso_Electoral_id`),
-  CONSTRAINT `locacion_ibfk_1` FOREIGN KEY (`Centro_Votacion_id`) REFERENCES `centro_votacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `locacion_ibfk_2` FOREIGN KEY (`Proceso_Electoral_id`) REFERENCES `proceso_electoral` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "locacion";
+CREATE TABLE "locacion" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "Proceso_Electoral_id" int(10) unsigned NOT NULL,
+  "Centro_Votacion_id" int(10) unsigned NOT NULL,
+  "puesta_cero" char(1) NOT NULL default 'N',
+  "estado" char(1) NOT NULL default 'N',
+  "fecha_puesta_cero" datetime default NULL,
+  "fecha_cierre" datetime default NULL,
+  PRIMARY KEY  ("id"),
+  UNIQUE KEY "idx_locacion" ("Proceso_Electoral_id","Centro_Votacion_id"),
+  KEY "fk_Centro_Votacion" ("Centro_Votacion_id"),
+  KEY "fk_Proceso_Electoral" ("Proceso_Electoral_id"),
+  CONSTRAINT "locacion_ibfk_1" FOREIGN KEY ("Centro_Votacion_id") REFERENCES "centro_votacion" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT "locacion_ibfk_2" FOREIGN KEY ("Proceso_Electoral_id") REFERENCES "proceso_electoral" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `locacion`
+-- Dumping data for table "locacion"
 --
 
-/*!40000 ALTER TABLE `locacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `locacion` ENABLE KEYS */;
+/*!40000 ALTER TABLE "locacion" DISABLE KEYS */;
+/*!40000 ALTER TABLE "locacion" ENABLE KEYS */;
 
 
 --
--- Definition of table `log_elector`
+-- Definition of table "log_elector"
 --
 
-DROP TABLE IF EXISTS `log_elector`;
-CREATE TABLE `log_elector` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `Elector_id` bigint(20) NOT NULL,
-  `Diccionario_Log_id` int(10) unsigned NOT NULL,
-  `fecha` datetime NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_Diccionario_Log` (`Diccionario_Log_id`),
-  KEY `fk_Elector` (`Elector_id`),
-  CONSTRAINT `log_elector_ibfk_1` FOREIGN KEY (`Diccionario_Log_id`) REFERENCES `diccionario_log` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `log_elector_ibfk_2` FOREIGN KEY (`Elector_id`) REFERENCES `elector` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "log_elector";
+CREATE TABLE "log_elector" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "Elector_id" bigint(20) NOT NULL,
+  "Diccionario_Log_id" int(10) unsigned NOT NULL,
+  "fecha" datetime NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "fk_Diccionario_Log" ("Diccionario_Log_id"),
+  KEY "fk_Elector" ("Elector_id"),
+  CONSTRAINT "log_elector_ibfk_1" FOREIGN KEY ("Diccionario_Log_id") REFERENCES "diccionario_log" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT "log_elector_ibfk_2" FOREIGN KEY ("Elector_id") REFERENCES "elector" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `log_elector`
+-- Dumping data for table "log_elector"
 --
 
-/*!40000 ALTER TABLE `log_elector` DISABLE KEYS */;
-/*!40000 ALTER TABLE `log_elector` ENABLE KEYS */;
+/*!40000 ALTER TABLE "log_elector" DISABLE KEYS */;
+/*!40000 ALTER TABLE "log_elector" ENABLE KEYS */;
 
 
 --
--- Definition of table `log_usuario`
+-- Definition of table "log_usuario"
 --
 
-DROP TABLE IF EXISTS `log_usuario`;
-CREATE TABLE `log_usuario` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `Diccionario_Log_id` int(10) unsigned NOT NULL,
-  `Usuario_id` int(10) unsigned NOT NULL,
-  `fecha` datetime NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_Usuario` (`Usuario_id`),
-  KEY `fk_Diccionario_Log` (`Diccionario_Log_id`),
-  CONSTRAINT `log_usuario_ibfk_1` FOREIGN KEY (`Usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `log_usuario_ibfk_2` FOREIGN KEY (`Diccionario_Log_id`) REFERENCES `diccionario_log` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "log_usuario";
+CREATE TABLE "log_usuario" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "Diccionario_Log_id" int(10) unsigned NOT NULL,
+  "Usuario_id" int(10) unsigned NOT NULL,
+  "fecha" datetime NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "fk_Usuario" ("Usuario_id"),
+  KEY "fk_Diccionario_Log" ("Diccionario_Log_id"),
+  CONSTRAINT "log_usuario_ibfk_1" FOREIGN KEY ("Usuario_id") REFERENCES "usuario" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT "log_usuario_ibfk_2" FOREIGN KEY ("Diccionario_Log_id") REFERENCES "diccionario_log" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `log_usuario`
+-- Dumping data for table "log_usuario"
 --
 
-/*!40000 ALTER TABLE `log_usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `log_usuario` ENABLE KEYS */;
+/*!40000 ALTER TABLE "log_usuario" DISABLE KEYS */;
+/*!40000 ALTER TABLE "log_usuario" ENABLE KEYS */;
 
 
 --
--- Definition of table `opcion`
+-- Definition of table "opcion"
 --
 
-DROP TABLE IF EXISTS `opcion`;
-CREATE TABLE `opcion` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `Candidato_Partido_Politico_id` int(10) unsigned NOT NULL,
-  `Cedula_id` int(10) unsigned NOT NULL,
-  `orden` int(10) unsigned NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_Cedula` (`Cedula_id`),
-  KEY `fk_Candidato_Partido_Politico` (`Candidato_Partido_Politico_id`),
-  CONSTRAINT `opcion_ibfk_1` FOREIGN KEY (`Cedula_id`) REFERENCES `cedula` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `opcion_ibfk_2` FOREIGN KEY (`Candidato_Partido_Politico_id`) REFERENCES `candidato_partido_politico` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "opcion";
+CREATE TABLE "opcion" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "Candidato_Partido_Politico_id" int(10) unsigned NOT NULL,
+  "Cedula_id" int(10) unsigned NOT NULL,
+  "orden" int(10) unsigned NOT NULL,
+  "fecha_creacion" datetime NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "fk_Cedula" ("Cedula_id"),
+  KEY "fk_Candidato_Partido_Politico" ("Candidato_Partido_Politico_id"),
+  CONSTRAINT "opcion_ibfk_1" FOREIGN KEY ("Cedula_id") REFERENCES "cedula" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT "opcion_ibfk_2" FOREIGN KEY ("Candidato_Partido_Politico_id") REFERENCES "candidato_partido_politico" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `opcion`
+-- Dumping data for table "opcion"
 --
 
-/*!40000 ALTER TABLE `opcion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `opcion` ENABLE KEYS */;
+/*!40000 ALTER TABLE "opcion" DISABLE KEYS */;
+/*!40000 ALTER TABLE "opcion" ENABLE KEYS */;
 
 
 --
--- Definition of table `operador`
+-- Definition of table "operador"
 --
 
-DROP TABLE IF EXISTS `operador`;
-CREATE TABLE `operador` (
-  `Usuario_id` int(10) unsigned NOT NULL,
-  `Locacion_id` int(10) unsigned NOT NULL,
-  `estado` char(1) NOT NULL default 'A',
-  PRIMARY KEY  (`Usuario_id`,`Locacion_id`),
-  KEY `fk_Usuario` (`Usuario_id`),
-  KEY `fk_Locacion` (`Locacion_id`),
-  CONSTRAINT `operador_ibfk_1` FOREIGN KEY (`Usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `operador_ibfk_2` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "operador";
+CREATE TABLE "operador" (
+  "Usuario_id" int(10) unsigned NOT NULL,
+  "Locacion_id" int(10) unsigned NOT NULL,
+  "estado" char(1) NOT NULL default 'A',
+  PRIMARY KEY  ("Usuario_id","Locacion_id"),
+  KEY "fk_Usuario" ("Usuario_id"),
+  KEY "fk_Locacion" ("Locacion_id"),
+  CONSTRAINT "operador_ibfk_1" FOREIGN KEY ("Usuario_id") REFERENCES "usuario" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT "operador_ibfk_2" FOREIGN KEY ("Locacion_id") REFERENCES "locacion" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `operador`
+-- Dumping data for table "operador"
 --
 
-/*!40000 ALTER TABLE `operador` DISABLE KEYS */;
-/*!40000 ALTER TABLE `operador` ENABLE KEYS */;
+/*!40000 ALTER TABLE "operador" DISABLE KEYS */;
+/*!40000 ALTER TABLE "operador" ENABLE KEYS */;
 
 
 --
--- Definition of table `pais`
+-- Definition of table "pais"
 --
 
-DROP TABLE IF EXISTS `pais`;
-CREATE TABLE `pais` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `nombre` varchar(60) NOT NULL,
-  `abreviatura` char(2) NOT NULL,
-  `estado` char(1) NOT NULL default 'A',
-  PRIMARY KEY  (`id`)
+DROP TABLE IF EXISTS "pais";
+CREATE TABLE "pais" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "nombre" varchar(60) NOT NULL,
+  "abreviatura" char(2) NOT NULL,
+  "estado" char(1) NOT NULL default 'A',
+  PRIMARY KEY  ("id")
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `pais`
+-- Dumping data for table "pais"
 --
 
-/*!40000 ALTER TABLE `pais` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pais` ENABLE KEYS */;
+/*!40000 ALTER TABLE "pais" DISABLE KEYS */;
+/*!40000 ALTER TABLE "pais" ENABLE KEYS */;
 
 
 --
--- Definition of table `partido_politico`
+-- Definition of table "partido_politico"
 --
 
-DROP TABLE IF EXISTS `partido_politico`;
-CREATE TABLE `partido_politico` (
-  `id` int(10) unsigned NOT NULL,
-  `nombre` varchar(40) NOT NULL,
-  `abreviatura` varchar(10) NOT NULL,
-  `logo` varchar(36) NOT NULL,
-  `estado` char(1) NOT NULL,
-  PRIMARY KEY  (`id`)
+DROP TABLE IF EXISTS "partido_politico";
+CREATE TABLE "partido_politico" (
+  "id" int(10) unsigned NOT NULL,
+  "nombre" varchar(40) NOT NULL,
+  "abreviatura" varchar(10) NOT NULL,
+  "logo" varchar(36) NOT NULL,
+  "estado" char(1) NOT NULL,
+  PRIMARY KEY  ("id")
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `partido_politico`
+-- Dumping data for table "partido_politico"
 --
 
-/*!40000 ALTER TABLE `partido_politico` DISABLE KEYS */;
-/*!40000 ALTER TABLE `partido_politico` ENABLE KEYS */;
+/*!40000 ALTER TABLE "partido_politico" DISABLE KEYS */;
+/*!40000 ALTER TABLE "partido_politico" ENABLE KEYS */;
 
 
 --
--- Definition of table `perfil`
+-- Definition of table "perfil"
 --
 
-DROP TABLE IF EXISTS `perfil`;
-CREATE TABLE `perfil` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
-  `estado` char(1) NOT NULL default 'A',
-  PRIMARY KEY  (`id`)
+DROP TABLE IF EXISTS "perfil";
+CREATE TABLE "perfil" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "nombre" varchar(50) NOT NULL,
+  "descripcion" varchar(100) NOT NULL,
+  "estado" char(1) NOT NULL default 'A',
+  PRIMARY KEY  ("id")
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `perfil`
+-- Dumping data for table "perfil"
 --
 
-/*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
-/*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
+/*!40000 ALTER TABLE "perfil" DISABLE KEYS */;
+/*!40000 ALTER TABLE "perfil" ENABLE KEYS */;
 
 
 --
--- Definition of table `pin`
+-- Definition of table "pin"
 --
 
-DROP TABLE IF EXISTS `pin`;
-CREATE TABLE `pin` (
-  `id` bigint(20) NOT NULL auto_increment,
-  `Elector_id` bigint(20) NOT NULL,
-  `numero` char(32) NOT NULL,
-  `creacion` date NOT NULL,
-  `estado` char(1) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_Elector` (`Elector_id`),
-  CONSTRAINT `pin_ibfk_1` FOREIGN KEY (`Elector_id`) REFERENCES `elector` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "pin";
+CREATE TABLE "pin" (
+  "id" bigint(20) NOT NULL auto_increment,
+  "Elector_id" bigint(20) NOT NULL,
+  "numero" char(32) NOT NULL,
+  "creacion" date NOT NULL,
+  "estado" char(1) NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "fk_Elector" ("Elector_id"),
+  CONSTRAINT "pin_ibfk_1" FOREIGN KEY ("Elector_id") REFERENCES "elector" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `pin`
+-- Dumping data for table "pin"
 --
 
-/*!40000 ALTER TABLE `pin` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pin` ENABLE KEYS */;
+/*!40000 ALTER TABLE "pin" DISABLE KEYS */;
+/*!40000 ALTER TABLE "pin" ENABLE KEYS */;
 
 
 --
--- Definition of table `proceso_electoral`
+-- Definition of table "proceso_electoral"
 --
 
-DROP TABLE IF EXISTS `proceso_electoral`;
-CREATE TABLE `proceso_electoral` (
-  `id` int(10) unsigned NOT NULL,
-  `Usuario_id` int(10) unsigned NOT NULL,
-  `descripcion` varchar(50) NOT NULL,
-  `fecha_votacion` date NOT NULL,
-  `hora_inicial` time NOT NULL,
-  `hora_final` time NOT NULL,
-  `fecha_padron_inicial` date NOT NULL,
-  `fecha_padron_final` date NOT NULL,
-  `tiempo_sesion` int(11) NOT NULL,
-  `estado` char(1) NOT NULL default 'A',
-  PRIMARY KEY  (`id`),
-  KEY `fk_Usuario` (`Usuario_id`),
-  CONSTRAINT `proceso_electoral_ibfk_1` FOREIGN KEY (`Usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "proceso_electoral";
+CREATE TABLE "proceso_electoral" (
+  "id" int(10) unsigned NOT NULL,
+  "Usuario_id" int(10) unsigned NOT NULL,
+  "descripcion" varchar(50) NOT NULL,
+  "fecha_votacion" date NOT NULL,
+  "hora_inicial" time NOT NULL,
+  "hora_final" time NOT NULL,
+  "fecha_padron_inicial" date NOT NULL,
+  "fecha_padron_final" date NOT NULL,
+  "tiempo_sesion" int(11) NOT NULL,
+  "estado" char(1) NOT NULL default 'A',
+  PRIMARY KEY  ("id"),
+  KEY "fk_Usuario" ("Usuario_id"),
+  CONSTRAINT "proceso_electoral_ibfk_1" FOREIGN KEY ("Usuario_id") REFERENCES "usuario" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `proceso_electoral`
+-- Dumping data for table "proceso_electoral"
 --
 
-/*!40000 ALTER TABLE `proceso_electoral` DISABLE KEYS */;
-/*!40000 ALTER TABLE `proceso_electoral` ENABLE KEYS */;
+/*!40000 ALTER TABLE "proceso_electoral" DISABLE KEYS */;
+/*!40000 ALTER TABLE "proceso_electoral" ENABLE KEYS */;
 
 
 --
--- Definition of table `usuario`
+-- Definition of table "usuario"
 --
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE `usuario` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `Perfil_id` int(10) unsigned NOT NULL,
-  `nombre` varchar(20) NOT NULL,
-  `paterno` varchar(20) NOT NULL,
-  `materno` varchar(20) NOT NULL,
-  `dni` char(8) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `movil` varchar(15) NOT NULL,
-  `username` varchar(10) NOT NULL,
-  `passwd` varchar(32) NOT NULL,
-  `estado` char(1) NOT NULL default 'A',
-  PRIMARY KEY  (`id`),
-  KEY `fk_Perfil` (`Perfil_id`),
-  CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`Perfil_id`) REFERENCES `perfil` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "usuario";
+CREATE TABLE "usuario" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "Perfil_id" int(10) unsigned NOT NULL,
+  "nombre" varchar(20) NOT NULL,
+  "paterno" varchar(20) NOT NULL,
+  "materno" varchar(20) NOT NULL,
+  "dni" char(8) NOT NULL,
+  "email" varchar(50) NOT NULL,
+  "movil" varchar(15) NOT NULL,
+  "username" varchar(10) NOT NULL,
+  "passwd" varchar(32) NOT NULL,
+  "estado" char(1) NOT NULL default 'A',
+  PRIMARY KEY  ("id"),
+  KEY "fk_Perfil" ("Perfil_id"),
+  CONSTRAINT "usuario_ibfk_1" FOREIGN KEY ("Perfil_id") REFERENCES "perfil" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `usuario`
+-- Dumping data for table "usuario"
 --
 
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+/*!40000 ALTER TABLE "usuario" DISABLE KEYS */;
+/*!40000 ALTER TABLE "usuario" ENABLE KEYS */;
 
 
 --
--- Definition of table `voto`
+-- Definition of table "voto"
 --
 
-DROP TABLE IF EXISTS `voto`;
-CREATE TABLE `voto` (
-  `id` bigint(20) NOT NULL auto_increment,
-  `Locacion_id` int(10) unsigned NOT NULL,
-  `Opcion_id` blob NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `Voto_FKIndex1` (`Locacion_id`),
-  CONSTRAINT `voto_ibfk_1` FOREIGN KEY (`Locacion_id`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+DROP TABLE IF EXISTS "voto";
+CREATE TABLE "voto" (
+  "id" bigint(20) NOT NULL auto_increment,
+  "Locacion_id" int(10) unsigned NOT NULL,
+  "Opcion_id" blob NOT NULL,
+  "fecha_creacion" datetime NOT NULL,
+  PRIMARY KEY  ("id"),
+  KEY "Voto_FKIndex1" ("Locacion_id"),
+  CONSTRAINT "voto_ibfk_1" FOREIGN KEY ("Locacion_id") REFERENCES "locacion" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `voto`
+-- Dumping data for table "voto"
 --
 
-/*!40000 ALTER TABLE `voto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `voto` ENABLE KEYS */;
+/*!40000 ALTER TABLE "voto" DISABLE KEYS */;
+/*!40000 ALTER TABLE "voto" ENABLE KEYS */;
 
 
 --
--- Definition of table `zona_horaria`
+-- Definition of table "zona_horaria"
 --
 
-DROP TABLE IF EXISTS `zona_horaria`;
-CREATE TABLE `zona_horaria` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `tiempo` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `estado` char(1) NOT NULL,
-  PRIMARY KEY  (`id`)
+DROP TABLE IF EXISTS "zona_horaria";
+CREATE TABLE "zona_horaria" (
+  "id" int(10) unsigned NOT NULL auto_increment,
+  "tiempo" int(11) NOT NULL,
+  "nombre" varchar(50) NOT NULL,
+  "estado" char(1) NOT NULL,
+  PRIMARY KEY  ("id")
 ) TYPE=InnoDB;
 
 --
--- Dumping data for table `zona_horaria`
+-- Dumping data for table "zona_horaria"
 --
 
-/*!40000 ALTER TABLE `zona_horaria` DISABLE KEYS */;
-/*!40000 ALTER TABLE `zona_horaria` ENABLE KEYS */;
+/*!40000 ALTER TABLE "zona_horaria" DISABLE KEYS */;
+/*!40000 ALTER TABLE "zona_horaria" ENABLE KEYS */;
 
 
 --
--- Definition of function `fa_voto_getAESKey`
+-- Definition of function "fa_voto_getAESKey"
 --
 
 DROP FUNCTION IF EXISTS `fa_voto_getAESKey`;
@@ -535,7 +535,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_actualiza_Puesta_Cero`
+-- Definition of procedure "pa_actualiza_Puesta_Cero"
 --
 
 DROP PROCEDURE IF EXISTS `pa_actualiza_Puesta_Cero`;
@@ -555,7 +555,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_ADMIN_abrirProcesoDemo`
+-- Definition of procedure "pa_ADMIN_abrirProcesoDemo"
 --
 
 DROP PROCEDURE IF EXISTS `pa_ADMIN_abrirProcesoDemo`;
@@ -662,7 +662,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_ADMIN_cerrarProcesoDemo`
+-- Definition of procedure "pa_ADMIN_cerrarProcesoDemo"
 --
 
 DROP PROCEDURE IF EXISTS `pa_ADMIN_cerrarProcesoDemo`;
@@ -691,7 +691,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_ADMIN_setDefaultData`
+-- Definition of procedure "pa_ADMIN_setDefaultData"
 --
 
 DROP PROCEDURE IF EXISTS `pa_ADMIN_setDefaultData`;
@@ -806,7 +806,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_ADMIN_setEmpadronamiento`
+-- Definition of procedure "pa_ADMIN_setEmpadronamiento"
 --
 
 DROP PROCEDURE IF EXISTS `pa_ADMIN_setEmpadronamiento`;
@@ -834,7 +834,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_ADMIN_verUsuarioLog`
+-- Definition of procedure "pa_ADMIN_verUsuarioLog"
 --
 
 DROP PROCEDURE IF EXISTS `pa_ADMIN_verUsuarioLog`;
@@ -853,7 +853,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_candidato_asignar`
+-- Definition of procedure "pa_candidato_asignar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_candidato_asignar`;
@@ -881,7 +881,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_candidato_delete`
+-- Definition of procedure "pa_candidato_delete"
 --
 
 DROP PROCEDURE IF EXISTS `pa_candidato_delete`;
@@ -900,7 +900,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_candidato_edit`
+-- Definition of procedure "pa_candidato_edit"
 --
 
 DROP PROCEDURE IF EXISTS `pa_candidato_edit`;
@@ -930,7 +930,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_candidato_findAll`
+-- Definition of procedure "pa_candidato_findAll"
 --
 
 DROP PROCEDURE IF EXISTS `pa_candidato_findAll`;
@@ -957,7 +957,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_candidato_findByPrimaryKey`
+-- Definition of procedure "pa_candidato_findByPrimaryKey"
 --
 
 DROP PROCEDURE IF EXISTS `pa_candidato_findByPrimaryKey`;
@@ -976,7 +976,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_candidato_insert`
+-- Definition of procedure "pa_candidato_insert"
 --
 
 DROP PROCEDURE IF EXISTS `pa_candidato_insert`;
@@ -1002,7 +1002,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_candidato_retirar`
+-- Definition of procedure "pa_candidato_retirar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_candidato_retirar`;
@@ -1022,7 +1022,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_cedula_cargarProcesosElectorales`
+-- Definition of procedure "pa_cedula_cargarProcesosElectorales"
 --
 
 DROP PROCEDURE IF EXISTS `pa_cedula_cargarProcesosElectorales`;
@@ -1039,7 +1039,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_cedula_listar`
+-- Definition of procedure "pa_cedula_listar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_cedula_listar`;
@@ -1061,7 +1061,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_asignar`
+-- Definition of procedure "pa_centrovotacion_asignar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_asignar`;
@@ -1091,7 +1091,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_conLocacion`
+-- Definition of procedure "pa_centrovotacion_conLocacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_conLocacion`;
@@ -1130,7 +1130,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_conUsuario`
+-- Definition of procedure "pa_centrovotacion_conUsuario"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_conUsuario`;
@@ -1178,7 +1178,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_delete`
+-- Definition of procedure "pa_centrovotacion_delete"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_delete`;
@@ -1197,7 +1197,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_edit`
+-- Definition of procedure "pa_centrovotacion_edit"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_edit`;
@@ -1221,7 +1221,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_findAll`
+-- Definition of procedure "pa_centrovotacion_findAll"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_findAll`;
@@ -1258,7 +1258,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_findByName`
+-- Definition of procedure "pa_centrovotacion_findByName"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_findByName`;
@@ -1279,7 +1279,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_findByName_ID`
+-- Definition of procedure "pa_centrovotacion_findByName_ID"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_findByName_ID`;
@@ -1301,7 +1301,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_findByPrimaryKey`
+-- Definition of procedure "pa_centrovotacion_findByPrimaryKey"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_findByPrimaryKey`;
@@ -1338,7 +1338,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_insert`
+-- Definition of procedure "pa_centrovotacion_insert"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_insert`;
@@ -1359,7 +1359,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_retirar`
+-- Definition of procedure "pa_centrovotacion_retirar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_retirar`;
@@ -1379,7 +1379,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_sinLocacion`
+-- Definition of procedure "pa_centrovotacion_sinLocacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_sinLocacion`;
@@ -1418,7 +1418,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_centrovotacion_sinUsuario`
+-- Definition of procedure "pa_centrovotacion_sinUsuario"
 --
 
 DROP PROCEDURE IF EXISTS `pa_centrovotacion_sinUsuario`;
@@ -1466,7 +1466,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_cierraProcesoElectoral`
+-- Definition of procedure "pa_cierraProcesoElectoral"
 --
 
 DROP PROCEDURE IF EXISTS `pa_cierraProcesoElectoral`;
@@ -1484,7 +1484,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Consolidacion_Cierra_Proceso_Electoral`
+-- Definition of procedure "pa_Consolidacion_Cierra_Proceso_Electoral"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Consolidacion_Cierra_Proceso_Electoral`;
@@ -1502,14 +1502,14 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Consolidacion_Consolida_Voto`
+-- Definition of procedure "pa_Consolidacion_Consolida_Voto"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Consolidacion_Consolida_Voto`;
 
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_Consolidacion_Consolida_Voto`()
 BEGIN
 	select concat(c.nombre,' ',c.paterno,' ',c.materno) as nombre,
@@ -1528,9 +1528,9 @@ BEGIN
 	on e.locacion_id=l.id
 	inner join proceso_electoral pe
 	on l.proceso_electoral_id= pe.id
-	where pp.estado='A' 
+	where pp.estado='A'
 	and c.estado='A'
-	and pe.estado='F'
+	and pe.estado='A'
 	group by nombre,foto,pp.nombre,logo,fecha
 	order by resultado desc;
     END $$
@@ -1539,7 +1539,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Consolidacion_Contar_Locaciones_Abiertas`
+-- Definition of procedure "pa_Consolidacion_Contar_Locaciones_Abiertas"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Consolidacion_Contar_Locaciones_Abiertas`;
@@ -1556,24 +1556,61 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Consolidacion_Proceso_Electoral_Cerrado`
+-- Definition of procedure "pa_Consolidacion_Proceso_Electoral_Cerrado"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Consolidacion_Proceso_Electoral_Cerrado`;
 
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_Consolidacion_Proceso_Electoral_Cerrado`()
 BEGIN
-	select * from proceso_electoral where estado='A';
+	select * from proceso_electoral where estado='F';
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
 DELIMITER ;
 
 --
--- Definition of procedure `pa_consolida_voto`
+-- Definition of procedure "pa_Consolidacion_Resultado_Final"
+--
+
+DROP PROCEDURE IF EXISTS `pa_Consolidacion_Resultado_Final`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_Consolidacion_Resultado_Final`()
+BEGIN
+	select concat(c.nombre,' ',c.paterno,' ',c.materno) as nombre,
+	       foto,pp.nombre as partido,logo,sum(numero) as resultado,
+	       date_format(now(), "%d/%m/%y") as fecha
+	from candidato_partido_politico cpp
+	inner join candidato c
+	on cpp.candidato_id=c.id
+	inner join partido_politico pp
+	on cpp.partido_politico_id = pp.id
+	inner join opcion o
+	on o.candidato_partido_politico_id=cpp.id
+	inner join escrutinio e
+	on e.opcion_id=o.id
+	inner join locacion l
+	on e.locacion_id=l.id
+	inner join proceso_electoral pe
+	on l.proceso_electoral_id= pe.id
+	where pp.estado='A'
+	and c.estado='A'
+	and pe.estado='F'
+	group by nombre,foto,pp.nombre,logo,fecha
+	order by resultado desc;
+END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
+-- Definition of procedure "pa_consolida_voto"
 --
 
 DROP PROCEDURE IF EXISTS `pa_consolida_voto`;
@@ -1610,7 +1647,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_contarLocacionesAbiertas`
+-- Definition of procedure "pa_contarLocacionesAbiertas"
 --
 
 DROP PROCEDURE IF EXISTS `pa_contarLocacionesAbiertas`;
@@ -1627,7 +1664,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_consulados`
+-- Definition of procedure "pa_elector_consulados"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_consulados`;
@@ -1647,7 +1684,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_empadronamientoActivo`
+-- Definition of procedure "pa_elector_empadronamientoActivo"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_empadronamientoActivo`;
@@ -1670,7 +1707,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_findByDNI`
+-- Definition of procedure "pa_elector_findByDNI"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_findByDNI`;
@@ -1687,7 +1724,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_generaPIN`
+-- Definition of procedure "pa_elector_generaPIN"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_generaPIN`;
@@ -1711,7 +1748,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_getCedula`
+-- Definition of procedure "pa_elector_getCedula"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_getCedula`;
@@ -1737,7 +1774,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_getProcesoActivo`
+-- Definition of procedure "pa_elector_getProcesoActivo"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_getProcesoActivo`;
@@ -1759,7 +1796,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_isVotoEnRango`
+-- Definition of procedure "pa_elector_isVotoEnRango"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_isVotoEnRango`;
@@ -1804,7 +1841,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_paises`
+-- Definition of procedure "pa_elector_paises"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_paises`;
@@ -1827,7 +1864,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_registrar`
+-- Definition of procedure "pa_elector_registrar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_registrar`;
@@ -1858,7 +1895,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_validaPIN`
+-- Definition of procedure "pa_elector_validaPIN"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_validaPIN`;
@@ -1880,7 +1917,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_validarDNI`
+-- Definition of procedure "pa_elector_validarDNI"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_validarDNI`;
@@ -1899,16 +1936,17 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_elector_votar`
+-- Definition of procedure "pa_elector_votar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_elector_votar`;
 
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_elector_votar`(IN v_voto int(10), IN v_id bigint(20), IN v_lid int(10))
 BEGIN
+	START TRANSACTION;
 	-- se inserta el voto de forma encriptada
 	INSERT into voto (id, Locacion_id, Opcion_id, fecha_creacion) 
 	values (NULL, v_lid, AES_ENCRYPT(v_voto, fa_voto_getAESKey()), now());
@@ -1923,13 +1961,14 @@ BEGIN
 	  inner join centro_votacion cv on l.Centro_Votacion_id = cv.id 
 	  inner join zona_horaria zh on cv.Zona_Horaria_id = zh.id 
 	and e.id = v_id;
+	COMMIT;
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
 DELIMITER ;
 
 --
--- Definition of procedure `pa_eliminar_voto`
+-- Definition of procedure "pa_eliminar_voto"
 --
 
 DROP PROCEDURE IF EXISTS `pa_eliminar_voto`;
@@ -1948,7 +1987,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Escrutinio_Insertar_Voto_Escrutinio`
+-- Definition of procedure "pa_Escrutinio_Insertar_Voto_Escrutinio"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Escrutinio_Insertar_Voto_Escrutinio`;
@@ -1983,7 +2022,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Escrutinio_Listar_Escrutinio_Pais_Locacion`
+-- Definition of procedure "pa_Escrutinio_Listar_Escrutinio_Pais_Locacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Escrutinio_Listar_Escrutinio_Pais_Locacion`;
@@ -2017,7 +2056,7 @@ select p.nombre as pais,cv.nombre,l.id as locacion_id,e.opcion_id
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Escrutinio_Listar_Locaciones`
+-- Definition of procedure "pa_Escrutinio_Listar_Locaciones"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Escrutinio_Listar_Locaciones`;
@@ -2040,7 +2079,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Escrutinio_Listar_Locaciones_Cerradas`
+-- Definition of procedure "pa_Escrutinio_Listar_Locaciones_Cerradas"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Escrutinio_Listar_Locaciones_Cerradas`;
@@ -2064,7 +2103,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Escrutinio_Listar_Locaciones_Escrutinio`
+-- Definition of procedure "pa_Escrutinio_Listar_Locaciones_Escrutinio"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Escrutinio_Listar_Locaciones_Escrutinio`;
@@ -2089,7 +2128,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Escrutinio_Listar_Voto_Pais`
+-- Definition of procedure "pa_Escrutinio_Listar_Voto_Pais"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Escrutinio_Listar_Voto_Pais`;
@@ -2110,7 +2149,7 @@ END $$
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Escrutinio_Listar_Voto_Pais_Locacion`
+-- Definition of procedure "pa_Escrutinio_Listar_Voto_Pais_Locacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Escrutinio_Listar_Voto_Pais_Locacion`;
@@ -2135,7 +2174,7 @@ END $$
 DELIMITER ;
 
 --
--- Definition of procedure `pa_fecha_actual`
+-- Definition of procedure "pa_fecha_actual"
 --
 
 DROP PROCEDURE IF EXISTS `pa_fecha_actual`;
@@ -2152,7 +2191,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_insertar_Voto_Escrutinio`
+-- Definition of procedure "pa_insertar_Voto_Escrutinio"
 --
 
 DROP PROCEDURE IF EXISTS `pa_insertar_Voto_Escrutinio`;
@@ -2172,7 +2211,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_listarLocaciones`
+-- Definition of procedure "pa_listarLocaciones"
 --
 
 DROP PROCEDURE IF EXISTS `pa_listarLocaciones`;
@@ -2195,7 +2234,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_listarLocacionesCerradas`
+-- Definition of procedure "pa_listarLocacionesCerradas"
 --
 
 DROP PROCEDURE IF EXISTS `pa_listarLocacionesCerradas`;
@@ -2218,7 +2257,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_listarLocacionesEscrutinio`
+-- Definition of procedure "pa_listarLocacionesEscrutinio"
 --
 
 DROP PROCEDURE IF EXISTS `pa_listarLocacionesEscrutinio`;
@@ -2243,7 +2282,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Listar_Escrutinio_Pais_Locacion`
+-- Definition of procedure "pa_Listar_Escrutinio_Pais_Locacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Listar_Escrutinio_Pais_Locacion`;
@@ -2274,7 +2313,7 @@ select p.nombre as pais,cv.nombre,l.id as locacion_id,e.opcion_id
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Listar_VotoPais`
+-- Definition of procedure "pa_Listar_VotoPais"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Listar_VotoPais`;
@@ -2302,7 +2341,7 @@ END $$
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Listar_Voto_Pais_Locacion`
+-- Definition of procedure "pa_Listar_Voto_Pais_Locacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Listar_Voto_Pais_Locacion`;
@@ -2332,7 +2371,7 @@ END $$
 DELIMITER ;
 
 --
--- Definition of procedure `pa_LocacionActivaPor_Usuario_PuestaCero_Locacion`
+-- Definition of procedure "pa_LocacionActivaPor_Usuario_PuestaCero_Locacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_LocacionActivaPor_Usuario_PuestaCero_Locacion`;
@@ -2370,7 +2409,7 @@ interval zh.tiempo hour), date_add(current_timestamp, interval zh.tiempo hour)) 
 DELIMITER ;
 
 --
--- Definition of procedure `pa_LocacionesActivasPor_Usuario_PuestaCero`
+-- Definition of procedure "pa_LocacionesActivasPor_Usuario_PuestaCero"
 --
 
 DROP PROCEDURE IF EXISTS `pa_LocacionesActivasPor_Usuario_PuestaCero`;
@@ -2406,7 +2445,7 @@ interval zh.tiempo hour), date_add(current_timestamp, interval zh.tiempo hour)) 
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locaciones_Por_Usuario_CerrarVotacion`
+-- Definition of procedure "pa_Locaciones_Por_Usuario_CerrarVotacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locaciones_Por_Usuario_CerrarVotacion`;
@@ -2441,7 +2480,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locaciones_Por_Usuario_Monitoreo`
+-- Definition of procedure "pa_Locaciones_Por_Usuario_Monitoreo"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locaciones_Por_Usuario_Monitoreo`;
@@ -2475,7 +2514,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locaciones_Por_Usuario_PuestaCero`
+-- Definition of procedure "pa_Locaciones_Por_Usuario_PuestaCero"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locaciones_Por_Usuario_PuestaCero`;
@@ -2512,7 +2551,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locacion_Cerrar`
+-- Definition of procedure "pa_Locacion_Cerrar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locacion_Cerrar`;
@@ -2533,7 +2572,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locacion_CerrarVotacion`
+-- Definition of procedure "pa_Locacion_CerrarVotacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locacion_CerrarVotacion`;
@@ -2556,7 +2595,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locacion_Eliminar_Votos`
+-- Definition of procedure "pa_Locacion_Eliminar_Votos"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locacion_Eliminar_Votos`;
@@ -2586,7 +2625,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locacion_Monitoreo`
+-- Definition of procedure "pa_Locacion_Monitoreo"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locacion_Monitoreo`;
@@ -2611,7 +2650,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locacion_Por_Usuario_CerrarVotacion`
+-- Definition of procedure "pa_Locacion_Por_Usuario_CerrarVotacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locacion_Por_Usuario_CerrarVotacion`;
@@ -2647,7 +2686,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locacion_Por_Usuario_PuestaCero`
+-- Definition of procedure "pa_Locacion_Por_Usuario_PuestaCero"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locacion_Por_Usuario_PuestaCero`;
@@ -2685,7 +2724,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_Locacion_PuestaCero`
+-- Definition of procedure "pa_Locacion_PuestaCero"
 --
 
 DROP PROCEDURE IF EXISTS `pa_Locacion_PuestaCero`;
@@ -2714,7 +2753,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_locacion_select`
+-- Definition of procedure "pa_locacion_select"
 --
 
 DROP PROCEDURE IF EXISTS `pa_locacion_select`;
@@ -2757,7 +2796,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_log_insert`
+-- Definition of procedure "pa_log_insert"
 --
 
 DROP PROCEDURE IF EXISTS `pa_log_insert`;
@@ -2778,7 +2817,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_delete`
+-- Definition of procedure "pa_pais_delete"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_delete`;
@@ -2797,7 +2836,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_edit`
+-- Definition of procedure "pa_pais_edit"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_edit`;
@@ -2817,7 +2856,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_findAll`
+-- Definition of procedure "pa_pais_findAll"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_findAll`;
@@ -2840,7 +2879,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_findAll_Locacion`
+-- Definition of procedure "pa_pais_findAll_Locacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_findAll_Locacion`;
@@ -2872,7 +2911,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_findByAbreviatura`
+-- Definition of procedure "pa_pais_findByAbreviatura"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_findByAbreviatura`;
@@ -2892,7 +2931,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_findByAbreviatura_ID`
+-- Definition of procedure "pa_pais_findByAbreviatura_ID"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_findByAbreviatura_ID`;
@@ -2913,7 +2952,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_findByName`
+-- Definition of procedure "pa_pais_findByName"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_findByName`;
@@ -2933,7 +2972,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_findByName_ID`
+-- Definition of procedure "pa_pais_findByName_ID"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_findByName_ID`;
@@ -2954,7 +2993,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_findByPrimaryKey`
+-- Definition of procedure "pa_pais_findByPrimaryKey"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_findByPrimaryKey`;
@@ -2973,7 +3012,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_pais_insert`
+-- Definition of procedure "pa_pais_insert"
 --
 
 DROP PROCEDURE IF EXISTS `pa_pais_insert`;
@@ -2994,7 +3033,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_partidoPolitico_CandidatosAsignados`
+-- Definition of procedure "pa_partidoPolitico_CandidatosAsignados"
 --
 
 DROP PROCEDURE IF EXISTS `pa_partidoPolitico_CandidatosAsignados`;
@@ -3014,7 +3053,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_partidoPolitico_conCandidato`
+-- Definition of procedure "pa_partidoPolitico_conCandidato"
 --
 
 DROP PROCEDURE IF EXISTS `pa_partidoPolitico_conCandidato`;
@@ -3039,7 +3078,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_partidoPolitico_delete`
+-- Definition of procedure "pa_partidoPolitico_delete"
 --
 
 DROP PROCEDURE IF EXISTS `pa_partidoPolitico_delete`;
@@ -3058,7 +3097,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_partidoPolitico_edit`
+-- Definition of procedure "pa_partidoPolitico_edit"
 --
 
 DROP PROCEDURE IF EXISTS `pa_partidoPolitico_edit`;
@@ -3087,7 +3126,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_partidoPolitico_findAll`
+-- Definition of procedure "pa_partidoPolitico_findAll"
 --
 
 DROP PROCEDURE IF EXISTS `pa_partidoPolitico_findAll`;
@@ -3112,7 +3151,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_partidoPolitico_findByPrimaryKey`
+-- Definition of procedure "pa_partidoPolitico_findByPrimaryKey"
 --
 
 DROP PROCEDURE IF EXISTS `pa_partidoPolitico_findByPrimaryKey`;
@@ -3131,7 +3170,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_partidoPolitico_insert`
+-- Definition of procedure "pa_partidoPolitico_insert"
 --
 
 DROP PROCEDURE IF EXISTS `pa_partidoPolitico_insert`;
@@ -3155,7 +3194,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_partidoPolitico_sinCandidato`
+-- Definition of procedure "pa_partidoPolitico_sinCandidato"
 --
 
 DROP PROCEDURE IF EXISTS `pa_partidoPolitico_sinCandidato`;
@@ -3179,7 +3218,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_perfil_delete`
+-- Definition of procedure "pa_perfil_delete"
 --
 
 DROP PROCEDURE IF EXISTS `pa_perfil_delete`;
@@ -3198,7 +3237,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_perfil_edit`
+-- Definition of procedure "pa_perfil_edit"
 --
 
 DROP PROCEDURE IF EXISTS `pa_perfil_edit`;
@@ -3217,7 +3256,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_perfil_findAll`
+-- Definition of procedure "pa_perfil_findAll"
 --
 
 DROP PROCEDURE IF EXISTS `pa_perfil_findAll`;
@@ -3239,7 +3278,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_perfil_findByName`
+-- Definition of procedure "pa_perfil_findByName"
 --
 
 DROP PROCEDURE IF EXISTS `pa_perfil_findByName`;
@@ -3259,7 +3298,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_perfil_findByName_ID`
+-- Definition of procedure "pa_perfil_findByName_ID"
 --
 
 DROP PROCEDURE IF EXISTS `pa_perfil_findByName_ID`;
@@ -3280,7 +3319,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_perfil_findByPrimaryKey`
+-- Definition of procedure "pa_perfil_findByPrimaryKey"
 --
 
 DROP PROCEDURE IF EXISTS `pa_perfil_findByPrimaryKey`;
@@ -3299,7 +3338,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_perfil_insert`
+-- Definition of procedure "pa_perfil_insert"
 --
 
 DROP PROCEDURE IF EXISTS `pa_perfil_insert`;
@@ -3320,7 +3359,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_procesoElectoralCerrado`
+-- Definition of procedure "pa_procesoElectoralCerrado"
 --
 
 DROP PROCEDURE IF EXISTS `pa_procesoElectoralCerrado`;
@@ -3337,7 +3376,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_proceso_electoral_activar`
+-- Definition of procedure "pa_proceso_electoral_activar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_proceso_electoral_activar`;
@@ -3355,7 +3394,7 @@ END $$
 DELIMITER ;
 
 --
--- Definition of procedure `pa_proceso_electoral_anular`
+-- Definition of procedure "pa_proceso_electoral_anular"
 --
 
 DROP PROCEDURE IF EXISTS `pa_proceso_electoral_anular`;
@@ -3373,7 +3412,7 @@ where id=CODIGO and estado<>'X';
 DELIMITER ;
 
 --
--- Definition of procedure `pa_proceso_electoral_editar`
+-- Definition of procedure "pa_proceso_electoral_editar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_proceso_electoral_editar`;
@@ -3400,7 +3439,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_proceso_electoral_findAll_Creado`
+-- Definition of procedure "pa_proceso_electoral_findAll_Creado"
 --
 
 DROP PROCEDURE IF EXISTS `pa_proceso_electoral_findAll_Creado`;
@@ -3434,7 +3473,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_proceso_electoral_findByKey`
+-- Definition of procedure "pa_proceso_electoral_findByKey"
 --
 
 DROP PROCEDURE IF EXISTS `pa_proceso_electoral_findByKey`;
@@ -3451,7 +3490,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_proceso_electoral_insertar`
+-- Definition of procedure "pa_proceso_electoral_insertar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_proceso_electoral_insertar`;
@@ -3475,7 +3514,7 @@ values(codigo,usuario,descripcion,fecha_votacion,hora_inicial,hora_final,fecha_p
 DELIMITER ;
 
 --
--- Definition of procedure `pa_proceso_electoral_select`
+-- Definition of procedure "pa_proceso_electoral_select"
 --
 
 DROP PROCEDURE IF EXISTS `pa_proceso_electoral_select`;
@@ -3497,7 +3536,7 @@ order by p.id desc;
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_asignar`
+-- Definition of procedure "pa_usuario_asignar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_asignar`;
@@ -3532,7 +3571,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_delete`
+-- Definition of procedure "pa_usuario_delete"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_delete`;
@@ -3551,7 +3590,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_edit`
+-- Definition of procedure "pa_usuario_edit"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_edit`;
@@ -3578,7 +3617,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_findAll`
+-- Definition of procedure "pa_usuario_findAll"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_findAll`;
@@ -3600,7 +3639,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_findAll_Locacion`
+-- Definition of procedure "pa_usuario_findAll_Locacion"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_findAll_Locacion`;
@@ -3623,7 +3662,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_findByDNI`
+-- Definition of procedure "pa_usuario_findByDNI"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_findByDNI`;
@@ -3643,7 +3682,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_findByDNI_ID`
+-- Definition of procedure "pa_usuario_findByDNI_ID"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_findByDNI_ID`;
@@ -3664,7 +3703,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_findByPrimaryKey`
+-- Definition of procedure "pa_usuario_findByPrimaryKey"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_findByPrimaryKey`;
@@ -3686,7 +3725,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_findByUser`
+-- Definition of procedure "pa_usuario_findByUser"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_findByUser`;
@@ -3709,7 +3748,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_findByUserName`
+-- Definition of procedure "pa_usuario_findByUserName"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_findByUserName`;
@@ -3729,7 +3768,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_findByUserName_ID`
+-- Definition of procedure "pa_usuario_findByUserName_ID"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_findByUserName_ID`;
@@ -3750,7 +3789,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_insert`
+-- Definition of procedure "pa_usuario_insert"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_insert`;
@@ -3771,7 +3810,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_usuario_retirar`
+-- Definition of procedure "pa_usuario_retirar"
 --
 
 DROP PROCEDURE IF EXISTS `pa_usuario_retirar`;
@@ -3796,7 +3835,7 @@ BEGIN
 DELIMITER ;
 
 --
--- Definition of procedure `pa_zonahoraria_findAll`
+-- Definition of procedure "pa_zonahoraria_findAll"
 --
 
 DROP PROCEDURE IF EXISTS `pa_zonahoraria_findAll`;
