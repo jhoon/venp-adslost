@@ -23,6 +23,15 @@ function doConfirm(typeConfirm) {
 		submit();
 	}
 }
+
+function doExit() {
+	with(document.cedulaForm) {
+		document.cedulaForm.action="login.do";
+		document.cedulaForm.cmd.value="salir";
+		alert('<bean:message key="elector.confirm.logout"/>');
+		submit();
+	}
+}
 </script>
 <table width="800" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -116,6 +125,13 @@ function doConfirm(typeConfirm) {
 	        <td align="center">
 	        <html:link href="javascript:doConfirm('mail');" styleClass="grisBtn">
 	   	    <div style="top: 11px;"><bean:message key="elector.confirm.sendmail"/></div>
+	   	    </html:link>
+	        </td>
+        </tr>
+        <tr>
+        	<td align="center" colspan="3">
+	        <html:link href="javascript:doExit();" styleClass="grisBtn">
+	   	    <div style="top: 11px;"><bean:message key="elector.confirm.exit"/></div>
 	   	    </html:link>
 	        </td>
         </tr>
