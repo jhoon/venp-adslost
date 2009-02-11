@@ -113,7 +113,7 @@ public class ConsolidacionAction extends DispatchAction {
 					}
 
 					double dblResultados = 0;
-					for (int i = 0; i < lista.size(); i++) {
+					for (int i = 0; i < listt.size(); i++) {
 						bean = (ConsolidacionBean) listt.get(i);
 						dblResultados = ((Double.parseDouble(bean
 								.getResultadoOpcion()) / Double
