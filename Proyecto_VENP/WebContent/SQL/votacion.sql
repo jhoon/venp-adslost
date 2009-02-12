@@ -1933,9 +1933,11 @@ BEGIN
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
-DELIMITER $$
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `votacion`.`pa_elector_votar`$$
+
+DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_elector_votar`(IN v_voto int(10), IN v_id bigint(20), IN v_lid int(10))
 BEGIN
