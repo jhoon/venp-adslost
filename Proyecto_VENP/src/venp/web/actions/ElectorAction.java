@@ -120,6 +120,7 @@ public class ElectorAction extends DispatchAction {
 		// session
 		HttpSession session = request.getSession();
 		ElectorForm bean = (ElectorForm)session.getAttribute("Elector");
+		
 		if(service.isValidPIN(bean.getId(), frm.getPin().trim())) {
 			int intIdProceso = ((Integer)session.getAttribute("intIdProceso")).intValue();
 			ProcesoElectoralService service2 = new ProcesoElectoralService();

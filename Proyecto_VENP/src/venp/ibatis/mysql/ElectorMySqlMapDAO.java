@@ -76,6 +76,7 @@ public class ElectorMySqlMapDAO extends SqlMapDaoTemplate implements ElectorDAO 
 			elector.setFechaSufragio(electemp.getFechaSufragio());
 			elector.setHoraSufragio(electemp.getHoraSufragio());
 			elector.setGmtSufragio(electemp.getGmtSufragio());
+			
 		}
 
 		return elector;

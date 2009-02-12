@@ -1933,37 +1933,41 @@ BEGIN
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
-DELIMITER ;
-
---
--- Definition of procedure "pa_elector_votar"
---
-
-DROP PROCEDURE IF EXISTS `pa_elector_votar`;
-
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+DROP PROCEDURE IF EXISTS `votacion`.`pa_elector_votar`$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_elector_votar`(IN v_voto int(10), IN v_id bigint(20), IN v_lid int(10))
 BEGIN
+	declare v_estado char(1);
+	-- generamos transaccion por si ocurre algun error durante el proceso de registro del voto
 	START TRANSACTION;
-	-- se inserta el voto de forma encriptada
-	INSERT into voto (id, Locacion_id, Opcion_id, fecha_creacion) 
-	values (NULL, v_lid, AES_ENCRYPT(v_voto, fa_voto_getAESKey()), now());
-	-- se actualiza el estado del elector
-	update elector set estado = 'V' where id = v_id;
-	-- se leen los datos a mostrar en pantalla
-	select 
-	  date_format(adddate(now(), INTERVAL zh.tiempo HOUR), "%d / %m / %Y") as fecha, 
-	  date_format(adddate(now(), INTERVAL zh.tiempo HOUR), "%H : %i : %s") as hora, 
-	  zh.nombre as gmt 
-	from elector e inner join locacion l on e.Locacion_id = l.id 
-	  inner join centro_votacion cv on l.Centro_Votacion_id = cv.id 
-	  inner join zona_horaria zh on cv.Zona_Horaria_id = zh.id 
-	and e.id = v_id;
-	COMMIT;
-    END $$
-/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+	
+	-- verificamos si ya ha votado...
+	
+	select estado into v_estado from elector where id = v_id;
+	if v_estado = 'V' then
+		ROLLBACK;
+	else
+		-- se inserta el voto de forma encriptada
+		INSERT into voto (id, Locacion_id, Opcion_id, fecha_creacion) 
+		values (NULL, v_lid, AES_ENCRYPT(v_voto, fa_voto_getAESKey()), now());
+		-- se actualiza el estado del elector
+		update elector set estado = 'V' where id = v_id;
+		-- se leen los datos a mostrar en pantalla
+		select 
+		  date_format(adddate(now(), INTERVAL zh.tiempo HOUR), "%d / %m / %Y") as fecha, 
+		  date_format(adddate(now(), INTERVAL zh.tiempo HOUR), "%H : %i : %s") as hora, 
+		  zh.nombre as gmt 
+		from elector e inner join locacion l on e.Locacion_id = l.id 
+		  inner join centro_votacion cv on l.Centro_Votacion_id = cv.id 
+		  inner join zona_horaria zh on cv.Zona_Horaria_id = zh.id 
+		and e.id = v_id;
+		COMMIT;
+	end if;
+
+
+    END$$
 
 DELIMITER ;
 

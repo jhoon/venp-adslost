@@ -31,4 +31,8 @@ public class VotantesXLocacionBean extends Bean {
 	public void removeVotante(String strDni) {
 		votantes.remove(strDni);
 	}
+	
+	public boolean existeVotante(String strDNI){
+		return votantes.contains(strDNI);
+	}
 }
