@@ -85,7 +85,7 @@ public class VotacionAction extends DispatchAction {
 				return mapping.findForward("fin");
 			} catch (Exception e) {
 				ActionErrors errors = new ActionErrors();
-				errors.add("error", new ActionMessage("elector.error.otro",bean.getEmail()));
+				errors.add("error", new ActionMessage("elector.validaestado.error"));
 			    saveErrors(request, errors);
 			    frm.set("voto", null);
 			    return mapping.findForward("errores");

@@ -1935,10 +1935,15 @@ BEGIN
 
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `votacion`.`pa_elector_votar`$$
+--
+-- Definition of procedure "pa_elector_votar"
+--
+
+DROP PROCEDURE IF EXISTS `votacion`.`pa_elector_votar`;
 
 DELIMITER $$
 
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_elector_votar`(IN v_voto int(10), IN v_id bigint(20), IN v_lid int(10))
 BEGIN
 	declare v_estado char(1);
@@ -1946,7 +1951,6 @@ BEGIN
 	START TRANSACTION;
 	
 	-- verificamos si ya ha votado...
-	
 	select estado into v_estado from elector where id = v_id;
 	if v_estado = 'V' then
 		ROLLBACK;
@@ -1968,8 +1972,8 @@ BEGIN
 		COMMIT;
 	end if;
 
-
-    END$$
+    END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
 DELIMITER ;
 
