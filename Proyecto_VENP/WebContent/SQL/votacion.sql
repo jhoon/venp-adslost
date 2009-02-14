@@ -1601,7 +1601,7 @@ BEGIN
 	on l.proceso_electoral_id= pe.id
 	where pp.estado='A'
 	and c.estado='A'
-	and pe.estado='F'
+	and pe.estado='F' 
 	group by nombre,foto,pp.nombre,logo,fecha
 	order by resultado desc;
 END $$
@@ -1939,7 +1939,7 @@ DELIMITER ;
 -- Definition of procedure "pa_elector_votar"
 --
 
-DROP PROCEDURE IF EXISTS `votacion`.`pa_elector_votar`;
+DROP PROCEDURE IF EXISTS `pa_elector_votar`;
 
 DELIMITER $$
 
@@ -1971,7 +1971,6 @@ BEGIN
 		and e.id = v_id;
 		COMMIT;
 	end if;
-
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
@@ -2166,7 +2165,7 @@ DROP PROCEDURE IF EXISTS `pa_Escrutinio_Listar_Voto_Pais_Locacion`;
 
 DELIMITER $$
 
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_Escrutinio_Listar_Voto_Pais_Locacion`(IN v_pais INTEGER, IN v_locacion INTEGER)
 BEGIN
 	DECLARE v_nombre_pais varchar(60);
@@ -2175,9 +2174,25 @@ BEGIN
 	select cv.nombre into v_nombre_cv  
 	from centro_votacion cv inner join locacion l on cv.id = l.centro_votacion_id 
 	and l.id = v_locacion;
-	select v_nombre_pais as pais, v_nombre_cv as nombre, v_locacion as locacion_id, o.id as opcion_id, count(v.opcion_id) as votos, o.candidato_partido_politico_id as blanco 
-	from opcion o left join voto v on o.id = AES_DECRYPT(v.opcion_id, fa_voto_getAESKey()) and v.locacion_id = v_locacion 
-	group by o.id, o.candidato_partido_politico_id;
+	select 
+	v_nombre_pais as pais, 
+	v_nombre_cv as nombre, 
+	v_locacion as locacion_id,
+	o.id as opcion_id, 
+	0 as blanco, 
+	(select count(v.id) from voto v where v.locacion_id = v_locacion 
+	and v.opcion_id = AES_ENCRYPT(0, fa_voto_getAESKey())) as votos
+	from opcion o where o.candidato_partido_politico_id = 0
+	union
+	select 
+	v_nombre_pais as pais, 
+	v_nombre_cv as nombre, 
+	v_locacion as locacion_id,
+	o.id as opcion_id, 
+	o.candidato_partido_politico_id as blanco, 
+	(select count(v.id) from voto v where v.locacion_id = v_locacion 
+	and v.opcion_id = AES_ENCRYPT(o.id, fa_voto_getAESKey())) as votos
+	from opcion o where o.candidato_partido_politico_id <> 0;
 END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
 
