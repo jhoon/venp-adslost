@@ -691,6 +691,38 @@ BEGIN
 DELIMITER ;
 
 --
+-- Definition of procedure "pa_ADMIN_crearVotos"
+--
+
+DROP PROCEDURE IF EXISTS `pa_ADMIN_crearVotos`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_ADMIN_crearVotos`()
+BEGIN
+	DECLARE v1 INT DEFAULT 2000;
+	DECLARE vLocacion INT DEFAULT 1;
+	DECLARE vOpcion INT DEFAULT 1;
+	DECLARE vLocacionR INT DEFAULT 1;
+	DECLARE vOpcionR INT DEFAULT 1;
+	select max(id) into vLocacion from locacion;
+	select max(id) into vOpcion from opcion;
+	WHILE v1 > 0 DO
+		SET vLocacionR = rand() * vLocacion;
+		if vLocacionR = 0 then
+			SET vLocacionR = 1;
+		end if;
+		SET vOpcionR = rand() * vOpcion;
+		insert into voto (locacion_id, opcion_id, fecha_creacion) values (vLocacionR, AES_ENCRYPT(vOpcionR, fa_voto_getAESKey()), now());
+		SET v1 = v1 - 1;
+	END WHILE;
+    END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
 -- Definition of procedure "pa_ADMIN_setDefaultData"
 --
 
