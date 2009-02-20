@@ -53,7 +53,6 @@ public class EscrutinioAction extends DispatchAction {
 
 				}
 			}
-
 		}
 
 		frm.setListaEscrutinio(lista);
@@ -76,6 +75,19 @@ public class EscrutinioAction extends DispatchAction {
 		ArrayList ls = frm.getListaEscrutinio();
 
 		ArrayList resultado = buscarId(ls, id, listaDetalle);
+
+		LocacionBean bean = new LocacionBean();
+
+		for (int i = 0; i < resultado.size(); i++) {
+			bean = (LocacionBean) resultado.get(i);
+
+			DetalleEscrutinioBean deta = new DetalleEscrutinioBean();
+
+			for (int a = 0; a < bean.getListaEscrutinioDetalle().size(); a++) {
+				deta = (DetalleEscrutinioBean) bean.getListaEscrutinioDetalle()
+						.get(a);
+			}
+		}
 
 		frm.setListaEscrutinio(resultado);
 
