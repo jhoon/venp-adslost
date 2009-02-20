@@ -1559,6 +1559,21 @@ BEGIN
 	and c.estado='A'
 	and pe.estado='A'
 	group by nombre,foto,pp.nombre,logo,fecha
+	union
+	select 
+		"Voto en Blanco" as nombre,
+		"nothing.gif" as foto,
+		"" as partido, 
+		"nothing.gif" as logo, 
+		sum(numero) as resultado, 
+		date_format(now(), "%d/%m/%y") as fecha_cierre 
+	from escrutinio e
+	inner join locacion l
+	on e.locacion_id = l.id
+	inner join proceso_electoral pe
+	on l.proceso_electoral_id = pe.id
+	and e.opcion_id = 0 
+	and pe.estado='A' 
 	order by resultado desc;
     END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
@@ -1630,6 +1645,21 @@ BEGIN
 	and c.estado='A'
 	and pe.estado='F' 
 	group by nombre,foto,pp.nombre,logo,fecha
+	union
+	select 
+		"Voto en Blanco" as nombre,
+		"nothing.gif" as foto,
+		"" as partido, 
+		"nothing.gif" as logo, 
+		sum(numero) as resultado, 
+		date_format(now(), "%d/%m/%y") as fecha_cierre 
+	from escrutinio e
+	inner join locacion l
+	on e.locacion_id = l.id
+	inner join proceso_electoral pe
+	on l.proceso_electoral_id = pe.id
+	and e.opcion_id = 0 
+	and pe.estado='F' 
 	order by resultado desc;
 END $$
 /*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
@@ -2036,15 +2066,18 @@ BEGIN
   declare v_cuantos int(5);
   declare v_cantidad_opciones int(5);
   declare v_locacion_cerrada int(1);
+
     select count(o.id) into v_cantidad_opciones from proceso_electoral pe
-    inner join cedula c on
-    pe.id=c.proceso_electoral_id
-    inner join opcion o on
-    o.cedula_id=c.id
+    inner join cedula c on    pe.id=c.proceso_electoral_id
+    inner join opcion o on    o.cedula_id=c.id
     where pe.estado='A';
-   --  select count(id) into v_cantidad_opciones from opcion;
+
+    set v_cantidad_opciones = v_cantidad_opciones + 1;
+   
    select count(locacion_id) into v_cuantos from escrutinio where locacion_id=locacion;
+
    select count(id) into v_locacion_cerrada  from locacion where puesta_cero='S' and id=locacion;
+
   if (v_locacion_cerrada=1) then
       if v_cuantos < v_cantidad_opciones then
   	    insert into escrutinio
@@ -2069,7 +2102,18 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_Escrutinio_Listar_Escrutinio_Pais_Locacion`(IN v_pais INTEGER,IN v_locacion INTEGER)
 BEGIN
     
-select p.nombre as pais,cv.nombre,l.id as locacion_id,e.opcion_id
+    select p.nombre as pais, cv.nombre, l.id as locacion_id, '0' as opcion_id, e.numero as votos, '0' as blanco
+    from pais p
+    inner join centro_votacion cv on p.id = cv.pais_id
+    inner join locacion l on cv.id = l.centro_votacion_id
+    inner join escrutinio e on e.locacion_id = l.id
+    inner join proceso_electoral pe on l.proceso_electoral_id = pe.id	
+    where p.id = v_pais and 
+          e.locacion_id = v_locacion and 
+          pe.estado = 'A' and
+          opcion_id = 0
+    union 
+    select p.nombre as pais,cv.nombre,l.id as locacion_id,e.opcion_id
            ,e.numero as votos ,o.candidato_partido_politico_id as blanco
     from pais p
     inner join centro_votacion cv
@@ -2205,11 +2249,11 @@ BEGIN
 	v_nombre_pais as pais, 
 	v_nombre_cv as nombre, 
 	v_locacion as locacion_id,
-	o.id as opcion_id, 
+	'0' as opcion_id, 
 	0 as blanco, 
 	(select count(v.id) from voto v where v.locacion_id = v_locacion 
 	and v.opcion_id = AES_ENCRYPT(0, fa_voto_getAESKey())) as votos
-	from opcion o where o.candidato_partido_politico_id = 0
+	from opcion o limit 0,1
 	union
 	select 
 	v_nombre_pais as pais, 
