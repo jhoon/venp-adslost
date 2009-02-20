@@ -4,31 +4,28 @@ import java.util.ArrayList;
 
 import venp.beans.UsuarioBean;
 import venp.dao.entities.UsuarioDAO;
-//import venp.dao.factory.DAOFactory;
 import venp.dao.factory.DaoConfig;
 
 import com.ibatis.dao.client.DaoManager;
 
 public class UsuarioService {
-	
+
 	private UsuarioDAO dao;
 	private DaoManager manager = DaoConfig.getDaoManager();
-	
+
 	public UsuarioService() {
 		dao = (UsuarioDAO) manager.getDao(UsuarioDAO.class);
 	}
 
 	public UsuarioBean findByUsuario(String usuario) throws Exception {
 		try {
-			UsuarioDAO dao = (UsuarioDAO) manager.getDao(UsuarioDAO.class);
-			UsuarioBean bean = dao.findByUsuario(usuario);
-			return bean;
+			return dao.findByUsuario(usuario);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public void borrar(String codigo) throws Exception {
 		try {
 			dao.borrar(codigo);
@@ -36,7 +33,7 @@ public class UsuarioService {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void editar(UsuarioBean bean) throws Exception {
 		try {
 			dao.editar(bean);
@@ -47,36 +44,27 @@ public class UsuarioService {
 
 	public ArrayList findAll() throws Exception {
 		try {
-			ArrayList lista = dao.findAll();
-
-			return lista;
+			return dao.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
 
 	public ArrayList findAllByLocacion() throws Exception {
 		try {
-			ArrayList lista = dao.findAllByLocacion();
-
-			return lista;
+			return dao.findAllByLocacion();
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
 
 	public UsuarioBean findByPrimaryKey(String codigo) throws Exception {
 		try {
-			UsuarioBean bean = dao.findByPrimaryKey(codigo);
-
-			return bean;
+			return dao.findByPrimaryKey(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
@@ -86,7 +74,6 @@ public class UsuarioService {
 			return dao.findByDNI(dni);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return true;
 		}
 	}
@@ -96,7 +83,6 @@ public class UsuarioService {
 			return dao.findByDNI(dni, codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return true;
 		}
 	}
@@ -106,21 +92,20 @@ public class UsuarioService {
 			return dao.findByUserName(userName);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return true;
 		}
 	}
 
-	public boolean findByUserName(String userName, String codigo) throws Exception {
+	public boolean findByUserName(String userName, String codigo)
+			throws Exception {
 		try {
 			return dao.findByUserName(userName, codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return true;
 		}
 	}
-	
+
 	public void insertar(UsuarioBean bean) throws Exception {
 		try {
 			dao.insertar(bean);
@@ -128,21 +113,23 @@ public class UsuarioService {
 			e.printStackTrace();
 		}
 	}
-	
-	public void asignar(int procesoElectoral, int codigoUsuario, int centroVotacion) throws Exception {
+
+	public void asignar(int procesoElectoral, int codigoUsuario,
+			int centroVotacion) throws Exception {
 		try {
 			dao.asignar(procesoElectoral, codigoUsuario, centroVotacion);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void retirar(int procesoElectoral, int codigoUsuario, int centroVotacion) throws Exception {
+
+	public void retirar(int procesoElectoral, int codigoUsuario,
+			int centroVotacion) throws Exception {
 		try {
 			dao.retirar(procesoElectoral, codigoUsuario, centroVotacion);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
