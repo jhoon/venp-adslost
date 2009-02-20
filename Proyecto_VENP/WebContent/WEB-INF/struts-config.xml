@@ -63,10 +63,10 @@
 		<form-bean name="procesoElectoralDatosForm" type="venp.web.forms.ProcesoElectoralDatosForm" />
 	</form-beans>
 
-	<!-- <global-exceptions>
+	<global-exceptions>
 		<exception key="global.error" type="java.lang.Exception"
 			path="/errores.jsp" />
-	</global-exceptions> -->
+	</global-exceptions>
 
 	<global-forwards>
 		<forward name="errores" path="/errores.jsp" />

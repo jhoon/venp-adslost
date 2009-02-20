@@ -61,8 +61,9 @@ public class LoginAction extends DispatchAction {
 				// se elimina cualquier session existente invalida
 				if (!request.isRequestedSessionIdValid()) {
 					HttpSession tempSession = request.getSession();
-					if (tempSession != null)
+					if (tempSession != null) {
 						tempSession.invalidate();
+					}
 				}
 				// se hacen las validaciones de acuerdo al tipo de usuario
 				LogService serviceLog = new LogService();
