@@ -183,9 +183,7 @@ CREATE TABLE "escrutinio" (
   "Opcion_id" int(10) unsigned NOT NULL,
   "numero" int(10) unsigned NOT NULL,
   PRIMARY KEY  ("id"),
-  KEY "Escrutinio_FKIndex1" ("Opcion_id"),
   KEY "Escrutinio_FKIndex2" ("Locacion_id"),
-  CONSTRAINT "escrutinio_ibfk_1" FOREIGN KEY ("Opcion_id") REFERENCES "opcion" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT "escrutinio_ibfk_2" FOREIGN KEY ("Locacion_id") REFERENCES "locacion" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
 ) TYPE=InnoDB;
 
