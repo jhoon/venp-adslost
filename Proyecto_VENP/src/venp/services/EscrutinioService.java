@@ -1,10 +1,11 @@
 package venp.services;
 
 import java.util.ArrayList;
-import com.ibatis.dao.client.DaoManager; 
-import venp.beans.EscrutinioBean;
+
 import venp.dao.entities.EscrutinioDAO;
 import venp.dao.factory.DaoConfig;
+
+import com.ibatis.dao.client.DaoManager;
 
 public class EscrutinioService {
 	

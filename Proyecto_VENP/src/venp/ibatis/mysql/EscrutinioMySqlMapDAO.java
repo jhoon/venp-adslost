@@ -122,6 +122,7 @@ public class EscrutinioMySqlMapDAO extends SqlMapDaoTemplate implements
 			int intVotos) {
 		try {
 			insertaVoto(strOpcion, strIdLocacion, intVotos);
+			System.out.println(strOpcion + " - " + strIdLocacion + " - " + intVotos);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

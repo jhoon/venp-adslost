@@ -611,21 +611,18 @@ BEGIN
 	insert into operador values (4, 12, 'A');
 	insert into operador values (3, 13, 'A');*/
 	insert into candidato (id, nombre, paterno, materno, dni, foto, estado) 
-	values (0, '', '', '', '', 'nothing.gif', 'A'), 
-	       (1, 'Juan Pablo', 'Perez', 'Pinto', '41723412', 'candidato1.jpg', 'A'),
+	values (1, 'Juan Pablo', 'Perez', 'Pinto', '41723412', 'candidato1.jpg', 'A'),
 	       (2, 'Luis Eduardo', 'Loca', 'Paliza', '34679213', 'candidato2.jpg', 'A');
 	insert into partido_politico (id, nombre, abreviatura, logo, estado) 
-	values (0, 'VACIO', '', 'nothing.gif', 'A'), 
-	       (1, 'Partido La Herradura', 'PLH', 'simbolo1.jpg', 'A'),
+	values (1, 'Partido La Herradura', 'PLH', 'simbolo1.jpg', 'A'),
 	       (2, 'Partido La Estafa', 'PLE', 'simbolo2.jpg', 'A');
 	insert  into candidato_partido_politico (id, Partido_Politico_id, Candidato_id, fecha_creacion, fecha_modificacion, estado) 
-	values (0, 0, 0, now(), now(), 'A'),
-	       (1, 1, 1, now(), now(), 'A'),
+	values (1, 1, 1, now(), now(), 'A'),
 	       (2, 2, 2, now(), now(), 'A');
 	insert  into cedula (id, Proceso_Electoral_id, tipo, estado, fecha_creacion, fecha_modificacion) 
 	values (1, v_proceso, 'P', 'P', now(), now());
 	insert into opcion (id, Candidato_Partido_Politico_id, Cedula_id, orden, fecha_creacion)
-	values (1, 0, 1, 3, now()), (2, 1, 1, 1, now()), (3, 2, 1, 2, now());
+	values (1, 1, 1, 1, now()), (2, 2, 1, 2, now());
 	call pa_proceso_electoral_activar(v_proceso);
 	call pa_elector_registrar(0, 5, 'Renzo', 'Portocarrero', 'Heredia', '11111111', 'hacklucas@gmail.com');
 	call pa_elector_registrar(0, 1, 'Rudy', 'Capatinta', 'Aucca', '22222222', 'hacklucas@gmail.com');

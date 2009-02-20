@@ -1,5 +1,4 @@
-.tborder2 {border ="0";cellpadding ="6";cellspacing ="1";width ="100%"
-	
+.tborder2 {
 }
 
 .errorMessage {
@@ -120,6 +119,60 @@
 	width: 140px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
-	font-weight: normal;
+	font-weight: bold;
 	text-align: center;
+}
+
+.tableParent {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	width: 700px;
+}
+
+.tableSinConcluir {
+	background: #F8F8F8;
+	border: 2px #999999 solid;
+	color: #000;
+	text-align: center;
+	vertical-align: middle;
+	height: 50px;
+	width: 600px;
+}
+
+.tableConcluido {
+	background: #F8F8F8;
+	border: 2px #999999 solid;
+	color: #000;
+	text-align: center;
+	vertical-align: middle;
+	width: 600px;
+}
+
+.tableResultado {
+	background: #F8F8F8;
+	color: #000;
+	text-align: center;
+	vertical-align: middle;
+	width: 600px;
+}
+
+.rowHead {
+  background:#4B4B4B;
+  border: 1px #999999 solid;
+  height: 30px;
+  color: #FFFFFF;
+  font-family:Verdana;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.rowData {
+  background:#ffffff;
+  border: 1px #999999 solid;
+  height: 30px;
+  color: #000000;
+  font-family: Verdana;
+  font-size: 11px;
+  font-weight: normal;
 }
