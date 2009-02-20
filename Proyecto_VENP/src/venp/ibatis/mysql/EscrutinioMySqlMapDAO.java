@@ -28,14 +28,15 @@ public class EscrutinioMySqlMapDAO extends SqlMapDaoTemplate implements
 		lista = detalleEscrutinio(strId);
 
 		ArrayList listaa = null;
+		
 		for (int i = 0; i < lista.size(); i++) {
 			listaa = new ArrayList();
 			EscrutinioBean beanDetalle = null;
 			beanDetalle = (EscrutinioBean) lista.get(i);
 
 			ArrayList<DetalleEscrutinioBean> resultados = new ArrayList<DetalleEscrutinioBean>();
-			resultados = listarVotoPaisLocacion(strId, beanDetalle
-					.getLocacionId());
+			
+			resultados = listarVotoPaisLocacion(strId, beanDetalle.getLocacionId());
 
 			contadorVotos(resultados, strOperacion);
 		}
@@ -43,7 +44,6 @@ public class EscrutinioMySqlMapDAO extends SqlMapDaoTemplate implements
 		strOperacion = null;
 
 		return resultado;
-
 	}
 
 	public ArrayList listarDetalleLocacion(String strId) throws Exception {
@@ -54,18 +54,17 @@ public class EscrutinioMySqlMapDAO extends SqlMapDaoTemplate implements
 		list = detalleEscrutinio(strId);
 
 		ArrayList listaa = null;
+		
 		for (int i = 0; i < list.size(); i++) {
 			listaa = new ArrayList();
 			EscrutinioBean beanDetalle = null;
 			beanDetalle = (EscrutinioBean) list.get(i);
-
-			listaa = listarVotoPorLocacion(strId, beanDetalle.getLocacionId());
+			listaa = listarVotoPorLocacion(strId, beanDetalle.getLocacionId());	
 			contadorVotos(listaa, strOperacion);
-
 		}
 
 		strOperacion = " ";
-
+		
 		return resultado;
 	}
 
@@ -73,47 +72,32 @@ public class EscrutinioMySqlMapDAO extends SqlMapDaoTemplate implements
 		int intTotalVotos = 0;
 		int intVotosBlanco = 0;
 		int intVotosValidos = 0;
+		int intOpcion = 0;
 
 		ArrayList listaDetalle = new ArrayList();
 		DetalleEscrutinioBean beanResultadoDetalle = null;
 
 		for (int a = 0; a < lista.size(); a++) {
 			beanResultadoDetalle = (DetalleEscrutinioBean) lista.get(a);
-
-			intTotalVotos = intTotalVotos
-					+ Integer.parseInt(beanResultadoDetalle.getVotos());
-
-			if (beanResultadoDetalle.getIdVotoBlanco().equals("0")) {
-				intVotosBlanco = Integer.parseInt(beanResultadoDetalle
-						.getVotos());
+			intTotalVotos = intTotalVotos + Integer.parseInt(beanResultadoDetalle.getVotos());				
+			intOpcion = Integer.parseInt(beanResultadoDetalle.getOpcion());
+			
+			if (intOpcion == 0) {
+				intVotosBlanco = Integer.parseInt(beanResultadoDetalle.getVotos());
 				if (strInsertar.equals("insertar")) {
-					insertaVotosEscrutinio(beanResultadoDetalle.getOpcion(),
-							beanResultadoDetalle.getLocacionId(),
-							intVotosBlanco);
+					insertaVotosEscrutinio("0", beanResultadoDetalle.getLocacionId(), intVotosBlanco);
 				}
-				intVotosValidos = intTotalVotos - intVotosBlanco;
-				beanResultadoDetalle.setVotosValidos(String
-						.valueOf(intVotosValidos));
-				beanResultadoDetalle.setTotalVotos(String
-						.valueOf(intTotalVotos));
-				beanResultadoDetalle.setVotosBlanco(String
-						.valueOf(intVotosBlanco));
 			} else {
-				intVotosValidos = intTotalVotos - intVotosBlanco;
-				beanResultadoDetalle.setVotosValidos(String
-						.valueOf(intVotosValidos));
-				beanResultadoDetalle.setTotalVotos(String
-						.valueOf(intTotalVotos));
-				beanResultadoDetalle.setVotosBlanco(String
-						.valueOf(intVotosBlanco));
+				intVotosValidos = intVotosValidos + Integer.parseInt(beanResultadoDetalle.getVotos());
 				if (strInsertar.equals("insertar")) {
-					insertaVotosEscrutinio(beanResultadoDetalle.getOpcion(),
-							beanResultadoDetalle.getLocacionId(), Integer
-									.parseInt(beanResultadoDetalle.getVotos()));
+					insertaVotosEscrutinio(beanResultadoDetalle.getOpcion(), beanResultadoDetalle.getLocacionId(), Integer.parseInt(beanResultadoDetalle.getVotos()));
 				}
-
 			}
 		}
+		
+		beanResultadoDetalle.setVotosValidos(String.valueOf(intVotosValidos));
+		beanResultadoDetalle.setTotalVotos(String.valueOf(intTotalVotos));
+		beanResultadoDetalle.setVotosBlanco(String.valueOf(intVotosBlanco));
 
 		resultado.add(beanResultadoDetalle);
 	}
@@ -122,7 +106,6 @@ public class EscrutinioMySqlMapDAO extends SqlMapDaoTemplate implements
 			int intVotos) {
 		try {
 			insertaVoto(strOpcion, strIdLocacion, intVotos);
-			System.out.println(strOpcion + " - " + strIdLocacion + " - " + intVotos);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -153,7 +136,6 @@ public class EscrutinioMySqlMapDAO extends SqlMapDaoTemplate implements
 	}
 
 	private ArrayList detalleEscrutinio(String strId) {
-
 		HashMap map = new HashMap();
 		map.put("id", strId);
 		ArrayList lista = new ArrayList();
@@ -163,7 +145,6 @@ public class EscrutinioMySqlMapDAO extends SqlMapDaoTemplate implements
 	}
 
 	private void insertaVoto(String strOpcion, String strLocacion, int intVotos) {
-
 		HashMap mapVotos = new HashMap();
 		mapVotos.put("opcion", new Integer(strOpcion));
 		mapVotos.put("locacion", new Integer(strLocacion));
