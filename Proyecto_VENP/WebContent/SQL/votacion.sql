@@ -35,7 +35,7 @@ CREATE TABLE "candidato" (
   "foto" varchar(36) NOT NULL,
   "estado" char(1) NOT NULL,
   PRIMARY KEY  ("id")
-) TYPE=InnoDB;
+) TYPE=InnoDB; 
 
 --
 -- Dumping data for table "candidato"
@@ -524,7 +524,10 @@ DROP FUNCTION IF EXISTS `fa_voto_getAESKey`;
 DELIMITER $$
 
 /*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */ $$
-CREATE DEFINER=`root`@`localhost` FUNCTION `fa_voto_getAESKey`() RETURNS varchar(100) CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `fa_voto_getAESKey`() 
+RETURNS varchar(100) CHARSET latin1 
+DETERMINISTIC
+READS SQL DATA
 BEGIN
 	RETURN 'Sdf3GMnmyu87568xCsarwEFsfst3GdHfTYr3FsdfsgegdfgSDGDFWCXZCShth3248Hrdcx1SDF1S5D1SRWE2NFS5D1F';
     END $$

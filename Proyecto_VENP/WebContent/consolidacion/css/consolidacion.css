@@ -1,24 +1,14 @@
-.tablaPrincipal {border ="0";cellspacing ="0";cellpadding ="0";
-	
-}
+.tablaPrincipal {}
 
-.td0 {width ="800";align ="center";valign ="top";
-	
-}
+.td0 {}
 
-.td1 {colspan ="2";height ="20";
-	
-}
+.td1 {}
 
-.td2 {colspan ="2";height ="40";
-	
-}
+.td2 {}
 
-.td4 {width ="800";align ="center"
-	
-}
+.td4 {}
 
-.interTabla {width ="800";
+.interTabla {
 	background-color: white;
 	border-right: #333 1px solid;
 	border-top: #333 1px solid;
@@ -26,16 +16,12 @@
 	border-left: #333 1px solid;
 	font: 10pt Verdana, Tahoma, Arial;
 	color: #000000;
-	border
-	="0";
 }
 
 .partido {
 	font-weight: bold;
 	font-size: 20px;
 	color: #000000;
-	align
-	="center";
 }
 
 .candidato {
@@ -48,24 +34,16 @@
 	font-weight: bold;
 	font-size: 30pt;
 	color: #0099CC;
-	align
-	="center";
-	valign
-	="middle";
-	align
-	="center";
+	text-align: center;
+	vertical-align: middle;
 }
 
 .porcentaje {
 	font-weight: bold;
 	font-size: 30pt;
 	color: #0099CC;
-	align
-	="center";
-	valign
-	="middle";
-	align
-	="center";
+	text-align: center;
+	vertical-align: middle;
 }
 
 .sendBtn {
@@ -92,14 +70,10 @@
 	text-align: center;
 }
 
-.imagen1 {width ="84";height ="84";border ="3";
-	
-}
+.imagen1 {}
 
-.imagen2 {width ="84";height ="84";border ="0";
-	
-}
+.imagen2 {}
 
 .centro {
-	text-align: "center";
+	text-align: center;
 }
